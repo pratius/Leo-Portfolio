@@ -1,0 +1,260 @@
+/* ==========================================================================
+   rdd-portal.css — components specific to the RDD Portal case study.
+
+   This is the only desktop-web product in the portfolio besides the Customer
+   Portal, and its screens are 1440-wide dashboards. case-study.css already
+   supplies browser chrome via .cs-mock, but that component is built for the
+   two-up overlapping hero stage. This file adds a standalone framed shot, the
+   13-stage rail the product itself uses, a stakeholder grid, and the
+   before/after comparison the brief asked for.
+
+   Token-driven throughout — light/dark and the portfolio accent flow through.
+   ========================================================================== */
+
+:root{
+  --rp-chrome-top:#FBFCFE;
+  --rp-chrome-bot:#F2F4F9;
+  --rp-chrome-line:rgba(15,23,42,.10);
+}
+[data-theme="dark"]{
+  --rp-chrome-top:#2A3140;
+  --rp-chrome-bot:#1E2430;
+  --rp-chrome-line:rgba(255,255,255,.10);
+}
+
+/* ---------- Framed screenshot ----------
+   The screens are tall (some 3500px at display width), so the frame caps
+   height and scrolls internally rather than letting one figure run for three
+   screens. The lightbox carries the full image. */
+.rp-shot{
+  margin:0; position:relative;
+  border-radius:14px; overflow:hidden;
+  background: var(--surface);
+  border:1px solid var(--rp-chrome-line);
+  box-shadow: 0 2px 4px rgba(12,18,30,.07), 0 14px 30px rgba(12,18,30,.13), 0 40px 70px rgba(12,18,30,.14);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.rp-shot__bar{
+  height:34px; display:flex; align-items:center; gap:7px; padding:0 14px;
+  background: linear-gradient(180deg, var(--rp-chrome-top), var(--rp-chrome-bot));
+  border-bottom:1px solid var(--rp-chrome-line);
+}
+.rp-shot__bar i{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.rp-shot__bar i:nth-child(1){ background:#FF5F57; }
+.rp-shot__bar i:nth-child(2){ background:#FEBC2E; }
+.rp-shot__bar i:nth-child(3){ background:#28C840; }
+.rp-shot__url{
+  margin-left:11px; flex:1; max-width:320px; height:18px; border-radius:99px;
+  background: var(--surface); border:1px solid var(--rp-chrome-line);
+}
+/* Cap the viewport so a 3500px screen doesn't dominate the page. */
+.rp-shot__view{
+  max-height: var(--rp-h, 520px);
+  overflow:hidden; background: var(--bg-alt);
+}
+.rp-shot__view img{ display:block; width:100%; height:auto; }
+.rp-shot--tall{ --rp-h: 700px; }
+.rp-shot--full{ --rp-h: none; }
+.rp-shot--full .rp-shot__view{ max-height:none; }
+
+.rp-shot figcaption{
+  padding:14px 16px 16px; font-size:.8rem; color: var(--text-secondary); line-height:1.55;
+  border-top:1px solid var(--border); background: var(--surface);
+}
+.rp-shot figcaption b{
+  display:block; color: var(--text-primary); font-weight:600; font-size:.86rem; margin-bottom:3px;
+}
+
+.rp-shot[data-shot]{ cursor:zoom-in; }
+.rp-shot[data-shot]:hover, .rp-shot[data-shot]:focus-visible{
+  transform: translateY(-6px);
+  box-shadow: 0 3px 6px rgba(12,18,30,.09), 0 20px 40px rgba(12,18,30,.18), 0 54px 90px rgba(12,18,30,.18);
+}
+.rp-shot[data-shot]:focus-visible{ outline:none; box-shadow: 0 0 0 3px var(--brand), 0 20px 40px rgba(12,18,30,.18); }
+
+/* Hint that the framed view is cropped */
+.rp-shot__view{ position:relative; }
+.rp-shot:not(.rp-shot--full) .rp-shot__view::after{
+  content:''; position:absolute; left:0; right:0; bottom:0; height:56px; pointer-events:none;
+  background: linear-gradient(180deg, transparent, var(--surface));
+  opacity:.9;
+}
+
+/* ---------- Rows ---------- */
+.rp-row{ display:grid; gap: clamp(20px, 3vw, 32px); }
+.rp-row--2{ grid-template-columns: repeat(2, 1fr); }
+.rp-row--3{ grid-template-columns: repeat(3, 1fr); }
+.rp-row--2 .rp-shot__view{ --rp-h: 400px; }
+.rp-row--3 .rp-shot__view{ --rp-h: 300px; }
+
+/* ---------- Hero stage: two overlapping windows ---------- */
+.rp-stage{ position:relative; margin-top: clamp(40px, 5vw, 66px); }
+.rp-stage__glow{
+  position:absolute; inset:-12% -8% -18%; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse at 50% 45%, var(--brand-glow), transparent 66%);
+  opacity:.4; filter: blur(56px);
+}
+/* The frame is the positioning context for the two windows and nothing else,
+   so the front window's -8% offset is measured against the main window's
+   height rather than against a box that also contains the caption. */
+.rp-stage__frame{ position:relative; }
+/* Both selectors below are scoped on purpose. An unscoped
+   .rp-stage__front{position:absolute} loses to .rp-stage .rp-shot (two classes
+   beats one), which silently left the front window in flow — stacked below the
+   main one instead of overlapping it. */
+.rp-stage .rp-shot{ position:relative; }
+.rp-stage .rp-stage__main{ width:84%; z-index:2; }
+.rp-stage .rp-stage__front{
+  position:absolute; right:0; bottom:-8%; width:46%; z-index:3;
+}
+.rp-stage .rp-stage__front .rp-shot__view{ --rp-h: 300px; }
+/* The front window overhangs the frame by 8% of the main window's height, so
+   the caption clears that plus breathing room. */
+.rp-stage__caption{
+  position:relative; z-index:1; margin-top: clamp(76px, 8.5vw, 108px);
+  text-align:center; font-size:.84rem; color: var(--text-secondary);
+}
+
+/* ---------- The 13-stage rail (mirrors the product's own chip rail) ---------- */
+.rp-rail{
+  display:flex; flex-wrap:wrap; gap:8px;
+  padding: clamp(20px,2.6vw,28px);
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.rp-rail__chip{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:8px 14px; border-radius: var(--radius-full);
+  font-size:.8rem; font-weight:600; white-space:nowrap;
+  border:1px solid transparent;
+}
+.rp-rail__chip::after{ content:'✓'; font-size:.72rem; opacity:.9; }
+.rp-rail__chip--done{ background: var(--ap-teal, #00875F); color:#fff; }
+/* The stage you're in. In the product this is a near-black chip, which works on
+   the portal's white ground; on the dark theme it sank into the panel, so the
+   figure/ground flips rather than the meaning. */
+.rp-rail__chip--now{ background: var(--brand-ink, #121212); color:#fff; }
+[data-theme="dark"] .rp-rail__chip--now{ background: var(--text-primary); color:#0B0F19; }
+.rp-rail__chip--now::after{ content:'●'; font-size:.52rem; }
+.rp-rail__chip--todo{
+  background: transparent; color: var(--text-secondary); border-color: var(--border);
+}
+.rp-rail__chip--todo::after{ content:''; }
+.rp-rail__legend{
+  flex-basis:100%; margin-top:6px; padding-top:14px; border-top:1px dashed var(--border);
+  font-size:.78rem; color: var(--text-secondary); line-height:1.6;
+}
+
+/* ---------- Stakeholder grid ---------- */
+.rp-teams{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: clamp(16px, 2.2vw, 22px);
+}
+.rp-team{
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--surface); padding: clamp(20px,2.4vw,26px);
+  position:relative; overflow:hidden;
+}
+.rp-team::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background: var(--rp-accent, var(--brand));
+}
+/* The 3px spine carries the team's vivid identity colour; the uppercase tag is
+   10.5px text and has to clear 4.5:1, so it gets its own value per theme rather
+   than reusing the spine colour (which fails on one ground or the other —
+   the lease navy on dark, the MEP coral on light). */
+.rp-team__tag{
+  display:inline-block; font-size:.66rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color: var(--rp-accent-text, var(--rp-accent, var(--brand))); margin-bottom:10px;
+}
+.rp-team h4{ font-size:1.02rem; margin-bottom:8px; }
+.rp-team p{ font-size:.86rem; color: var(--text-secondary); line-height:1.65; margin:0; }
+.rp-team p + p{ margin-top:9px; }
+.rp-team strong{ color: var(--text-primary); font-weight:600; }
+.rp-team--lease{  --rp-accent:#1D4289; --rp-accent-text:#1D4289; }
+.rp-team--rdd{    --rp-accent:#00875F; --rp-accent-text:#007050; }
+.rp-team--tenant{ --rp-accent:#A951C2; --rp-accent-text:#8B32A6; }
+.rp-team--mep{    --rp-accent:#F18664; --rp-accent-text:#C4502A; }
+[data-theme="dark"] .rp-team--lease{  --rp-accent-text:#6E97E8; }
+[data-theme="dark"] .rp-team--rdd{    --rp-accent-text:#2FBF8B; }
+[data-theme="dark"] .rp-team--tenant{ --rp-accent-text:#C98BDB; }
+[data-theme="dark"] .rp-team--mep{    --rp-accent-text:#F18664; }
+
+/* ---------- Before / after comparison ---------- */
+.rp-ba{
+  display:grid; grid-template-columns: 1fr auto 1fr; gap: clamp(16px,2.4vw,26px);
+  align-items:stretch; margin-top: clamp(28px,3.4vw,40px);
+}
+.rp-ba__col{
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  padding: clamp(20px,2.4vw,26px); background: var(--surface);
+}
+.rp-ba__col--before{ border-color: rgba(200,30,30,.28); }
+.rp-ba__col--after{ border-color: rgba(16,185,129,.32); }
+.rp-ba__head{
+  display:block; font-size:.68rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; margin-bottom:14px;
+}
+.rp-ba__col--before .rp-ba__head{ color: var(--danger); }
+.rp-ba__col--after .rp-ba__head{ color: var(--success-text); }
+.rp-ba__col ul{ display:flex; flex-direction:column; gap:9px; }
+.rp-ba__col li{
+  font-size:.86rem; line-height:1.55; color: var(--text-secondary);
+  padding:10px 13px; border-radius:9px; background: var(--bg-alt);
+  position:relative; padding-left:34px;
+}
+.rp-ba__col li::before{
+  position:absolute; left:12px; top:10px; font-size:.78rem; font-weight:700;
+}
+.rp-ba__col--before li::before{ content:'✕'; color: var(--danger); }
+.rp-ba__col--after li::before{ content:'✓'; color: var(--success-text); }
+.rp-ba__col li strong{ color: var(--text-primary); font-weight:600; }
+.rp-ba__arrow{
+  align-self:center; color: var(--brand); font-size:1.6rem; line-height:1;
+}
+
+/* ---------- Three-outcome decision illustration ---------- */
+/* Stacked, not auto-fit. This block lives in the left column of a .cs-two-col,
+   which is ~534px at desktop — wide enough for two 190px cards and no more, so
+   auto-fit orphaned the third on its own row. Three full-width bars read as an
+   ordered progression (pass → pass with comments → back to the tenant) and
+   never break, at any width. */
+.rp-outcomes{
+  display:grid; grid-template-columns: 1fr;
+  gap:12px; margin-top: clamp(22px,2.6vw,30px);
+}
+.rp-outcome{
+  border-radius: var(--radius-md); padding:16px 20px; color:#fff;
+  display:flex; flex-direction:column; gap:5px;
+}
+.rp-outcome b{ font-size:.94rem; font-weight:700; }
+.rp-outcome span{ font-size:.8rem; line-height:1.55; opacity:.95; }
+/* Deepened from the product's own button fills so white body copy at 95%
+   clears 4.5:1 — the hue relationship (pass → pass-with-comments → back to
+   the tenant) survives, and the screen beside it shows the real colours. */
+.rp-outcome--go{   background:#0A6E4A; }
+.rp-outcome--soft{ background:#0B6E63; }
+.rp-outcome--back{ background:#9A5203; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px){
+  .rp-row--3{ grid-template-columns: repeat(2, 1fr); }
+  .rp-row--3 .rp-shot__view{ --rp-h: 340px; }
+}
+@media (max-width: 900px){
+  /* The overlapping front window stops being legible — stack instead.
+     Scoped to match the base rules above, which are two classes deep. */
+  .rp-stage .rp-stage__main{ width:100%; }
+  .rp-stage .rp-stage__front{ position:static; width:100%; margin-top:22px; }
+  .rp-stage__caption{ margin-top: clamp(26px,3vw,34px); }
+  .rp-ba{ grid-template-columns: 1fr; gap:14px; }
+  .rp-ba__arrow{ transform: rotate(90deg); justify-self:center; }
+}
+@media (max-width: 720px){
+  .rp-row--2, .rp-row--3{ grid-template-columns: 1fr; }
+  .rp-row--2 .rp-shot__view,
+  .rp-row--3 .rp-shot__view{ --rp-h: 320px; }
+  .rp-shot__view{ --rp-h: 340px; }
+  .rp-shot--tall{ --rp-h: 420px; }
+  .rp-rail__chip{ font-size:.74rem; padding:7px 11px; }
+}

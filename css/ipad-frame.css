@@ -1,0 +1,163 @@
+/* ==========================================================================
+   ipad-frame.css — components for the Handover case study.
+
+   The only iPad-only product in the portfolio. phone-frames.css frames a
+   430×932 handset and case-study.css frames a browser window; neither fits a
+   1640×2360 portrait tablet, so this file adds the device, the four-step
+   flow rail the walkthrough follows, and the video shell.
+
+   Token-driven throughout — light/dark and the portfolio accent flow through.
+   ========================================================================== */
+
+/* ---------- iPad device ----------
+   Portrait iPad Air: 1640×2360 screen, uniform bezel, no notch, no home
+   button. The bezel is deliberately thin — a chunky frame would shrink the
+   screenshot, and the screen is the point. */
+.ip-pad{
+  margin:0; position:relative;
+  background:#20262F; border-radius:30px; padding:12px;
+  box-shadow: 0 0 0 1.5px #0E1218,
+              0 4px 8px rgba(10,14,22,.20),
+              0 24px 50px rgba(10,14,22,.26),
+              0 56px 96px rgba(10,14,22,.20);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+/* Front camera, centred on the long edge in portrait. */
+.ip-pad::before{
+  content:''; position:absolute; top:5px; left:50%; transform:translateX(-50%);
+  width:5px; height:5px; border-radius:50%; background:#0B0E14; z-index:3;
+}
+.ip-pad__screen{
+  border-radius:20px; overflow:hidden; background:#EAEFF5;
+  aspect-ratio: 1640 / 2360;
+}
+.ip-pad__screen img{
+  display:block; width:100%; height:100%;
+  object-fit:cover; object-position:top center;
+}
+/* A screen shown whole rather than cropped to the frame. */
+.ip-pad--full .ip-pad__screen{ aspect-ratio:auto; }
+.ip-pad--full .ip-pad__screen img{ height:auto; object-fit:fill; }
+
+.ip-pad[data-shot]{ cursor:zoom-in; }
+.ip-pad[data-shot]:hover,
+.ip-pad[data-shot]:focus-visible{
+  transform: translateY(-6px);
+  box-shadow: 0 0 0 1.5px #0E1218,
+              0 6px 12px rgba(10,14,22,.24),
+              0 30px 60px rgba(10,14,22,.30),
+              0 70px 110px rgba(10,14,22,.24);
+}
+.ip-pad[data-shot]:focus-visible{ outline:none; box-shadow: 0 0 0 3px var(--brand), 0 24px 50px rgba(10,14,22,.26); }
+
+/* ---------- Rows of devices ---------- */
+.ip-row{
+  display:grid; gap: clamp(20px, 3.2vw, 40px);
+  align-items:start; margin-top: clamp(28px, 3.4vw, 44px);
+}
+.ip-row--2{ grid-template-columns: repeat(2, 1fr); }
+.ip-row--3{ grid-template-columns: repeat(3, 1fr); }
+.ip-row__cell{ display:flex; flex-direction:column; gap:14px; }
+.ip-row__cell figcaption,
+.ip-caption{
+  font-size:.82rem; line-height:1.6; color: var(--text-secondary);
+}
+.ip-caption b, .ip-row__cell figcaption b{
+  display:block; color: var(--text-primary); font-weight:600;
+  font-size:.88rem; margin-bottom:3px;
+}
+
+/* ---------- Hero stage ---------- */
+.ip-stage{
+  position:relative; margin-top: clamp(40px, 5vw, 66px);
+  display:flex; justify-content:center;
+}
+.ip-stage__glow{
+  position:absolute; inset:-14% -10% -16%; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse at 50% 45%, var(--brand-glow), transparent 66%);
+  opacity:.42; filter: blur(56px);
+}
+.ip-stage .ip-pad{ position:relative; z-index:2; width: min(430px, 64vw); }
+
+/* ---------- Four-step rail (mirrors the walkthrough's own chapters) ---------- */
+.ip-steps{
+  display:grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 2vw, 20px); margin-top: clamp(28px, 3.4vw, 40px);
+  counter-reset: ipstep;
+}
+.ip-step{
+  position:relative; padding: clamp(20px,2.4vw,26px);
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--surface);
+}
+.ip-step__num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px; border-radius:50%; margin-bottom:14px;
+  background: var(--brand); color:#fff; font-size:.76rem; font-weight:700;
+}
+.ip-step h4{ font-size:1rem; margin-bottom:7px; }
+.ip-step p{ font-size:.86rem; line-height:1.65; color: var(--text-secondary); margin:0; }
+.ip-step__state{
+  display:block; margin-top:12px; padding-top:12px;
+  border-top:1px dashed var(--border);
+  font-size:.76rem; color: var(--text-secondary);
+}
+.ip-step__state b{ color: var(--text-primary); font-weight:600; }
+
+/* ---------- Video ---------- */
+.ip-video{
+  margin: clamp(28px,3.4vw,42px) 0 0;
+  border-radius: var(--radius-md); overflow:hidden;
+  border:1px solid var(--border); background:#0B0F19;
+  box-shadow: 0 3px 6px rgba(10,14,22,.14), 0 22px 44px rgba(10,14,22,.20);
+}
+/* The colour is for the fallback text inside <video>, which sits on the
+   element's own dark background — inheriting the page colour left it at
+   1.08:1 in light theme, i.e. unreadable exactly when it's the only thing
+   the visitor gets. */
+.ip-video video{
+  display:block; width:100%; height:auto;
+  background:#0B0F19; color:#E8EDF7;
+  font-size:.9rem; line-height:1.6; padding:0;
+}
+.ip-video figcaption{
+  padding:14px 18px 16px; font-size:.8rem; line-height:1.6;
+  color: var(--text-secondary); background: var(--surface);
+  border-top:1px solid var(--border);
+}
+.ip-video figcaption b{ color: var(--text-primary); font-weight:600; }
+
+/* ---------- Bilingual pair illustration ---------- */
+.ip-bilingual{
+  display:grid; grid-template-columns: 1fr 1fr; gap:0;
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  overflow:hidden; margin-top: clamp(20px,2.4vw,28px);
+}
+.ip-bilingual__side{ padding: clamp(18px,2.2vw,24px); background: var(--surface); }
+.ip-bilingual__side + .ip-bilingual__side{
+  border-left:1px solid var(--border); text-align:right; direction:rtl;
+}
+.ip-bilingual__label{
+  display:block; font-size:.66rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color: var(--text-secondary); margin-bottom:10px;
+}
+.ip-bilingual p{ font-size:.86rem; line-height:1.75; color: var(--text-primary); margin:0; }
+
+/* ---------- Responsive ----------
+   The product isn't responsive; this page is. */
+@media (max-width: 1000px){
+  .ip-steps{ grid-template-columns: repeat(2, 1fr); }
+  .ip-row--3{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px){
+  .ip-row--2, .ip-row--3{ grid-template-columns: 1fr; }
+  .ip-row{ gap:34px; }
+  .ip-steps{ grid-template-columns: 1fr; gap:12px; }
+  .ip-stage .ip-pad{ width: min(300px, 78vw); }
+  .ip-pad{ border-radius:24px; padding:9px; }
+  .ip-pad__screen{ border-radius:16px; }
+  .ip-bilingual{ grid-template-columns: 1fr; }
+  .ip-bilingual__side + .ip-bilingual__side{
+    border-left:0; border-top:1px solid var(--border);
+  }
+}

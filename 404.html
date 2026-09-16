@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found — Leo Stalin</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .error-page{
+      min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding:24px;
+    }
+    .error-page__code{
+      font-family: var(--font-display); font-weight:800; font-size: clamp(5rem, 16vw, 9rem);
+      color: var(--accent); line-height:1; letter-spacing:-0.03em;
+    }
+    .error-page h1{ font-size: clamp(1.4rem, 3vw, 2rem); margin-top:12px; }
+    .error-page p{ color: var(--text-secondary); margin-top:12px; max-width:420px; }
+    .error-page .btn{ margin-top:28px; }
+  </style>
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+</head>
+<body>
+  <div class="error-page">
+    <span class="error-page__code">404</span>
+    <h1>This page wandered off-screen.</h1>
+    <p>The page you're looking for doesn't exist or may have moved. Let's get you back to something worth seeing.</p>
+    <a href="index.html" class="btn btn--primary">Back to home</a>
+  </div>
+</body>
+</html>

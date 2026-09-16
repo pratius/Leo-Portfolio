@@ -1,0 +1,167 @@
+/* ==========================================================================
+   superapp.css — components for the Arada Super App case study.
+
+   The screens are 428×926 handsets, so the phone frames come from
+   phone-frames.css. What this file adds is specific to a super app: the
+   module grid that shows how much lives under one roof, the side-by-side
+   comparison that proves one form shell serves ten request types, and the
+   unreleased banner — this project was designed but never shipped, and the
+   page says so rather than implying otherwise.
+
+   Arada's product blue is #1D3C82, sampled from the app's header bar. It is
+   a local accent only; the portfolio's orange still owns buttons and links.
+   ========================================================================== */
+
+:root{
+  --sa-blue:#1D3C82;
+  --sa-blue-ink:#1D3C82;
+  --sa-blue-wash:rgba(29,60,130,.09);
+  --sa-blue-line:rgba(29,60,130,.30);
+  --sa-mint:#7FD1C1;
+}
+[data-theme="dark"]{
+  --sa-blue-ink:#8FAEEA;
+  --sa-blue-wash:rgba(143,174,234,.10);
+  --sa-blue-line:rgba(143,174,234,.26);
+}
+
+/* ---------- Unreleased banner ----------
+   Sits directly under the hero. A concept has to announce itself. */
+.sa-unreleased{
+  display:flex; align-items:flex-start; gap:14px;
+  margin-top: clamp(26px,3vw,36px);
+  padding: clamp(18px,2.2vw,22px) clamp(20px,2.4vw,26px);
+  border:1px dashed var(--border); border-radius: var(--radius-md);
+  background: var(--bg-alt);
+}
+.sa-unreleased__tag{
+  flex-shrink:0; font-size:.66rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color: var(--text-primary);
+  padding:5px 11px; border-radius: var(--radius-full);
+  border:1px solid var(--border); background: var(--surface);
+}
+.sa-unreleased p{
+  margin:0; font-size:.87rem; line-height:1.7; color: var(--text-secondary);
+}
+.sa-unreleased strong{ color: var(--text-primary); font-weight:600; }
+
+/* ---------- Module grid ---------- */
+/* Two by two, not three across — there are four modules, and a 3-column grid
+   orphans the fourth on a row of its own. */
+.sa-modules{
+  display:grid; grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px,2.2vw,22px); margin-top: clamp(28px,3.4vw,40px);
+}
+.sa-module{
+  padding: clamp(20px,2.4vw,26px); border-radius: var(--radius-md);
+  border:1px solid var(--border); background: var(--surface);
+  position:relative; overflow:hidden;
+}
+.sa-module::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background: var(--sa-accent, var(--sa-blue));
+}
+.sa-module__count{
+  display:inline-block; font-size:.66rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color: var(--sa-accent-ink, var(--sa-blue-ink)); margin-bottom:10px;
+}
+.sa-module h4{ font-size:1rem; margin-bottom:8px; }
+.sa-module p{ font-size:.85rem; line-height:1.65; color: var(--text-secondary); margin:0; }
+.sa-module--property{ --sa-accent:#1D3C82; }
+.sa-module--pay{      --sa-accent:#4FB79F; }
+.sa-module--care{     --sa-accent:#A855C7; }
+.sa-module--request{  --sa-accent:#E8674C; }
+[data-theme="dark"] .sa-module--property{ --sa-accent-ink:#8FAEEA; }
+[data-theme="dark"] .sa-module--pay{      --sa-accent-ink:#6FD8BF; }
+[data-theme="dark"] .sa-module--care{     --sa-accent-ink:#D79BEA; }
+[data-theme="dark"] .sa-module--request{  --sa-accent-ink:#F5A18C; }
+.sa-module--property{ --sa-accent-ink:#1D3C82; }
+.sa-module--pay{      --sa-accent-ink:#1E6B5B; }
+.sa-module--care{     --sa-accent-ink:#7A3494; }
+.sa-module--request{  --sa-accent-ink:#B84226; }
+
+/* ---------- The ten request types, as a field-count table ---------- */
+.sa-table-wrap{ overflow-x:auto; margin-top: clamp(26px,3.2vw,36px); }
+.sa-table{
+  width:100%; border-collapse:collapse; min-width:540px;
+  font-size:.86rem; border:1px solid var(--border); border-radius: var(--radius-md);
+  overflow:hidden;
+}
+.sa-table th, .sa-table td{
+  padding:12px 16px; text-align:left; border-bottom:1px solid var(--border);
+}
+.sa-table thead th{
+  background: var(--bg-alt); font-size:.7rem; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; color: var(--text-secondary);
+}
+.sa-table tbody tr:last-child td{ border-bottom:0; }
+.sa-table td:first-child{ color: var(--text-primary); font-weight:600; }
+.sa-table td{ color: var(--text-secondary); }
+.sa-table td.sa-num{ text-align:right; font-variant-numeric: tabular-nums; white-space:nowrap; }
+
+/* ---------- Adaptive-form comparison ---------- */
+.sa-adapt{
+  display:grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px,2.2vw,24px); margin-top: clamp(26px,3vw,34px);
+}
+.sa-adapt__col{
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--surface); padding: clamp(18px,2.2vw,24px);
+}
+.sa-adapt__head{
+  display:block; font-size:.68rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color: var(--sa-blue-ink); margin-bottom:6px;
+}
+.sa-adapt__n{
+  display:block; font-size:1.5rem; font-weight:800; color: var(--text-primary);
+  line-height:1.1; margin-bottom:12px;
+}
+.sa-adapt__col ul{ display:flex; flex-direction:column; gap:7px; }
+.sa-adapt__col li{
+  font-size:.82rem; line-height:1.5; color: var(--text-secondary);
+  padding-left:16px; position:relative;
+}
+.sa-adapt__col li::before{
+  content:''; position:absolute; left:0; top:8px;
+  width:5px; height:5px; border-radius:50%; background: var(--sa-blue-line);
+}
+
+/* ---------- Tracker comparison ---------- */
+.sa-tracks{
+  display:grid; grid-template-columns: repeat(2, 1fr);
+  gap: clamp(18px,2.4vw,28px); margin-top: clamp(26px,3vw,34px);
+}
+.sa-track{
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--surface); padding: clamp(20px,2.4vw,26px);
+}
+.sa-track h4{ font-size:.98rem; margin-bottom:4px; }
+.sa-track > p{ font-size:.82rem; color: var(--text-secondary); margin:0 0 16px; line-height:1.6; }
+.sa-track ol{ list-style:none; margin:0; padding:0; }
+.sa-track li{
+  position:relative; padding:0 0 18px 26px;
+  font-size:.86rem; color: var(--text-primary); line-height:1.5;
+}
+.sa-track li::before{
+  content:''; position:absolute; left:0; top:4px; width:11px; height:11px;
+  border-radius:50%; background: var(--sa-blue); border:2px solid var(--surface);
+  box-shadow:0 0 0 1.5px var(--sa-blue);
+}
+.sa-track li::after{
+  content:''; position:absolute; left:5px; top:15px; bottom:0; width:1.5px;
+  background: var(--sa-blue-line);
+}
+.sa-track li:last-child{ padding-bottom:0; }
+.sa-track li:last-child::after{ display:none; }
+.sa-track li span{ display:block; font-size:.78rem; color: var(--text-secondary); margin-top:2px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px){
+  .sa-adapt{ grid-template-columns: 1fr; }
+}
+@media (max-width: 720px){
+  .sa-modules{ grid-template-columns: 1fr; }
+  .sa-tracks{ grid-template-columns: 1fr; }
+  .sa-unreleased{ flex-direction:column; gap:12px; }
+  .sa-unreleased__tag{ align-self:flex-start; }
+}

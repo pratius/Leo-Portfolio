@@ -1,0 +1,169 @@
+/* ==========================================================================
+   yalla.css — components for the Yalla Scooter case study.
+
+   The screens are 430×932 handsets, so the phone frames come from
+   phone-frames.css. What this file adds is Yalla-specific: the brand teal,
+   the physical-hardware cards that tie the sticker on the scooter to the
+   scanner in the app, the before/after transformation block, and the
+   looping rider animation.
+
+   Yalla's brand teal is #05F2DB, sampled from the splash screen. It is used
+   as a local accent only — the portfolio's own orange still owns buttons and
+   links, so a case study never repaints the site's controls.
+   ========================================================================== */
+
+:root{
+  --ya-teal:#05F2DB;
+  --ya-teal-ink:#046B62;      /* teal deep enough for text on white */
+  --ya-teal-wash:rgba(5,242,219,.10);
+  --ya-teal-line:rgba(5,242,219,.34);
+}
+[data-theme="dark"]{
+  --ya-teal-ink:#5BE9DA;
+  --ya-teal-wash:rgba(5,242,219,.09);
+  --ya-teal-line:rgba(5,242,219,.26);
+}
+
+/* ---------- Hero: scooter render behind a phone ---------- */
+.ya-stage{
+  position:relative; margin-top: clamp(40px, 5vw, 66px);
+  display:flex; align-items:flex-end; justify-content:center;
+  gap: clamp(10px, 4vw, 60px);
+}
+.ya-stage__glow{
+  position:absolute; inset:-16% -8% -14%; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse at 50% 50%, rgba(5,242,219,.30), transparent 66%);
+  filter: blur(64px);
+}
+.ya-stage__scooter{
+  position:relative; z-index:1; width: clamp(180px, 24vw, 330px);
+  height:auto; display:block;
+  filter: drop-shadow(0 32px 44px rgba(8,14,22,.42));
+}
+.ya-stage .bk-phone{ position:relative; z-index:2; }
+
+/* ---------- Brand-teal accents ---------- */
+.ya-chip{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 14px; border-radius: var(--radius-full);
+  background: var(--ya-teal-wash); border:1px solid var(--ya-teal-line);
+  color: var(--ya-teal-ink); font-size:.78rem; font-weight:600;
+}
+.ya-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+
+/* ---------- The transformation block ----------
+   The brief asked for this explicitly: manual + paperwork + staff
+   dependency on one side, digital + QR + self-service on the other. */
+.ya-transform{
+  display:grid; grid-template-columns: 1fr auto 1fr;
+  gap: clamp(16px,2.4vw,28px); align-items:stretch;
+  margin-top: clamp(30px,3.6vw,44px);
+}
+.ya-tcol{
+  border-radius: var(--radius-md); padding: clamp(22px,2.6vw,30px);
+  border:1px solid var(--border); background: var(--surface);
+}
+.ya-tcol--before{ border-color: rgba(200,30,30,.26); }
+.ya-tcol--after{  border-color: var(--ya-teal-line); background: var(--ya-teal-wash); }
+.ya-tcol__head{
+  display:block; font-size:.68rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; margin-bottom:16px;
+}
+.ya-tcol--before .ya-tcol__head{ color: var(--danger); }
+.ya-tcol--after  .ya-tcol__head{ color: var(--ya-teal-ink); }
+.ya-tcol ul{ display:flex; flex-direction:column; gap:10px; }
+.ya-tcol li{
+  position:relative; padding-left:26px;
+  font-size:.88rem; line-height:1.6; color: var(--text-secondary);
+}
+.ya-tcol li::before{ position:absolute; left:0; top:1px; font-weight:700; font-size:.8rem; }
+.ya-tcol--before li::before{ content:'✕'; color: var(--danger); }
+.ya-tcol--after  li::before{ content:'✓'; color: var(--ya-teal-ink); }
+.ya-tcol li strong{ color: var(--text-primary); font-weight:600; }
+.ya-transform__arrow{
+  align-self:center; font-size:1.7rem; line-height:1; color: var(--ya-teal-ink);
+}
+
+/* The one-line equation under the two columns. */
+.ya-equation{
+  margin-top: clamp(24px,3vw,34px); padding: clamp(20px,2.6vw,28px);
+  border:1px dashed var(--border); border-radius: var(--radius-md);
+  text-align:center; font-size:.92rem; line-height:2.1; color: var(--text-secondary);
+}
+.ya-equation b{ color: var(--text-primary); font-weight:600; }
+.ya-equation .ya-eq-down{
+  display:block; color: var(--ya-teal-ink); font-size:1.3rem; line-height:1.4;
+}
+.ya-equation .ya-eq-new{
+  color: var(--ya-teal-ink); font-weight:700;
+}
+
+/* ---------- Physical hardware cards ---------- */
+.ya-hw{
+  display:grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px,2.4vw,26px); margin-top: clamp(28px,3.4vw,40px);
+}
+.ya-hw figure{
+  margin:0; border:1px solid var(--border); border-radius: var(--radius-md);
+  overflow:hidden; background: var(--surface);
+}
+.ya-hw img{ display:block; width:100%; height:auto; }
+.ya-hw figcaption{
+  padding:14px 16px 16px; font-size:.8rem; line-height:1.6;
+  color: var(--text-secondary); border-top:1px solid var(--border);
+}
+.ya-hw figcaption b{
+  display:block; color: var(--text-primary); font-weight:600;
+  font-size:.86rem; margin-bottom:3px;
+}
+
+/* ---------- Rider animation ---------- */
+.ya-rider{
+  position:relative; border-radius: var(--radius-md); overflow:hidden;
+  border:1px solid var(--border); background:#BEE9F7;
+  box-shadow: 0 3px 6px rgba(10,14,22,.12), 0 20px 40px rgba(10,14,22,.18);
+}
+.ya-rider video{ display:block; width:100%; height:auto; }
+
+/* ---------- Loader detail ---------- */
+.ya-loader-note{
+  display:flex; align-items:center; gap:18px; margin-top:22px;
+  padding:16px 20px; border:1px solid var(--border);
+  border-radius: var(--radius-md); background: var(--surface);
+}
+.ya-loader-note img{ width:52px; height:52px; flex-shrink:0; border-radius:50%; background:#0F1420; }
+.ya-loader-note p{ margin:0; font-size:.85rem; line-height:1.65; color: var(--text-secondary); }
+.ya-loader-note b{ color: var(--text-primary); font-weight:600; }
+
+/* ---------- Numbered flow rail ---------- */
+.ya-flow{
+  display:grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px,2vw,20px); margin-top: clamp(28px,3.4vw,40px);
+}
+.ya-flow__step{
+  padding: clamp(20px,2.4vw,26px); border-radius: var(--radius-md);
+  border:1px solid var(--border); background: var(--surface); position:relative;
+}
+.ya-flow__num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px; border-radius:50%; margin-bottom:13px;
+  background: var(--ya-teal); color:#04302C; font-size:.76rem; font-weight:800;
+}
+.ya-flow__step h4{ font-size:.98rem; margin-bottom:7px; }
+.ya-flow__step p{ font-size:.85rem; line-height:1.65; color: var(--text-secondary); margin:0; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px){
+  .ya-flow{ grid-template-columns: repeat(2, 1fr); }
+  .ya-hw{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px){
+  .ya-transform{ grid-template-columns: 1fr; gap:14px; }
+  .ya-transform__arrow{ transform: rotate(90deg); justify-self:center; }
+}
+@media (max-width: 720px){
+  .ya-flow, .ya-hw{ grid-template-columns: 1fr; }
+  .ya-stage{ gap:0; }
+  .ya-stage__scooter{ display:none; }   /* the phone is the point at this width */
+  .ya-equation{ font-size:.85rem; line-height:1.95; }
+}

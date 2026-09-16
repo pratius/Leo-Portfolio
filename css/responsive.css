@@ -1,0 +1,142 @@
+/* ==========================================================================
+   responsive.css — breakpoints: desktop (default) → laptop → tablet → mobile
+   ========================================================================== */
+
+/* ---------- Laptop / small desktop (<=1200px) ---------- */
+@media (max-width: 1200px){
+  :root{ --container-w: 96%; }
+  .project-grid{ grid-template-columns: repeat(2, 1fr); }
+  .services__grid{ grid-template-columns: repeat(3, 1fr); }
+  .badge-grid{ grid-template-columns: repeat(2, 1fr); }
+  .blog__grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Tablet (<=960px) ---------- */
+@media (max-width: 960px){
+  .section{ padding: 90px 0; }
+
+  .nav__list{ display:none; }
+  .nav-toggle{ display:flex; }
+
+  .hero__inner{ grid-template-columns: 1fr; text-align:center; padding-block: 40px; }
+  .hero__content{ order:2; }
+  .hero__visual{ order:1; margin-bottom:20px; }
+  .hero__actions{ justify-content:center; }
+  .hero__stats{ justify-content:center; }
+  .hero__desc{ margin-inline:auto; }
+
+  .about__grid{ grid-template-columns: 1fr; gap:40px; }
+  .about__facts{ grid-template-columns: repeat(2,1fr); }
+
+  .skills__grid{ grid-template-columns: 1fr 1fr; }
+
+  .project-grid{ grid-template-columns: 1fr 1fr; }
+
+  .services__grid{ grid-template-columns: repeat(2, 1fr); }
+
+  .contact__grid{ grid-template-columns: 1fr; }
+
+  .cs-meta-grid{ grid-template-columns: repeat(2,1fr); }
+  .cs-process{ grid-template-columns: repeat(2,1fr); }
+  .cs-highlights{ grid-template-columns: repeat(2,1fr); }
+  .cs-gallery{ grid-template-columns: repeat(2,1fr); }
+  .cs-metric{ flex-direction:column; text-align:center; }
+  .cs-metric__copy p{ max-width:none; }
+
+  /* The plinth is fixed-width, so the copy column gets squeezed first. Cap the
+     mark and tighten the gap before stacking at 640. */
+  .brand-mark{ gap:32px; padding:32px; }
+  .brand-mark__plinth{ width: clamp(170px, 30vw, 240px); }
+  .brand-mark::before{ width:320px; height:320px; }
+
+  .footer__inner{ flex-direction:column; text-align:center; }
+  .footer__tag{ margin-left:0; text-align:center; }
+}
+
+/* ---------- Mobile (<=640px) ---------- */
+@media (max-width: 640px){
+  .section{ padding: 70px 0; }
+  .container{ padding-inline: 18px; }
+
+  .hero__title{ font-size: 2.6rem; }
+  .hero__actions{ flex-direction:column; width:100%; }
+  .hero__actions .btn{ width:100%; }
+  .hero__stats{ flex-wrap:wrap; gap:26px; justify-content:space-between; }
+
+  .portrait-card{ width: 78%; }
+  .float-card{ display:none; }
+  /* Centre with auto margins, not translateX: the floatCard keyframes animate
+     `transform`, which would wipe out a translate used for positioning. */
+  .float-card--metric{
+    display:flex; flex-direction:column;
+    bottom:-16%; left:0; right:0; margin-inline:auto; width:150px;
+    transform:none; animation:none;
+  }
+
+  /* Single column: the mark sits above the copy, both centred. `1fr` instead of
+     `auto` so the plinth can never force the panel wider than the viewport. */
+  .brand-mark{
+    grid-template-columns: 1fr;
+    justify-items:center; text-align:center;
+    gap:28px; padding: 32px 22px;
+    margin-top: clamp(40px, 9vw, 56px);
+  }
+  .brand-mark__plinth{ width: min(200px, 58vw); }
+  .brand-mark::before{
+    left:50%; top:0; width:260px; height:260px;
+    transform: translate(-50%, -30%);
+  }
+  .brand-mark__copy h3{ font-size:1.35rem; }
+  /* Heading and eyebrow stay centred under the mark; body copy goes back to
+     left-aligned — centred ragged text this long is hard to read on a phone. */
+  .brand-mark__copy p:not(.eyebrow){ max-width:none; font-size:.95rem; text-align:left; }
+
+  .skills__grid{ grid-template-columns: 1fr; }
+  .project-grid{ grid-template-columns: 1fr; }
+  .services__grid{ grid-template-columns: 1fr 1fr; }
+  .badge-grid{ grid-template-columns: 1fr; }
+  .blog__grid{ grid-template-columns: 1fr; }
+
+  .cs-meta-grid{ grid-template-columns: 1fr 1fr; }
+  .cs-process{ grid-template-columns: 1fr 1fr; }
+  .cs-highlights{ grid-template-columns: 1fr; }
+  .cs-gallery{ grid-template-columns: 1fr; }
+  .case-study__body{ padding: 16px 20px 40px; }
+  .lightbox__nav{ width:42px; height:42px; font-size:1.4rem; }
+  .lightbox__nav--prev{ left:8px; }
+  .lightbox__nav--next{ right:8px; }
+  .lightbox__close{ top:14px; right:14px; }
+
+  .exp-timeline{ padding-left:26px; }
+  .exp-item::before{ left:-33px; }
+  .exp-item{ flex-direction:column; gap:12px; }
+
+  .back-to-top{ right:18px; bottom:18px; width:44px; height:44px; }
+
+  /* Mobile nav drawer */
+  .nav{
+    position:fixed; top: var(--header-h); left:0; right:0; bottom:0;
+    background: var(--surface); padding: 30px 24px;
+    transform: translateY(-110%); transition: transform .4s var(--ease);
+    z-index: 899; overflow-y:auto;
+  }
+  .nav.is-open{ transform: translateY(0); display:block; }
+  .nav__list{ display:flex; flex-direction:column; gap:6px; }
+  .nav__link{ display:block; padding:14px 4px; font-size:1.05rem; border-bottom:1px solid var(--border); }
+
+  .nav-toggle.is-active span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.is-active span:nth-child(2){ opacity:0; }
+  .nav-toggle.is-active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+}
+
+/* ---------- Small mobile (<=380px) ---------- */
+@media (max-width: 380px){
+  .services__grid{ grid-template-columns: 1fr; }
+  .hero__stats{ gap:18px; }
+  .stat__num, .stat__suffix{ font-size:1.5rem; }
+}
+
+/* ---------- Print styles for main page (portfolio not meant to print, resume page has its own) ---------- */
+@media print{
+  .site-header, .back-to-top, .scroll-progress, .cursor-dot, .cursor-ring, .loader{ display:none !important; }
+}

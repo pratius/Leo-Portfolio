@@ -1,0 +1,865 @@
+/* ==========================================================================
+   case-study.css — styles specific to standalone case study pages
+   Extends the tokens defined in style.css. Everything here is token-driven so
+   light/dark mode and future accent changes flow through automatically.
+   ========================================================================== */
+
+/* ---------- 0. Case-study-local tokens ---------- */
+:root{
+  --cs-rail: 1px solid var(--border);
+  --cs-gap: clamp(20px, 3vw, 32px);
+  --cs-measure: 64ch;            /* readable paragraph width */
+  --cs-subnav-h: 56px;
+
+  /* Arada product palette — sampled from the shipped UI. These are the
+     PRODUCT's colours, shown only inside the design-system specimen so the
+     portfolio's own accent stays the page's voice. */
+  --ap-ink: #222222;
+  --ap-navy: #1D4289;
+  --ap-teal: #00875F;
+  --ap-mint: #6CCABA;
+  --ap-magenta: #A951C2;
+  --ap-coral: #F18664;
+  --ap-rose: #FEF3F1;
+  --ap-info: #E8EDF3;
+  --ap-canvas: #F8F9FB;
+  --ap-shell: #EAEFF5;          /* sidebar surface in the refreshed UI */
+  --ap-indigo: #383E62;         /* top-bar gradient start */
+  --ap-plum: #583F79;           /* value-card gradient end */
+}
+
+.section--alt{ background: var(--bg-alt); }
+.section--tight{ padding-block: clamp(64px, 8vw, 96px); }
+
+/* Screen-reader-only utility (table captions, redundant labels) */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+.cs-back{
+  display:flex; width:fit-content; align-items:center; gap:6px; color: var(--text-secondary);
+  font-weight:600; font-size:.9rem; margin-bottom:24px; transition: color .25s var(--ease), transform .25s var(--ease);
+}
+.cs-back:hover{ color: var(--accent); transform: translateX(-3px); }
+
+/* ---------- 1. Hero banner ---------- */
+/* Bottom padding matters now: the old hero image bled into the next section,
+   but the mockup stage floats and needs room before the sticky subnav. */
+.cs-hero-banner{ position:relative; padding: calc(var(--header-h) + 56px) 0 clamp(44px, 5vw, 76px); overflow:hidden; }
+.cs-hero-banner__bg{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+.cs-hero-banner__title{ font-size: clamp(2.6rem, 6vw, 4.4rem); font-weight:800; margin-top:10px; line-height:1.03; position:relative; z-index:1; }
+.cs-hero-banner__subtitle{ font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--text-secondary); max-width:44ch; margin-top:18px; position:relative; z-index:1; line-height:1.55; }
+
+.cs-hero-banner__title .cs-title-accent{
+  background: linear-gradient(100deg, var(--accent), var(--accent-dark));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.cs-overview-grid{
+  position:relative; z-index:1; margin-top:44px; display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr)); gap:24px 20px;
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg); padding:28px; box-shadow: var(--shadow-sm);
+}
+.cs-overview-grid div strong{ display:block; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color: var(--text-secondary); margin-bottom:6px; }
+.cs-overview-grid div span{ font-size:.92rem; font-weight:600; color: var(--text-primary); line-height:1.45; display:block; }
+
+.cs-hero-banner__image{
+  position:relative; z-index:1; margin-top:52px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; overflow:hidden;
+  border:1px solid var(--border); border-bottom:none; box-shadow: var(--shadow-lg);
+}
+.cs-hero-banner__image img{ width:100%; height:auto; display:block; object-fit:cover; object-position: top; max-height:600px; }
+
+/* ---------- 1b. Hero mockup stage ---------- */
+/* A layered browser-mockup composition. Sizes are percentages of the stage so
+   the whole group scales as one unit and the aspect-ratio keeps page height
+   stable before the screenshots decode. */
+.cs-stage{
+  /* No aspect-ratio: the main mockup sits in normal flow and sets the height,
+     so the stage can never disagree with its own content. The padding gives
+     the front mockup somewhere to overhang into. */
+  position:relative; z-index:1; margin-top: clamp(40px, 5vw, 64px);
+  padding-bottom: 7%;
+}
+.cs-stage__glow{
+  position:absolute; inset:-8% -6% -14%; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(46% 52% at 22% 26%, var(--brand-glow), transparent 68%),
+    radial-gradient(40% 46% at 82% 74%, rgba(29,66,137,.30), transparent 70%);
+  filter: blur(18px);
+}
+[data-theme="dark"] .cs-stage__glow{
+  background:
+    radial-gradient(46% 52% at 22% 26%, rgba(255,90,31,.24), transparent 68%),
+    radial-gradient(40% 46% at 82% 74%, rgba(96,165,250,.22), transparent 70%);
+}
+
+.cs-mock{
+  position:absolute; margin:0; border-radius:16px; overflow:hidden;
+  background: var(--surface); border:1px solid var(--border);
+  box-shadow: 0 30px 70px rgba(15,20,32,.20), 0 4px 14px rgba(15,20,32,.10);
+  transition: transform .6s var(--ease), box-shadow .6s var(--ease);
+  will-change: transform;
+}
+[data-theme="dark"] .cs-mock{ box-shadow: 0 34px 80px rgba(0,0,0,.62), 0 4px 14px rgba(0,0,0,.4); }
+.cs-mock img{ display:block; width:100%; height:auto; }
+
+/* Browser chrome */
+.cs-mock__bar{
+  display:flex; align-items:center; gap:7px;
+  padding:9px 13px; background: var(--bg-alt); border-bottom:1px solid var(--border);
+}
+.cs-mock__bar i{ width:8px; height:8px; border-radius:50%; background: var(--border); flex-shrink:0; }
+.cs-mock__url{
+  margin-left:8px; height:15px; flex:1; max-width:210px;
+  border-radius:99px; background: var(--surface); border:1px solid var(--border);
+}
+
+/* Layering: main dashboard, with the request form overlapping front-right */
+.cs-mock--main{ position:relative; width:82%; z-index:2; }
+.cs-mock--front{ right:0; bottom:0; width:44%; z-index:3; }
+.cs-stage:hover .cs-mock--main{ transform: translate(-7px,-7px); }
+.cs-stage:hover .cs-mock--front{ transform: translate(6px,6px); }
+
+.cs-stage__caption{
+  position:absolute; left:0; bottom:-34px; z-index:4;
+  font-size:.78rem; color: var(--text-secondary);
+}
+
+/* ---------- 1c. Showcase strip (three framed screens) ---------- */
+.cs-showcase{ display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--cs-gap); }
+.cs-showcase__item{
+  margin:0; border-radius:14px; overflow:hidden; cursor:zoom-in;
+  background: var(--surface); border:1px solid var(--border); box-shadow: var(--shadow-md);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+}
+.cs-showcase__item:hover, .cs-showcase__item:focus-visible{
+  transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--brand);
+}
+.cs-showcase__item img{ display:block; width:100%; height:auto; }
+.cs-showcase__item figcaption{
+  padding:14px 16px; border-top:1px solid var(--border);
+  font-size:.82rem; color: var(--text-secondary); line-height:1.5;
+}
+.cs-showcase__item figcaption b{ display:block; color: var(--text-primary); font-weight:600; margin-bottom:2px; font-size:.86rem; }
+
+/* ---------- 1d. Shared browser chrome ---------- */
+/* One rule gives every framed screen on the page the same window chrome, so
+   the deep dives, showcase and filmstrips read as one family of product shots
+   without touching their markup. */
+.cs-shot::before,
+.cs-showcase__item::before,
+.cs-gallery__item::before,
+.cs-detail::before{
+  content:''; display:block; height:28px; flex-shrink:0;
+  background-color: var(--bg-alt);
+  border-bottom:1px solid var(--border);
+  background-image:
+    radial-gradient(circle 3.5px at 15px 50%, var(--border) 98%, transparent 100%),
+    radial-gradient(circle 3.5px at 29px 50%, var(--border) 98%, transparent 100%),
+    radial-gradient(circle 3.5px at 43px 50%, var(--border) 98%, transparent 100%);
+  background-repeat:no-repeat;
+}
+.cs-filmstrip__item::before{
+  content:''; display:block; height:19px;
+  background-color: var(--bg-alt);
+  border-bottom:1px solid var(--border);
+  background-image:
+    radial-gradient(circle 2.5px at 11px 50%, var(--border) 98%, transparent 100%),
+    radial-gradient(circle 2.5px at 21px 50%, var(--border) 98%, transparent 100%),
+    radial-gradient(circle 2.5px at 31px 50%, var(--border) 98%, transparent 100%);
+  background-repeat:no-repeat;
+}
+
+/* ---------- 1e. Detail callout (a cropped close-up, framed) ---------- */
+.cs-detail{
+  margin:0; border-radius:12px; overflow:hidden; cursor:zoom-in;
+  background: var(--surface); border:1px solid var(--border); box-shadow: var(--shadow-md);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.cs-detail:hover, .cs-detail:focus-visible{ transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.cs-detail img{ display:block; width:100%; height:auto; }
+.cs-detail figcaption{
+  padding:12px 15px; border-top:1px solid var(--border);
+  font-size:.79rem; color: var(--text-secondary); line-height:1.5;
+}
+.cs-detail figcaption b{ color: var(--text-primary); font-weight:600; }
+
+/* ---------- 1f. Flow filmstrip ---------- */
+.cs-filmstrip{
+  display:flex; align-items:stretch; margin-top:24px;
+  overflow-x:auto; padding-bottom:10px; scrollbar-width:thin;
+}
+.cs-filmstrip > *{ flex:0 0 auto; }
+.cs-filmstrip__item{
+  width:214px; margin:0; border-radius:10px; overflow:hidden; cursor:zoom-in;
+  background: var(--surface); border:1px solid var(--border); box-shadow: var(--shadow-sm);
+  display:flex; flex-direction:column;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+}
+.cs-filmstrip__item:hover, .cs-filmstrip__item:focus-visible{
+  transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--brand);
+}
+.cs-filmstrip__item img{ display:block; width:100%; height:auto; }
+.cs-filmstrip__item figcaption{
+  padding:8px 10px; border-top:1px solid var(--border); margin-top:auto;
+  font-size:.7rem; line-height:1.4; color: var(--text-secondary);
+}
+.cs-filmstrip__item figcaption b{ display:block; color: var(--text-primary); font-weight:600; font-size:.73rem; }
+.cs-filmstrip__arrow{ align-self:center; padding:0 11px; color: var(--brand); font-size:1.05rem; opacity:.7; }
+
+/* ---------- 1g. Device mockups ---------- */
+:root{ --dev-bezel:#2B3242; --dev-edge:#1B2130; }
+[data-theme="dark"]{ --dev-bezel:#3C4557; --dev-edge:#202634; }
+
+.device-row{
+  display:flex; align-items:flex-end; justify-content:center;
+  gap: clamp(18px, 3vw, 44px); flex-wrap:wrap;
+}
+.device{ position:relative; margin:0; }
+.device figcaption{
+  margin-top:14px; text-align:center; font-size:.74rem; color: var(--text-secondary); line-height:1.45;
+}
+.device figcaption b{ display:block; color: var(--text-primary); font-weight:600; font-size:.78rem; margin-bottom:2px; }
+
+/* Laptop */
+.device--laptop{ width: min(500px, 100%); }
+.device__screen{
+  background: var(--dev-bezel); border-radius:13px 13px 3px 3px;
+  padding:9px 9px 12px; box-shadow: 0 22px 50px rgba(15,20,32,.24);
+}
+.device__screen img{ display:block; width:100%; height:auto; border-radius:5px; }
+.device__hinge{
+  height:11px; margin:0 -3%; border-radius: 0 0 11px 11px;
+  background: linear-gradient(180deg, #D3DAE6, #A3AEC1);
+  position:relative;
+}
+[data-theme="dark"] .device__hinge{ background: linear-gradient(180deg, #55607A, #333B4E); }
+.device__hinge::after{
+  content:''; position:absolute; left:50%; top:0; transform:translateX(-50%);
+  width:13%; height:5px; border-radius:0 0 6px 6px; background: rgba(0,0,0,.16);
+}
+
+/* Tablet — landscape, which is the orientation a dense table is usable in */
+.device--tablet{ width: min(296px, 100%); }
+.device__tab{
+  background: var(--dev-bezel); border-radius:20px; padding:13px 11px;
+  box-shadow: 0 18px 40px rgba(15,20,32,.22);
+}
+.device__tab img{ display:block; width:100%; height:auto; border-radius:5px; }
+
+/* Phone — portrait, holding the card transformation rather than a capture */
+.device--phone{ width: min(198px, 100%); }
+.device__phone{
+  position:relative; background: var(--dev-bezel); border-radius:26px; padding:9px;
+  box-shadow: 0 18px 40px rgba(15,20,32,.24);
+}
+.device__phone::before{
+  content:''; position:absolute; top:9px; left:50%; transform:translateX(-50%);
+  width:36%; height:13px; background: var(--dev-bezel); border-radius:0 0 9px 9px; z-index:2;
+}
+.device__phone-screen{
+  border-radius:19px; overflow:hidden; background: var(--bg-alt);
+  min-height:290px; padding:9px; display:flex; flex-direction:column; gap:8px;
+}
+.device__phone-screen .mini-card{ padding:9px; gap:4px; border-radius:9px; }
+.device__phone-screen .mini-card__top{ font-size:.66rem; gap:5px; }
+.device__phone-screen .mini-card__meta{ font-size:.6rem; }
+.device__phone-screen .mini-card__amount{ font-size:.8rem; }
+.device__phone-screen .mini-card__btn{ font-size:.6rem; padding:5px; }
+.device__phone-screen .ui-chip{ padding:2px 6px !important; font-size:.52rem !important; }
+
+/* ---------- 2. Sticky section nav ---------- */
+.cs-subnav{
+  position: sticky; top: var(--header-h); z-index: 850;
+  /* More opaque than --surface-glass: the pills must stay legible over
+     whatever body content scrolls beneath them. */
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  border-top: var(--cs-rail); border-bottom: var(--cs-rail);
+}
+[data-theme="dark"] .cs-subnav{ background: rgba(15,20,36,.9); }
+.cs-subnav__inner{
+  display:flex; align-items:center; gap:4px; height: var(--cs-subnav-h);
+  overflow-x:auto; overflow-y:hidden; scrollbar-width:none; -ms-overflow-style:none;
+  scroll-snap-type: x proximity; mask-image: linear-gradient(90deg, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+}
+.cs-subnav__inner::-webkit-scrollbar{ display:none; }
+.cs-subnav__link{
+  flex:0 0 auto; scroll-snap-align:center;
+  padding:8px 15px; border-radius: var(--radius-full);
+  font-family: var(--font-display); font-size:.82rem; font-weight:600; white-space:nowrap;
+  color: var(--text-secondary);
+  transition: color .25s var(--ease), background-color .25s var(--ease);
+}
+.cs-subnav__link:hover{ color: var(--text-primary); background: var(--bg-alt); }
+.cs-subnav__link.is-active{ color: var(--accent); background: var(--accent-soft); }
+
+/* ---------- 3. Scope strip (big verifiable numbers) ---------- */
+.cs-scope{
+  display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:1px;
+  background: var(--border); border:1px solid var(--border); border-radius: var(--radius-lg); overflow:hidden;
+}
+.cs-scope__item{ background: var(--surface); padding:26px 22px; }
+.cs-scope__num{
+  display:block; font-family: var(--font-display); font-weight:800;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height:1; color: var(--accent); letter-spacing:-.03em;
+}
+.cs-scope__label{ display:block; margin-top:10px; font-size:.86rem; font-weight:600; color: var(--text-primary); }
+.cs-scope__note{ display:block; margin-top:4px; font-size:.78rem; color: var(--text-secondary); line-height:1.45; }
+
+/* ---------- 4. Body copy helpers ---------- */
+.cs-h3{ font-size:1.15rem; margin-bottom:16px; }
+.cs-h4{ font-size:.95rem; margin-bottom:10px; }
+.cs-body{ color: var(--text-secondary); font-size:1rem; margin-bottom:16px; max-width: var(--cs-measure); line-height:1.7; }
+.cs-body--lead{ font-size:1.1rem; color: var(--text-primary); }
+.cs-body:last-child{ margin-bottom:0; }
+.cs-body strong{ color: var(--text-primary); font-weight:600; }
+.cs-two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items:start; }
+.cs-two-col--wide{ grid-template-columns: 1.25fr .75fr; }
+.cs-bullet-list li{ position:relative; padding-left:22px; margin-bottom:12px; color: var(--text-secondary); font-size:.96rem; line-height:1.6; }
+.cs-bullet-list li::before{ content:''; position:absolute; left:0; top:9px; width:7px; height:7px; border-radius:50%; background: var(--accent); }
+.cs-bullet-list strong{ color: var(--text-primary); font-weight:600; }
+.cs-check-list li{ position:relative; padding-left:30px; margin-bottom:14px; color: var(--text-secondary); font-size:.96rem; line-height:1.6; }
+.cs-check-list li::before{ content:'✕'; position:absolute; left:0; top:1px; color: var(--danger); font-size:.8rem; font-weight:700; }
+.cs-check-list strong{ color: var(--text-primary); font-weight:600; }
+/* Affirmative variant. The base list marks problems with a red ✕; this one
+   marks steps, facts and completed items with a green tick. Same geometry, so
+   the two can sit in the same column without the text shifting. */
+.cs-check-list--tick li::before{ content:'✓'; color: var(--success-text); font-size:.92rem; }
+/* A row that isn't done yet takes the same coral dot the product uses for a
+   pending milestone, so the list mirrors the screen it describes. */
+.cs-check-list--tick li.is-pending::before{ content:'●'; color: var(--ap-coral, #F18664); font-size:.62rem; top:5px; }
+/* Open questions rather than defects — a neutral query mark, not a red cross,
+   for things I'd want to test rather than things I know are wrong. */
+.cs-check-list--query li::before{ content:'?'; color: var(--text-secondary); font-weight:700; }
+
+/* Pull quote / framing statement */
+.cs-pullquote{
+  margin: clamp(36px,5vw,56px) 0; padding: clamp(26px,3vw,36px) clamp(26px,4vw,44px);
+  border-left:3px solid var(--accent); background: var(--surface);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0; box-shadow: var(--shadow-sm);
+}
+.cs-pullquote p{
+  font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight:600;
+  line-height:1.45; color: var(--text-primary); margin:0; letter-spacing:-.015em; max-width: 46ch;
+}
+.cs-pullquote cite{ display:block; margin-top:14px; font-style:normal; font-size:.84rem; color: var(--text-secondary); font-weight:500; }
+
+/* Small labelled note / caveat */
+.cs-note{
+  display:flex; gap:12px; align-items:flex-start;
+  background: var(--accent-soft); border-radius: var(--radius-md);
+  padding:16px 18px; font-size:.88rem; color: var(--text-primary); line-height:1.6; max-width: var(--cs-measure);
+}
+.cs-note__icon{ flex-shrink:0; font-size:1rem; line-height:1.4; }
+.cs-note strong{ font-weight:700; }
+
+/* ---------- 5. Goals ---------- */
+.cs-goals{ margin-top: clamp(56px,7vw,88px); }
+.cs-goals-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top:12px; }
+.cs-goal{
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-md); padding:22px;
+  font-weight:600; font-size:.94rem; display:flex; flex-direction:column; gap:10px; line-height:1.5;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+}
+.cs-goal:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+.cs-goal span{ font-family: var(--font-display); font-weight:800; color: var(--accent); font-size:1.05rem; }
+.cs-goal em{ display:block; font-style:normal; font-weight:400; font-size:.84rem; color: var(--text-secondary); }
+
+/* ---------- 6. Journey map ---------- */
+.cs-journey{
+  display:grid; grid-auto-flow:column; grid-auto-columns: minmax(210px, 1fr);
+  gap:0; overflow-x:auto; scrollbar-width:thin;
+  border:1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface);
+}
+.cs-journey__stage{
+  padding:24px 22px; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:14px;
+  position:relative; transition: background-color .35s var(--ease);
+}
+.cs-journey__stage:last-child{ border-right:none; }
+.cs-journey__stage:hover{ background: var(--bg-alt); }
+.cs-journey__phase{
+  font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color: var(--accent);
+}
+.cs-journey__stage h4{ font-size:1rem; line-height:1.3; min-height:2.6em; }
+.cs-journey__rail{ display:flex; align-items:center; gap:6px; margin-top:-4px; }
+.cs-journey__dot{ width:11px; height:11px; border-radius:50%; background: var(--accent); flex-shrink:0; }
+.cs-journey__line{ height:2px; flex:1; background: var(--border); border-radius:2px; }
+.cs-journey__need,
+.cs-journey__risk{ font-size:.82rem; line-height:1.55; }
+.cs-journey__need{ color: var(--text-secondary); min-height:6.2em; }
+.cs-journey__risk{ color: var(--text-primary); padding-top:12px; border-top:1px dashed var(--border); }
+.cs-journey__risk b{ display:block; font-size:.66rem; text-transform:uppercase; letter-spacing:.09em; color: var(--danger); margin-bottom:5px; font-weight:700; }
+.cs-journey__fix{ font-size:.82rem; line-height:1.55; color: var(--text-primary); }
+.cs-journey__fix b{ display:block; font-size:.66rem; text-transform:uppercase; letter-spacing:.09em; color: var(--success-text); margin-bottom:5px; font-weight:700; }
+
+/* ---------- 7. Personas ---------- */
+.cs-personas{ display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--cs-gap); }
+.cs-persona{
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(22px,2.6vw,30px); display:flex; flex-direction:column; gap:16px;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.cs-persona:hover{ transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.cs-persona__top{ display:flex; align-items:center; gap:14px; }
+.cs-persona__avatar{
+  width:46px; height:46px; border-radius:14px; flex-shrink:0;
+  background: var(--accent-soft); color: var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-display); font-weight:800; font-size:.95rem;
+}
+.cs-persona__name{ font-size:1.02rem; line-height:1.2; }
+.cs-persona__tag{ display:block; font-size:.76rem; color: var(--text-secondary); font-weight:500; margin-top:3px; }
+.cs-persona__quote{
+  font-size:.92rem; line-height:1.6; color: var(--text-primary); font-style:italic;
+  padding-left:14px; border-left:2px solid var(--accent-soft);
+  min-height: 4.8em; /* keeps the meta blocks aligned across the three cards */
+}
+.cs-persona__meta{ display:flex; flex-direction:column; gap:12px; margin-top:auto; }
+.cs-persona__row span{ display:block; font-size:.66rem; text-transform:uppercase; letter-spacing:.09em; color: var(--text-secondary); font-weight:700; margin-bottom:4px; }
+.cs-persona__row p{ font-size:.85rem; line-height:1.55; color: var(--text-secondary); margin:0; }
+.cs-persona__row p strong{ color: var(--text-primary); font-weight:600; }
+
+/* ---------- 8. Information architecture ---------- */
+.ia-layout{ display:grid; grid-template-columns: 300px 1fr; gap: clamp(28px,4vw,52px); align-items:start; }
+
+/* Faithful reproduction of the shipped sidebar (light surface, magenta active
+   pill). Colours here are the PRODUCT's, so they stay literal rather than
+   token-driven — this panel is a specimen, not part of the page's own theme. */
+.ia-sidebar{
+  background: var(--ap-shell); border-radius: var(--radius-md); padding:20px 0 24px;
+  box-shadow: var(--shadow-lg); overflow:hidden; position:relative;
+  border:1px solid rgba(29,66,137,.10);
+}
+.ia-sidebar__brand{ padding:0 18px 18px; font-family: var(--font-display); font-weight:700; font-size:1.05rem; color: var(--ap-navy); }
+.ia-sidebar__picker{
+  margin:0 16px 12px; padding:10px 13px; border-radius:10px;
+  background:#fff; border:1px solid rgba(29,66,137,.16); color:#2A3444; font-size:.8rem;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+}
+.ia-sidebar__picker::after{ content:'⌄'; font-size:.9rem; line-height:1; opacity:.6; transform: translateY(-3px); }
+.ia-sidebar__status{
+  margin:0 16px 20px; display:inline-block; padding:4px 11px; border-radius:99px;
+  font-size:.66rem; font-weight:600;
+  color:#9A4600; border:1px solid rgba(241,134,100,.45); background: rgba(241,134,100,.12);
+}
+.ia-sidebar__status--live{
+  color:#00694A; border-color: rgba(0,143,110,.32); background: rgba(0,143,110,.12);
+}
+.ia-sidebar__group{
+  padding:0 18px; margin-top:18px; font-size:.62rem; text-transform:uppercase;
+  letter-spacing:.14em; color:#5C6676; font-weight:700;
+}
+.ia-sidebar__list{ margin-top:6px; padding:0 10px; }
+.ia-sidebar__list li{
+  padding:8px 10px; border-radius:9px; font-size:.83rem; color:#3C4757;
+  display:flex; align-items:center; gap:10px;
+  transition: background-color .25s var(--ease), color .25s var(--ease);
+}
+.ia-sidebar__list li:hover{ background: rgba(29,66,137,.07); color: var(--ap-navy); }
+.ia-sidebar__list li.is-current{
+  background: linear-gradient(100deg, var(--ap-magenta), #D65EF1);
+  color:#fff; box-shadow: 0 6px 16px rgba(198,88,223,.34);
+}
+.ia-sidebar__list li::before{ content:''; width:13px; height:13px; border-radius:4px; background: currentColor; opacity:.3; flex-shrink:0; }
+.ia-sidebar__list li.is-current::before{ opacity:.85; }
+.ia-sidebar__caption{ margin-top:14px; font-size:.76rem; color: var(--text-secondary); text-align:center; }
+
+/* Before / after navigation comparison */
+.ia-diff{
+  display:grid; grid-template-columns: 1fr auto 1fr; gap:14px; align-items:start;
+  margin-top:18px; padding-top:18px; border-top:1px dashed var(--border);
+}
+.ia-diff__col span{
+  display:block; font-size:.64rem; text-transform:uppercase; letter-spacing:.09em;
+  font-weight:700; margin-bottom:9px;
+}
+.ia-diff__col--before span{ color: var(--danger); }
+.ia-diff__col--after span{ color: var(--success-text); }
+.ia-diff__col ul{ display:flex; flex-direction:column; gap:5px; }
+.ia-diff__col li{
+  font-size:.78rem; color: var(--text-secondary); line-height:1.4;
+  padding:6px 9px; border-radius:7px; background: var(--bg-alt);
+}
+.ia-diff__col li em{ font-style:normal; opacity:.7; font-size:.72rem; }
+.ia-diff__col li.is-flag{ background: rgba(239,68,68,.08); color:#B4404A; margin-left:12px; }
+/* Deepened from #0B7A5B, which sat at 4.45:1 on the tinted row in light theme. */
+.ia-diff__col li.is-new{ background: rgba(16,185,129,.1); color:#0A6B4E; margin-left:12px; font-weight:600; }
+[data-theme="dark"] .ia-diff__col li.is-flag{ color:#FCA5A5; }
+[data-theme="dark"] .ia-diff__col li.is-new{ color:#6EE7B7; }
+.ia-diff__arrow{ color: var(--brand); font-size:1.3rem; align-self:center; padding-top:14px; }
+
+.ia-notes{ display:flex; flex-direction:column; gap: clamp(20px,2.6vw,28px); }
+.ia-note{ background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-md); padding:22px 24px; }
+.ia-note h4{ font-size:.98rem; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+.ia-note h4 i{
+  font-style:normal; width:24px; height:24px; border-radius:7px; background: var(--accent-soft); color: var(--accent);
+  display:flex; align-items:center; justify-content:center; font-size:.72rem; font-weight:800; flex-shrink:0;
+  font-family: var(--font-display);
+}
+.ia-note p{ font-size:.9rem; color: var(--text-secondary); line-height:1.65; margin:0; }
+.ia-note p + p{ margin-top:10px; }
+.ia-note strong{ color: var(--text-primary); font-weight:600; }
+
+/* Legacy IA grid retained for other case studies */
+.ia-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; }
+.ia-node{ background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-md); padding:20px; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.ia-node:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.ia-node--root{ background: var(--accent); border-color: var(--accent); color:#fff; grid-column: span 4; }
+.ia-node.ia-node--root h4, .ia-node.ia-node--root p{ color:#fff; opacity:.92; }
+.ia-node h4{ font-size:1rem; margin-bottom:10px; }
+.ia-node p{ font-size:.85rem; color: var(--text-secondary); margin:0; }
+.ia-node ul{ display:flex; flex-direction:column; gap:6px; }
+.ia-node ul li{ font-size:.85rem; color: var(--text-secondary); padding:6px 10px; background: var(--bg-alt); border-radius: 8px; }
+.ia-node--small p{ font-size:.85rem; }
+
+/* ---------- 9. Flows ---------- */
+.cs-flow{ margin-top: clamp(36px,4.5vw,56px); }
+.cs-flow__head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:8px; }
+.cs-flow__head h4{ font-size:1.05rem; }
+.cs-flow__badge{
+  font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+  padding:4px 10px; border-radius:99px; background: var(--accent-soft); color: var(--accent);
+}
+.cs-flow__desc{ font-size:.92rem; color: var(--text-secondary); line-height:1.65; max-width: var(--cs-measure); margin-bottom:22px; }
+
+/* Single unbroken line at any width: a 6-step flow wrapping mid-sequence
+   with a dangling arrow reads as broken, so it scrolls instead. */
+.flow-diagram{
+  display:flex; align-items:stretch; flex-wrap:nowrap;
+  overflow-x:auto; padding-bottom:10px;
+  scrollbar-width:thin;
+}
+/* Fade the trailing edge only where the flow can actually scroll — at full
+   desktop width all six steps fit, and a fade there would just dim the
+   final step for no reason. */
+@media (min-width: 641px) and (max-width: 1200px){
+  .flow-diagram{ mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent 100%); }
+}
+.flow-diagram > *{ flex:0 0 auto; }
+.flow-step{
+  background: var(--surface); border:1px solid var(--border); border-radius: 14px; padding:15px 14px;
+  font-weight:600; font-size:.85rem; text-align:center; min-width:112px; max-width:168px;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:8px;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+}
+.flow-step:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+.flow-step--end{ background: var(--brand); border-color: var(--brand); color:#fff; }
+.flow-step--branch{ border-style:dashed; border-color: var(--danger); }
+.flow-step--branch .flow-step__num{ background: rgba(239,68,68,.12); color: var(--danger); }
+.flow-step__num{
+  width:25px; height:25px; border-radius:50%; background: var(--accent-soft); color: var(--accent);
+  display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; flex-shrink:0;
+}
+.flow-step--end .flow-step__num{
+  /* Darken rather than lighten the chip: a white veil over orange drops white
+     text to 2.5:1, a black veil lifts it to 5.4:1. */
+  background: rgba(0,0,0,.22); color:#fff;
+}
+.flow-step__sub{ font-size:.7rem; font-weight:500; color: var(--text-secondary); line-height:1.4; }
+.flow-step--end .flow-step__sub{ color:#fff; opacity:.9; }
+.flow-arrow{ color: var(--border); font-size:1.25rem; padding:0 5px; flex-shrink:0; align-self:center; }
+
+/* Branch note under a flow */
+.cs-flow__branch{
+  /* Block, not flex: the content is a single inline paragraph with <b>/<em>
+     inside it, and flex would break each inline child onto its own line. */
+  margin-top:16px; display:block;
+  padding:14px 18px; border-radius: var(--radius-md); border:1px dashed var(--border); background: var(--bg-alt);
+  font-size:.86rem; color: var(--text-secondary); line-height:1.65; max-width: var(--cs-measure);
+}
+.cs-flow__branch em{ color: var(--text-primary); font-style:italic; }
+.cs-flow__branch strong{ color: var(--text-primary); font-weight:600; }
+.cs-flow__branch b{ color: var(--text-primary); font-weight:600; }
+
+/* ---------- 10. Wireframes ---------- */
+.wireframe-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--cs-gap); align-items:start; }
+.wireframe-card{ margin:0; }
+.wireframe-card figcaption{ font-size:.86rem; color: var(--text-secondary); margin-top:14px; line-height:1.6; }
+.wireframe-card figcaption strong{ color: var(--text-primary); }
+.browser-frame{ border:1px solid var(--border); border-radius: var(--radius-md); overflow:hidden; background: var(--surface); box-shadow: var(--shadow-sm); }
+.browser-frame__bar{ display:flex; gap:6px; padding:10px 14px; background: var(--bg-alt); border-bottom:1px solid var(--border); }
+.browser-frame__bar span{ width:8px; height:8px; border-radius:50%; background: var(--border); }
+.wf-canvas{ padding:22px; display:flex; flex-direction:column; gap:14px; min-height:220px; justify-content:center; }
+.wf-row{ display:flex; gap:12px; align-items:center; }
+.wf-box{ background: var(--border); border-radius:6px; }
+.wf-box--dashed{ background:transparent; border:1.5px dashed var(--border); }
+.wf-line{ height:9px; background: var(--border); border-radius:4px; }
+.wf-line.short{ width:35%; } .wf-line.medium{ width:60%; } .wf-line.long{ width:92%; }
+.wf-btn{ background: var(--text-secondary); opacity:.35; border-radius:6px; }
+
+/* ---------- 11. Design system specimen ---------- */
+.cs-tokens{ display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--cs-gap); align-items:start; }
+.cs-panel{
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(22px,2.8vw,30px);
+}
+.cs-panel__title{ font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color: var(--text-secondary); font-weight:700; margin-bottom:18px; }
+
+.swatch-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(112px,1fr)); gap:14px; }
+.swatch{ display:flex; flex-direction:column; gap:8px; }
+.swatch__chip{
+  height:56px; border-radius: var(--radius-sm); border:1px solid var(--border);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
+}
+.swatch__name{ font-size:.78rem; font-weight:600; color: var(--text-primary); line-height:1.3; }
+.swatch__hex{ font-size:.72rem; color: var(--text-secondary); font-variant-numeric: tabular-nums; letter-spacing:.02em; }
+.swatch__use{ font-size:.72rem; color: var(--text-secondary); line-height:1.45; }
+
+.type-scale{ display:flex; flex-direction:column; gap:16px; }
+.type-row{ display:flex; align-items:baseline; justify-content:space-between; gap:18px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+.type-row:last-child{ border-bottom:none; padding-bottom:0; }
+.type-row__sample{ font-family: var(--font-display); color: var(--text-primary); line-height:1.2; letter-spacing:-.02em; }
+.type-row__spec{ font-size:.72rem; color: var(--text-secondary); white-space:nowrap; font-variant-numeric: tabular-nums; }
+
+/* Component inventory */
+.cs-components{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:14px; }
+.cs-component{
+  border:1px solid var(--border); border-radius: var(--radius-md); padding:18px;
+  background: var(--surface); transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.cs-component:hover{ border-color: var(--accent); transform: translateY(-3px); }
+.cs-component h5{ font-family: var(--font-display); font-size:.86rem; font-weight:700; margin:0 0 6px; color: var(--text-primary); }
+.cs-component p{ font-size:.76rem; color: var(--text-secondary); margin:0; line-height:1.5; }
+.cs-component__count{ font-size:.68rem; font-weight:700; color: var(--accent); letter-spacing:.05em; text-transform:uppercase; display:block; margin-top:8px; }
+
+/* Status chip specimen (mirrors the product) */
+.chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+.ui-chip{
+  font-size:.74rem; font-weight:600; padding:5px 12px; border-radius:99px; border:1px solid transparent; white-space:nowrap;
+}
+.ui-chip--paid{ color:#00694A; background: rgba(0,135,95,.1); border-color: rgba(0,135,95,.28); }
+.ui-chip--due{ color: #B4552F; background: var(--ap-rose); border-color: rgba(241,134,100,.4); }
+.ui-chip--pending{ color: var(--ap-navy); background: var(--ap-info); border-color: rgba(29,66,137,.22); }
+.ui-chip--construction{ color:#9A4600; background: rgba(241,134,100,.12); border-color: rgba(241,134,100,.45); }
+.ui-chip--received{ color:#8A3EA3; background: rgba(169,81,194,.1); border-color: rgba(169,81,194,.3); }
+.ui-chip--handed{ color:#00694A; background: rgba(0,143,110,.12); border-color: rgba(0,143,110,.3); }
+[data-theme="dark"] .ui-chip--paid{ background: rgba(0,135,95,.18); color:#4ED9A8; }
+[data-theme="dark"] .ui-chip--due{ background: rgba(241,134,100,.16); color:#F7A98C; }
+[data-theme="dark"] .ui-chip--pending{ background: rgba(96,165,250,.16); color:#93C5FD; border-color: rgba(96,165,250,.3); }
+[data-theme="dark"] .ui-chip--construction{ background: rgba(241,134,100,.16); color:#F7A98C; }
+[data-theme="dark"] .ui-chip--received{ background: rgba(169,81,194,.2); color:#DDA0F0; }
+[data-theme="dark"] .ui-chip--handed{ background: rgba(0,143,110,.2); color:#4ED9A8; }
+
+/* ---------- 12. Feature deep dives ---------- */
+.cs-deepdive{
+  display:grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,4.5vw,64px); align-items:center;
+  padding-block: clamp(44px,5.5vw,72px); border-bottom:1px solid var(--border);
+}
+.cs-deepdive:last-of-type{ border-bottom:none; }
+.cs-deepdive--flip .cs-deepdive__media{ order:2; }
+.cs-deepdive__index{
+  font-family: var(--font-display); font-size:.74rem; font-weight:800; letter-spacing:.12em;
+  color: var(--accent); text-transform:uppercase; margin-bottom:12px; display:block;
+}
+.cs-deepdive__copy h3{ font-size: clamp(1.35rem,2.4vw,1.8rem); line-height:1.2; margin-bottom:16px; }
+.cs-deepdive__copy p{ color: var(--text-secondary); font-size:.98rem; line-height:1.7; margin-bottom:16px; max-width:52ch; }
+.cs-deepdive__copy p strong{ color: var(--text-primary); font-weight:600; }
+
+.cs-decisions{ margin-top:22px; display:flex; flex-direction:column; gap:14px; }
+.cs-decision{ display:flex; gap:13px; align-items:flex-start; }
+.cs-decision__mark{
+  flex-shrink:0; width:22px; height:22px; border-radius:7px; margin-top:1px;
+  background: var(--accent-soft); color: var(--accent);
+  display:flex; align-items:center; justify-content:center; font-size:.68rem; font-weight:800;
+  font-family: var(--font-display);
+}
+.cs-decision__text{ font-size:.9rem; line-height:1.6; color: var(--text-secondary); }
+.cs-decision__text b{ color: var(--text-primary); font-weight:600; }
+
+.cs-shot{
+  margin:0; border-radius: var(--radius-md); overflow:hidden; border:1px solid var(--border);
+  background: var(--surface); box-shadow: var(--shadow-md);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+  cursor: zoom-in;
+}
+.cs-shot:hover, .cs-shot:focus-visible{ transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.cs-shot img{ width:100%; height:auto; display:block; }
+.cs-shot figcaption{ font-size:.78rem; color: var(--text-secondary); padding:12px 14px; border-top:1px solid var(--border); line-height:1.5; }
+.cs-shot-stack{ display:grid; gap:16px; align-content:start; }
+.cs-shot-stack--pair{ grid-template-columns: 1fr 1fr; }
+
+/* ---------- 13. State matrix ---------- */
+.cs-matrix-wrap{ overflow-x:auto; border:1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+.cs-matrix{ width:100%; border-collapse:collapse; min-width:660px; }
+.cs-matrix th, .cs-matrix td{ padding:15px 18px; text-align:left; border-bottom:1px solid var(--border); font-size:.86rem; }
+.cs-matrix thead th{
+  font-family: var(--font-display); font-size:.68rem; text-transform:uppercase; letter-spacing:.09em;
+  color: var(--text-secondary); font-weight:700; background: var(--bg-alt); white-space:nowrap;
+}
+.cs-matrix tbody tr:last-child td{ border-bottom:none; }
+.cs-matrix tbody tr{ transition: background-color .25s var(--ease); }
+.cs-matrix tbody tr:hover{ background: var(--bg-alt); }
+.cs-matrix td:first-child{ font-weight:600; color: var(--text-primary); white-space:nowrap; }
+.state-dot{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:22px; height:22px; border-radius:50%; font-size:.7rem; font-weight:800;
+}
+.state-dot--yes{ background: rgba(16,185,129,.14); color: var(--success-text); }
+.state-dot--no{ background: var(--bg-alt); color: var(--text-secondary); }
+.cs-matrix__legend{ display:flex; gap:22px; flex-wrap:wrap; margin-top:18px; font-size:.8rem; color: var(--text-secondary); }
+.cs-matrix__legend span{ display:inline-flex; align-items:center; gap:8px; }
+
+/* ---------- 14. Design challenges ---------- */
+.cs-challenge-list{ display:flex; flex-direction:column; gap:18px; }
+.cs-challenge{
+  display:grid; grid-template-columns: 1fr auto 1fr; align-items:center; gap:22px;
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-md); padding:24px;
+  transition: border-color .35s var(--ease), box-shadow .35s var(--ease);
+}
+.cs-challenge:hover{ border-color: var(--accent); box-shadow: var(--shadow-md); }
+.cs-challenge__problem span, .cs-challenge__solution span{
+  display:block; font-size:.68rem; text-transform:uppercase; letter-spacing:.09em; font-weight:700; margin-bottom:7px;
+}
+.cs-challenge__problem span{ color: var(--danger); }
+.cs-challenge__solution span{ color: var(--success-text); }
+.cs-challenge__problem, .cs-challenge__solution{ font-size:.92rem; color: var(--text-primary); line-height:1.6; }
+.cs-challenge__problem em, .cs-challenge__solution em{ display:block; font-style:normal; font-size:.84rem; color: var(--text-secondary); margin-top:6px; line-height:1.55; }
+.cs-challenge__arrow{ color: var(--accent); font-size:1.4rem; }
+
+/* ---------- 15. Responsive strip ---------- */
+.responsive-strip{ display:flex; align-items:flex-end; gap: clamp(20px,3vw,36px); flex-wrap:wrap; justify-content:center; }
+.responsive-strip__frame{
+  position:relative; border:1px solid var(--border); border-radius: var(--radius-md); overflow:hidden;
+  background: var(--surface); box-shadow: var(--shadow-md); padding-top:44px;
+  transition: transform .4s var(--ease); box-sizing:border-box;
+}
+.responsive-strip__frame:hover{ transform: translateY(-6px); }
+.responsive-strip__frame--desktop{ width:340px; height:230px; }
+.responsive-strip__frame--tablet{ width:220px; height:260px; }
+.responsive-strip__frame--mobile{ width:140px; height:280px; }
+.responsive-strip__label{
+  position:absolute; top:12px; left:12px; z-index:2; background: var(--text-primary); color: var(--surface);
+  font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:4px 10px; border-radius:99px;
+}
+
+/* Table → card transformation demo */
+.transform-demo{ display:grid; grid-template-columns: 1.35fr auto .65fr; gap:22px; align-items:center; margin-top: clamp(32px,4vw,48px); }
+.transform-demo__arrow{ color: var(--accent); font-size:1.6rem; text-align:center; }
+.mini-table, .mini-cards{ border:1px solid var(--border); border-radius: var(--radius-md); overflow:hidden; background: var(--surface); box-shadow: var(--shadow-sm); }
+.mini-table__row{ display:grid; grid-template-columns: 1.6fr 1fr 1fr .8fr; gap:10px; padding:11px 14px; border-bottom:1px solid var(--border); font-size:.74rem; color: var(--text-secondary); align-items:center; }
+.mini-table__row:last-child{ border-bottom:none; }
+.mini-table__row--head{ background: var(--bg-alt); font-size:.62rem; text-transform:uppercase; letter-spacing:.07em; font-weight:700; }
+.mini-table__row--due{ background: var(--ap-rose); color:#8A3B1C; }
+[data-theme="dark"] .mini-table__row--due{ background: rgba(241,134,100,.14); color:#F7A98C; }
+.mini-cards{ padding:12px; display:flex; flex-direction:column; gap:10px; background: var(--bg-alt); }
+.mini-card{ background: var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:6px; }
+.mini-card__top{ display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:.74rem; font-weight:600; color: var(--text-primary); }
+.mini-card__meta{ font-size:.68rem; color: var(--text-secondary); }
+.mini-card__amount{ font-family: var(--font-display); font-weight:800; font-size:.9rem; color: var(--text-primary); }
+.mini-card__btn{ margin-top:2px; font-size:.68rem; font-weight:700; text-align:center; padding:7px; border-radius:7px; background: var(--brand); color:#fff; }
+
+/* ---------- 16. Metric row (outcomes) ---------- */
+.cs-metric-row{ display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--cs-gap); }
+.cs-metric-card{
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(24px,3vw,32px); display:flex; flex-direction:column; gap:10px;
+}
+.cs-metric-card__num{
+  font-family: var(--font-display); font-weight:800; font-size: clamp(2rem,3.6vw,2.8rem);
+  line-height:1; color: var(--accent); letter-spacing:-.03em;
+}
+.cs-metric-card h4{ font-size:.96rem; }
+.cs-metric-card p{ font-size:.85rem; color: var(--text-secondary); line-height:1.6; margin:0; }
+
+/* Outcome list: mechanism → effect */
+.cs-outcomes{ display:flex; flex-direction:column; gap:14px; }
+.cs-outcome{
+  display:grid; grid-template-columns: auto 1fr; gap:16px; align-items:start;
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-md); padding:20px 22px;
+}
+.cs-outcome__num{
+  font-family: var(--font-display); font-weight:800; font-size:.78rem; letter-spacing:.06em;
+  color: var(--accent); background: var(--accent-soft); border-radius:8px; padding:6px 9px; white-space:nowrap;
+}
+.cs-outcome__body h4{ font-size:.95rem; margin-bottom:6px; }
+.cs-outcome__body p{ font-size:.88rem; color: var(--text-secondary); line-height:1.65; margin:0; }
+
+/* ---------- 17. Reflection ---------- */
+.cs-reflect{ display:grid; grid-template-columns: repeat(2, 1fr); gap: var(--cs-gap); }
+.cs-reflect__card{
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg);
+  padding: clamp(24px,3vw,32px);
+}
+.cs-reflect__card h4{ font-size:1rem; margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.cs-reflect__card h4 i{ font-style:normal; font-size:1.05rem; color: var(--brand); }
+/* A resolved item reads differently from an open one */
+.cs-reflect__card h4 i:not(:empty){ flex-shrink:0; }
+.cs-reflect__card:has(h4 i:first-child) h4{ align-items:flex-start; }
+.cs-reflect__card p{ font-size:.9rem; color: var(--text-secondary); line-height:1.7; margin:0; }
+
+/* ---------- 18. Next-project CTA ---------- */
+/* A centred stack, not a two-up split. This was flex + space-between, which
+   fought the text-align:center every page sets inline: with four block
+   children the eyebrow and heading were pushed to opposite ends of the row
+   (clipping long titles at the right edge) and the paragraph and buttons
+   split across the next. Block layout lets the inline centring do its job. */
+.cs-next__inner{ display:block; }
+.cs-next__inner .section-title{ margin-top:6px; }
+
+/* ---------- 19. Responsive ---------- */
+@media (max-width: 1100px){
+  .cs-overview-grid{ grid-template-columns: repeat(3, 1fr); }
+  .ia-layout{ grid-template-columns: 260px 1fr; }
+  .cs-personas{ grid-template-columns: 1fr; }
+  .cs-tokens{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 960px){
+  .cs-two-col, .cs-two-col--wide{ grid-template-columns: 1fr; gap:36px; }
+  /* Unstack the layered mockups into a simple flow — overlapping frames are
+     unreadable below ~900px. */
+  .cs-stage{ padding-bottom:0; display:flex; flex-direction:column; gap:18px; }
+  .cs-stage .cs-mock{ position:static; width:100%; }
+  .cs-mock--front{ width:78%; align-self:flex-end; }
+  .cs-stage:hover .cs-mock--main,
+  .cs-stage:hover .cs-mock--front{ transform:none; }
+  .cs-stage__caption{ position:static; margin-top:4px; }
+  .cs-showcase{ grid-template-columns: 1fr; }
+  .device-row{ gap:28px; }
+  .cs-scope{ grid-template-columns: repeat(2, 1fr); }
+  .ia-grid{ grid-template-columns: repeat(2, 1fr); }
+  .ia-node--root{ grid-column: span 2; }
+  .ia-layout{ grid-template-columns: 1fr; }
+  .ia-sidebar{ max-width:340px; }
+  .ia-diff{ grid-template-columns: 1fr; }
+  .ia-diff__arrow{ transform: rotate(90deg); justify-self:start; }
+  .wireframe-grid{ grid-template-columns: 1fr; }
+  .cs-challenge{ grid-template-columns: 1fr; text-align:left; }
+  .cs-challenge__arrow{ transform: rotate(90deg); }
+  .cs-deepdive{ grid-template-columns: 1fr; gap:28px; }
+  .cs-deepdive--flip .cs-deepdive__media{ order:0; }
+  .cs-metric-row{ grid-template-columns: 1fr; }
+  .cs-reflect{ grid-template-columns: 1fr; }
+  .transform-demo{ grid-template-columns: 1fr; }
+  .transform-demo__arrow{ transform: rotate(90deg); }
+}
+
+@media (max-width: 640px){
+  .cs-hero-banner{ padding-top: calc(var(--header-h) + 32px); }
+  .cs-overview-grid{ grid-template-columns: 1fr 1fr; padding:20px; gap:18px 16px; }
+  .cs-scope{ grid-template-columns: 1fr; }
+  .ia-grid{ grid-template-columns: 1fr; }
+  .ia-node--root{ grid-column: span 1; }
+  .flow-diagram{ flex-direction:column; align-items:stretch; overflow-x:visible; mask-image:none; }
+  .flow-step{ width:100%; max-width:none; flex-direction:row; justify-content:flex-start; text-align:left; gap:12px; }
+  .flow-arrow{ transform: rotate(90deg); padding:2px 0; align-self:center; }
+  .cs-goals-grid{ grid-template-columns: 1fr; }
+  .responsive-strip{ flex-direction:column; align-items:center; }
+  /* The base rule is already a centred block; this only keeps the centring
+     explicit for any page that omits the inline style. */
+  .cs-next__inner{ text-align:center; }
+  .cs-shot-stack--pair{ grid-template-columns: 1fr; }
+  .cs-mock--front{ width:100%; }
+  .cs-pullquote{ padding:22px; }
+  .cs-outcome{ grid-template-columns: 1fr; gap:10px; }
+  .cs-outcome__num{ justify-self:start; }
+}
+
+/* ---------- 20. Print ---------- */
+@media print{
+  .cs-subnav, .lightbox, .back-to-top, .scroll-progress{ display:none !important; }
+  .cs-deepdive{ break-inside: avoid; }
+}

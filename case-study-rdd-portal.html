@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RDD Portal — Case Study | Leo Stalin</title>
+  <meta name="description" content="A senior UI/UX case study: designing Arada's Retail Design &amp; Delivery portal — one platform where Lease, RDD, Tenant and MEP teams run a thirteen-stage retail fit-out approval process that previously lived in email.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Leo Stalin">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="RDD Portal — UI/UX Case Study">
+  <meta property="og:description" content="Four teams, thirteen approval stages, statutory certificates and a penalty calculation — moved out of email and into one portal.">
+  <meta property="og:image" content="assets/images/rdd-portal/thumb-device.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
+
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/rdd-portal.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header cs-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="index.html#work">All Projects</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1. HERO ============ -->
+    <section class="cs-hero-banner" id="overview">
+      <div class="cs-hero-banner__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+      </div>
+      <div class="container">
+        <a href="index.html#work" class="cs-back reveal-up">← Back to all projects</a>
+        <p class="eyebrow reveal-up" style="--delay:.05s">Case Study · Enterprise Web Platform · Multi-stakeholder</p>
+        <h1 class="cs-hero-banner__title reveal-up" style="--delay:.1s">RDD<br><span class="cs-title-accent">Portal</span></h1>
+        <p class="cs-hero-banner__subtitle reveal-up" style="--delay:.15s">Getting a shop from signed lease to open door takes four teams, thirteen approval stages and a stack of statutory certificates. All of it used to happen in email. This portal is where it happens now.</p>
+
+        <div class="cs-overview-grid reveal-up" style="--delay:.2s">
+          <div><strong>Client</strong><span>Arada — Sharjah &amp; Dubai master developer</span></div>
+          <div><strong>Product</strong><span>RDD Portal — retail fit-out delivery platform</span></div>
+          <div><strong>My role</strong><span>UI/UX Designer — led the design end-to-end</span></div>
+          <div><strong>Platform</strong><span>Desktop web only — 1440 base, no mobile or tablet</span></div>
+          <div><strong>Users</strong><span>Lease, Retail Design &amp; Delivery, Tenants, MEP</span></div>
+          <div><strong>Domain</strong><span>Retail fit-out approvals, NOCs, penalties</span></div>
+          <div><strong>Tools</strong><span>Figma, FigJam</span></div>
+          <div><strong>Scope</strong><span>IA, role model, flows, UI system, all states</span></div>
+        </div>
+
+        <!-- Two overlapping windows: the workflow gate on the left, the drawing
+             review that unlocks it floating front-right. -->
+        <div class="rp-stage reveal-up" style="--delay:.25s">
+          <div class="rp-stage__glow" aria-hidden="true"></div>
+
+          <!-- The two windows share their own positioning context. If the
+               caption were a sibling of the front window instead, the front
+               window's percentage offset would be measured against a box that
+               includes the caption — so growing the caption's clearance would
+               push the window down by the same amount and never resolve. -->
+          <div class="rp-stage__frame">
+            <figure class="rp-shot rp-stage__main" data-shot="permission-to-trade" tabindex="0" role="button" aria-label="Enlarge: Permission to Trade">
+              <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+              <div class="rp-shot__view" style="--rp-h:560px;">
+                <img src="assets/images/rdd-portal/permission-to-trade.jpg" alt="The Permission to Trade screen: a persistent tenant header, a rail of thirteen workflow stages all ticked green with the final one active, then sections for tenant details, a file summary of penalties, the trade request, four departmental sign-offs and handover to mall operations">
+              </div>
+            </figure>
+
+            <figure class="rp-shot rp-stage__front" data-shot="rdd-reviewing-arch" tabindex="0" role="button" aria-label="Enlarge: drawing review">
+              <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+              <div class="rp-shot__view">
+                <img src="assets/images/rdd-portal/rdd-reviewing-arch.jpg" alt="A full-screen drawing review: an architectural elevation and section on the left, a comments, reason and attachment rail on the right, and three decision buttons — no objection, no objection with comments, and revise and resubmit">
+              </div>
+            </figure>
+          </div>
+
+          <p class="rp-stage__caption">The final gate, and the drawing review that unlocks the ones before it — click any screen to open it full size.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUBNAV ============ -->
+    <nav class="cs-subnav" id="csSubnav" aria-label="Case study sections">
+      <div class="container">
+        <div class="cs-subnav__inner">
+          <a href="#context" class="cs-subnav__link" data-subnav>Overview</a>
+          <a href="#challenge" class="cs-subnav__link" data-subnav>Challenge</a>
+          <a href="#users" class="cs-subnav__link" data-subnav>The users</a>
+          <a href="#goals" class="cs-subnav__link" data-subnav>Goals</a>
+          <a href="#process" class="cs-subnav__link" data-subnav>Process</a>
+          <a href="#architecture" class="cs-subnav__link" data-subnav>Architecture</a>
+          <a href="#journey" class="cs-subnav__link" data-subnav>13 stages</a>
+          <a href="#review" class="cs-subnav__link" data-subnav>Review</a>
+          <a href="#certificates" class="cs-subnav__link" data-subnav>Certificates</a>
+          <a href="#penalty" class="cs-subnav__link" data-subnav>Penalties</a>
+          <a href="#beforeafter" class="cs-subnav__link" data-subnav>Before / after</a>
+          <a href="#impact" class="cs-subnav__link" data-subnav>Impact</a>
+          <a href="#screens" class="cs-subnav__link" data-subnav>Screens</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ SCOPE ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-scope reveal-up">
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">4</span>
+            <span class="cs-scope__label">Stakeholder groups</span>
+            <span class="cs-scope__note">Lease, Retail Design &amp; Delivery, Tenant and MEP — three internal, one external</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">13</span>
+            <span class="cs-scope__label">Approval stages</span>
+            <span class="cs-scope__note">From critical path to Permission to Trade, every one a gate with its own form</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">16</span>
+            <span class="cs-scope__label">Documents in one stage</span>
+            <span class="cs-scope__note">The architectural submission alone carries five standard requirements and eleven checklist drawings</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">3</span>
+            <span class="cs-scope__label">Statutory certificates</span>
+            <span class="cs-scope__note">Civil Defence, SEWA and shopping-mall NOCs, drafted bilingually from portal data</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. PROJECT OVERVIEW ============ -->
+    <section class="section section--alt" id="context">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Project overview</p>
+          <h2 class="section-title">What has to happen before a shop can open</h2>
+          <p class="section-sub">Arada builds retail. A tenant signs a lease for an empty shell, then designs and fits out the interior — and every part of that has to be approved by the landlord before the doors can open.</p>
+        </div>
+
+        <div class="cs-two-col--wide cs-two-col">
+          <div class="reveal-up">
+            <p class="cs-body cs-body--lead">The portal exists because the fit-out process is a supply chain, not a transaction.</p>
+            <p class="cs-body">A tenant's architect submits drawings. Arada's Retail Design &amp; Delivery team reviews them against the mall's design guidelines. Their MEP engineers separately review the mechanical, electrical and plumbing design because a restaurant's extraction and a clothing store's power load are landlord problems as much as tenant ones. Samples get approved. Site mobilisation gets a certificate. Civil Defence and the electricity authority need letters from the landlord before they will deal with the tenant at all.</p>
+            <p class="cs-body">Then the fit-out happens, gets inspected, gets snagged, gets re-inspected, and finally — if the dates in the lease were met, and if they weren't, once the penalty is settled — the tenant is given <strong>Permission to Trade</strong>.</p>
+            <p class="cs-body">That's <strong>thirteen sequential gates</strong> involving four different parties, each of whom needs to see a different slice of the same record. It is a genuinely hard information design problem, and it was being run on email.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="cs-panel">
+              <p class="cs-panel__title">Why it needed a platform</p>
+              <ul class="cs-bullet-list">
+                <li>The process is <strong>strictly sequential</strong> — stage nine can't start until stage eight is signed.</li>
+                <li>Every stage produces <strong>documents</strong>, and later stages depend on earlier ones.</li>
+                <li>One party is <strong>external</strong>. Tenants aren't Arada staff and can't be given internal systems.</li>
+                <li>Some outputs are <strong>legally operative</strong> — statutory NOCs, penalty settlements, handover acceptance.</li>
+                <li>Dates set at lease signing determine <strong>money owed</strong> thirteen stages later.</li>
+              </ul>
+              <p class="cs-body" style="margin-top:14px;">Any one of those is manageable in a mailbox. All five together are not.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rp-row rp-row--2 reveal-up" style="margin-top:60px;">
+          <figure class="rp-shot" data-shot="login" tabindex="0" role="button" aria-label="Enlarge: portal sign-in">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/login.jpg" alt="The portal sign-in screen, set against an Arada development photograph with the sign-in form on a panel" loading="lazy"></div>
+            <figcaption><b>One door, four roles</b>The same sign-in serves Lease, RDD, Tenant and MEP users; the role decides what opens behind it</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="lease-dashboard" tabindex="0" role="button" aria-label="Enlarge: Lease dashboard">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/lease-dashboard.jpg" alt="The Lease team dashboard with a total-lease gauge broken into completed, in-progress, approved and returned, four count tiles, and a recent-submissions table with status chips and view actions" loading="lazy"></div>
+            <figcaption><b>The Lease dashboard</b>A create-new menu offering the two documents that start everything: New lease (PTL) and Lease executed (Form 01)</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. THE CHALLENGE ============ -->
+    <section class="section" id="challenge">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">The challenge</p>
+          <h2 class="section-title">Thirteen gates, four inboxes</h2>
+          <p class="section-sub">The account of the previous process is the team's own. What follows is their list, grouped into the three failures it actually describes.</p>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The record had no home</h4>
+            <p class="cs-body">Information and documents moved across multiple channels, with no centralised view of a tenant or a project. A drawing approved in March lived in whichever mailbox happened to receive it, and the person who needed it in June had to know who to ask.</p>
+
+            <h4 class="cs-h4" style="margin-top:34px;">Nobody could see anyone else's progress</h4>
+            <p class="cs-body">Four teams worked the same file with limited visibility into each other. RDD couldn't tell whether MEP had finished reviewing. The tenant couldn't tell whether anything had happened at all. So everyone compensated the same way — <strong>manual follow-up</strong> — which is why the brief lists repetitive communication between all four groups as its own separate problem.</p>
+
+            <h4 class="cs-h4" style="margin-top:34px;">Status was a question, not a fact</h4>
+            <p class="cs-body">Tracking the state of requests, approvals and submissions was difficult, and pending actions were difficult to identify. In a strictly sequential process that is the most expensive failure of all: <strong>if nobody can see which gate is open, the whole chain waits.</strong></p>
+            <p class="cs-body">The consequences the team names — delays, missed updates, communication gaps — aren't separate problems. They're what those three failures produce.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="cs-pullquote">
+              <p>Heavy dependency on emails and manual communication, with no single platform where stakeholders could easily access the information relevant to them.</p>
+              <cite>The brief, condensed</cite>
+            </div>
+            <div class="cs-note" style="margin-top:30px;">
+              <span class="cs-note__icon" aria-hidden="true">◆</span>
+              <p>There are no before screenshots in this case study, because the before state was email and attachments. It's described here in words; every screen shown is the portal that replaced it.</p>
+            </div>
+            <p class="cs-body" style="margin-top:26px;">Worth being precise about the stake. A retail lease sets a trade start date, and a <strong>late opening penalty per day</strong> if the tenant misses it. A process that loses a week of review time doesn't just annoy people — it moves money between the landlord and the tenant, and it does so in a way that neither party can audit. That's what makes this a design problem about <em>evidence</em> rather than convenience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. THE USERS ============ -->
+    <section class="section section--alt" id="users">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">The users</p>
+          <h2 class="section-title">Four groups, one record</h2>
+          <p class="section-sub">Three of these work for Arada. One doesn't — and that asymmetry shapes most of the design decisions that follow.</p>
+        </div>
+
+        <div class="rp-teams reveal-up">
+          <div class="rp-team rp-team--lease">
+            <span class="rp-team__tag">Internal · originates</span>
+            <h4>Lease</h4>
+            <p>Signs the tenant and sets the commercial terms. Creates the two documents everything else derives from: <strong>New lease (PTL)</strong> — the confirmed offer — and <strong>Lease executed (Form 01)</strong>.</p>
+            <p>Their form captures the areas, the contacts, the fit-out dates and the <strong>late opening penalty</strong>. Every number the process later argues about is entered here, once.</p>
+          </div>
+          <div class="rp-team rp-team--rdd">
+            <span class="rp-team__tag">Internal · owns the process</span>
+            <h4>Retail Design &amp; Delivery</h4>
+            <p>The landlord's design authority. Reviews conceptual and architectural submissions against mall guidelines, approves samples, issues the critical path, runs inspections, raises snag lists and issues the NOCs.</p>
+            <p>They hold the most stages of any group, and they're the only party who can grant <strong>Permission to Trade</strong>.</p>
+          </div>
+          <div class="rp-team rp-team--tenant">
+            <span class="rp-team__tag">External · submits</span>
+            <h4>Tenant</h4>
+            <p>Not an Arada employee. Appoints a designer and a main contractor, then submits everything: appointments, conceptual design, architectural and MEP packages, samples, pre-mobilisation, inspection requests and close-out.</p>
+            <p>Their view is the same record with the <strong>submit</strong> side turned on and the approve side removed — plus a Cancelled and an Acknowledgement queue the internal teams don't have.</p>
+          </div>
+          <div class="rp-team rp-team--mep">
+            <span class="rp-team__tag">Internal · technical gate</span>
+            <h4>MEP</h4>
+            <p>Mechanical, electrical and plumbing engineers. Reviews the MEP design package, approves MEP samples, runs its own inspection checklist and its own close-out, and handles service connections.</p>
+            <p>MEP runs <strong>in parallel</strong> with RDD's architectural review, which is why the workflow has two separate close-outs — one RDD, one MEP — before Permission to Trade.</p>
+          </div>
+        </div>
+
+        <div class="rp-row rp-row--3 reveal-up" style="margin-top:56px;">
+          <figure class="rp-shot" data-shot="rdd-dashboard" tabindex="0" role="button" aria-label="Enlarge: RDD dashboard">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/rdd-dashboard.jpg" alt="The RDD dashboard listing a new lease awaiting approval, with columns for unit, tenant, form name, tenant designer and tenant contractor" loading="lazy"></div>
+            <figcaption><b>RDD</b>Their table adds the tenant's designer and contractor — the two parties they'll be reviewing</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="tenant-dashboard" tabindex="0" role="button" aria-label="Enlarge: Tenant dashboard">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/tenant-dashboard.jpg" alt="The Tenant dashboard with the same gauge and tiles, a recent table showing a proposed shop name and a no-objection status, and extra sidebar queues for cancelled items and acknowledgements" loading="lazy"></div>
+            <figcaption><b>Tenant</b>Shows the <em>proposed shop name</em> — the thing a tenant recognises — plus Cancelled and Acknowledgement queues</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="mep-dashboard" tabindex="0" role="button" aria-label="Enlarge: MEP dashboard">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/mep-dashboard.jpg" alt="The MEP dashboard, structurally identical, with a recent table showing an MEP design submission marked new" loading="lazy"></div>
+            <figcaption><b>MEP</b>The same shell, filtered to the technical submissions they gate</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:40px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p>All four dashboards are <strong>the same layout</strong> — a completion gauge, four count tiles, one recent table. What changes is the table's columns and the sidebar's queues. Building four visually distinct dashboards would have been easier to justify in a design review and much worse in practice: the four groups have to talk to each other about the same record, and a shared mental model is worth more than a tailored one.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. GOALS ============ -->
+    <section class="section" id="goals">
+      <div class="container">
+        <div class="cs-goals reveal-up">
+          <p class="eyebrow">Goals</p>
+          <h2 class="section-title">What the portal had to achieve</h2>
+          <div class="cs-goals-grid">
+            <div class="cs-goal"><span>01</span>Centralise the record<em>One tenant file every group reads from, instead of four mailboxes holding fragments.</em></div>
+            <div class="cs-goal"><span>02</span>Make the sequence visible<em>Anyone opening a tenant should see which of the thirteen gates are done and which is open.</em></div>
+            <div class="cs-goal"><span>03</span>Turn follow-up into state<em>Status should be readable, not requested — no email needed to find out where something is.</em></div>
+            <div class="cs-goal"><span>04</span>Give one shell to four roles<em>Same navigation and mental model; the role decides the data and the actions.</em></div>
+            <div class="cs-goal"><span>05</span>Handle documents as first-class objects<em>Submitted, reviewed and generated documents all live on the record they belong to.</em></div>
+            <div class="cs-goal"><span>06</span>Make the money auditable<em>Penalties derived from dates the portal already holds, with the arithmetic on the page.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. UX PROCESS ============ -->
+    <section class="section section--alt" id="process">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design process</p>
+          <h2 class="section-title">How the structure was arrived at</h2>
+          <p class="section-sub">A note on evidence first: the exported file behind this case study contains final UI. The discovery work is described here rather than shown, and the two diagrams below are drawn from the structure the shipped screens actually implement.</p>
+        </div>
+
+        <div class="ia-notes reveal-up">
+          <div class="ia-note">
+            <h4><i>01</i>Requirements came from the process owners, not from users in the abstract</h4>
+            <p>The fit-out sequence isn't a design opinion — it's a contractual and regulatory procedure that RDD already ran. The first job was to write it down precisely: every stage, what document it needs, who submits it, who approves it, and what it unblocks. That inventory is what the thirteen-stage rail is built from.</p>
+          </div>
+          <div class="ia-note">
+            <h4><i>02</i>Mapping the existing workflow exposed the parallel branch</h4>
+            <p>Laid out linearly, one thing became obvious: <strong>MEP review doesn't sit inside RDD's review, it runs alongside it</strong>. That single observation shaped the whole structure — it's why the workflow has separate <em>Close-out (RDD)</em> and <em>Close-out (MEP)</em> gates rather than one, and why MEP gets its own dashboard rather than being a section of RDD's.</p>
+          </div>
+          <div class="ia-note">
+            <h4><i>03</i>The pain points clustered around visibility, not capability</h4>
+            <p>Nobody was missing a feature. Every group could already do their job — they just couldn't see whether anyone else had done theirs. That reframed the design target from <em>build the forms</em> to <strong>make the state of the sequence impossible to misread</strong>, which is why the stage rail sits at the top of every single record screen rather than on a status page of its own.</p>
+          </div>
+          <div class="ia-note">
+            <h4><i>04</i>Information architecture: navigate by status, drill by stage</h4>
+            <p>The sidebar is organised by <strong>workflow state</strong> — New, In progress, Approved, Completed, Returned, Submitted — not by feature or document type. It answers "what needs me?" That's the outer loop. The inner loop is the stage rail inside one tenant: same thirteen chips for everybody, so a conversation between two teams can refer to a stage by name and mean the same thing.</p>
+          </div>
+          <div class="ia-note">
+            <h4><i>05</i>The one screen worth prototyping properly was the review</h4>
+            <p>Most of this portal is structured forms, which are a solved problem. The drawing review is not: it has to show a CAD drawing at a readable size, collect a comment and a reason, take an attachment, and capture a three-way decision — all without leaving the record. That's the screen where the design work actually happened, and it's covered in its own section below.</p>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:76px;">Navigation by state, not by feature</h3>
+        <p class="cs-body reveal-up">The decision behind the sidebar, stated as the comparison it was chosen over.</p>
+        <div class="ia-diff reveal-up">
+          <div class="ia-diff__col ia-diff__col--before">
+            <span>The obvious structure</span>
+            <ul>
+              <li>Tenants</li>
+              <li>Submissions</li>
+              <li>Approvals</li>
+              <li>Documents</li>
+              <li>Inspections</li>
+              <li>Certificates</li>
+              <li class="is-flag">Every visit starts with "which section holds the thing waiting on me?"</li>
+            </ul>
+          </div>
+          <div class="ia-diff__arrow" aria-hidden="true">→</div>
+          <div class="ia-diff__col ia-diff__col--after">
+            <span>What shipped</span>
+            <ul>
+              <li>New <em>· needs a first look</em></li>
+              <li>In progress <em>· moving</em></li>
+              <li>Approved <em>· cleared, not finished</em></li>
+              <li>Completed <em>· done</em></li>
+              <li>Returned <em>· came back, needs action</em></li>
+              <li>Submitted <em>· sent, awaiting someone else</em></li>
+              <li class="is-new">Every visit starts with a queue, and each one carries its own count</li>
+            </ul>
+          </div>
+        </div>
+        <p class="cs-body reveal-up" style="margin-top:26px;">A feature-based sidebar describes the <em>system</em>. A state-based sidebar describes the <em>user's obligations</em> — and in a sequential approval process, that's the only question anybody opens the tool to answer. The counts beside each queue do the rest: <strong>Returned 10</strong> is a to-do list without needing to be called one.</p>
+      </div>
+    </section>
+
+    <!-- ============ 7a. ARCHITECTURE ============ -->
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Key features — 01. The shell</p>
+          <h2 class="section-title">The two things on every record screen</h2>
+          <p class="section-sub">Whatever stage you're looking at, and whichever of the four roles you hold, two elements never move.</p>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="reveal-up">
+            <h4 class="cs-h4">A persistent tenant header</h4>
+            <p class="cs-body">Tenant name, designation, unit number, unit name, unit type, company, telephone, mobile and email — pinned above every stage form.</p>
+            <p class="cs-body">In a mall with hundreds of near-identical unit codes, and a reviewer working through a queue of them, <strong>losing track of whose record you're in is the failure mode that matters</strong>. It costs one card of vertical space on every screen and removes an entire class of error.</p>
+
+            <h4 class="cs-h4" style="margin-top:34px;">The stage rail</h4>
+            <p class="cs-body">Directly beneath it, the thirteen gates as chips — green with a tick for complete, dark for the one you're in, plain outline for stages not yet reached.</p>
+            <p class="cs-body">Three states, readable in a glance, and identical for all four groups. It's the single element that answers the question the old process couldn't: <em>where is this?</em></p>
+            <p class="cs-body">It also does something subtler. Because the rail is always visible, <strong>a reviewer can see what their approval will unblock</strong> — you're not just clearing a form, you're opening the next gate for somebody else.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <figure class="rp-shot rp-shot--full" data-shot="rdd-received-ptl" tabindex="0" role="button" aria-label="Enlarge: the record shell">
+              <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+              <div class="rp-shot__view" style="--rp-h:520px;">
+                <img src="assets/images/rdd-portal/rdd-received-ptl.jpg" alt="A tenant record showing the persistent tenant details header above the stage rail, with the initial notification form beneath it" loading="lazy">
+              </div>
+              <figcaption><b>The shell</b>Tenant header, then the stage rail, then whichever stage form you're in</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:80px;">The thirteen stages, as the product renders them</h3>
+        <p class="cs-body reveal-up">Reconstructed from the rail on the Permission to Trade screen, where every gate is complete.</p>
+        <div class="rp-rail reveal-up" role="list" aria-label="The thirteen approval stages">
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Critical path</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Tenant appointment</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Conceptual design</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Arch design</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">MEP design</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Sample approval</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Pre-mobilisation</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">NOC</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Inspection</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Close-out (RDD)</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Close-out (MEP)</span>
+          <span class="rp-rail__chip rp-rail__chip--done" role="listitem">Service connection</span>
+          <span class="rp-rail__chip rp-rail__chip--now" role="listitem">Permission to Trade</span>
+          <p class="rp-rail__legend">Green with a tick — complete. Solid with a dot — the stage you're in. On records earlier in the process, stages not yet reached appear as plain outlined chips, so the rail shows past, present and future in one line. Longer journeys add stages: the penalty route also carries <strong>Snaglist</strong>, <strong>Pre-ceiling</strong>, <strong>Final MEP</strong> and <strong>LOP summary</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7b. THE JOURNEY ============ -->
+    <section class="section section--alt" id="journey">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Key features — 02. The workflow</p>
+          <h2 class="section-title">Following one shop from lease to open door</h2>
+          <p class="section-sub">Each of these is a real screen from the portal. Together they are one tenant's journey through the sequence.</p>
+        </div>
+
+        <h4 class="cs-h4 reveal-up">Stage 01 — Lease sets the terms</h4>
+        <p class="cs-body reveal-up">The <strong>Initial Notification — Confirmed offer (Form PTL)</strong> captures tenancy location and areas, tenant contact details, and the key dates from the offer letter: fit-out commencement, concept design submission, detail design submission, trade start — and the <strong>late opening penalty per day</strong>.</p>
+        <div class="rp-row rp-row--2 reveal-up" style="margin-top:26px;">
+          <figure class="rp-shot rp-shot--tall" data-shot="ptl-form" tabindex="0" role="button" aria-label="Enlarge: the PTL form">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/ptl-form.jpg" alt="The initial notification form with sections for tenancy location and details, tenant contact details, and key dates as per offer letter including the late opening penalty field" loading="lazy"></div>
+            <figcaption><b>Form PTL</b>Every figure the process later argues about is entered once, here</figcaption>
+          </figure>
+          <figure class="rp-shot rp-shot--tall" data-shot="critical-path" tabindex="0" role="button" aria-label="Enlarge: critical path document">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/critical-path.jpg" alt="The critical path document issued by RDD, versioned 4.0, laying out the programme of milestone dates for the fit-out" loading="lazy"></div>
+            <figcaption><b>Critical path, v4.0</b>RDD turns the lease dates into a milestone programme — and the version number matters</figcaption>
+          </figure>
+        </div>
+
+        <h4 class="cs-h4 reveal-up" style="margin-top:64px;">Stages 02–03 — The tenant appoints, then proposes</h4>
+        <p class="cs-body reveal-up">The tenant nominates their designer and main contractor, then submits a conceptual design. Both are gates: RDD has to accept the appointment before the design is reviewed, because reviewing drawings from an unapproved consultant wastes everyone's time.</p>
+        <div class="rp-row rp-row--2 reveal-up" style="margin-top:26px;">
+          <figure class="rp-shot" data-shot="tenant-appointment" tabindex="0" role="button" aria-label="Enlarge: tenant appointment">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/tenant-appointment.jpg" alt="RDD's view of a tenant appointment submission, listing the appointed designer and contractor with their supporting documents" loading="lazy"></div>
+            <figcaption><b>Tenant appointment</b>Who the tenant has hired, approved before their work is reviewed</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="conceptual-design" tabindex="0" role="button" aria-label="Enlarge: conceptual design received">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/conceptual-design.jpg" alt="RDD's view of a conceptual design submission received from the tenant team, with the submitted documents listed for review" loading="lazy"></div>
+            <figcaption><b>Conceptual design</b>The first look at what the shop will actually be</figcaption>
+          </figure>
+        </div>
+
+        <h4 class="cs-h4 reveal-up" style="margin-top:64px;">Stages 04–05 — Two design reviews, running in parallel</h4>
+        <p class="cs-body reveal-up">The architectural package goes to RDD. The MEP package goes to MEP. This is the busiest part of the process and the one with the most documents: the <strong>architectural submission alone has sixteen attachment slots</strong> — five standard requirements and eleven checklist drawings.</p>
+        <div class="rp-row rp-row--3 reveal-up" style="margin-top:26px;">
+          <figure class="rp-shot" data-shot="tenant-arch-submit" tabindex="0" role="button" aria-label="Enlarge: tenant architectural submission">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/tenant-arch-submit.jpg" alt="The tenant's architectural detailed design submission with standard required items and a checklist of required documents, each with its own attachment slot and an upload-all action" loading="lazy"></div>
+            <figcaption><b>Tenant submits</b>Sixteen slots, an asterisk marking the lease minimum</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="rdd-received-arch" tabindex="0" role="button" aria-label="Enlarge: RDD receives the architectural design">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/rdd-received-arch.jpg" alt="RDD's view of the received architectural design, with each submitted document listed for opening and review" loading="lazy"></div>
+            <figcaption><b>RDD receives</b>The same checklist, now a review queue</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="mep-received-design" tabindex="0" role="button" aria-label="Enlarge: MEP receives the design">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/mep-received-design.jpg" alt="The MEP team's view of a received MEP design submission with its own document checklist" loading="lazy"></div>
+            <figcaption><b>MEP receives</b>Its own package, its own checklist, its own decision</figcaption>
+          </figure>
+        </div>
+
+        <h4 class="cs-h4 reveal-up" style="margin-top:64px;">Stages 06–08 — Samples, mobilisation, certificates</h4>
+        <p class="cs-body reveal-up">Physical material samples are approved separately by both RDD and MEP. Then pre-mobilisation clears the contractor to start on site, and the first NOC is issued.</p>
+        <div class="rp-row rp-row--3 reveal-up" style="margin-top:26px;">
+          <figure class="rp-shot" data-shot="rdd-sample" tabindex="0" role="button" aria-label="Enlarge: sample approval">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/rdd-sample.jpg" alt="RDD's sample approval screen listing submitted material samples for decision" loading="lazy"></div>
+            <figcaption><b>Sample approval</b>Physical materials, reviewed against the approved drawings</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="rdd-premob" tabindex="0" role="button" aria-label="Enlarge: pre-mobilisation">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/rdd-premob.jpg" alt="RDD's view of a pre-mobilisation submission with its checklist of contractor documents" loading="lazy"></div>
+            <figcaption><b>Pre-mobilisation</b>The gate between approved drawings and work on site</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="tenant-noc" tabindex="0" role="button" aria-label="Enlarge: NOC received by tenant">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/tenant-noc.jpg" alt="The tenant's view of a no objection certificate for site mobilisation, rendered as a formal letter with a download action" loading="lazy"></div>
+            <figcaption><b>NOC, tenant side</b>A formal letter, downloadable — and it names the mandatory safety induction</figcaption>
+          </figure>
+        </div>
+
+        <h4 class="cs-h4 reveal-up" style="margin-top:64px;">Stages 09–12 — Inspection, snagging, close-out, connection</h4>
+        <p class="cs-body reveal-up">The contractor requests inspection; RDD and MEP each run their own checklist; defects become a snag list with scheduled dates; both teams close out separately; utilities get connected.</p>
+        <div class="rp-row rp-row--3 reveal-up" style="margin-top:26px;">
+          <figure class="rp-shot" data-shot="inspection-request" tabindex="0" role="button" aria-label="Enlarge: inspection request">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/inspection-request.jpg" alt="The tenant contractor's inspection request form" loading="lazy"></div>
+            <figcaption><b>Inspection requested</b>By the contractor, through the portal</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="snaglist" tabindex="0" role="button" aria-label="Enlarge: snag list">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/snaglist.jpg" alt="A design-based snag list with the final pre-opening inspection date, scheduled fit-out completion, projected opening and lease opening dates, and an expandable list of snag items" loading="lazy"></div>
+            <figcaption><b>Snag list</b>Defects beside three dates: completion, projected opening, and opening as per lease</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="rdd-closeout" tabindex="0" role="button" aria-label="Enlarge: close-out checklist">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/rdd-closeout.jpg" alt="RDD's close-out checklist listing the items required before the fit-out can be signed off" loading="lazy"></div>
+            <figcaption><b>Close-out</b>Two of these exist — one RDD, one MEP</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:44px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p>Notice the snag list's three dates sitting together: <strong>fit-out completion, projected opening, and opening as per lease</strong>. That's not incidental — the gap between the last two is exactly what the penalty calculation is about, and the design puts them side by side at the moment a delay becomes visible rather than saving the reckoning for later.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7c. THE REVIEW ============ -->
+    <section class="section" id="review">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Key features — 03. The review</p>
+          <h2 class="section-title">The screen the whole portal is really for</h2>
+          <p class="section-sub">Everything else is a form. This is where a professional judgement gets made and recorded — and where the design had to do actual work.</p>
+        </div>
+
+        <figure class="rp-shot rp-shot--full reveal-up" data-shot="rdd-reviewing-arch" tabindex="0" role="button" aria-label="Enlarge: drawing review">
+          <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+          <div class="rp-shot__view">
+            <img src="assets/images/rdd-portal/rdd-reviewing-arch.jpg" alt="A full-screen drawing review: an architectural elevation and section rendered large on the left, a right rail with a comments field, a reason selector and an attachment slot, and three decision buttons across the bottom — no objection in green, no objection with comments in teal, revise and resubmit in amber" loading="lazy">
+          </div>
+          <figcaption><b>Reviewing a drawing</b>The drawing at readable size, the response beside it, the decision underneath</figcaption>
+        </figure>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Three outcomes, because two aren't enough</h4>
+            <p class="cs-body">Approve and reject would have been the obvious pair. It would also have been wrong, because the most common real result of a fit-out design review is neither.</p>
+            <div class="rp-outcomes">
+              <div class="rp-outcome rp-outcome--go">
+                <b>No Objection</b>
+                <span>Clean pass. The stage closes, the next one opens.</span>
+              </div>
+              <div class="rp-outcome rp-outcome--soft">
+                <b>No Objection with comments</b>
+                <span>Proceed, but fix these. The tenant isn't blocked, and the comments are on the record.</span>
+              </div>
+              <div class="rp-outcome rp-outcome--back">
+                <b>Revise &amp; Resubmit</b>
+                <span>Not acceptable. Back to the tenant with a reason.</span>
+              </div>
+            </div>
+            <p class="cs-body" style="margin-top:22px;">That middle option is the one that saves weeks. Under a binary system, a reviewer with three minor comments has to choose between waving through work they have reservations about, or sending the whole package back and costing the tenant a fortnight. <strong>The middle button lets the truthful answer also be the fast one.</strong></p>
+            <p class="cs-body">The colours run green → teal → amber, so severity is legible before the labels are read.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Everything the decision needs, in one view</h4>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>The drawing is the largest object on screen.</b> A reviewer is reading a CAD elevation at 1:20 — if they have to download it to judge it, the portal has failed and the review goes back to email and a desktop PDF reader.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Comments, reason and attachment sit in one rail beside it.</b> Not in a modal on top of a modal. The reviewer's response is composed while looking at the thing being responded to.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>A structured reason as well as free text.</b> The dropdown makes rejections analysable across tenants — which requirement gets missed most is a question the old process could never answer.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">D</span><span class="cs-decision__text"><b>Reviewers can attach their own file.</b> The clearest way to say what's wrong with a drawing is often a marked-up version of it, so the response carries an attachment slot too — the channel runs both ways.</span></div>
+            </div>
+            <p class="cs-body" style="margin-top:24px;">The three buttons sit at the bottom, full width, spaced apart. It's a decision with contractual consequences and it should feel like one — no dropdown, no confirm dialog, just three clearly different commitments.</p>
+            <p class="cs-note" style="margin-top:22px;"><strong>Scope: desktop only.</strong> No mobile or tablet layouts were designed. The portal carries desk work — a CAD elevation judged at readable size, a sixteen-slot submission checklist, an inspection form that runs several screens — and it was scoped for the machine that work is actually done on.</p>
+          </div>
+        </div>
+
+        <div class="rp-row rp-row--2 reveal-up" style="margin-top:72px;">
+          <figure class="rp-shot" data-shot="drawings-view" tabindex="0" role="button" aria-label="Enlarge: drawing viewer">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/drawings-view.jpg" alt="A drawing being viewed full-screen from the conceptual design submission" loading="lazy"></div>
+            <figcaption><b>Viewing without deciding</b>The same viewer, read-only, for anyone who needs to look rather than rule</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="mep-reviewing" tabindex="0" role="button" aria-label="Enlarge: MEP review">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/mep-reviewing.jpg" alt="The MEP team reviewing a services drawing in the same full-screen reviewer with the same three decision buttons" loading="lazy"></div>
+            <figcaption><b>Same reviewer, different discipline</b>MEP judges services drawings through the identical component</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7d. CERTIFICATES ============ -->
+    <section class="section section--alt" id="certificates">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Key features — 04. Certificates</p>
+          <h2 class="section-title">The portal writes the letters</h2>
+          <p class="section-sub">A fit-out can't proceed without the landlord formally telling external authorities it has no objection. Those letters are generated here, from data the portal already holds.</p>
+        </div>
+
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <figure class="rp-shot rp-shot--tall" data-shot="noc-sewa" tabindex="0" role="button" aria-label="Enlarge: SEWA no objection certificate">
+              <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+              <div class="rp-shot__view"><img src="assets/images/rdd-portal/noc-sewa.jpg" alt="A generated no objection certificate addressed to the Sharjah Electricity, Water and Gas Authority, laid out as a bilingual letter with parallel English and Arabic columns, a reference number, and a table of unit, load, panel and meter references" loading="lazy"></div>
+              <figcaption><b>SEWA NOC</b>Structured fields above, a formatted bilingual letter below</figcaption>
+            </figure>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">Three certificates, one mechanism</span>
+            <h3>A form at the top, a legal letter at the bottom, and no retyping between them</h3>
+            <p>The screen has two halves. Above: structured inputs — <strong>plot, floor, connected load, panel and meter references, project, landlord legal entity</strong>. Below: the actual letter those values compose, laid out as correspondence with a reference number and a date, ready to send.</p>
+            <p>It's rendered <strong>bilingually, English and Arabic side by side</strong>, because that's the form a UAE authority accepts. Not a language toggle — both columns simultaneously, the same decision the Broker App's agency agreement makes for the same reason.</p>
+            <p>Three variants exist for three recipients: <strong>Civil Defence</strong>, <strong>SEWA</strong> — electricity, water and gas — and the <strong>shopping mall</strong> operator. Same pattern each time.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Show the letter, don't just promise it.</b> The person clicking Send is putting the landlord's name to a statutory document. They need to read exactly what goes out, on the screen where they authorise it.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>The technical references are inputs, not prose.</b> Connected load, SMDB, LV panel and meter references are typed into fields and then composed into the letter — so they're queryable data as well as text in a PDF.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Save and Send are separate.</b> A statutory letter often waits on a number somebody has to go and find. Save keeps a half-finished certificate; only Send commits it.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rp-row rp-row--3 reveal-up" style="margin-top:72px;">
+          <figure class="rp-shot" data-shot="noc-scd" tabindex="0" role="button" aria-label="Enlarge: Civil Defence NOC">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/noc-scd.jpg" alt="The Civil Defence no objection certificate variant, in the same bilingual letter format" loading="lazy"></div>
+            <figcaption><b>Civil Defence</b>Fire and life safety approval</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="noc-sm" tabindex="0" role="button" aria-label="Enlarge: shopping mall NOC">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/noc-sm.jpg" alt="The shopping mall no objection certificate variant" loading="lazy"></div>
+            <figcaption><b>Shopping mall</b>The operator's own consent</figcaption>
+          </figure>
+          <figure class="rp-shot" data-shot="service-connection" tabindex="0" role="button" aria-label="Enlarge: service connection">
+            <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+            <div class="rp-shot__view"><img src="assets/images/rdd-portal/service-connection.jpg" alt="The tenant's service connection screen, requesting permanent utility connections" loading="lazy"></div>
+            <figcaption><b>Service connection</b>What the certificates were for — power and water, permanently on</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7e. PENALTIES ============ -->
+    <section class="section" id="penalty">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Key features — 05. The penalty</p>
+          <h2 class="section-title">The most adversarial document in the relationship</h2>
+          <p class="section-sub">And, I'd argue, the best-designed screen in the portal — because it's built to be checked rather than believed.</p>
+        </div>
+
+        <div class="cs-deepdive cs-deepdive--flip">
+          <div class="cs-deepdive__media reveal-up">
+            <figure class="rp-shot rp-shot--tall" data-shot="lop-summary" tabindex="0" role="button" aria-label="Enlarge: late opening penalty summary">
+              <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+              <div class="rp-shot__view"><img src="assets/images/rdd-portal/lop-summary.jpg" alt="The late opening penalty summary document: a recommendation notice whose fields cite where each value comes from, a milestone matrix with columns for milestone days, milestone date, actual date, delay days and penalty amount, then deductions for landlord delay and delay beyond tenant control, a reviewed total, eight waiver reasons as checkboxes, three recommendations and an amount to be settled" loading="lazy"></div>
+              <figcaption><b>LOP summary</b>Six sections, a delay matrix, and an explicit place for the tenant's defence</figcaption>
+            </figure>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">Late Opening Penalty</span>
+            <h3>A charge that shows its own arithmetic — and its own exceptions</h3>
+            <p>If a tenant opens late, the lease imposes a penalty per day. Calculating it means comparing a programme of milestone dates against what actually happened, then deciding how much of the slippage was the tenant's fault.</p>
+            <p>The screen does this in six labelled sections, and three details make it remarkable:</p>
+            <ul class="cs-check-list cs-check-list--tick" style="margin-top:14px;">
+              <li><strong>The fields cite their own sources.</strong> Values appear as <em>[Late Opening Penalty from Form 01]</em>, <em>[Trade date] minus [Form 01 issue date]</em> — the form tells you where each number came from.</li>
+              <li><strong>The matrix header carries the formula.</strong> The delay column is literally labelled <strong>Delay days (C−D)</strong>, and the total reads <strong>B−(C+D)</strong>. You can audit the calculation from the column headings.</li>
+              <li><strong>The tenant's defences are first-class fields.</strong> Landlord delay and delay beyond tenant control are separate deduction sections, not notes in a comment box.</li>
+            </ul>
+            <p class="cs-body" style="margin-top:20px;">Then section F lists <strong>eight named reasons for waiver</strong> as checkboxes — landlord works, permit delays, force majeure, a first-of-its-kind retail concept, design disagreements with Arada's own guidelines, and more.</p>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:72px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Why the waiver list is the whole point</h4>
+            <p class="cs-body">The landlord wrote this form. The landlord collects the penalty. And the landlord has enumerated, on the face of the document, <strong>eight specific circumstances in which the tenant shouldn't have to pay</strong> — including two that are explicitly the landlord's own fault.</p>
+            <p class="cs-body">That's a design decision with real teeth. A penalty notice that only computes the charge invites a dispute conducted by email, with the tenant assembling their case from scratch and the landlord assessing it ad hoc. A notice that <em>pre-structures the tenant's defence</em> turns the same conversation into filling in a form both sides already agree on the shape of.</p>
+            <p class="cs-body">It is, in the most literal sense, designing for fairness — and it's the thing I'd point to if someone asked whether enterprise UX can be more than tidy tables.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">The final gate, and its four signatures</h4>
+            <p class="cs-body">Once the penalty is settled, <strong>Permission to Trade</strong> is the last screen. It carries the tenant's formal request, then a no-objection block signed by <strong>four named roles</strong> — RDD Senior Manager, RDD Director, Leasing Senior Administration Manager, Leasing Director — and finally a fifth section handing the unit over to Mall Operations.</p>
+            <p class="cs-body">Five sign-offs across three departments, on one screen, with the penalty summary immediately above them. The design keeps them in one place because that is the moment the whole thirteen-stage record is being certified as complete.</p>
+            <figure class="rp-shot" data-shot="permission-to-trade" tabindex="0" role="button" aria-label="Enlarge: Permission to Trade" style="margin-top:26px;">
+              <div class="rp-shot__bar" aria-hidden="true"><i></i><i></i><i></i><span class="rp-shot__url"></span></div>
+              <div class="rp-shot__view"><img src="assets/images/rdd-portal/permission-to-trade.jpg" alt="The Permission to Trade screen with all thirteen stage chips ticked, the penalty file summary, the trade request, four departmental signatures and the handover to mall operations" loading="lazy"></div>
+              <figcaption><b>Permission to Trade</b>Every chip green, four signatures, then the doors open</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. BEFORE / AFTER ============ -->
+    <section class="section section--alt" id="beforeafter">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Before / after</p>
+          <h2 class="section-title">Email thread → tenant record</h2>
+          <p class="section-sub">The same thirteen stages, run two ways.</p>
+        </div>
+
+        <div class="rp-ba reveal-up">
+          <div class="rp-ba__col rp-ba__col--before">
+            <span class="rp-ba__head">Before — four mailboxes</span>
+            <ul>
+              <li><strong>The record</strong> was whichever attachments each party happened to keep.</li>
+              <li><strong>Status</strong> was established by asking someone, and waiting.</li>
+              <li><strong>Progress</strong> of the other three teams was invisible.</li>
+              <li><strong>Follow-up</strong> was the only tracking mechanism, so everyone did it constantly.</li>
+              <li><strong>Reviews</strong> came back as prose in a reply, with the drawing re-attached.</li>
+              <li><strong>Certificates</strong> were retyped into letter templates from data in other emails.</li>
+              <li><strong>Penalties</strong> were reconciled after the fact from dates scattered across the thread.</li>
+              <li><strong>Accountability</strong> was whoever was last on the CC line.</li>
+            </ul>
+          </div>
+          <div class="rp-ba__arrow" aria-hidden="true">→</div>
+          <div class="rp-ba__col rp-ba__col--after">
+            <span class="rp-ba__head">After — one portal</span>
+            <ul>
+              <li><strong>The record</strong> is one tenant file, with every submission attached to the stage it belongs to.</li>
+              <li><strong>Status</strong> is the stage rail: done, current, not yet reached.</li>
+              <li><strong>Progress</strong> is shared — all four groups read the same rail.</li>
+              <li><strong>Follow-up</strong> is replaced by queues that carry their own counts.</li>
+              <li><strong>Reviews</strong> happen on the drawing, with a comment, a reason and one of three decisions.</li>
+              <li><strong>Certificates</strong> are composed from portal data into a bilingual letter you read before sending.</li>
+              <li><strong>Penalties</strong> derive from dates the portal already holds, with the formula in the column headers.</li>
+              <li><strong>Accountability</strong> is the queue a document is sitting in, and whose queue that is.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:44px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p>The pattern across every row is the same substitution: <strong>a conversation is replaced by a state</strong>. That's the whole thesis of the portal, and it's why the stage rail — not the dashboard, not the forms — is the component the design lives or dies by.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. IMPACT ============ -->
+    <section class="section" id="impact">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Impact &amp; benefits</p>
+          <h2 class="section-title">What the design does, and what it's expected to improve</h2>
+          <p class="section-sub">Separated deliberately. The first group points at screens in this case study. The second is anticipated but unmeasured.</p>
+        </div>
+
+        <h3 class="cs-h3 reveal-up">Evidenced in the design</h3>
+        <div class="cs-outcomes reveal-up">
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">01</span>
+            <div class="cs-outcome__body">
+              <h4>Information is centralised on the tenant record</h4>
+              <p>One file per tenant, carrying the persistent header, the thirteen-stage rail, and every submission, review, certificate and checklist attached to the stage it belongs to.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">02</span>
+            <div class="cs-outcome__body">
+              <h4>Four groups collaborate through one shared structure</h4>
+              <p>Identical dashboard layout, identical stage rail, role-scoped columns and queues. Two teams discussing a tenant refer to the same named stage and mean the same thing.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">03</span>
+            <div class="cs-outcome__body">
+              <h4>Status is visible without asking</h4>
+              <p>Three chip states show past, present and future at a glance; the sidebar's state-based queues carry counts, so pending actions announce themselves.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">04</span>
+            <div class="cs-outcome__body">
+              <h4>Reviews happen in the portal, on the drawing</h4>
+              <p>A full-size drawing viewer with comments, a structured reason, an attachment and three graded outcomes — including the middle one that lets work proceed with conditions recorded.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">05</span>
+            <div class="cs-outcome__body">
+              <h4>Statutory documents are generated, not retyped</h4>
+              <p>Three bilingual NOC variants composed from structured fields, previewed in full before sending, with Save and Send kept separate.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">06</span>
+            <div class="cs-outcome__body">
+              <h4>The commercial reckoning is auditable</h4>
+              <p>Penalty fields cite their sources, the matrix headers carry the arithmetic, landlord-caused and out-of-scope delays are deductible, and eight waiver grounds are enumerated on the form.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:76px;">Anticipated, but not measured</h3>
+        <div class="cs-two-col reveal-up">
+          <div>
+            <p class="cs-body">The improvements the team expects are the ones the brief lists: reduced email dependency, faster and more structured communication, better document management, clearer accountability, improved tracking, and a smoother workflow between business, design, tenant and technical groups.</p>
+            <p class="cs-body">Those follow logically from the mechanisms above. But <strong>they are expectations, not findings.</strong> I have no before-and-after data on approval cycle times, email volumes, or how often a stage gets returned — and I'm not going to convert design intent into numbers that were never captured.</p>
+          </div>
+          <div>
+            <div class="cs-panel">
+              <p class="cs-panel__title">What would actually prove it</p>
+              <ul class="cs-bullet-list">
+                <li>Days per stage, and days from lease execution to Permission to Trade.</li>
+                <li>Share of reviews resolved as <em>No Objection with comments</em> rather than <em>Revise &amp; Resubmit</em>.</li>
+                <li>Return rate per stage — which gate sends work back most often, and why.</li>
+                <li>Late opening penalties charged versus waived, and on which of the eight grounds.</li>
+                <li>Email volume between the four groups about a tenant, before and after.</li>
+              </ul>
+              <p class="cs-body" style="margin-top:14px;">The portal now holds the data for every one of these. That's arguably its most valuable long-term output — a process that previously left no analysable trace.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:80px;">Where this goes next</h3>
+        <div class="cs-two-col reveal-up">
+          <div>
+            <h4 class="cs-h4">Show the programme against the clock</h4>
+            <p class="cs-body">The portal knows every milestone date and every actual date — it computes penalties from them. What it doesn't yet do is show a tenant, mid-process, that they are eleven days behind on the MEP submission and what that will cost. A live view of the critical path against today's date would turn the penalty screen from a reckoning into a warning.</p>
+          </div>
+          <div>
+            <h4 class="cs-h4">Mark up the drawing itself</h4>
+            <p class="cs-body">Reviewers can attach a marked-up file, which is the pragmatic answer. Annotating directly on the drawing in the viewer — a pin with a comment, anchored to a coordinate — would keep the critique attached to the thing being criticised, and make "which requirement gets missed most" answerable by location as well as by reason.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS ============ -->
+    <section class="section section--alt" id="screens">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Screens</p>
+          <h2 class="section-title">The full set</h2>
+          <p class="section-sub">Every screen referenced above, plus the stages that didn't get their own section. Click any to open it full size.</p>
+        </div>
+        <div class="cs-gallery" id="screensGallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ NEXT ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-next__inner reveal-up" style="text-align:center;">
+          <p class="eyebrow">Next case study</p>
+          <h2 class="section-title">my Arada — Customer Portal</h2>
+          <p class="cs-body" style="margin-inline:auto;">The other enterprise web product: a self-service portal where off-plan owners track a three-year payment journey, retrieve documents and raise requests.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+            <a class="btn btn--primary" href="case-study-customer-portal.html">Read that case study</a>
+            <a class="btn btn--outline" href="index.html#work">All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo" aria-label="Leo Stalin — home">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">© <span id="year"></span> Leo Stalin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <button class="lightbox__close" data-lightbox-close aria-label="Close image viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+  </div>
+
+  <script>
+    window.CS_GALLERY = [
+      { name:'login',               src:'assets/images/rdd-portal/login.jpg',               caption:'Sign-in — one door for all four stakeholder groups' },
+      { name:'lease-dashboard',     src:'assets/images/rdd-portal/lease-dashboard.jpg',     caption:'Lease dashboard — and the create-new menu that starts every record' },
+      { name:'rdd-dashboard',       src:'assets/images/rdd-portal/rdd-dashboard.jpg',       caption:'RDD dashboard — columns for the tenant’s designer and contractor' },
+      { name:'tenant-dashboard',    src:'assets/images/rdd-portal/tenant-dashboard.jpg',    caption:'Tenant dashboard — proposed shop name, plus Cancelled and Acknowledgement queues' },
+      { name:'mep-dashboard',       src:'assets/images/rdd-portal/mep-dashboard.jpg',       caption:'MEP dashboard — the same shell, filtered to technical submissions' },
+      { name:'ptl-form',            src:'assets/images/rdd-portal/ptl-form.jpg',            caption:'Form PTL — areas, contacts, key dates and the late opening penalty' },
+      { name:'rdd-received-ptl',    src:'assets/images/rdd-portal/rdd-received-ptl.jpg',    caption:'RDD receives the PTL — the record shell in full' },
+      { name:'critical-path',       src:'assets/images/rdd-portal/critical-path.jpg',       caption:'Critical path v4.0 — lease dates turned into a milestone programme' },
+      { name:'tenant-appointment',  src:'assets/images/rdd-portal/tenant-appointment.jpg',  caption:'Tenant appointment — the designer and contractor, approved first' },
+      { name:'conceptual-design',   src:'assets/images/rdd-portal/conceptual-design.jpg',   caption:'Conceptual design received from the tenant team' },
+      { name:'tenant-arch-submit',  src:'assets/images/rdd-portal/tenant-arch-submit.jpg',  caption:'Architectural submission — sixteen slots, asterisks marking the lease minimum' },
+      { name:'rdd-received-arch',   src:'assets/images/rdd-portal/rdd-received-arch.jpg',   caption:'RDD receives the architectural package' },
+      { name:'rdd-reviewing-arch',  src:'assets/images/rdd-portal/rdd-reviewing-arch.jpg',  caption:'The drawing review — comment, reason, attachment, and three graded outcomes' },
+      { name:'rdd-arch-approved',   src:'assets/images/rdd-portal/rdd-arch-approved.jpg',   caption:'Architectural design approved — the stage closes and the next opens' },
+      { name:'drawings-view',       src:'assets/images/rdd-portal/drawings-view.jpg',       caption:'Viewing drawings without deciding on them' },
+      { name:'tenant-mep-submit',   src:'assets/images/rdd-portal/tenant-mep-submit.jpg',   caption:'The tenant’s MEP design submission' },
+      { name:'mep-received-design', src:'assets/images/rdd-portal/mep-received-design.jpg', caption:'MEP receives its package — a parallel branch, not a sub-step' },
+      { name:'mep-reviewing',       src:'assets/images/rdd-portal/mep-reviewing.jpg',       caption:'MEP reviewing a services drawing in the same reviewer' },
+      { name:'mep-approved',        src:'assets/images/rdd-portal/mep-approved.jpg',        caption:'MEP design approved' },
+      { name:'rdd-sample',          src:'assets/images/rdd-portal/rdd-sample.jpg',          caption:'Sample approval — physical materials against approved drawings' },
+      { name:'mep-sample',          src:'assets/images/rdd-portal/mep-sample.jpg',          caption:'MEP sample approval — the technical equivalent' },
+      { name:'tenant-premob',       src:'assets/images/rdd-portal/tenant-premob.jpg',       caption:'The tenant’s pre-mobilisation submission' },
+      { name:'rdd-premob',          src:'assets/images/rdd-portal/rdd-premob.jpg',          caption:'RDD reviewing pre-mobilisation — the gate before work starts on site' },
+      { name:'rdd-premob-approved', src:'assets/images/rdd-portal/rdd-premob-approved.jpg', caption:'Pre-mobilisation approved' },
+      { name:'noc-scd',             src:'assets/images/rdd-portal/noc-scd.jpg',             caption:'Civil Defence NOC — generated bilingually from portal data' },
+      { name:'noc-sewa',            src:'assets/images/rdd-portal/noc-sewa.jpg',            caption:'SEWA NOC — structured fields above, the letter below' },
+      { name:'noc-sm',              src:'assets/images/rdd-portal/noc-sm.jpg',              caption:'Shopping mall NOC' },
+      { name:'tenant-noc',          src:'assets/images/rdd-portal/tenant-noc.jpg',          caption:'The tenant’s NOC — downloadable, and it names the mandatory safety induction' },
+      { name:'inspection-request',  src:'assets/images/rdd-portal/inspection-request.jpg',  caption:'The contractor’s inspection request' },
+      { name:'rdd-inspected',       src:'assets/images/rdd-portal/rdd-inspected.jpg',       caption:'RDD inspected, commented and approved' },
+      { name:'mep-inspection',      src:'assets/images/rdd-portal/mep-inspection.jpg',      caption:'MEP’s own inspection checklist — the longest form in the portal' },
+      { name:'snaglist',            src:'assets/images/rdd-portal/snaglist.jpg',            caption:'Snag list — defects beside completion, projected and lease opening dates' },
+      { name:'tenant-closeout',     src:'assets/images/rdd-portal/tenant-closeout.jpg',     caption:'The tenant’s close-out submission' },
+      { name:'rdd-closeout',        src:'assets/images/rdd-portal/rdd-closeout.jpg',        caption:'RDD close-out checklist — one of two, the other being MEP’s' },
+      { name:'service-connection',  src:'assets/images/rdd-portal/service-connection.jpg',  caption:'Service connection — permanent power and water' },
+      { name:'mep-service',         src:'assets/images/rdd-portal/mep-service.jpg',         caption:'MEP handling the service connection request' },
+      { name:'lop-summary',         src:'assets/images/rdd-portal/lop-summary.jpg',         caption:'Late opening penalty summary — the formula in the column headers, and eight waiver grounds' },
+      { name:'permission-to-trade', src:'assets/images/rdd-portal/permission-to-trade.jpg', caption:'Permission to Trade — every stage green, four signatures, handover to operations' }
+    ];
+  </script>
+
+  <!-- animations.js owns the IntersectionObserver that reveals content. -->
+  <script src="js/animations.js"></script>
+  <script src="js/case-study.js"></script>
+</body>
+</html>

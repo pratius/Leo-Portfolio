@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my Arada Customer Portal — Case Study | Leo Stalin</title>
+  <meta name="description" content="A senior UI/UX case study: designing my Arada, a self-service property ownership portal covering milestone payments, documents, and service requests — from research and IA through flows, design system, and shipped UI.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Leo Stalin">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="my Arada Customer Portal — UI/UX Case Study">
+  <meta property="og:description" content="Turning a three-year off-plan property journey into a portal owners actually trust — payments, documents, and requests in one place.">
+  <meta property="og:image" content="assets/images/customer-portal/dashboard.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
+
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/case-study.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header cs-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="index.html#work">All Projects</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO / OVERVIEW ============ -->
+    <section class="cs-hero-banner" id="overview">
+      <div class="cs-hero-banner__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+      </div>
+      <div class="container">
+        <a href="index.html#work" class="cs-back reveal-up">← Back to all projects</a>
+        <p class="eyebrow reveal-up" style="--delay:.05s">Case Study · Property Technology</p>
+        <h1 class="cs-hero-banner__title reveal-up" style="--delay:.1s">my Arada<br><span class="cs-title-accent">Customer Portal</span></h1>
+        <p class="cs-hero-banner__subtitle reveal-up" style="--delay:.15s">Off-plan buyers pay for a home years before they can stand in it. This portal gives them somewhere to watch that happen — and to act, without calling anyone.</p>
+
+        <div class="cs-overview-grid reveal-up" style="--delay:.2s">
+          <div><strong>Client</strong><span>Arada — Sharjah &amp; Dubai master developer</span></div>
+          <div><strong>Product</strong><span>my Arada — owner self-service portal</span></div>
+          <div><strong>My role</strong><span>UI/UX Designer — led the design end-to-end</span></div>
+          <div><strong>Duration</strong><span>8–12 weeks to first release</span></div>
+          <div><strong>Platform</strong><span>Responsive web (desktop-first, dense data)</span></div>
+          <div><strong>Worked with</strong><span>Product, business analysis, engineering, finance &amp; CX</span></div>
+          <div><strong>Tools</strong><span>Figma, FigJam, Photoshop, Illustrator, Azure DevOps</span></div>
+          <div><strong>Scope</strong><span>Research, IA, flows, UI system, all states, dev handoff</span></div>
+        </div>
+
+        <!-- Layered mockup stage: the current dashboard, with a service-request
+             form overlapping front-right. Both figures carry data-shot so they
+             open in the same lightbox as every other screen on the page. -->
+        <div class="cs-stage reveal-up" style="--delay:.25s">
+          <div class="cs-stage__glow" aria-hidden="true"></div>
+
+          <figure class="cs-mock cs-mock--main" data-shot="0" tabindex="0" role="button" aria-label="Enlarge: property dashboard">
+            <div class="cs-mock__bar" aria-hidden="true"><i></i><i></i><i></i><span class="cs-mock__url"></span></div>
+            <img src="assets/images/customer-portal/dashboard-v2.jpg" alt="my Arada property dashboard: a dark navy property-value banner, quick actions for proof-of-payment upload and Quick Pay, a construction newsletter tile, and a grid of seven self-service property actions" width="2544" height="2036">
+          </figure>
+
+          <figure class="cs-mock cs-mock--front" data-shot="1" tabindex="0" role="button" aria-label="Enlarge: access card request form">
+            <div class="cs-mock__bar" aria-hidden="true"><i></i><i></i><i></i><span class="cs-mock__url"></span></div>
+            <img src="assets/images/customer-portal/access-cards-request.jpg" alt="Request Access Cards form showing pre-filled property details with a unit render and status pill, then access type, reason, number of cards and an optional description" width="2544" height="2036" loading="lazy">
+          </figure>
+
+          <p class="cs-stage__caption">Dashboard and service-request flow — click any screen to open it full size.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STICKY SECTION NAV ============ -->
+    <nav class="cs-subnav" id="csSubnav" aria-label="Case study sections">
+      <div class="container">
+        <div class="cs-subnav__inner">
+          <a href="#context" class="cs-subnav__link" data-subnav>Context</a>
+          <a href="#problem" class="cs-subnav__link" data-subnav>Problem</a>
+          <a href="#research" class="cs-subnav__link" data-subnav>Research</a>
+          <a href="#personas" class="cs-subnav__link" data-subnav>Archetypes</a>
+          <a href="#journey" class="cs-subnav__link" data-subnav>Journey</a>
+          <a href="#architecture" class="cs-subnav__link" data-subnav>Architecture</a>
+          <a href="#flows" class="cs-subnav__link" data-subnav>Flows</a>
+          <a href="#system" class="cs-subnav__link" data-subnav>Design System</a>
+          <a href="#features" class="cs-subnav__link" data-subnav>Features</a>
+          <a href="#states" class="cs-subnav__link" data-subnav>States</a>
+          <a href="#challenges" class="cs-subnav__link" data-subnav>Challenges</a>
+          <a href="#responsive" class="cs-subnav__link" data-subnav>Responsive</a>
+          <a href="#screens" class="cs-subnav__link" data-subnav>All Screens</a>
+          <a href="#outcomes" class="cs-subnav__link" data-subnav>Outcomes</a>
+          <a href="#reflection" class="cs-subnav__link" data-subnav>Reflection</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ SCOPE AT A GLANCE ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-scope reveal-up">
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">12</span>
+            <span class="cs-scope__label">Portal destinations</span>
+            <span class="cs-scope__note">Across four navigation groups — overview, payments &amp; finance, service requests, account</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">7</span>
+            <span class="cs-scope__label">Self-serve property services</span>
+            <span class="cs-scope__note">Access cards, title deed, power of attorney, key collection and more</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">2</span>
+            <span class="cs-scope__label">Payment rails</span>
+            <span class="cs-scope__note">Card payment and proof-of-payment upload for bank transfers</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">~3 yrs</span>
+            <span class="cs-scope__label">Journey the UI spans</span>
+            <span class="cs-scope__note">Booking deposit in 2023 to final payment in 2025, milestone by milestone</span>
+          </div>
+        </div>
+
+        <!-- ---- SHOWCASE: the three screens that carry the product ---- -->
+        <div class="cs-showcase reveal-up" style="margin-top: clamp(32px,4vw,52px);">
+          <figure class="cs-showcase__item" data-shot="2" tabindex="0" role="button" aria-label="Enlarge: payment schedule">
+            <img src="assets/images/customer-portal/payment-schedule.jpg" alt="Payment schedule with three summary tiles and a seven-row milestone table" loading="lazy" width="1280" height="910">
+            <figcaption><b>Payment Schedule</b>Seven milestones, three summary tiles, two ways to pay</figcaption>
+          </figure>
+          <figure class="cs-showcase__item" data-shot="3" tabindex="0" role="button" aria-label="Enlarge: Quick Pay">
+            <img src="assets/images/customer-portal/quick-pay.jpg" alt="Quick Pay screen aggregating overdue and upcoming dues beside an amount field" loading="lazy" width="1280" height="910">
+            <figcaption><b>Quick Pay</b>Everything outstanding, with the card limit disclosed up front</figcaption>
+          </figure>
+          <figure class="cs-showcase__item" data-shot="8" tabindex="0" role="button" aria-label="Enlarge: payment history">
+            <img src="assets/images/customer-portal/payment-history.jpg" alt="Payment history listing receipts with view and download actions" loading="lazy" width="1280" height="910">
+            <figcaption><b>Payment History</b>Receipts as evidence, retrievable across every unit</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTEXT ============ -->
+    <section class="section section--alt" id="context">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Context</p>
+          <h2 class="section-title">Buying a home that doesn't exist yet</h2>
+        </div>
+
+        <div class="cs-two-col--wide cs-two-col">
+          <div class="reveal-up">
+            <p class="cs-body cs-body--lead">In the UAE, a large share of residential property is sold <strong>off-plan</strong> — bought from architectural plans, then paid for in instalments tied to construction progress, often over two to four years before anyone gets a key.</p>
+            <p class="cs-body">The payment schedule in this product runs from a booking deposit in <strong>January 2023</strong> to a final payment in <strong>November 2025</strong>. Seven milestones. Nearly three years of a customer sending significant sums of money toward a building they can only visit as a construction site.</p>
+            <p class="cs-body">That shapes everything about the design problem. This isn't a high-frequency consumer app where habit carries the user. It's a <strong>low-frequency, high-value, high-anxiety</strong> relationship. A customer might log in four times a year — and every single one of those visits is about money, proof, or permission.</p>
+            <p class="cs-body">The domain also carries its own machinery: post-dated cheques collected against milestones, no-objection certificates required before a customer can rent or resell, registration and meter fees arriving separately from the payment plan, and card networks that cap what can move in a single transaction.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.1s">
+            <div class="cs-panel">
+              <p class="cs-panel__title">What makes this hard</p>
+              <ul class="cs-bullet-list">
+                <li><strong>Infrequent use.</strong> Nobody builds muscle memory. Every visit is effectively a first visit, so nothing can rely on being remembered.</li>
+                <li><strong>High stakes per action.</strong> A mistyped amount isn't a nuisance, it's a six-figure transfer to reconcile.</li>
+                <li><strong>Consequences for being late.</strong> Missed milestones attract penalties, so clarity about what is owed and when is a financial feature, not a nicety.</li>
+                <li><strong>Distance.</strong> A meaningful share of owners are investors who never set foot on site and work across time zones.</li>
+                <li><strong>Regulated paperwork.</strong> NOCs, title deeds and authorisations follow real legal process — the UI can request, not shortcut.</li>
+                <li><strong>Long tail of states.</strong> A unit under construction, a unit at handover and a unit being resold need the same portal to behave differently.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-pullquote reveal-up">
+          <p>For nearly three years, the only tangible thing a buyer has of their future home is a payment schedule. That screen isn't a table. It's the product.</p>
+          <cite>The framing that drove every prioritisation decision on this project</cite>
+        </div>
+
+        <figure class="cs-shot reveal-up" data-shot="2" tabindex="0" role="button" aria-label="Enlarge: payment schedule" style="max-width:900px;">
+          <img src="assets/images/customer-portal/payment-schedule.jpg" alt="The payment schedule: three summary tiles above seven milestones running from a 2023 booking deposit to a 2025 final payment" loading="lazy" width="1280" height="910">
+          <figcaption>Seven milestones, January 2023 to November 2025. This is what "owning a home" looks like for most of the wait — which is why it got the most design time of any screen in the portal.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ PROBLEM & GOALS ============ -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">The Problem</p>
+          <h2 class="section-title">A journey scattered across systems and phone calls</h2>
+          <p class="section-sub">Before the portal, almost every customer question became a human conversation — and every human conversation became a delay.</p>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="reveal-up">
+            <h3 class="cs-h3">How it worked before</h3>
+            <p class="cs-body">Customers needed to move between multiple systems, or contact the sales and finance teams directly, to do things that should take thirty seconds: check what was due, pay it, get a receipt, find their sales purchase agreement, ask for an NOC, or update a phone number.</p>
+            <p class="cs-body">The information existed. It just wasn't anywhere the customer could reach it. So the customer's only interface to their own property was a person — one who worked office hours in a single time zone, and who had to look each answer up manually.</p>
+            <p class="cs-body">The cost landed in three places at once: customers waited, the finance and CX teams spent their days on lookups instead of exceptions, and late payments turned into disputes that could have been prevented by a due date the customer could actually see.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.1s">
+            <h3 class="cs-h3">Six recurring friction points</h3>
+            <ul class="cs-check-list">
+              <li><strong>Payment information scattered across channels.</strong> No single answer to "what do I owe, and when?"</li>
+              <li><strong>Document submission was manual.</strong> Email attachments, no confirmation, no audit trail.</li>
+              <li><strong>No visibility into request status.</strong> Once a request was submitted it disappeared until someone called about it.</li>
+              <li><strong>No central home for property information.</strong> Unit details, value and status lived in internal systems.</li>
+              <li><strong>Heavy dependency on support.</strong> The support team was the product's user interface.</li>
+              <li><strong>Slow manual approvals.</strong> Multi-stage sign-off with no way for the customer to see the stage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-goals reveal-up">
+          <p class="eyebrow">Goals</p>
+          <h2 class="section-title">What the portal had to achieve</h2>
+          <div class="cs-goals-grid">
+            <div class="cs-goal"><span>01</span>One destination for every customer service<em>Replace "which system?" with a single signed-in home.</em></div>
+            <div class="cs-goal"><span>02</span>Make paying genuinely simple<em>Including the awkward cases — partial amounts, card caps, bank transfers.</em></div>
+            <div class="cs-goal"><span>03</span>Make request status self-evident<em>Submission should produce a reference, not a silence.</em></div>
+            <div class="cs-goal"><span>04</span>Enable secure document exchange<em>Both directions: retrieve contracts, upload proof.</em></div>
+            <div class="cs-goal"><span>05</span>Reduce dependency on support<em>Move routine lookups out of the call queue entirely.</em></div>
+            <div class="cs-goal"><span>06</span>Feel trustworthy at every step<em>Because the amounts involved leave no room for ambiguity.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="section section--alt" id="research">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Process — 01. Discovery</p>
+          <h2 class="section-title">Grounding the design in real behaviour, not assumptions</h2>
+          <p class="section-sub">Working inside a developer with existing customers meant the evidence already existed — in support queues, in finance processes, and in the questions people kept asking.</p>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="reveal-up">
+            <h3 class="cs-h3">Methods</h3>
+            <ul class="cs-bullet-list">
+              <li><strong>Stakeholder workshops</strong> with sales, finance and customer experience to map what customers actually contact them about, and what each team needs before it can act.</li>
+              <li><strong>Business requirement analysis</strong> to understand the non-negotiables — payment reconciliation, cheque handling, approval chains, regulatory documents.</li>
+              <li><strong>Existing portal review</strong> to catalogue what was already there, what was unused, and where customers dropped out.</li>
+              <li><strong>Competitor benchmarking</strong> across regional developer portals and banking apps, since banking is where customers form expectations about paying money online.</li>
+              <li><strong>User journey mapping</strong> in FigJam, tracing the ownership lifecycle end to end with the teams who live it daily.</li>
+            </ul>
+          </div>
+          <div class="reveal-up" style="--delay:.1s">
+            <h3 class="cs-h3">What customers were really asking for</h3>
+            <p class="cs-body">Stripped of the specific wording, every enquiry reduced to one of six jobs. These became the portal's job list — and later, its navigation.</p>
+            <ul class="cs-bullet-list">
+              <li><strong>"Let me pay quickly"</strong> — in as few steps as possible, without re-establishing what is owed.</li>
+              <li><strong>"Tell me where my request is"</strong> — without calling to find out.</li>
+              <li><strong>"Give me my document"</strong> — on demand, at 2am, from another country.</li>
+              <li><strong>"Show me everything I've paid"</strong> — one place, with receipts attached.</li>
+              <li><strong>"Let me submit this digitally"</strong> — and prove that I did.</li>
+              <li><strong>"Show me it all at once"</strong> — one dashboard, not a menu hunt.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:36px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <div><strong>A note on evidence.</strong> This was a stakeholder- and requirements-led discovery inside an existing business, not a moderated usability study with recruited participants. The archetypes below are synthesised from support themes and the workshops — they are design tools for prioritisation, not research findings dressed up as statistics.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PERSONAS / ARCHETYPES ============ -->
+    <section class="section" id="personas">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Process — 02. Who we designed for</p>
+          <h2 class="section-title">Three behavioural archetypes</h2>
+          <p class="section-sub">Not demographics. Three different relationships with the same property — each of which breaks the interface in a different place.</p>
+        </div>
+
+        <div class="cs-personas">
+          <article class="cs-persona reveal-up">
+            <div class="cs-persona__top">
+              <span class="cs-persona__avatar" aria-hidden="true">MP</span>
+              <div>
+                <h3 class="cs-persona__name">The Milestone Payer</h3>
+                <span class="cs-persona__tag">End-user buyer · lives locally · will move in</span>
+              </div>
+            </div>
+            <p class="cs-persona__quote">"I know roughly what's coming. I just want to know exactly how much, exactly when, and that it landed."</p>
+            <div class="cs-persona__meta">
+              <div class="cs-persona__row">
+                <span>Primary need</span>
+                <p>A schedule that reads as <strong>progress</strong>, not as a bill. Paid milestones behind them, the next one clearly marked.</p>
+              </div>
+              <div class="cs-persona__row">
+                <span>Where it breaks</span>
+                <p>Milestone amounts routinely exceed single-card transaction limits, so the obvious payment path is the one that fails.</p>
+              </div>
+              <div class="cs-persona__row">
+                <span>Design response</span>
+                <p>Per-row payment from the schedule, a proof-of-payment rail for bank transfers, and the card cap disclosed <strong>before</strong> the attempt.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="cs-persona reveal-up" style="--delay:.08s">
+            <div class="cs-persona__top">
+              <span class="cs-persona__avatar" aria-hidden="true">OI</span>
+              <div>
+                <h3 class="cs-persona__name">The Overseas Investor</h3>
+                <span class="cs-persona__tag">Multi-unit owner · remote · never on site</span>
+              </div>
+            </div>
+            <p class="cs-persona__quote">"I have three units in two communities. Don't make me remember which is which, and don't make me phone Sharjah at 3am."</p>
+            <div class="cs-persona__meta">
+              <div class="cs-persona__row">
+                <span>Primary need</span>
+                <p>To operate <strong>entirely unassisted</strong>, across time zones, with documents retrievable on demand as proof for banks and accountants.</p>
+              </div>
+              <div class="cs-persona__row">
+                <span>Where it breaks</span>
+                <p>Multiple units means every screen is ambiguous unless it states which property it is talking about.</p>
+              </div>
+              <div class="cs-persona__row">
+                <span>Design response</span>
+                <p>A persistent property switcher in both the sidebar and page header, plus an <strong>"All Property"</strong> aggregate view for payment history.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="cs-persona reveal-up" style="--delay:.16s">
+            <div class="cs-persona__top">
+              <span class="cs-persona__avatar" aria-hidden="true">NH</span>
+              <div>
+                <h3 class="cs-persona__name">The Near-Handover Owner</h3>
+                <span class="cs-persona__tag">Construction complete · paperwork phase</span>
+              </div>
+            </div>
+            <p class="cs-persona__quote">"Payments are basically done. Now it's all forms — and I don't know which form I need or what happens after I send it."</p>
+            <div class="cs-persona__meta">
+              <div class="cs-persona__row">
+                <span>Primary need</span>
+                <p>To navigate a burst of unfamiliar, one-time processes: NOCs, title deed, power of attorney, key collection.</p>
+              </div>
+              <div class="cs-persona__row">
+                <span>Where it breaks</span>
+                <p>These are the least repeated and least understood actions in the whole journey, and each has real legal consequence.</p>
+              </div>
+              <div class="cs-persona__row">
+                <span>Design response</span>
+                <p>Services surfaced as <strong>named cards</strong> on the dashboard rather than buried in a menu, with structured forms and a reference number on submission.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ JOURNEY MAP ============ -->
+    <section class="section section--alt" id="journey">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Process — 03. The journey</p>
+          <h2 class="section-title">Five stages, five different products</h2>
+          <p class="section-sub">Mapping the ownership lifecycle showed the portal isn't one experience — it's five, and the customer's need inverts completely from beginning to end.</p>
+        </div>
+
+        <div class="cs-journey reveal-up" role="list">
+          <div class="cs-journey__stage" role="listitem">
+            <span class="cs-journey__phase">Stage 01</span>
+            <div class="cs-journey__rail" aria-hidden="true"><span class="cs-journey__dot"></span><span class="cs-journey__line"></span></div>
+            <h4>Booking &amp; deposit</h4>
+            <p class="cs-journey__need">Excitement, and a large first transfer. The customer wants confirmation that the money arrived and the unit is theirs.</p>
+            <p class="cs-journey__risk"><b>Friction</b>Booking confirmation and the sales purchase agreement lived in an inbox, easily lost.</p>
+            <p class="cs-journey__fix"><b>In the portal</b>Both documents are permanently retrievable from the document centre, with preview and download.</p>
+          </div>
+          <div class="cs-journey__stage" role="listitem">
+            <span class="cs-journey__phase">Stage 02</span>
+            <div class="cs-journey__rail" aria-hidden="true"><span class="cs-journey__dot"></span><span class="cs-journey__line"></span></div>
+            <h4>Construction &amp; milestones</h4>
+            <p class="cs-journey__need">The longest stage by far — two to three years of instalments against build progress, with nothing to see but paperwork.</p>
+            <p class="cs-journey__risk"><b>Friction</b>No visible schedule meant missed dates, penalties, and disputes that felt unfair to both sides.</p>
+            <p class="cs-journey__fix"><b>In the portal</b>The payment schedule as the primary artefact: what's paid, what's next, what it costs, and how to clear it.</p>
+          </div>
+          <div class="cs-journey__stage" role="listitem">
+            <span class="cs-journey__phase">Stage 03</span>
+            <div class="cs-journey__rail" aria-hidden="true"><span class="cs-journey__dot"></span><span class="cs-journey__line"></span></div>
+            <h4>Pre-handover</h4>
+            <p class="cs-journey__need">Attention shifts abruptly from money to fees and readiness — registration, meters, parking, penalties.</p>
+            <p class="cs-journey__risk"><b>Friction</b>Charges arrive separately from the payment plan and feel like surprises.</p>
+            <p class="cs-journey__fix"><b>In the portal</b>A dedicated Charges view using the same table language, so fees are legible the moment they appear.</p>
+          </div>
+          <div class="cs-journey__stage" role="listitem">
+            <span class="cs-journey__phase">Stage 04</span>
+            <div class="cs-journey__rail" aria-hidden="true"><span class="cs-journey__dot"></span><span class="cs-journey__line"></span></div>
+            <h4>Handover &amp; keys</h4>
+            <p class="cs-journey__need">A dense burst of one-time processes: key collection, access cards, title deed, signature declarations.</p>
+            <p class="cs-journey__risk"><b>Friction</b>Every one of these was a phone call, and none of them had a status the customer could check.</p>
+            <p class="cs-journey__fix"><b>In the portal</b>Seven named service actions on the dashboard, each producing a tracked request with a reference.</p>
+          </div>
+          <div class="cs-journey__stage" role="listitem">
+            <span class="cs-journey__phase">Stage 05</span>
+            <div class="cs-journey__rail" aria-hidden="true"><span class="cs-journey__dot"></span><span class="cs-journey__line"></span></div>
+            <h4>Ownership &amp; beyond</h4>
+            <p class="cs-journey__need">Living in it, letting it, or selling it — each needing an NOC, a statement, or a defect report.</p>
+            <p class="cs-journey__risk"><b>Friction</b>Post-handover owners had the least support and the most bureaucratic needs.</p>
+            <p class="cs-journey__fix"><b>In the portal</b>NOC requests, statements of account, and defect reporting with file upload, all self-service.</p>
+          </div>
+        </div>
+
+        <p class="cs-body reveal-up" style="margin-top:28px;">The insight that came out of this map: <strong>the dashboard cannot be static.</strong> A customer in stage two needs a payment schedule; a customer in stage four needs a services grid. The shipped dashboard therefore leads with property value and payment actions, then presents services as a persistent grid below — so the same layout serves both, with the unit's status pill telling the customer which set of rules currently applies to them.</p>
+      </div>
+    </section>
+
+    <!-- ============ INFORMATION ARCHITECTURE ============ -->
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Process — 04. Structure</p>
+          <h2 class="section-title">Information architecture</h2>
+          <p class="section-sub">Twelve destinations, four groups, one persistent question answered at all times: which property are we talking about?</p>
+        </div>
+
+        <div class="ia-layout">
+          <div class="reveal-up">
+            <div class="ia-sidebar" aria-hidden="true">
+              <div class="ia-sidebar__brand">my Arada</div>
+              <div class="ia-sidebar__picker">Unit 123, Masaar 2</div>
+              <span class="ia-sidebar__status ia-sidebar__status--live">Handed Over</span>
+
+              <p class="ia-sidebar__group">Overview</p>
+              <ul class="ia-sidebar__list">
+                <li class="is-current">Dashboard</li>
+              </ul>
+
+              <p class="ia-sidebar__group">Payments &amp; Finance</p>
+              <ul class="ia-sidebar__list">
+                <li>Payment Schedule</li>
+                <li>Quick Pay</li>
+                <li>Payment History</li>
+                <li>Upload POP</li>
+                <li>Statement of Account</li>
+                <li>Charges</li>
+              </ul>
+
+              <p class="ia-sidebar__group">Service Request</p>
+              <ul class="ia-sidebar__list">
+                <li>Service History</li>
+                <li>Documents</li>
+                <li>NOC Request</li>
+              </ul>
+
+              <p class="ia-sidebar__group">Account</p>
+              <ul class="ia-sidebar__list">
+                <li>Personal Details</li>
+                <li>Contact Details</li>
+              </ul>
+            </div>
+            <p class="ia-sidebar__caption">The current navigation, reproduced from the live UI.</p>
+          </div>
+
+          <div class="ia-notes">
+            <div class="ia-note reveal-up">
+              <h4><i>01</i>Grouping by mental mode, not by feature</h4>
+              <p>Customers don't arrive thinking "I need the documents module". They arrive in one of four states of mind: <strong>orienting</strong> (what's the situation?), <strong>paying</strong> (money needs to move), <strong>requesting</strong> (I need something from Arada), or <strong>maintaining</strong> (my details changed). The four groups map to those states, which is why Overview holds exactly one item and nobody has ever asked where the dashboard went.</p>
+            </div>
+            <div class="ia-note reveal-up" style="--delay:.06s">
+              <h4><i>02</i>The property is context, not a page</h4>
+              <p>Multi-unit ownership is common, and a screen that doesn't say which unit it refers to is worse than useless when six figures are in play. The property switcher is therefore <strong>persistent in the sidebar and repeated in the page header</strong> — deliberate redundancy, because the cost of confusing two units is high and the cost of one duplicated control is low.</p>
+              <p>Payment History additionally supports an <strong>"All Property"</strong> selection, because reconciliation is the one task owners genuinely want to do across their whole portfolio at once.</p>
+            </div>
+            <div class="ia-note reveal-up" style="--delay:.12s">
+              <h4><i>03</i>Status travels with the property</h4>
+              <p>The status pill — <strong>"Under Construction"</strong> before handover, <strong>"Handed Over"</strong> after — sits directly under the switcher rather than on individual pages. It's the single piece of information that changes what every other screen means: which services are available, whether handover actions apply, whether a document should exist yet.</p>
+              <p>It carries into the forms too. On a service request the same pill appears beside the pre-filled property, so the customer can see at a glance that they are requesting against the right unit <em>in the right state</em>.</p>
+            </div>
+            <div class="ia-note reveal-up" style="--delay:.18s">
+              <h4><i>04</i>The grouping I got wrong first time — and fixed</h4>
+              <p>Version one shipped with <strong>Raise a Request, Documents and NOC Request sitting inside "Payments &amp; Finance"</strong>. They don't belong there — they're service and document actions, not finance ones. It happened because of a phased release: the finance modules were the funded first phase, and the service items got added into the existing group rather than holding the launch for a restructure.</p>
+              <p>It was scannable at twelve items, so it worked. It still wasn't right, and it wouldn't survive the roadmap. The refresh <strong>split the service actions into their own group</strong> and replaced the one-way "Raise a Request" with <strong>Service History</strong> — which closes the last of the six original friction points, because a customer can now see where a request actually is instead of only that it was sent.</p>
+              <div class="ia-diff">
+                <div class="ia-diff__col ia-diff__col--before">
+                  <span>Before — v1</span>
+                  <ul>
+                    <li>Payments &amp; Finance <em>(9 items)</em></li>
+                    <li class="is-flag">↳ Raise a Request</li>
+                    <li class="is-flag">↳ Documents</li>
+                    <li class="is-flag">↳ NOC Request</li>
+                    <li>Account <em>(2 items)</em></li>
+                  </ul>
+                </div>
+                <div class="ia-diff__arrow" aria-hidden="true">→</div>
+                <div class="ia-diff__col ia-diff__col--after">
+                  <span>After — current</span>
+                  <ul>
+                    <li>Payments &amp; Finance <em>(6 items)</em></li>
+                    <li>Service Request <em>(3 items)</em></li>
+                    <li class="is-new">↳ Service History <em>new</em></li>
+                    <li>Account <em>(2 items)</em></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- WIREFRAMES ---- -->
+        <div class="section-head reveal-up" style="margin-top:96px;">
+          <p class="eyebrow">Design Process — 05. Wireframes</p>
+          <h2 class="section-title">Structure before styling</h2>
+          <p class="section-sub">Low-fidelity layouts for the four highest-traffic screens, built to settle hierarchy and content grouping before any visual design was applied.</p>
+        </div>
+
+        <div class="wireframe-grid">
+          <figure class="wireframe-card reveal-up">
+            <div class="browser-frame">
+              <div class="browser-frame__bar"><span></span><span></span><span></span></div>
+              <div class="wf-canvas">
+                <div class="wf-row">
+                  <div class="wf-box" style="width:30%;height:70px;"></div>
+                  <div class="wf-box" style="flex:1;height:70px;"></div>
+                </div>
+                <div class="wf-row">
+                  <div class="wf-box" style="flex:1;height:90px;"></div>
+                  <div class="wf-box" style="flex:1;height:90px;"></div>
+                  <div class="wf-box" style="flex:1;height:90px;"></div>
+                </div>
+                <div class="wf-line long"></div>
+                <div class="wf-line medium"></div>
+                <div class="wf-row">
+                  <div class="wf-box" style="flex:1;height:50px;"></div>
+                  <div class="wf-box" style="flex:1;height:50px;"></div>
+                  <div class="wf-box" style="flex:1;height:50px;"></div>
+                  <div class="wf-box" style="flex:1;height:50px;"></div>
+                </div>
+              </div>
+            </div>
+            <figcaption><strong>Dashboard</strong> — property value banner, three quick actions, services grid. The question this settled: does value or action lead? Value won, because orientation precedes intent on a low-frequency visit.</figcaption>
+          </figure>
+
+          <figure class="wireframe-card reveal-up" style="--delay:.06s">
+            <div class="browser-frame">
+              <div class="browser-frame__bar"><span></span><span></span><span></span></div>
+              <div class="wf-canvas">
+                <div class="wf-row">
+                  <div class="wf-box" style="flex:1;height:60px;"></div>
+                  <div class="wf-box" style="flex:1;height:60px;"></div>
+                  <div class="wf-box" style="flex:1;height:60px;"></div>
+                </div>
+                <div class="wf-row"><div class="wf-line long"></div></div>
+                <div class="wf-row"><div class="wf-line long"></div></div>
+                <div class="wf-row"><div class="wf-line long"></div></div>
+                <div class="wf-row"><div class="wf-line medium"></div><div class="wf-btn" style="width:70px;height:26px;"></div></div>
+              </div>
+            </div>
+            <figcaption><strong>Payment Schedule</strong> — three summary tiles above a milestone table with a per-row action. The tiles exist so the answer to "how am I doing?" never requires reading the table.</figcaption>
+          </figure>
+
+          <figure class="wireframe-card reveal-up" style="--delay:.12s">
+            <div class="browser-frame">
+              <div class="browser-frame__bar"><span></span><span></span><span></span></div>
+              <div class="wf-canvas">
+                <div class="wf-row">
+                  <div class="wf-box" style="flex:1.4;height:130px;"></div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:10px;">
+                    <div class="wf-box" style="height:44px;"></div>
+                    <div class="wf-box" style="height:44px;"></div>
+                    <div class="wf-btn" style="width:100%;height:38px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption><strong>Quick Pay</strong> — outstanding breakdown on the left, amount entry on the right. Two panels rather than one form, so the customer can check the maths while typing.</figcaption>
+          </figure>
+
+          <figure class="wireframe-card reveal-up" style="--delay:.18s">
+            <div class="browser-frame">
+              <div class="browser-frame__bar"><span></span><span></span><span></span></div>
+              <div class="wf-canvas">
+                <div class="wf-box" style="width:100%;height:80px;"></div>
+                <div class="wf-box wf-box--dashed" style="width:100%;height:70px;"></div>
+                <div class="wf-row" style="justify-content:flex-end;"><div class="wf-btn" style="width:110px;height:38px;"></div></div>
+              </div>
+            </div>
+            <figcaption><strong>Raise a Request</strong> — description, optional upload, single submit. Deliberately the shortest form in the product: reporting a problem should never feel like more work than the problem.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLOWS ============ -->
+    <section class="section section--alt" id="flows">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Process — 06. Flows</p>
+          <h2 class="section-title">Three flows carry the product</h2>
+          <p class="section-sub">Paying a milestone, clearing everything outstanding, and submitting a formal request. Each was diagrammed with its failure branches attached, because in this domain the branch is the part that costs money.</p>
+        </div>
+
+        <div class="cs-flow reveal-up">
+          <div class="cs-flow__head">
+            <h4>Flow 01 — Pay a single milestone</h4>
+            <span class="cs-flow__badge">Most frequent</span>
+          </div>
+          <p class="cs-flow__desc">The customer knows which instalment is due and wants to clear exactly that. Entry is the payment schedule row, not a menu item.</p>
+          <div class="flow-diagram">
+            <div class="flow-step"><span class="flow-step__num">1</span>Login</div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">2</span>Payment Schedule<span class="flow-step__sub">Tiles answer "how am I doing"</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">3</span>Select milestone<span class="flow-step__sub">Row-level Pay checkbox</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">4</span>Make Payment<span class="flow-step__sub">Summary + amount entry</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">5</span>Pay by card<span class="flow-step__sub">or Upload POP</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step flow-step--end"><span class="flow-step__num">6</span>Receipt<span class="flow-step__sub">Email + history entry</span></div>
+          </div>
+          <div class="cs-flow__branch">
+            <b>Branch — amount exceeds the milestone.</b> Rather than a dead-end error, validation names the correct tool: <em>"Entered amount exceeds the due amount. Please use the Quick Pay option"</em> — with <em>Quick Pay</em> as an inline link, and the pay button held disabled until the amount is valid. The error becomes navigation.
+          </div>
+          <div class="cs-filmstrip reveal-up">
+            <figure class="cs-filmstrip__item" data-shot="2" tabindex="0" role="button" aria-label="Enlarge: Payment Schedule">
+              <img src="assets/images/customer-portal/payment-schedule.jpg" alt="Payment Schedule" loading="lazy">
+              <figcaption><b>Payment Schedule</b>Pick the milestone</figcaption>
+            </figure>
+            <span class="cs-filmstrip__arrow" aria-hidden="true">→</span>
+            <figure class="cs-filmstrip__item" data-shot="6" tabindex="0" role="button" aria-label="Enlarge: Make Payment">
+              <img src="assets/images/customer-portal/payment-validation.jpg" alt="Make Payment" loading="lazy">
+              <figcaption><b>Make Payment</b>Amount checked inline</figcaption>
+            </figure>
+            <span class="cs-filmstrip__arrow" aria-hidden="true">→</span>
+            <figure class="cs-filmstrip__item" data-shot="5" tabindex="0" role="button" aria-label="Enlarge: Receipt">
+              <img src="assets/images/customer-portal/quick-pay-success.jpg" alt="Receipt" loading="lazy">
+              <figcaption><b>Receipt</b>Confirmed, email sent</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="cs-flow reveal-up">
+          <div class="cs-flow__head">
+            <h4>Flow 02 — Clear everything outstanding</h4>
+            <span class="cs-flow__badge">Highest value</span>
+          </div>
+          <p class="cs-flow__desc">The customer has drifted — something is overdue, something else is coming — and wants it all gone in one action. This is where the domain's hardest constraint lives.</p>
+          <div class="flow-diagram">
+            <div class="flow-step"><span class="flow-step__num">1</span>Quick Pay</div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">2</span>Read breakdown<span class="flow-step__sub">Overdue + upcoming = total</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">3</span>Enter amount<span class="flow-step__sub">Pre-context: card cap shown</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step flow-step--branch"><span class="flow-step__num">!</span>Over card limit?<span class="flow-step__sub">Split or transfer</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">4</span>Pay by card</div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step flow-step--end"><span class="flow-step__num">5</span>Paid successfully<span class="flow-step__sub">Confirmation email</span></div>
+          </div>
+          <div class="cs-flow__branch">
+            <b>The constraint that shaped the screen.</b> A single card can move a maximum of <strong>100,000</strong> in 24 hours. The example account's total outstanding is <strong>110,000</strong> — so the most natural action in the product is one the payment network will refuse. That gap is disclosed in a persistent info panel <em>next to the amount field, before submission</em>, naming both remedies: a different card, or retry after 24 hours. Bank transfer with proof-of-payment upload remains the rail for large milestone amounts.
+          </div>
+          <div class="cs-filmstrip reveal-up">
+            <figure class="cs-filmstrip__item" data-shot="3" tabindex="0" role="button" aria-label="Enlarge: Quick Pay">
+              <img src="assets/images/customer-portal/quick-pay.jpg" alt="Quick Pay" loading="lazy">
+              <figcaption><b>Quick Pay</b>Everything outstanding</figcaption>
+            </figure>
+            <span class="cs-filmstrip__arrow" aria-hidden="true">→</span>
+            <figure class="cs-filmstrip__item" data-shot="7" tabindex="0" role="button" aria-label="Enlarge: Declined">
+              <img src="assets/images/customer-portal/payment-failed.jpg" alt="Declined" loading="lazy">
+              <figcaption><b>Declined</b>The branch that costs money</figcaption>
+            </figure>
+            <span class="cs-filmstrip__arrow" aria-hidden="true">→</span>
+            <figure class="cs-filmstrip__item" data-shot="5" tabindex="0" role="button" aria-label="Enlarge: Paid">
+              <img src="assets/images/customer-portal/quick-pay-success.jpg" alt="Paid" loading="lazy">
+              <figcaption><b>Paid</b>Recovered and confirmed</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="cs-flow reveal-up">
+          <div class="cs-flow__head">
+            <h4>Flow 03 — Submit a formal request</h4>
+            <span class="cs-flow__badge">Shared pattern</span>
+          </div>
+          <p class="cs-flow__desc">One flow serves every request type — NOC, title deed, power of attorney, key collection, defect report. Getting it right once paid off across the entire services set.</p>
+          <div class="flow-diagram">
+            <div class="flow-step"><span class="flow-step__num">1</span>Dashboard<span class="flow-step__sub">Named service card</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">2</span>Select type<span class="flow-step__sub">Structured, not free-text</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">3</span>Describe<span class="flow-step__sub">Plain-language field</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">4</span>Attach<span class="flow-step__sub">Optional evidence</span></div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step"><span class="flow-step__num">5</span>Submit</div>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <div class="flow-step flow-step--end"><span class="flow-step__num">6</span>Reference issued<span class="flow-step__sub">#ID + email confirmation</span></div>
+          </div>
+          <div class="cs-flow__branch">
+            <b>Why the reference number matters.</b> The single biggest complaint about the old process was silence after submission. The confirmation state therefore does three things at once: states that the request was received, <strong>issues a reference the customer can quote</strong>, and confirms an email is on its way. Three sentences that remove a phone call.
+          </div>
+          <div class="cs-filmstrip reveal-up">
+            <figure class="cs-filmstrip__item" data-shot="1" tabindex="0" role="button" aria-label="Enlarge: Request form">
+              <img src="assets/images/customer-portal/access-cards-request.jpg" alt="Request form" loading="lazy">
+              <figcaption><b>Request form</b>Property confirmed first</figcaption>
+            </figure>
+            <span class="cs-filmstrip__arrow" aria-hidden="true">→</span>
+            <figure class="cs-filmstrip__item" data-shot="13" tabindex="0" role="button" aria-label="Enlarge: Structured type">
+              <img src="assets/images/customer-portal/noc-request.jpg" alt="Structured type" loading="lazy">
+              <figcaption><b>Structured type</b>The answer drives the process</figcaption>
+            </figure>
+            <span class="cs-filmstrip__arrow" aria-hidden="true">→</span>
+            <figure class="cs-filmstrip__item" data-shot="14" tabindex="0" role="button" aria-label="Enlarge: Reference issued">
+              <img src="assets/images/customer-portal/noc-success.jpg" alt="Reference issued" loading="lazy">
+              <figcaption><b>Reference issued</b>Proof, not silence</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DESIGN SYSTEM ============ -->
+    <section class="section" id="system">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Process — 07. The system</p>
+          <h2 class="section-title">A component set built for dense financial data</h2>
+          <p class="section-sub">Twelve destinations sharing one visual language. The constraint I set: no screen introduces a new component unless it can be reused by at least one other.</p>
+        </div>
+
+        <div class="cs-tokens">
+          <div class="cs-panel reveal-up">
+            <p class="cs-panel__title">Colour — semantic, not decorative</p>
+            <div class="swatch-grid">
+              <div class="swatch">
+                <span class="swatch__chip" style="background:linear-gradient(120deg,#383E62,#1B4086)"></span>
+                <span class="swatch__name">Shell gradient</span>
+                <span class="swatch__hex">#383E62 → #1B4086</span>
+                <span class="swatch__use">Top bar and the property-value banner. The only saturated dark in the UI.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:#EAEFF5"></span>
+                <span class="swatch__name">Sidebar surface</span>
+                <span class="swatch__hex">#EAEFF5</span>
+                <span class="swatch__use">A half-step below the canvas — separates navigation without a hard edge.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:#1D4289"></span>
+                <span class="swatch__name">Primary action</span>
+                <span class="swatch__hex">#1D4289</span>
+                <span class="swatch__use">Reserved exclusively for the committing action — pay, submit.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:#00875F"></span>
+                <span class="swatch__name">Settled</span>
+                <span class="swatch__hex">#00875F</span>
+                <span class="swatch__use">Amounts paid, success states. Never used for decoration.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:linear-gradient(100deg,#A951C2,#D65EF1)"></span>
+                <span class="swatch__name">Wayfinding &amp; commit</span>
+                <span class="swatch__hex">#A951C2 → #D65EF1</span>
+                <span class="swatch__use">Active nav, remaining balance, and the submit action. Where you are, and what you're about to do.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:#F18664"></span>
+                <span class="swatch__name">Attention</span>
+                <span class="swatch__hex">#F18664</span>
+                <span class="swatch__use">Failure and construction status. Softer than pure red on purpose.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:#FEF3F1"></span>
+                <span class="swatch__name">Due row tint</span>
+                <span class="swatch__hex">#FEF3F1</span>
+                <span class="swatch__use">Unpaid table rows. Findable in a scan without reading a word.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:#E8EDF3"></span>
+                <span class="swatch__name">Information</span>
+                <span class="swatch__hex">#E8EDF3</span>
+                <span class="swatch__use">Advisory panels — limits, cheque notices, guidance.</span>
+              </div>
+              <div class="swatch">
+                <span class="swatch__chip" style="background:#F8F9FB"></span>
+                <span class="swatch__name">Canvas</span>
+                <span class="swatch__hex">#F8F9FB</span>
+                <span class="swatch__use">Page ground, so white cards read as raised surfaces.</span>
+              </div>
+            </div>
+            <p class="cs-body" style="margin-top:22px; margin-bottom:0; font-size:.88rem;">Three colours carry financial meaning — <strong>settled</strong>, <strong>outstanding</strong>, <strong>attention</strong> — and they are never borrowed for anything else. A customer scanning seven milestone rows should be able to read their position from colour alone, then confirm it in the numbers.</p><p class="cs-body" style="margin-bottom:0; font-size:.88rem;">The refresh inverted the shell: the sidebar went from near-black to a pale <strong>#EAEFF5</strong>, and the saturated dark moved to the top bar and the property-value banner. Same hierarchy, better outcome — the one number the customer came for is now the darkest, heaviest object on the page instead of the navigation being the loudest thing they see first.</p>
+          </div>
+
+          <div class="cs-panel reveal-up" style="--delay:.08s">
+            <p class="cs-panel__title">Type — one family, five roles</p>
+            <div class="type-scale">
+              <div class="type-row">
+                <span class="type-row__sample" style="font-size:1.7rem; font-weight:700;">Payment Schedule</span>
+                <span class="type-row__spec">Page title · 32/40 · 700</span>
+              </div>
+              <div class="type-row">
+                <span class="type-row__sample" style="font-size:1.35rem; font-weight:700;">Ð 2.5M</span>
+                <span class="type-row__spec">Figure · 26/32 · 700 · tabular</span>
+              </div>
+              <div class="type-row">
+                <span class="type-row__sample" style="font-size:1rem; font-weight:600;">Enter Amount to Pay</span>
+                <span class="type-row__spec">Panel heading · 18/26 · 600</span>
+              </div>
+              <div class="type-row">
+                <span class="type-row__sample" style="font-size:.9rem; font-weight:400;">Track your property payments and upcoming dues</span>
+                <span class="type-row__spec">Body · 14/22 · 400</span>
+              </div>
+              <div class="type-row">
+                <span class="type-row__sample" style="font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;">Remaining (Ð)</span>
+                <span class="type-row__spec">Table label · 11/16 · 700 · caps</span>
+              </div>
+            </div>
+            <p class="cs-body" style="margin-top:22px; margin-bottom:0; font-size:.88rem;">Currency figures use <strong>tabular numerals</strong> throughout so digits align vertically down a column — the difference between a table you can scan and a table you have to read. Amounts are always paired with the dirham glyph rather than relying on a column header three rows up.</p>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:56px;">Status language</h3>
+        <p class="cs-body reveal-up">One chip component, five semantic variants. Every state a customer can be in is expressed with the same shape, so the shape itself becomes the signal that something has a status.</p>
+        <div class="chip-row reveal-up" style="margin-bottom:56px;">
+          <span class="ui-chip ui-chip--paid">Paid</span>
+          <span class="ui-chip ui-chip--due">Overdue</span>
+          <span class="ui-chip ui-chip--pending">Pending</span>
+          <span class="ui-chip ui-chip--construction">Under Construction</span>
+          <span class="ui-chip ui-chip--handed">Handed Over</span>
+          <span class="ui-chip ui-chip--received">Request received</span>
+        </div>
+
+        <h3 class="cs-h3 reveal-up">Component inventory</h3>
+        <p class="cs-body reveal-up">The set that covers all twelve destinations. Reuse counts are what made an 8–12 week timeline possible — the payment schedule and charges screens are the same table with different columns.</p>
+        <div class="cs-components reveal-up">
+          <div class="cs-component"><h5>Data table</h5><p>Milestones, charges, receipts. Row tint carries payment state; per-row actions stay inline.</p><span class="cs-component__count">Used on 4 screens</span></div>
+          <div class="cs-component"><h5>Summary tile</h5><p>A single figure with a label and a computed sub-line, e.g. "84% completed".</p><span class="cs-component__count">Used on 3 screens</span></div>
+          <div class="cs-component"><h5>Status chip</h5><p>Five variants covering payment, request and property status.</p><span class="cs-component__count">Used on 6 screens</span></div>
+          <div class="cs-component"><h5>Advisory panel</h5><p>Non-blocking guidance — transaction limits, cheque collection notices.</p><span class="cs-component__count">Used on 3 screens</span></div>
+          <div class="cs-component"><h5>Amount field</h5><p>Numeric entry with clear affordance, inline validation and a linked remedy.</p><span class="cs-component__count">Used on 2 screens</span></div>
+          <div class="cs-component"><h5>Upload dropzone</h5><p>Dashed region with purpose copy explaining why the file helps.</p><span class="cs-component__count">Used on 3 screens</span></div>
+          <div class="cs-component"><h5>Result state</h5><p>Icon, headline, next-step sentence, single onward action. Success and failure share the frame.</p><span class="cs-component__count">Used on 4 screens</span></div>
+          <div class="cs-component"><h5>Empty state</h5><p>Illustration plus a plain sentence. Written as reassurance, not as absence.</p><span class="cs-component__count">Used on 2 screens</span></div>
+          <div class="cs-component"><h5>Property switcher</h5><p>The context control. Persistent in nav, repeated in page header, with an aggregate option.</p><span class="cs-component__count">Every screen</span></div>
+          <div class="cs-component"><h5>Action card</h5><p>Icon, name, one line. The unit of the dashboard services grid.</p><span class="cs-component__count">7 instances</span></div>
+          <div class="cs-component"><h5>Filter modal</h5><p>Grouped multi-select with Reset and Apply. Scales as history grows.</p><span class="cs-component__count">Used on 2 screens</span></div>
+          <div class="cs-component"><h5>Receipt row</h5><p>Amount-first line item with date, reference, preview and download.</p><span class="cs-component__count">Used on 2 screens</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURE DEEP DIVES ============ -->
+    <section class="section section--alt" id="features">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">High-Fidelity UI</p>
+          <h2 class="section-title">The screens, and the decisions inside them</h2>
+          <p class="section-sub">Eight areas of the portal, each with the reasoning that shaped it. Click any screen to view it full size.</p>
+        </div>
+
+        <!-- 01 Dashboard -->
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <figure class="cs-shot" data-shot="0" tabindex="0" role="button" aria-label="Enlarge: property dashboard">
+              <img src="assets/images/customer-portal/dashboard-v2.jpg" alt="Property dashboard with a dark navy property value banner, Upload POP and Quick Pay action cards, a construction newsletter tile, and a grid of seven service cards" loading="lazy" width="2544" height="2036">
+              <figcaption>Dashboard — orientation first, then action, then services</figcaption>
+            </figure>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">01 — Dashboard</span>
+            <h3>Answering "where do I stand?" before offering anything to do</h3>
+            <p>On a portal someone visits four times a year, the landing screen has one job before all others: re-orient a customer who has forgotten how any of this works. Property value leads, with its pending status stated plainly rather than hidden behind a tooltip.</p>
+            <p>Only then come actions — and only <strong>three</strong> of them, chosen because they cover the overwhelming majority of visits: upload proof of a transfer, pay what's due, read the construction update.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>The value banner is the darkest object on the page.</b> A saturated navy-to-plum gradient behind one number. Everything else on the dashboard is a white card on a pale canvas, so weight alone tells the customer where to look first.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Construction newsletter sits beside financial actions.</b> The only place in the portal that shows the customer the actual building. On a three-year wait, that image does emotional work the payment table cannot.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Services are named, not categorised.</b> "Title Deed Request" and "Key Collection" as visible cards rather than a Services menu — because a near-handover owner doesn't know the category their task belongs to.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">D</span><span class="cs-decision__text"><b>Illustration carries the empty-ish state.</b> Before any activity exists the action cards would be bare. Illustration keeps the dashboard feeling designed rather than unfinished.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 Payment Schedule -->
+        <div class="cs-deepdive cs-deepdive--flip">
+          <div class="cs-deepdive__media reveal-up">
+            <figure class="cs-shot" data-shot="2" tabindex="0" role="button" aria-label="Enlarge: payment schedule">
+              <img src="assets/images/customer-portal/payment-schedule.jpg" alt="Payment schedule with three summary tiles for total property value, amount paid and remaining balance, above a seven-row milestone table with unpaid rows tinted and pay actions" loading="lazy" width="1280" height="910">
+              <figcaption>Payment schedule — the most important screen in the product</figcaption>
+            </figure>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">02 — Payment Schedule</span>
+            <h3>Turning an accounts-receivable table into a sense of progress</h3>
+            <p>Seven milestones from booking deposit to final payment. The raw data is a ledger; the customer's question is emotional — <em>am I on track?</em> Three summary tiles answer it above the table, so nobody has to do arithmetic across rows to find out how they're doing.</p>
+            <p>Paid milestones stay visible rather than collapsing away. <strong>The completed rows are the reassurance</strong> — five settled instalments above two outstanding ones tells a very different story than two outstanding ones alone.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Percentages under the figures, not instead of them.</b> "84% completed" beneath the paid amount, "16% Pending" beneath the balance. The figure is the fact; the percentage is the feeling.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Unpaid rows are tinted, not badged.</b> Colour finds them in a scan from across the room; the checkbox and Pay label confirm what to do once found.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>The cheque notice sits at the top as advisory, not alarm.</b> "PDCs are collected against the payment milestones" pre-empts the most common confusion — why a due row may already be covered.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">D</span><span class="cs-decision__text"><b>Two payment rails, equally weighted at the footer.</b> Pay by Card and Upload POP sit side by side, because milestone amounts routinely exceed what a card can carry.</span></div>
+            </div>
+
+            <div class="cs-metric reveal-up" style="margin-top:28px;">
+              <svg class="metric-ring" viewBox="0 0 130 130" width="118" height="118" role="img" aria-label="84 percent of the payment plan complete">
+                <circle class="metric-ring__track" cx="65" cy="65" r="54"></circle>
+                <circle class="metric-ring__value" id="impactRing" cx="65" cy="65" r="54"
+                  stroke-dasharray="339.29" stroke-dashoffset="339.29" data-target-offset="54.29"></circle>
+                <text x="65" y="60" class="metric-ring__num" id="impactRingNum" text-anchor="middle">0%</text>
+                <text x="65" y="80" class="metric-ring__tag" text-anchor="middle">complete</text>
+              </svg>
+              <div class="cs-metric__copy">
+                <h4>What the customer sees on login</h4>
+                <p>2.1M of 2.5M settled, 400K remaining — computed and surfaced by the interface rather than requested from finance.</p>
+              </div>
+            </div>
+
+            <figure class="cs-detail reveal-up" data-shot="2" tabindex="0" role="button" aria-label="Enlarge: payment schedule" style="margin-top:22px;">
+              <img src="assets/images/customer-portal/detail-tiles.jpg" alt="Close-up of the three summary tiles: total property value 2.5M pending, amount paid 2.1M at 84% completed, remaining balance 400K at 16% pending" loading="lazy" width="1032" height="112">
+              <figcaption><b>Detail — the three tiles</b>Figure first, percentage underneath, status word below that. Three reads at three levels of urgency, in the same 112 pixels of height.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- 03 Quick Pay -->
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <figure class="cs-shot" data-shot="3" tabindex="0" role="button" aria-label="Enlarge: Quick Pay">
+              <img src="assets/images/customer-portal/quick-pay.jpg" alt="Quick Pay screen showing overdue and upcoming due amounts totalling the outstanding balance, beside an amount field and a persistent transaction-limits advisory panel" loading="lazy" width="1280" height="910">
+              <figcaption>Quick Pay — aggregation, with the card cap disclosed up front</figcaption>
+            </figure>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">03 — Quick Pay</span>
+            <h3>Designing around a limit the customer can't see and can't change</h3>
+            <p>Quick Pay exists for the customer who has drifted: something overdue, something upcoming, and no appetite for paying twice. It collapses both into one figure — <strong>60,000 overdue plus 50,000 upcoming, 110,000 total</strong> — and offers a single field.</p>
+            <p>Then the domain intervenes. A single card can move at most <strong>100,000 in 24 hours</strong>. The most obvious action in the product is one the payment network will decline.</p>
+            <p>The decision here defines the whole project's approach to error: <strong>tell them before, not after</strong>. The limit lives in a persistent panel beside the amount field — present before a keystroke, naming both remedies, framed as information rather than as a warning about something they did wrong.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Overdue is listed first and separately.</b> Merging it into one total would hide the part with financial consequences.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>The amount stays editable.</b> Prefilling the total and locking it would force a decline. Part-payment is a legitimate strategy here, so the field respects it.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>The advisory is permanent, not conditional.</b> Showing it only on breach would make it an error message. Showing it always makes it a rule of the domain.</span></div>
+            </div>
+
+            <figure class="cs-detail reveal-up" data-shot="3" tabindex="0" role="button" aria-label="Enlarge: Quick Pay" style="margin-top:22px; max-width:340px;">
+              <img src="assets/images/customer-portal/detail-limit.jpg" alt="Close-up of the amount field holding 110,000 beside a transaction-limits panel explaining the 100,000 per-card daily maximum and both remedies" loading="lazy" width="344" height="240">
+              <figcaption><b>Detail — the constraint, stated early</b>110,000 typed into a field the network will cap at 100,000. The panel sits beside it before a keystroke, naming both ways out.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- 04 Validation & failure -->
+        <div class="cs-deepdive cs-deepdive--flip">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="cs-shot-stack">
+              <figure class="cs-shot" data-shot="6" tabindex="0" role="button" aria-label="Enlarge: inline payment validation">
+                <img src="assets/images/customer-portal/payment-validation.jpg" alt="Make Payment screen with an inline error stating the entered amount exceeds the due amount and linking to Quick Pay, with the pay button disabled" loading="lazy" width="1280" height="910">
+                <figcaption>Validation that routes the customer to the right tool</figcaption>
+              </figure>
+              <figure class="cs-shot" data-shot="7" tabindex="0" role="button" aria-label="Enlarge: payment failed state">
+                <img src="assets/images/customer-portal/payment-failed.jpg" alt="Payment failed state with a coral icon, the heading Payment Failed, and guidance to try again or use a different payment method" loading="lazy" width="1280" height="910">
+                <figcaption>Failure, with the recovery path stated in the message</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">04 — Validation &amp; recovery</span>
+            <h3>Every error names the next move</h3>
+            <p>Two failure moments, two different design jobs. The first is preventable, so it's caught inline: enter more than a single milestone is worth and the message doesn't just refuse — it <strong>names Quick Pay as the right tool and links straight to it</strong>. The pay button holds disabled until the number works.</p>
+            <p>The second isn't preventable. Cards decline for reasons the portal will never know about. So the failure state avoids pretending to diagnose, and instead gives the two things a customer actually needs: confirmation that nothing was taken, and two concrete options — retry, or use a different method.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Never a bare "invalid amount".</b> Validation copy says what's wrong, why, and where to go instead. An error that only refuses generates a support call.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Disabled beats submittable-then-rejected.</b> Holding the primary button until validity is a promise: if you can press it, it will work.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Failure borrows the success frame.</b> Same layout, same rhythm, colour and icon carrying the difference. Failure feels handled rather than exceptional.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">D</span><span class="cs-decision__text"><b>The property switcher disappears on the failure screen.</b> Mid-transaction, changing context is never the right move, so the control isn't offered.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 Payment history -->
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="cs-shot-stack">
+              <figure class="cs-shot" data-shot="8" tabindex="0" role="button" aria-label="Enlarge: payment history">
+                <img src="assets/images/customer-portal/payment-history.jpg" alt="Payment history listing receipts by amount with dates and receipt numbers, each with view and download actions, filtered across all properties" loading="lazy" width="1280" height="910">
+                <figcaption>Receipts, amount-first, across all properties</figcaption>
+              </figure>
+              <figure class="cs-shot" data-shot="9" tabindex="0" role="button" aria-label="Enlarge: history filter modal">
+                <img src="assets/images/customer-portal/payment-history-filter.jpg" alt="Filter modal over the payment history list with grouped multi-select categories and Reset and Apply actions" loading="lazy" width="1280" height="910">
+                <figcaption>Grouped filtering, built for a history that only grows</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">05 — Payment History</span>
+            <h3>Receipts as proof, not as a log</h3>
+            <p>Owners don't browse their payment history for pleasure. They come with a specific errand: prove a payment to a bank, hand a receipt to an accountant, check whether a transfer landed. Every decision here follows from "this is evidence retrieval".</p>
+            <p>So the <strong>amount leads each row</strong> — it's the thing being searched for — with date and receipt number as supporting identification, and both Preview and Download offered because verifying and filing are different tasks.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>"All Property" is available here specifically.</b> Reconciliation is the one job owners genuinely do across their whole portfolio, so this is the screen that aggregates.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Receipts reference their milestone.</b> Tying each receipt back to the construction milestone it settled turns a list of amounts into an auditable narrative.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Filtering is grouped multi-select in a modal.</b> Over a three-year plan across several units this list becomes long; the modal keeps the pattern usable at scale without cluttering the default view.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 Documents -->
+        <div class="cs-deepdive cs-deepdive--flip">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="cs-shot-stack">
+              <figure class="cs-shot" data-shot="10" tabindex="0" role="button" aria-label="Enlarge: document centre">
+                <img src="assets/images/customer-portal/documents.jpg" alt="Documents table listing the sales purchase agreement and booking confirmation with dates and preview and download actions" loading="lazy" width="1280" height="910">
+                <figcaption>Document centre — contracts and confirmations on demand</figcaption>
+              </figure>
+              <figure class="cs-shot" data-shot="11" tabindex="0" role="button" aria-label="Enlarge: documents empty state">
+                <img src="assets/images/customer-portal/documents-empty.jpg" alt="Documents empty state with an illustration and the message that no documents could be found associated with the unit" loading="lazy" width="1280" height="910">
+                <figcaption>Empty state written as explanation, not as failure</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">06 — Documents</span>
+            <h3>The screen that kills the most phone calls</h3>
+            <p>"Can you send me my SPA again?" was among the most repeated requests the sales team fielded. It is also the easiest to eliminate: the document exists, it belongs to the customer, and nothing about handing it over requires a human.</p>
+            <p>The <strong>empty state mattered more than the populated one.</strong> Early in ownership there may genuinely be no documents yet — and a customer who has just transferred a booking deposit and finds a blank screen will assume something is broken and reach for the phone. The copy therefore explains rather than apologises: no documents are associated with <em>this unit</em>, which is a statement about the unit's stage, not about the portal failing.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Preview before download.</b> Most visits are a check, not a filing. Preview satisfies the check without leaving the portal or landing a file in a downloads folder.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Dates are shown because dates are the question.</b> Which version, signed when — that's usually what's actually being verified.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Same table component as payments.</b> A customer who has learned to read the payment schedule has already learned to read this.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 Requests -->
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="cs-shot-stack">
+              <figure class="cs-shot" data-shot="12" tabindex="0" role="button" aria-label="Enlarge: raise a request">
+                <img src="assets/images/customer-portal/raise-request.jpg" alt="Raise a Request form with a description field for describing a defect and a dashed upload area for supporting files" loading="lazy" width="1280" height="910">
+                <figcaption>Raise a Request — the shortest form in the product</figcaption>
+              </figure>
+              <div class="cs-shot-stack cs-shot-stack--pair">
+                <figure class="cs-shot" data-shot="13" tabindex="0" role="button" aria-label="Enlarge: NOC request form">
+                  <img src="assets/images/customer-portal/noc-request.jpg" alt="NOC Request form with a document type select and a description field" loading="lazy" width="1280" height="910">
+                  <figcaption>NOC — structured type selection</figcaption>
+                </figure>
+                <figure class="cs-shot" data-shot="14" tabindex="0" role="button" aria-label="Enlarge: NOC success state">
+                  <img src="assets/images/customer-portal/noc-success.jpg" alt="NOC request success state confirming the request was received with a reference number and an email confirmation" loading="lazy" width="1280" height="910">
+                  <figcaption>Reference number issued</figcaption>
+                </figure>
+              </div>
+              <figure class="cs-shot" data-shot="1" tabindex="0" role="button" aria-label="Enlarge: access card request">
+                <img src="assets/images/customer-portal/access-cards-request.jpg" alt="Request Access Cards form with property details pre-filled and confirmed by a unit render and status pill, above access type, reason, card count and an optional description" loading="lazy" width="2544" height="2036">
+                <figcaption>Request Access Cards — the pattern generalised: confirm the property, then ask only what this request needs</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">07 — Requests &amp; NOC</span>
+            <h3>Two forms, deliberately different shapes</h3>
+            <p>Reporting a defect and requesting a no-objection certificate look like the same task — fill in a form, press submit. They aren't, and treating them identically would have made both worse.</p>
+            <p><strong>Raise a Request is free-text with an optional upload.</strong> Someone reporting a problem is often frustrated and doesn't know the right category. Asking them to classify their own complaint before describing it adds friction exactly where patience is thinnest. A photo does more than a dropdown ever could.</p>
+            <p><strong>NOC Request is structured.</strong> An NOC is a legal instrument and the type determines the entire downstream process. Free text here would guarantee back-and-forth, so document type is a required select and description is context, not classification.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Form shape follows consequence.</b> Structure where the answer drives a legal process; freedom where the customer's own words are the most useful input.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>The upload explains itself.</b> "Add a file/image to help us understand the issue better" gives a reason, which is what actually raises attachment rates.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Confirm the property before asking anything else.</b> Every request form opens with the unit pre-filled, its status pill attached and a render of the actual home — because a request filed against the wrong unit is worse than one never filed at all.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">D</span><span class="cs-decision__text"><b>Submission ends with a reference, not a thank-you.</b> A quotable ID plus a promised email is what converts "I sent something" into "I have a record".</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 Charges -->
+        <div class="cs-deepdive cs-deepdive--flip">
+          <div class="cs-deepdive__media reveal-up">
+            <figure class="cs-shot" data-shot="15" tabindex="0" role="button" aria-label="Enlarge: charges">
+              <img src="assets/images/customer-portal/charges.jpg" alt="Charges table listing registration, meter, parking and late payment fees with settled rows and two unpaid rows tinted with pay actions" loading="lazy" width="1280" height="910">
+              <figcaption>Charges — the same table language, a different domain</figcaption>
+            </figure>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">08 — Charges</span>
+            <h3>Where the system pays for itself</h3>
+            <p>Charges are the fees that sit outside the payment plan: SPA registration, unit registration, gas and electrical meters, parking, penalty waivers, late payment fees. They arrive unpredictably and feel, to a customer, like surprises.</p>
+            <p>This screen is the clearest evidence for the component approach. It is the <strong>payment schedule's table with different columns</strong> — same row tinting for unpaid, same inline Pay checkbox, same dual footer actions. A customer who has learned one has learned both, and the design and build cost of the second was a fraction of the first.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Separate destination, not merged into the schedule.</b> Milestones are contractual and predictable; charges are incidental. Mixing them would corrupt the progress story the schedule tells.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Settled charges keep their receipts.</b> Registration and meter fees get claimed, disputed and audited long after they're paid.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Late payment fees appear as a line item like any other.</b> Making the penalty visible and payable, rather than a call from finance, is the whole argument for self-service.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATES ============ -->
+    <section class="section" id="states">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Process — 08. States</p>
+          <h2 class="section-title">Designing the unhappy path first</h2>
+          <p class="section-sub">On a portal handling six-figure transfers, the empty, invalid and failed states aren't edge cases. They're where trust is either earned or lost — so they were designed alongside the happy path, not after it.</p>
+        </div>
+
+        <div class="cs-matrix-wrap reveal-up">
+          <table class="cs-matrix">
+            <caption class="sr-only">State coverage designed per module</caption>
+            <thead>
+              <tr>
+                <th scope="col">Module</th>
+                <th scope="col">Default</th>
+                <th scope="col">Empty</th>
+                <th scope="col">Validation</th>
+                <th scope="col">Failure</th>
+                <th scope="col">Success</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Payment Schedule</td>
+                <td><span class="state-dot state-dot--yes" title="Designed">✓</span></td>
+                <td><span class="state-dot state-dot--no" title="Not applicable — a plan always has milestones">–</span></td>
+                <td><span class="state-dot state-dot--yes" title="Designed">✓</span></td>
+                <td><span class="state-dot state-dot--yes" title="Designed">✓</span></td>
+                <td><span class="state-dot state-dot--yes" title="Designed">✓</span></td>
+              </tr>
+              <tr>
+                <td>Quick Pay</td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+              </tr>
+              <tr>
+                <td>Payment History</td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+              </tr>
+              <tr>
+                <td>Documents</td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+              </tr>
+              <tr>
+                <td>Raise a Request</td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+              </tr>
+              <tr>
+                <td>NOC Request</td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--no">–</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+              </tr>
+              <tr>
+                <td>Charges</td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+                <td><span class="state-dot state-dot--yes">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cs-matrix__legend reveal-up">
+          <span><span class="state-dot state-dot--yes">✓</span> Designed in this phase</span>
+          <span><span class="state-dot state-dot--no">–</span> Not applicable, or shares another module's state</span>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:56px;">
+          <div class="reveal-up">
+            <h3 class="cs-h3">Three rules the states follow</h3>
+            <ul class="cs-bullet-list">
+              <li><strong>An empty state explains the situation, not the absence.</strong> "No due amount exists" reads as good news. "We could not find any documents associated with your unit" locates the reason in the unit's stage rather than implying breakage.</li>
+              <li><strong>A success state says what happens next.</strong> Payment received <em>and a confirmation email is on its way</em>. Request received <em>and here is your reference</em>. The next-step sentence is what stops the follow-up call.</li>
+              <li><strong>A failure state never blames and never guesses.</strong> Two options, no diagnosis the portal can't actually make, and no implication that the customer did something wrong.</li>
+            </ul>
+          </div>
+          <div class="reveal-up" style="--delay:.1s">
+            <div class="cs-shot-stack cs-shot-stack--pair">
+              <figure class="cs-shot" data-shot="4" tabindex="0" role="button" aria-label="Enlarge: Quick Pay empty state">
+                <img src="assets/images/customer-portal/quick-pay-empty.jpg" alt="Quick Pay empty state reading No Due Amount Exists, with a reassuring teal card icon" loading="lazy" width="1280" height="910">
+                <figcaption>Nothing owed — framed as reassurance</figcaption>
+              </figure>
+              <figure class="cs-shot" data-shot="5" tabindex="0" role="button" aria-label="Enlarge: payment success state">
+                <img src="assets/images/customer-portal/quick-pay-success.jpg" alt="Paid successfully state confirming the payment was received and a confirmation email sent, with a Go Back action" loading="lazy" width="1280" height="910">
+                <figcaption>Paid — with the next step stated</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHALLENGES ============ -->
+    <section class="section section--alt" id="challenges">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Design Challenges</p>
+          <h2 class="section-title">Where the design had to work harder</h2>
+          <p class="section-sub">Six problems that couldn't be solved by layout alone.</p>
+        </div>
+        <div class="cs-challenge-list">
+          <div class="cs-challenge reveal-up">
+            <div class="cs-challenge__problem"><span>Challenge</span>Complex payment information was difficult to understand.<em>Seven milestones, three amount columns, two payment methods and a cheque mechanism — all on one screen.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Summary tiles above the detail.<em>Status answered in three figures before the table is read, with row tinting and status colour carrying the rest.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.06s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Card transaction limits made the obvious action fail.<em>A 100,000 per-card daily cap against milestone amounts of 400,000 and an outstanding total of 110,000.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Disclose the constraint before the attempt.<em>A permanent advisory beside the amount field naming both remedies, plus a proof-of-payment rail for bank transfers.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.12s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Multiple approval stages left customers guessing.<em>Requests passed through several internal teams with no customer-visible state.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>A reference number at the moment of submission.<em>Plain-language status and an emailed confirmation, so submission produces evidence rather than silence.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.18s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Large document forms felt overwhelming.<em>Handover paperwork asks for several files and several fields at the least motivated moment in the journey.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Expandable sections and inline upload.<em>One decision visible at a time, with each upload confirming itself immediately rather than at submit.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.24s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Multi-unit owners couldn't tell screens apart.<em>Two units in the same community produce near-identical pages with very different numbers.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Redundant, persistent property context.<em>The switcher in both sidebar and page header, status pill attached to the property, and an aggregate view where reconciliation demands it.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.3s">
+            <div class="cs-challenge__problem"><span>Challenge</span>One portal had to serve five journey stages.<em>A customer two years from handover and one collecting keys need almost nothing in common.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Stable layout, stage-driven emphasis.<em>Payments lead, services persist as a named grid below, and the property's status pill tells the customer which rules currently apply.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESPONSIVE & ACCESSIBILITY ============ -->
+    <section class="section" id="responsive">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Responsive Design</p>
+          <h2 class="section-title">Desktop, tablet and mobile — one system</h2>
+          <p class="section-sub">Designed desktop-first, because that's where six-figure payments actually get made — then made genuinely usable on a phone, where the checking happens.</p>
+        </div>
+
+        <div class="device-row reveal-up">
+          <figure class="device device--laptop" data-shot="0" tabindex="0" role="button" aria-label="Enlarge: dashboard">
+            <div class="device__screen">
+              <img src="assets/images/customer-portal/dashboard-v2.jpg" alt="The dashboard as it appears on a laptop, with the sidebar and services grid side by side" loading="lazy" width="2544" height="2036">
+            </div>
+            <div class="device__hinge" aria-hidden="true"></div>
+            <figcaption><b>Laptop — 1440px</b>Sidebar and content side by side. Where payments actually get made.</figcaption>
+          </figure>
+
+          <figure class="device device--tablet" data-shot="2" tabindex="0" role="button" aria-label="Enlarge: payment schedule">
+            <div class="device__tab">
+              <img src="assets/images/customer-portal/payment-schedule.jpg" alt="The payment schedule on a landscape tablet, still showing the full milestone table" loading="lazy" width="1280" height="910">
+            </div>
+            <figcaption><b>Tablet — landscape</b>The full table survives here, which is why the breakpoint sits below it, not above.</figcaption>
+          </figure>
+
+          <figure class="device device--phone">
+            <div class="device__phone">
+              <div class="device__phone-screen">
+                <div class="mini-card">
+                  <div class="mini-card__top"><span>Pre-handover</span><span class="ui-chip ui-chip--due" style="font-size:.55rem; padding:2px 7px;">Due</span></div>
+                  <span class="mini-card__meta">Due 02-Jan-2025</span>
+                  <span class="mini-card__amount">Ð 400,000</span>
+                  <span class="mini-card__btn">Pay</span>
+                </div>
+                <div class="mini-card">
+                  <div class="mini-card__top"><span>Final Payment</span><span class="ui-chip ui-chip--due" style="font-size:.55rem; padding:2px 7px;">Due</span></div>
+                  <span class="mini-card__meta">Due 10-Nov-2025</span>
+                  <span class="mini-card__amount">Ð 400,000</span>
+                  <span class="mini-card__btn">Pay</span>
+                </div>
+                <div class="mini-card">
+                  <div class="mini-card__top"><span>3rd Installment</span><span class="ui-chip ui-chip--paid" style="font-size:.55rem; padding:2px 7px;">Paid</span></div>
+                  <span class="mini-card__meta">Paid 02-Jul-2024</span>
+                  <span class="mini-card__amount">Ð 400,000</span>
+                </div>
+              </div>
+            </div>
+            <figcaption><b>Phone — 375px</b>Each row becomes a card, unpaid promoted above settled. Layout design, not a capture.</figcaption>
+          </figure>
+        </div>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:72px;">The hard part: a seven-column table on a 375px screen</h3>
+        <p class="cs-body reveal-up">The payment schedule carries serial number, description, due date, total, paid, remaining and an action. Squeezing that into a phone produces something technically responsive and practically unusable. So below the tablet breakpoint <strong>each row becomes a card</strong> — description and status on top, the figure given the prominence it deserves, and the action as a full-width target.</p>
+        <div class="transform-demo reveal-up">
+          <div class="mini-table" aria-hidden="true">
+            <div class="mini-table__row mini-table__row--head"><span>Description</span><span>Due date</span><span>Total</span><span>Action</span></div>
+            <div class="mini-table__row"><span>1st Installment</span><span>15-Jan-2023</span><span>400,000</span><span>View</span></div>
+            <div class="mini-table__row"><span>2nd Installment</span><span>15-Jan-2023</span><span>400,000</span><span>View</span></div>
+            <div class="mini-table__row mini-table__row--due"><span>Pre-handover</span><span>02-Jan-2025</span><span>400,000</span><span>Pay</span></div>
+            <div class="mini-table__row mini-table__row--due"><span>Final Payment</span><span>10-Nov-2025</span><span>400,000</span><span>Pay</span></div>
+          </div>
+          <div class="transform-demo__arrow" aria-hidden="true">→</div>
+          <div class="mini-cards" aria-hidden="true">
+            <div class="mini-card">
+              <div class="mini-card__top"><span>Pre-handover</span><span class="ui-chip ui-chip--due" style="font-size:.6rem; padding:3px 8px;">Due</span></div>
+              <span class="mini-card__meta">Due 02-Jan-2025</span>
+              <span class="mini-card__amount">Ð 400,000</span>
+              <span class="mini-card__btn">Pay</span>
+            </div>
+            <div class="mini-card">
+              <div class="mini-card__top"><span>1st Installment</span><span class="ui-chip ui-chip--paid" style="font-size:.6rem; padding:3px 8px;">Paid</span></div>
+              <span class="mini-card__meta">Paid 15-Jan-2023</span>
+              <span class="mini-card__amount">Ð 400,000</span>
+            </div>
+          </div>
+        </div>
+        <p class="cs-body reveal-up" style="margin-top:24px;">The reordering is the point. On desktop the eye scans columns, so chronology leads. On mobile the thumb scrolls, so <strong>what needs action is promoted above what's already settled</strong> — the same data, re-sequenced around what the device is good for.</p>
+
+        <div class="cs-two-col" style="margin-top:80px;">
+          <div class="reveal-up">
+            <h3 class="cs-h3">Accessibility</h3>
+            <p class="cs-body">A portal that manages someone's largest financial commitment cannot be conditional on perfect eyesight or a steady hand.</p>
+            <ul class="cs-bullet-list">
+              <li><strong>Contrast tested against WCAG AA</strong> for body text, table labels and every status colour — including the low-saturation tints, which are the easiest ones to get wrong.</li>
+              <li><strong>Status is never colour alone.</strong> Every tinted row also carries a label and a control, so payment state survives greyscale and colour blindness.</li>
+              <li><strong>Large, forgiving targets</strong> on table actions, which are the smallest interactive elements in a data-dense layout.</li>
+              <li><strong>Keyboard-navigable throughout</strong>, with a logical order through the amount field, advisory panel and primary action.</li>
+              <li><strong>Specific error messages</strong> naming the field, the reason and the remedy — never a generic failure.</li>
+              <li><strong>Currency always glyph-marked</strong>, so an amount read in isolation by a screen reader is never ambiguous.</li>
+            </ul>
+          </div>
+          <div class="reveal-up" style="--delay:.1s">
+            <h3 class="cs-h3">Handoff &amp; collaboration</h3>
+            <p class="cs-body">Design ran alongside the build on a two-to-three month timeline, so handoff was continuous rather than a milestone.</p>
+            <ul class="cs-bullet-list">
+              <li><strong>Figma as the single source of truth</strong>, with components and variants mirroring the component inventory so engineers built against named, reusable pieces.</li>
+              <li><strong>Azure DevOps for tickets</strong>, with designs attached per user story and every state enumerated in the acceptance criteria — the state matrix above doubled as a QA checklist.</li>
+              <li><strong>FigJam for workshops</strong> with finance and CX, mapping the approval chains that the request flows had to reflect.</li>
+              <li><strong>Edge cases specified, not discovered.</strong> Transaction limits, cheque handling and multi-property behaviour were written into the specs rather than surfacing as bugs in UAT.</li>
+              <li><strong>Design QA against the build</strong>, checking real data in real states — which is how the difference between a 400,000 milestone and a 100,000 card cap became a design problem instead of a support ticket.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ALL SCREENS ============ -->
+    <section class="section section--alt" id="screens">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Gallery</p>
+          <h2 class="section-title">Every screen</h2>
+          <p class="section-sub">The full set as delivered — happy paths, empty states, validation, failure and confirmation. Click any screen to open it full size, then use the arrow keys.</p>
+        </div>
+        <div class="cs-gallery" id="screensGallery">
+          <!-- Populated by case-study.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OUTCOMES ============ -->
+    <section class="section" id="outcomes">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title">What shipped, and what it changed</h2>
+        </div>
+
+        <div class="cs-metric-row reveal-up">
+          <div class="cs-metric-card">
+            <span class="cs-metric-card__num">12</span>
+            <h4>Destinations delivered</h4>
+            <p>A complete self-service surface, from dashboard through payments, documents and requests to account management.</p>
+          </div>
+          <div class="cs-metric-card">
+            <span class="cs-metric-card__num">7</span>
+            <h4>Services moved off the phone</h4>
+            <p>Access cards, rent-my-unit, title deed, power of attorney, title deed authorisation, signature declaration and key collection.</p>
+          </div>
+          <div class="cs-metric-card">
+            <span class="cs-metric-card__num">100%</span>
+            <h4>Of transactional flows have designed failure states</h4>
+            <p>Every path that moves money or submits a document has its empty, invalid, failed and confirmed states specified.</p>
+          </div>
+        </div>
+
+        <figure class="device device--laptop reveal-up" data-shot="0" tabindex="0" role="button" aria-label="Enlarge: dashboard" style="margin:56px auto 0; width:min(640px,100%);">
+          <div class="device__screen">
+            <img src="assets/images/customer-portal/dashboard-v2.jpg" alt="The shipped dashboard on a laptop" loading="lazy" width="2544" height="2036">
+          </div>
+          <div class="device__hinge" aria-hidden="true"></div>
+          <figcaption><b>What an owner sees on login</b>One destination, twelve places to go, and no reason to phone anyone.</figcaption>
+        </figure>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:72px;">How the design produces the business result</h3>
+        <p class="cs-body reveal-up">Each of the original goals maps to a specific mechanism in the shipped product, rather than to a general improvement in usability.</p>
+        <div class="cs-outcomes reveal-up">
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 01</span>
+            <div class="cs-outcome__body">
+              <h4>One destination replaces "which system?"</h4>
+              <p>Twelve destinations behind a single sign-in, with the property switcher making multi-unit ownership legible rather than confusing. The support team stops being the interface.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 02</span>
+            <div class="cs-outcome__body">
+              <h4>Paying is simple in the awkward cases, not just the easy one</h4>
+              <p>Per-row milestone payment, aggregated Quick Pay, part-payment respected, card caps disclosed up front, and a proof-of-payment rail for the amounts cards can't carry. The failure mode that generated the most calls is designed out rather than handled.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 03</span>
+            <div class="cs-outcome__body">
+              <h4>Submission produces evidence, not silence</h4>
+              <p>Every request returns a quotable reference and a confirmation email. The single most common reason for a follow-up call — "did you get it?" — no longer has a reason to exist.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 04</span>
+            <div class="cs-outcome__body">
+              <h4>Documents move in both directions</h4>
+              <p>Contracts and confirmations retrievable on demand with preview and download; proof of payment and supporting evidence uploadable inline. "Please resend my SPA" becomes a two-click self-service action available at 2am from any time zone.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 05</span>
+            <div class="cs-outcome__body">
+              <h4>Routine lookups leave the call queue</h4>
+              <p>Payment status, receipts, due dates, charges and documents — the five things support was asked for most — are all now answerable by the customer without contact.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 06</span>
+            <div class="cs-outcome__body">
+              <h4>The portal reads as trustworthy at the moments that matter</h4>
+              <p>Advisories before attempts, validation that routes rather than refuses, failure states that don't blame, and confirmations that state what happens next. Trust in a financial product is built almost entirely in the states most products leave until last.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             MEASURED RESULTS
+             Leo — this is where post-launch figures belong. If Arada can
+             share real numbers (support ticket volume before/after, portal
+             adoption rate, CSAT, average time to resolve a request), swap
+             the note below for a .cs-metric-row block using the same markup
+             as the three cards above. Real, sourced numbers are far stronger
+             than estimates, and a hiring manager who probes them will find
+             them solid. Until then this section stays honest.
+             ============================================================ -->
+        <div class="cs-note reveal-up" style="margin-top:56px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <div><strong>On measured results.</strong> Post-launch analytics for this portal sit with the client and aren't mine to publish. I'd rather show the design reasoning and the shipped artefact than quote figures I can't source — and I'm happy to talk through what we tracked, and what moved, in conversation.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REFLECTION ============ -->
+    <section class="section section--alt" id="reflection">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Reflection</p>
+          <h2 class="section-title">What I got wrong, and what I fixed</h2>
+          <p class="section-sub">The parts I was least satisfied with are the most useful things to talk about — and two of them have since shipped differently.</p>
+        </div>
+
+        <div class="cs-reflect">
+          <div class="cs-reflect__card reveal-up">
+            <h4><i aria-hidden="true">✓</i>The navigation grouping — fixed</h4>
+            <p>V1 buried Documents, NOC Request and Raise a Request inside "Payments &amp; Finance", because the finance modules were the funded first phase and I chose shipping over restructuring. It was scannable, but it wasn't right.</p>
+            <p>The refresh split service actions into their own group. Worth saying plainly: <strong>the fix took one release, and admitting the problem is what got it scheduled.</strong></p>
+          </div>
+          <div class="cs-reflect__card reveal-up" style="--delay:.06s">
+            <h4><i aria-hidden="true">◆</i>Push harder for usability testing with owners</h4>
+            <p>Discovery was stakeholder- and requirements-led, which was appropriate for the timeline and gave us genuinely good evidence about what customers ask for. But we inferred comprehension rather than observing it. Five moderated sessions on the payment schedule and Quick Pay would have either validated the tile hierarchy or saved us an iteration — and I'd now argue for that time rather than accepting it as out of scope.</p>
+          </div>
+          <div class="cs-reflect__card reveal-up" style="--delay:.12s">
+            <h4><i aria-hidden="true">✓</i>Request tracking — shipped, late</h4>
+            <p>V1 issued a reference number, which answers "did it arrive?" but not "where is it now?". Request visibility was one of the <em>six original friction points</em>, so a status view belonged in the first release. <strong>Service History</strong> now covers it.</p>
+            <p>I under-weighted it because the submission flow felt like the hard part. The lesson I actually took: when a problem statement lists visibility as a headline complaint, the read view isn't phase two.</p>
+          </div>
+          <div class="cs-reflect__card reveal-up" style="--delay:.18s">
+            <h4><i aria-hidden="true">◆</i>Plan for Arabic from the first frame</h4>
+            <p>The portal shipped in English with Arabic on the roadmap. Retrofitting right-to-left into a layout with a fixed left sidebar, numeric tables and mixed-direction currency strings is materially harder than designing for it from the start. Logical properties and mirrored components from day one would have cost days; adding them later costs weeks.</p>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:80px;">
+          <div class="reveal-up">
+            <h3 class="cs-h3">What this project sharpened</h3>
+            <ul class="cs-bullet-list">
+              <li><strong>Designing for infrequent, high-stakes use</strong> — where nothing can rely on being remembered</li>
+              <li><strong>Information architecture for multi-service platforms</strong> with real organisational constraints attached</li>
+              <li><strong>Financial data density</strong> — making a ledger legible without hiding what it says</li>
+              <li><strong>Treating domain constraints as design material</strong> rather than as someone else's problem</li>
+              <li><strong>Component economics</strong> — designing so the second table screen costs a fraction of the first</li>
+              <li><strong>Writing the interface</strong>, since in this product the copy in an error message is the design</li>
+            </ul>
+          </div>
+          <div class="reveal-up" style="--delay:.1s">
+            <h3 class="cs-h3">Where the portal goes next</h3>
+            <ul class="cs-bullet-list">
+              <li><strong>Per-request status timelines</strong> — Service History lists requests; the next step is showing each approval stage inside one</li>
+              <li><strong>Arabic and full RTL support</strong> for the primary local market</li>
+              <li><strong>Push and in-app notifications</strong> for due dates, approvals and construction milestones</li>
+              <li><strong>Appointment booking</strong> for key collection and handover inspections</li>
+              <li><strong>Live chat and AI-assisted support</strong> for the questions self-service can't answer</li>
+              <li><strong>Maintenance and snag tracking</strong> extending the request pattern into post-handover life</li>
+              <li><strong>Dark mode</strong>, for a portal people check late at night from other time zones</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEXT PROJECT CTA ============ -->
+    <section class="section cs-next">
+      <div class="container cs-next__inner">
+        <div class="reveal-up">
+          <p class="eyebrow">Next</p>
+          <h2 class="section-title">Keep exploring the work</h2>
+        </div>
+        <div class="reveal-up" style="--delay:.1s; display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="index.html#work" class="btn btn--primary magnetic">Back to all projects</a>
+          <a href="index.html#contact" class="btn btn--outline magnetic">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <button class="lightbox__close" data-lightbox-close aria-label="Close image viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo" aria-label="Leo Stalin — home">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">Designed &amp; built with care. © <span id="year"></span> Leo Stalin. All rights reserved.</p>
+      <a href="index.html#contact" class="footer__print">Get in touch →</a>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="js/animations.js"></script>
+  <script src="js/case-study.js"></script>
+</body>
+</html>

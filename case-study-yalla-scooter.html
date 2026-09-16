@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yalla Scooter App — Case Study | Leo Stalin</title>
+  <meta name="description" content="A UI/UX case study: turning a manual, paperwork-based scooter and bike rental into a self-service app — register by SMS, scan the QR on the vehicle, swipe to unlock, ride.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Leo Stalin">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Yalla Scooter App — UI/UX Case Study">
+  <meta property="og:description" content="Renting used to mean a desk, a form and a member of staff. Now it's a QR code on the handlebar and a swipe on your phone.">
+  <meta property="og:image" content="assets/images/yalla/thumb-device.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
+
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/phone-frames.css">
+  <link rel="stylesheet" href="css/yalla.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header cs-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="index.html#work">All Projects</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero-banner" id="overview">
+      <div class="cs-hero-banner__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+      </div>
+      <div class="container">
+        <a href="index.html#work" class="cs-back reveal-up">← Back to all projects</a>
+        <p class="eyebrow reveal-up" style="--delay:.05s">Case Study · Micromobility · Self-service rental</p>
+        <h1 class="cs-hero-banner__title reveal-up" style="--delay:.1s">Yalla<br><span class="cs-title-accent">Scooter App</span></h1>
+        <p class="cs-hero-banner__subtitle reveal-up" style="--delay:.15s">Renting a scooter used to mean finding a member of staff, filling in a form and waiting. Now the whole thing is a QR code on the handlebar and a swipe on your phone.</p>
+
+        <div class="cs-overview-grid reveal-up" style="--delay:.2s">
+          <div><strong>Client</strong><span>Yalla — scooter &amp; e-bike sharing</span></div>
+          <div><strong>Product</strong><span>Yalla — rider app for scooters and bikes</span></div>
+          <div><strong>My role</strong><span>UI/UX Designer — led the design end-to-end</span></div>
+          <div><strong>Platform</strong><span>Native mobile, 430×932 base</span></div>
+          <div><strong>Users</strong><span>First-time riders and returning riders</span></div>
+          <div><strong>Fleet</strong><span>E-scooters and e-bikes, one app</span></div>
+          <div><strong>Tools</strong><span>Figma, FigJam</span></div>
+          <div><strong>Scope</strong><span>Flow, UI, all states, motion, dev handoff</span></div>
+        </div>
+
+        <div class="ya-stage reveal-up" style="--delay:.25s">
+          <div class="ya-stage__glow" aria-hidden="true"></div>
+          <img class="ya-stage__scooter" src="assets/images/yalla/scooter-side.png" alt="" aria-hidden="true">
+          <figure class="bk-phone" data-shot="vehicle-scanned" tabindex="0" role="button" aria-label="Enlarge: the scanned vehicle screen">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/vehicle-scanned.jpg" alt="The scanned vehicle screen: a scooter on a teal arc with battery at ninety per cent, twenty kilometres of range and a rate of two dirhams per minute down the side, the model name Lil E and ID 952341 below, and a swipe-to-unlock control at the foot of the screen">
+            </div></div>
+          </figure>
+          <img class="ya-stage__scooter" src="assets/images/yalla/scooter-hero.png" alt="" aria-hidden="true" style="width:clamp(150px,20vw,270px);">
+        </div>
+        <p class="cs-body reveal-up" style="text-align:center; margin-top:30px; font-size:.84rem; color:var(--text-secondary);">Scan, check the battery, swipe. Click any screen on this page to open it full size.</p>
+      </div>
+    </section>
+
+    <!-- ============ THE TRANSFORMATION ============ -->
+    <section class="section" id="transformation">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">The transformation</p>
+          <h2 class="section-title">From a desk and a clipboard to a barcode on a handlebar</h2>
+          <p class="section-sub">The old rental process was manual end to end. Someone registered you, someone processed the paperwork, and you waited on both. The app removes the desk from the middle of the journey.</p>
+        </div>
+
+        <div class="ya-transform reveal-up" style="--delay:.06s">
+          <div class="ya-tcol ya-tcol--before">
+            <span class="ya-tcol__head">Before — the manual process</span>
+            <ul>
+              <li><strong>Manual registration</strong> handled by a member of staff</li>
+              <li><strong>Paperwork</strong> and physical documentation for every rental</li>
+              <li><strong>A time-consuming process</strong> before anyone got on a vehicle</li>
+              <li><strong>Staff dependency</strong> — customers couldn't complete it alone</li>
+              <li><strong>Extra effort on both sides</strong>, for the rider and for the team</li>
+            </ul>
+          </div>
+          <div class="ya-transform__arrow" aria-hidden="true">→</div>
+          <div class="ya-tcol ya-tcol--after">
+            <span class="ya-tcol__head">After — the Yalla app</span>
+            <ul>
+              <li><strong>Registration is digital</strong> — a mobile number and an SMS code</li>
+              <li><strong>Scan the QR</strong> printed on the scooter or bike to begin</li>
+              <li><strong>Self-service</strong> from first tap to end of ride</li>
+              <li><strong>Riding in a few taps</strong> rather than a few forms</li>
+              <li><strong>No paperwork</strong> — the receipt is an invoice in the app</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="ya-equation reveal-up" style="--delay:.1s">
+          <b>Manual registration</b> + <b>Paperwork</b> + <b>Staff dependency</b>
+          <span class="ya-eq-down" aria-hidden="true">↓</span>
+          <span class="ya-eq-new">Digital registration + QR code + Self-service + Quick ride</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ RIDER ANIMATION ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-two-col reveal-up">
+          <div>
+            <p class="eyebrow">The promise</p>
+            <h2 class="section-title" style="margin-bottom:18px;">Step on and go</h2>
+            <p class="cs-body">Everything in the product serves one sentence: get someone from standing beside a scooter to riding it, without asking anyone for help. The register flow is four screens. The rental flow is three taps and a swipe.</p>
+            <div class="ya-chips">
+              <span class="ya-chip">SMS registration</span>
+              <span class="ya-chip">QR to unlock</span>
+              <span class="ya-chip">Scooters &amp; bikes</span>
+              <span class="ya-chip">Wallet + cards</span>
+              <span class="ya-chip">In-app invoices</span>
+            </div>
+          </div>
+          <figure class="ya-rider" style="margin:0;">
+            <video autoplay loop muted playsinline preload="metadata"
+                   poster="assets/images/yalla/rider-poster.jpg" width="720" height="1120"
+                   aria-label="A looping illustration of a rider kicking off and riding a Yalla scooter past a city skyline">
+              <source src="assets/video/yalla-rider.mp4" type="video/mp4">
+              <source src="assets/video/yalla-rider.webm" type="video/webm">
+            </video>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REGISTER ============ -->
+    <section class="section section--alt" id="register">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">01 — Getting in</p>
+          <h2 class="section-title">Four screens, and one of them is the splash</h2>
+          <p class="section-sub">Registration asks for a mobile number, checks it with a four-digit code, then takes a name and an email. No documents, no card, no account password.</p>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.06s">
+          <figure class="bk-phone bk-phone--side" data-shot="splash" tabindex="0" role="button" aria-label="Enlarge: splash screen">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/splash.jpg" alt="The splash screen: the Yalla wordmark in white, centred on a full-bleed teal field" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="register-mobile" tabindex="0" role="button" aria-label="Enlarge: continue with mobile number">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/register-mobile.jpg" alt="Continue with mobile number: a scooter photograph fills the upper half, and a card below holds a country-code picker set to plus nine seven one, a phone number field and a black Send Code button" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="register-otp" tabindex="0" role="button" aria-label="Enlarge: one-time code">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/register-otp.jpg" alt="The verification screen: four single-character code boxes, a resend link, a countdown reading one minute twenty seconds left, and a Verify Now button" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="register-details" tabindex="0" role="button" aria-label="Enlarge: user details">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/register-details.jpg" alt="Enter user details: required fields for first name, last name and email address, each marked with an asterisk, above a Submit button" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Splash, mobile number, one-time code, details. The same teal and the same scooter photograph carry through all four, so the flow reads as one screen changing rather than four separate pages.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The phone number is the account</h4>
+            <p class="cs-body">There's no password to invent and no email confirmation to go and find. A number, a code that arrives in seconds, and you're in — which matters when the person registering is standing on a pavement next to the scooter they want to ride.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Verified state is visible later</h4>
+            <p class="cs-body">The profile screen shows <strong>Mobile — Verified</strong> in teal and <strong>Email — Unverified</strong> in red. The email is optional at sign-up, so the app doesn't block on it; it just never pretends the address has been checked when it hasn't.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PHYSICAL TO DIGITAL ============ -->
+    <section class="section" id="scan">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">02 — Physical to digital</p>
+          <h2 class="section-title">The handover point is a sticker</h2>
+          <p class="section-sub">The app can only be as good as the moment it meets the vehicle. Every scooter and bike carries a printed panel — bilingual, numbered, with the QR code and the steps — and the app is designed around what that panel says.</p>
+        </div>
+
+        <div class="ya-hw reveal-up" style="--delay:.06s">
+          <figure>
+            <img src="assets/images/yalla/hw-scooter-qr.jpg" alt="A photograph of the top of a Yalla scooter stem: a printed panel with the QR code, the serial number 009470802, and three numbered steps in Arabic and English covering how to scan, how to use the throttle, and how to end the ride" loading="lazy">
+            <figcaption><b>The scooter panel</b>Scan, step on and push, end the ride in the app — three steps, in Arabic and English, with the serial number printed under the code.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/images/yalla/hw-scooter-safety.jpg" alt="A photograph of a Yalla scooter stem showing three safety icons with bilingual labels: wear helmet at all times, check the brakes, and park appropriately" loading="lazy">
+            <figcaption><b>The safety strip</b>Helmet, brakes, parking. The same three rules the app repeats as zone chips once a ride is running.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/images/yalla/hw-bike-label.jpg" alt="A photograph of the down tube of a Yalla e-bike: a long printed label with the QR code, the number 80028, and bilingual instructions for scanning, using the throttle and pedal assist, and locking the horseshoe lock to end the ride" loading="lazy">
+            <figcaption><b>The bike label</b>Longer, because a bike has pedal assist and a horseshoe lock. It names the app by name: “click on the scan to ride button in the Yalla app.”</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <figure class="bk-phone reveal-up" data-shot="qr-help" style="margin:0 auto;" tabindex="0" role="button" aria-label="Enlarge: where to find the QR code">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/qr-help.jpg" alt="A pop-up headed Where to find QR code: a diagram showing the code on the front or back of the scooter's box with a serial number, and on a bike's lock or cross bar with a shorter number, over a field for entering the bike number manually" loading="lazy">
+            </div></div>
+          </figure>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">“Where to find QR code?” is a real question</h4>
+            <p class="cs-body">The code sits in a different place on a scooter than on a bike — the box on the stem versus the lock or the cross bar. Rather than describe it, the app shows a magnified photograph of each, which is faster to read than a sentence when you're crouched next to the vehicle.</p>
+
+            <h4 class="cs-h4" style="margin-top:34px;">And a way through when the camera won't play</h4>
+            <p class="cs-body">Every scan screen carries <strong>Enter bike number manually</strong> underneath, with a dashed field sized to the number printed on the panel. Dark, rain, a scratched sticker, a camera permission the rider declined — the flow doesn't dead-end, because the number on the vehicle is always readable by eye.</p>
+            <p class="cs-note" style="margin-top:22px;"><strong>The design and the sticker were specified together.</strong> The panel prints the number below the code precisely so the manual fallback has something to fall back to.</p>
+          </div>
+        </div>
+
+        <div class="bk-stage reveal-up" style="margin-top:70px;">
+          <figure class="bk-phone bk-phone--side" data-shot="map" tabindex="0" role="button" aria-label="Enlarge: the map">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/map.jpg" alt="The map screen: scooter and bicycle pins scattered across a teal service area, a wallet chip reading AED 0.00 with a Top Up button, a recentre control, and a dark bottom bar with a large QR scan button at its centre" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="scanning" tabindex="0" role="button" aria-label="Enlarge: scanning">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/scanning.jpg" alt="The scanner: a viewfinder framing a QR code on a scooter's lock box, the instruction that the code is on the front or back of the bike, a Where to find QR code link, and a manual entry field" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="scanning-locked" tabindex="0" role="button" aria-label="Enlarge: code acquired">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/scanning-locked.jpg" alt="The same scanner an instant later, with the QR code sharp and squarely inside the viewfinder frame" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">The scan button is the largest target in the app — a raised circle breaking out of the bottom bar, reachable with a thumb while the other hand is on the handlebar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UNLOCK AND RIDE ============ -->
+    <section class="section section--alt" id="ride">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">03 — Unlock and ride</p>
+          <h2 class="section-title">Everything you'd check before getting on</h2>
+          <p class="section-sub">Battery, range and price, on the screen that asks you to commit. Then a swipe rather than a tap, because unlocking a vehicle on a public street shouldn't be something a pocket can do by accident.</p>
+        </div>
+
+        <div class="ya-flow reveal-up" style="--delay:.06s">
+          <div class="ya-flow__step">
+            <span class="ya-flow__num">01</span>
+            <h4>Scan</h4>
+            <p>The code on the stem, the lock or the cross bar — or the number typed in by hand.</p>
+          </div>
+          <div class="ya-flow__step">
+            <span class="ya-flow__num">02</span>
+            <h4>Check</h4>
+            <p>90% battery, 20 km of range, 2 AED per minute, and the vehicle's ID to confirm it's the one in front of you.</p>
+          </div>
+          <div class="ya-flow__step">
+            <span class="ya-flow__num">03</span>
+            <h4>Swipe</h4>
+            <p>A deliberate gesture, not a button. The lock icon travels the width of the screen.</p>
+          </div>
+          <div class="ya-flow__step">
+            <span class="ya-flow__num">04</span>
+            <h4>Ride</h4>
+            <p>The screen becomes a live dashboard — zones, battery, elapsed time, distance and End Ride.</p>
+          </div>
+        </div>
+
+        <div class="bk-stage reveal-up" style="margin-top:56px;">
+          <figure class="bk-phone" data-shot="vehicle-scanned" tabindex="0" role="button" aria-label="Enlarge: vehicle found">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/vehicle-scanned.jpg" alt="Vehicle found: the scooter on a teal arc, with battery, range and per-minute price stacked as icon-and-label pairs down the right side, the model Lil E and ID 952341, and a swipe control reading Unlock" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="swipe-unlock" tabindex="0" role="button" aria-label="Enlarge: swipe completing">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/swipe-unlock.jpg" alt="The same screen mid-gesture: the lock thumb has travelled to the right-hand end of the track and the Unlock label has cleared" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="ride-live" tabindex="0" role="button" aria-label="Enlarge: ride in progress">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/ride-live.jpg" alt="A ride in progress: a map with the teal ride zone and a red no-park square, two legend chips explaining both, then the vehicle ID, a sixty per cent battery ring, forty-five kilometres of range, elapsed time of one minute two seconds, distance of 2.52 kilometres, and a black End Ride button" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Found, unlocking, riding. The vehicle ID stays on screen throughout, so the rider can always confirm the app is driving the machine they're standing on.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:70px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Two zones, stated as rules</h4>
+            <p class="cs-body">A teal polygon is where you may ride. A red square is where you may not park. Both are drawn on the map <em>and</em> written out as chips above it — <strong>“Ride in the ‘Ride Zone’ area”</strong> and <strong>“Do not park in the ‘No Park’ area”</strong> — because a colour on a map is a hint, and these two are conditions of the rental.</p>
+
+            <h4 class="cs-h4" style="margin-top:34px;">The dashboard answers the questions you'd ask mid-ride</h4>
+            <p class="cs-body">How much charge is left, how far that gets me, how long I've been going, how far I've come. Four figures, no menu. <strong>End Ride</strong> is black and full width — the only way out, and impossible to miss.</p>
+          </div>
+          <figure class="bk-phone reveal-up" data-shot="ride-later" style="--delay:.08s; margin:0 auto;" tabindex="0" role="button" aria-label="Enlarge: later in the same ride">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/ride-later.jpg" alt="Later in the same ride: the elapsed time now reads twenty-four minutes, the range has fallen to twenty kilometres, and the battery ring has turned red" loading="lazy">
+            </div></div>
+          </figure>
+        </div>
+        <p class="cs-note reveal-up" style="margin-top:26px;"><strong>The battery ring changes colour as the range falls.</strong> Twenty-three minutes later in the same ride, the remaining range has dropped from 45 km to 20 km and the ring has gone from teal to red — a warning the rider gets while still moving, not at the moment the scooter stops.</p>
+      </div>
+    </section>
+
+    <!-- ============ FIRST RIDE / PAYMENT ============ -->
+    <section class="section" id="payment">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">04 — The first ride</p>
+          <h2 class="section-title">The card is asked for once, at the moment it makes sense</h2>
+          <p class="section-sub">A new rider isn't sent through a payment setup wizard before they've seen a vehicle. The card form lives inside the vehicle sheet, and only opens when they press Start Ride.</p>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.06s">
+          <figure class="bk-phone bk-phone--side" data-shot="vehicle-sheet-new" tabindex="0" role="button" aria-label="Enlarge: vehicle sheet">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/vehicle-sheet-new.jpg" alt="A vehicle picked from the map: a bottom sheet showing the scooter, ID 80042, twenty kilometres, two dirhams a minute and eighty per cent battery, with a teal Start Ride button, and a five minute walk drawn on the map above" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="card-empty" tabindex="0" role="button" aria-label="Enlarge: add payment card">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/card-empty.jpg" alt="Start Ride has expanded into an Add payment card form inside the same sheet, with fields for card number, expiry, CVV, a Save this card checkbox and a Link button" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="card-filled" tabindex="0" role="button" aria-label="Enlarge: card filled">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/card-filled.jpg" alt="The same form completed, with a card number, an expiry of 12/25 and a CVV entered, and the Link button now active" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="card-loading" tabindex="0" role="button" aria-label="Enlarge: linking the card">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/card-loading.jpg" alt="The screen dimmed behind a centred loading indicator while the card is linked" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Vehicle first, card second. The sheet grows to hold the form instead of replacing the screen, so the rider never loses sight of what they're paying for.</p>
+        </div>
+
+        <div class="ya-loader-note reveal-up" style="--delay:.1s">
+          <!-- Animated WebP with a GIF fallback: the source is a GIF anyway, so
+               the fallback costs one extra file and covers older browsers. -->
+          <picture>
+            <source srcset="assets/images/yalla/loader.webp" type="image/webp">
+            <img src="assets/images/yalla/loader.gif" alt="The Yalla loading indicator: teal dashes rotating around a dark circle" width="52" height="52">
+          </picture>
+          <p><b>The loader is part of the brand, not a system spinner.</b> Teal dashes on a dark disc, matching the wheel motif — used for the one unavoidable wait in the flow, while the card is being linked.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">A wallet, and cards behind it</h4>
+            <p class="cs-body">The balance sits in a chip at the top of the map, next to a <strong>Top Up</strong> button — visible on every screen where it might matter, and never in the way. Cards are managed separately, with the selected one marked by a radio and any other removable by swiping the row to reveal a delete.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">A ride ends in an invoice, not a receipt email</h4>
+            <p class="cs-body">Every past ride in <strong>History</strong> carries the vehicle ID, duration, date, distance, the amount charged and an invoice number, with copy and download beside it — plus the route drawn as a small map, which is what people actually recognise a journey by.</p>
+          </div>
+        </div>
+
+        <div class="bk-stage reveal-up" style="margin-top:64px;">
+          <figure class="bk-phone bk-phone--side" data-shot="payment-methods" tabindex="0" role="button" aria-label="Enlarge: payment methods">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/payment-methods.jpg" alt="Payment Methods: a wallet balance of three hundred dirhams with a Top Up button, and a linked Visa card ending 1096 selected by a radio control" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="rides-history" tabindex="0" role="button" aria-label="Enlarge: ride history">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/rides-history.jpg" alt="My Rides: two past ride cards, each with the vehicle ID, duration, date, distance, the amount charged, an invoice number with copy and download icons, and the route drawn on a small map" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="payment-delete" tabindex="0" role="button" aria-label="Enlarge: removing a card">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/payment-delete.jpg" alt="A saved card swiped to the left to reveal a red delete button, with a second card above it still selected" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Wallet, history, and the destructive action kept behind a swipe.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HELP ============ -->
+    <section class="section section--alt" id="help">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">05 — When it doesn't go smoothly</p>
+          <h2 class="section-title">Help is a tab, not a dead end</h2>
+          <p class="section-sub">Self-service only works if the fallback is real. Help sits in the bottom bar next to the scan button, and offers four different kinds of answer depending on how stuck the rider is.</p>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.06s">
+          <figure class="bk-phone" data-shot="help-steps" tabindex="0" role="button" aria-label="Enlarge: step-by-step help">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/help-steps.jpg" alt="The Help tab: a stacked card carousel headed with the steps for unlocking the bike, showing step one — open the app and hit scan — as an illustration of hands holding a phone, with a six-dot pager beneath" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="help-faqs" tabindex="0" role="button" aria-label="Enlarge: FAQs">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/help-faqs.png" alt="The FAQs tab: a list of collapsed questions, each a full-width row with a chevron to expand it" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="help-call" tabindex="0" role="button" aria-label="Enlarge: call support">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/help-call.jpg" alt="The Call tab: a headset illustration under the question how can we help you, above a single teal Call us for support button" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="help-mail" tabindex="0" role="button" aria-label="Enlarge: email support">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/yalla/help-mail.jpg" alt="The Mail tab: a subject field, a message box and a Submit button" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Four tabs, ranked by urgency. Steps for a first-timer, FAQs for a question, a phone call for someone stranded, email for everything else.</p>
+        </div>
+
+        <p class="cs-note reveal-up" style="margin-top:34px;"><strong>The steps carousel is the one that earns its place.</strong> A rider who can't unlock a vehicle is standing next to it, in a hurry, and doesn't want prose — so the first tab is a six-step illustrated walkthrough of exactly the flow they're stuck in, not a list of links.</p>
+      </div>
+    </section>
+
+    <!-- ============ OUTCOME ============ -->
+    <section class="section" id="outcome">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">What changes</p>
+          <h2 class="section-title">The staff member is no longer in the critical path</h2>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:48px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Evidenced in the design</h4>
+            <ul class="cs-check-list cs-check-list--tick">
+              <li><strong>Registration is self-service.</strong> A number and an SMS code — no documents, no counter.</li>
+              <li><strong>The vehicle starts the transaction.</strong> Scanning the QR on the handlebar replaces being handed a key.</li>
+              <li><strong>Nothing is printed.</strong> Invoices live in History with a number, a route and a download.</li>
+              <li><strong>One app, two fleets.</strong> Scooters and bikes share the map, the scanner and the ride screen.</li>
+              <li><strong>The flow has a manual fallback.</strong> A typed vehicle number when the camera can't help.</li>
+              <li><strong>Help sits inside the flow</strong>, one tap from the scan button, with a call option for a rider who's stuck.</li>
+            </ul>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Not measured</h4>
+            <p class="cs-body">I don't have figures for time-to-first-ride, registration drop-off, the share of rentals completed without staff contact, or support volume — so none are claimed here. Everything above is what the interface does, not what it achieved.</p>
+            <p class="cs-note" style="margin-top:22px;"><strong>What would prove it:</strong> minutes from opening the app to unlocking, completion rate through the four registration screens, how often the manual number entry is used instead of the camera, and the call button's tap rate.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS ============ -->
+    <section class="section section--alt" id="screens">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Screens</p>
+          <h2 class="section-title">The full set</h2>
+          <p class="section-sub">Every screen referenced above, plus the ones that didn't get their own section. Click any to open it full size.</p>
+        </div>
+        <div class="cs-gallery" id="screensGallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ NEXT ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-next__inner reveal-up" style="text-align:center;">
+          <p class="eyebrow">Next case study</p>
+          <h2 class="section-title">Arada Broker App</h2>
+          <p class="cs-body" style="margin-inline:auto;">The other onboarding problem: getting a brokerage verified, contracted and on site — identity capture, licence checks and a bilingual agency agreement.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+            <a class="btn btn--primary" href="case-study-broker-app.html">Read that case study</a>
+            <a class="btn btn--outline" href="index.html#work">All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo" aria-label="Leo Stalin — home">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">© <span id="year"></span> Leo Stalin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <button class="lightbox__close" data-lightbox-close aria-label="Close image viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+  </div>
+
+  <script>
+    window.CS_GALLERY = [
+      { name:'splash',            src:'assets/images/yalla/splash.jpg',            caption:'Splash — the Yalla wordmark on full-bleed teal' },
+      { name:'register-mobile',   src:'assets/images/yalla/register-mobile.jpg',   caption:'Continue with mobile number — country picker and Send Code' },
+      { name:'register-otp',      src:'assets/images/yalla/register-otp.jpg',      caption:'Four-digit SMS code, with resend and a countdown' },
+      { name:'register-details',  src:'assets/images/yalla/register-details.jpg',  caption:'User details — first name, last name and email' },
+      { name:'map',               src:'assets/images/yalla/map.jpg',               caption:'The map — scooters and bikes, wallet chip, and the scan button' },
+      { name:'map-new',           src:'assets/images/yalla/map-new.jpg',           caption:'The same map for a new rider, before a card is linked' },
+      { name:'qr-help',           src:'assets/images/yalla/qr-help.jpg',           caption:'Where to find QR code — the scooter box, the bike lock and cross bar' },
+      { name:'scanning',          src:'assets/images/yalla/scanning.jpg',          caption:'The scanner, with manual entry underneath' },
+      { name:'scanning-locked',   src:'assets/images/yalla/scanning-locked.jpg',   caption:'The code squarely inside the viewfinder' },
+      { name:'vehicle-scanned',   src:'assets/images/yalla/vehicle-scanned.jpg',   caption:'Vehicle found — battery, range, price and ID, with swipe to unlock' },
+      { name:'swipe-unlock',      src:'assets/images/yalla/swipe-unlock.jpg',      caption:'The unlock swipe, completing' },
+      { name:'ride-live',         src:'assets/images/yalla/ride-live.jpg',         caption:'Ride in progress — zones, battery, elapsed time and distance' },
+      { name:'ride-later',        src:'assets/images/yalla/ride-later.jpg',        caption:'Later in the same ride — range down, battery ring turned red' },
+      { name:'vehicle-sheet',     src:'assets/images/yalla/vehicle-sheet.jpg',     caption:'A vehicle picked from the map — Reserve or Unlock' },
+      { name:'vehicle-sheet-new', src:'assets/images/yalla/vehicle-sheet-new.jpg', caption:'The same sheet for a new rider — Start Ride' },
+      { name:'card-empty',        src:'assets/images/yalla/card-empty.jpg',        caption:'Add payment card, opened inside the vehicle sheet' },
+      { name:'card-filled',       src:'assets/images/yalla/card-filled.jpg',       caption:'Card details entered, Link now active' },
+      { name:'card-loading',      src:'assets/images/yalla/card-loading.jpg',      caption:'Linking the card — the one unavoidable wait' },
+      { name:'profile',           src:'assets/images/yalla/profile.jpg',           caption:'Profile — payment methods and history' },
+      { name:'profile-update',    src:'assets/images/yalla/profile-update.jpg',    caption:'Update profile — mobile verified, email not' },
+      { name:'rides-history',     src:'assets/images/yalla/rides-history.jpg',     caption:'My Rides — invoice number, route and amount per ride' },
+      { name:'payment-methods',   src:'assets/images/yalla/payment-methods.jpg',   caption:'Payment methods — wallet balance and linked cards' },
+      { name:'payment-add',       src:'assets/images/yalla/payment-add.jpg',       caption:'Adding a card from the profile' },
+      { name:'payment-add-filled',src:'assets/images/yalla/payment-add-filled.jpg',caption:'The same form, completed' },
+      { name:'payment-delete',    src:'assets/images/yalla/payment-delete.jpg',    caption:'Swipe a card to reveal delete' },
+      { name:'help-steps',        src:'assets/images/yalla/help-steps.jpg',        caption:'Help — an illustrated six-step walkthrough of unlocking' },
+      { name:'help-faqs',         src:'assets/images/yalla/help-faqs.png',         caption:'FAQs — an accordion of common questions' },
+      { name:'help-call',         src:'assets/images/yalla/help-call.jpg',         caption:'Call — one button, for a rider who is stuck' },
+      { name:'help-mail',         src:'assets/images/yalla/help-mail.jpg',         caption:'Mail — subject, message, submit' }
+    ];
+  </script>
+
+  <!-- animations.js owns the IntersectionObserver that reveals content. -->
+  <script src="js/animations.js"></script>
+  <script src="js/case-study.js"></script>
+</body>
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Commission Module — Case Study | Leo Stalin</title>
+  <meta name="description" content="A senior UI/UX case study: designing the Sales Commission module inside Arada's Connect App — turning a manual, paperwork-and-email commission process into a transparent digital breakdown with a visible audit trail.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Leo Stalin">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sales Commission Module — UI/UX Case Study">
+  <meta property="og:description" content="Working out what you were owed used to mean paperwork, email and someone else's spreadsheet. This module shows the whole calculation, and who signed off on each step.">
+  <meta property="og:image" content="assets/images/sales-commission/thumb-device.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
+
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/phone-frames.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header cs-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="index.html#work">All Projects</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero-banner" id="overview">
+      <div class="cs-hero-banner__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+      </div>
+      <div class="container">
+        <a href="index.html#work" class="cs-back reveal-up">← Back to all projects</a>
+        <p class="eyebrow reveal-up" style="--delay:.05s">Case Study · Fintech · Module in an existing app</p>
+        <h1 class="cs-hero-banner__title reveal-up" style="--delay:.1s">Sales<br><span class="cs-title-accent">Commission</span></h1>
+        <p class="cs-hero-banner__subtitle reveal-up" style="--delay:.15s">Working out what you were owed used to mean paperwork, an email thread and somebody else's arithmetic. This module inside Arada's Connect App shows the whole calculation — and who signed off on each step.</p>
+
+        <div class="cs-overview-grid reveal-up" style="--delay:.2s">
+          <div><strong>Client</strong><span>Arada — Sharjah &amp; Dubai master developer</span></div>
+          <div><strong>Product</strong><span>Sales Commission — a module in Connect App</span></div>
+          <div><strong>My role</strong><span>UI/UX Designer — led the design end-to-end</span></div>
+          <div><strong>Platform</strong><span>Native mobile, inside an existing shell</span></div>
+          <div><strong>Users</strong><span>Sales Executives, Sales Managers, Sales VPs</span></div>
+          <div><strong>Domain</strong><span>Commission rates, splits, milestones and payouts</span></div>
+          <div><strong>Tools</strong><span>Figma, FigJam</span></div>
+          <div><strong>Scope</strong><span>IA, flows, UI, all states, dev handoff</span></div>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.25s">
+          <div class="bk-stage__glow" aria-hidden="true"></div>
+
+          <figure class="bk-phone bk-phone--side" data-shot="deal-shared" tabindex="0" role="button" aria-label="Enlarge: commission breakdown for a shared deal">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/deal-shared.jpg" alt="A deal's commission breakdown: unit code with an active deal badge, linked EOI and unit booking numbers, net sale value, total eligible commission with its rate, the user's own share and rate, a combined-commission card naming the other salesperson, and a pending-status checklist">
+            </div></div>
+          </figure>
+
+          <figure class="bk-phone bk-phone--lead" data-shot="exec-overview" tabindex="0" role="button" aria-label="Enlarge: commission overview">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/exec-overview.png" alt="Commission overview: a navy card showing total eligible commission split into first and second half, a total eligible units tile, and a horizontally scrolling row of deal cards each carrying a half indicator and a pending chip">
+            </div></div>
+          </figure>
+
+          <figure class="bk-phone bk-phone--side" data-shot="vp-profile" tabindex="0" role="button" aria-label="Enlarge: commission sharing breakdown">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/vp-profile.jpg" alt="A profile screen with a commission sharing breakdown: total commission earned as a percentage, total units sold, and a stacked bar splitting individual earnings in green from shared earnings in magenta, with unit counts beneath each">
+            </div></div>
+          </figure>
+
+          <p class="bk-stage__caption">Deal breakdown, commission overview and the individual-versus-shared split — tap any screen to open it full size.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUBNAV ============ -->
+    <nav class="cs-subnav" id="csSubnav" aria-label="Case study sections">
+      <div class="container">
+        <div class="cs-subnav__inner">
+          <a href="#context" class="cs-subnav__link" data-subnav>Context</a>
+          <a href="#before" class="cs-subnav__link" data-subnav>Before</a>
+          <a href="#goals" class="cs-subnav__link" data-subnav>Goals</a>
+          <a href="#anatomy" class="cs-subnav__link" data-subnav>The breakdown</a>
+          <a href="#status" class="cs-subnav__link" data-subnav>The journey</a>
+          <a href="#shared" class="cs-subnav__link" data-subnav>Shared deals</a>
+          <a href="#roles" class="cs-subnav__link" data-subnav>Roles</a>
+          <a href="#finding" class="cs-subnav__link" data-subnav>Finding a deal</a>
+          <a href="#challenges" class="cs-subnav__link" data-subnav>Challenges</a>
+          <a href="#outcomes" class="cs-subnav__link" data-subnav>Outcomes</a>
+          <a href="#screens" class="cs-subnav__link" data-subnav>Screens</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ SCOPE ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-scope reveal-up">
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">4</span>
+            <span class="cs-scope__label">Figures per deal</span>
+            <span class="cs-scope__note">Net sale value, total commission and rate, your share and your rate — enough to check the arithmetic yourself</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">2</span>
+            <span class="cs-scope__label">Halves per commission</span>
+            <span class="cs-scope__note">Every amount is split into a first and second half, each released by its own milestones</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">3</span>
+            <span class="cs-scope__label">Roles served</span>
+            <span class="cs-scope__note">Sales Executive, Sales Manager and Sales VP — the same instrument at three scopes</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">1 of 7</span>
+            <span class="cs-scope__label">Modules in Connect App</span>
+            <span class="cs-scope__note">Designed to sit inside an existing shell alongside unit booking, EOI history and quick actions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTEXT ============ -->
+    <section class="section section--alt" id="context">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Context</p>
+          <h2 class="section-title">A module, not a product</h2>
+          <p class="section-sub">Connect App is Arada's internal app for its sales organisation. Sales Commission is one item in its drawer — which makes this a different design problem from the two apps beside it in this portfolio.</p>
+        </div>
+
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="bk-row" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="connect-drawer" tabindex="0" role="button" aria-label="Enlarge: Connect App navigation drawer">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/sales-commission/connect-drawer.jpg" alt="Connect App's navigation drawer showing the signed-in user above a list of destinations: Quick Actions, Action History, Unit Booking, EOI History, Sales Commission, Settings and Logout, with module tiles visible behind">
+                </div></div>
+                <figcaption><b>Where it lives</b>One row in the Connect App drawer, between EOI History and Settings</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">The constraint that shaped everything</span>
+            <h3>You inherit the shell, so the only thing you control is the thinking</h3>
+            <p>A standalone app lets you set the navigation, the type scale and the tone. A module gets none of that. Sales Commission opens from a drawer that already contains <strong>Quick Actions, Action History, Unit Booking and EOI History</strong>, and it has to feel like it belongs to them.</p>
+            <p>That's a constraint, but it's also the opportunity. The module's deal screen carries the <strong>EOI number and the Unit Booking number</strong> at the very top — the same records that live in the two drawer items above it. A commission isn't presented as an isolated figure; it's presented as the financial consequence of a booking the user can already look up.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Adopt the host's chrome exactly.</b> Dark navigation bar, the same avatar, the same back behaviour. Nothing about entering this module should feel like leaving the app.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Introduce one new colour, and give it a job.</b> Magenta appears nowhere else in the flow except where commission is <em>shared</em> — on the combined-commission card, in the split list, and in the profile chart. A new hue has to earn its place by meaning something.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Link outward, don't rebuild inward.</b> The module shows the booking and EOI references rather than duplicating those records. It answers "what am I owed and why", and defers everything else to the modules that already own it.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BEFORE ============ -->
+    <section class="section" id="before">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Before the module</p>
+          <h2 class="section-title">Paperwork, email, and somebody else's arithmetic</h2>
+          <p class="section-sub">This account of the previous process comes from the team, not from the designs.</p>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="reveal-up">
+            <div class="cs-panel">
+              <p class="cs-panel__title">What the process involved</p>
+              <ul class="cs-bullet-list">
+                <li><strong>Paperwork and email</strong> to manage commission information.</li>
+                <li><strong>Details were hard to keep organised</strong> and hard to get at.</li>
+                <li><strong>Manual calculation</strong>, with the errors, confusion and discrepancies that invites.</li>
+                <li><strong>Limited visibility</strong> into the status and detail of a commission.</li>
+                <li><strong>Back-and-forth between teams</strong> just to clarify what a number meant.</li>
+                <li><strong>Time-consuming</strong> for a salesperson who simply wanted to check what they were owed.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <p class="cs-body">Money is the part of a sales job people check most often and trust least. A commission that arrives without a visible derivation invites exactly one response — <em>is that right?</em> — and that question is what generates the email.</p>
+            <p class="cs-body">So the design problem was never "display a number". It was: <strong>show the calculation, show its current state, and show who verified it</strong>. Get those three right and most of the back-and-forth has nothing left to ask.</p>
+            <p class="cs-body">The domain makes that harder than it sounds. A commission at Arada is split into halves released at different milestones, it may be shared between salespeople at different rates, and it hangs off a deal that itself moves through payment and compliance stages. Every one of those is a place a manual process loses the thread.</p>
+            <div class="cs-note" style="margin-top:26px;">
+              <span class="cs-note__icon" aria-hidden="true">◆</span>
+              <p>There are no before screenshots here. The previous process was documents, spreadsheets and inboxes, so it's described in words — the designs speak for the after.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GOALS ============ -->
+    <section class="section section--alt" id="goals">
+      <div class="container">
+        <div class="cs-goals reveal-up">
+          <p class="eyebrow">Goals</p>
+          <h2 class="section-title">What the module had to achieve</h2>
+          <div class="cs-goals-grid">
+            <div class="cs-goal"><span>01</span>Show the arithmetic, not just the answer<em>Every figure that produced the number, on the same screen as the number.</em></div>
+            <div class="cs-goal"><span>02</span>Make status legible at a glance<em>Which half, what stage, verified by whom, and on what date.</em></div>
+            <div class="cs-goal"><span>03</span>Make sharing explicit<em>If a deal is split, name who with and at what rate — don't let people infer it.</em></div>
+            <div class="cs-goal"><span>04</span>Put it where the work already is<em>Inside Connect App, linked to the booking and EOI records it derives from.</em></div>
+            <div class="cs-goal"><span>05</span>Serve three levels of scope<em>One deal, one person's portfolio, one team's performance.</em></div>
+            <div class="cs-goal"><span>06</span>Make a specific deal findable<em>Filter and search, because a portfolio only ever grows.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ANATOMY ============ -->
+    <section class="section" id="anatomy">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 01. The breakdown</p>
+          <h2 class="section-title">Four figures, in the order you'd check them</h2>
+          <p class="section-sub">The deal screen is the centre of the module. Its job is to be checkable — to let a salesperson satisfy themselves that the number is right without asking anyone.</p>
+        </div>
+
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="bk-row" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="deal-shared" tabindex="0" role="button" aria-label="Enlarge: full commission breakdown">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/sales-commission/deal-shared.jpg" alt="Commission breakdown showing net sale value, total eligible commission with a four per cent rate, the user's own eligible commission at a two per cent rate marked as first half, and below it a combined commission card">
+                </div></div>
+                <figcaption><b>A shared deal</b>Total first, your share second — the comparison is the point</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">01 — Deal detail</span>
+            <h3>A chain you can follow from sale price to your own share</h3>
+            <p>The card stack reads as a derivation, top to bottom:</p>
+            <ul class="cs-check-list cs-check-list--tick" style="margin-top:14px;">
+              <li><strong>Net sale value</strong> — what the unit actually sold for.</li>
+              <li><strong>Total eligible commission</strong>, with the <strong>rate</strong> beside it — the pool, and the percentage that produced it.</li>
+              <li><strong>My eligible commission</strong>, with <strong>my rate</strong> — the same structure one level down, in a tinted card so it reads as the answer.</li>
+              <li><strong>Which half</strong> this figure belongs to.</li>
+            </ul>
+            <p class="cs-body" style="margin-top:18px;">Showing the rate next to every amount is the whole trick. A number on its own can only be believed or disbelieved; <strong>a number with its rate can be checked</strong>. That single editorial decision is what turns a statement into evidence.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>The user's own figure is the only tinted card.</b> Everything above it is white on white. Weight alone says which line is the one you came for.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>The active-deal badge sits by the unit code, not the money.</b> Status about the <em>deal</em> belongs to the deal's identity; status about the <em>payment</em> lives further down in its own section. Two different questions, kept apart.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>The breadcrumb is the full hierarchy.</b> Master community, district, project, phase — because in a portfolio of near-identical unit codes, the location is how a person actually recognises the deal they're thinking of.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:88px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The solo variant proves the rule</h4>
+            <p class="cs-body">When a deal isn't shared, two things <em>disappear</em>: the total-eligible-commission row, and the combined-commission card entirely.</p>
+            <p class="cs-body">The reasoning is that on a solo deal, "total" and "mine" are the same number — so showing both would be a comparison that answers nothing, and would quietly imply a share exists somewhere. The screen keeps net sale value and your own figure, and drops the rest.</p>
+            <p class="cs-body"><strong>Subtraction over disabling</strong> is a pattern that recurs across this work: the Broker App removes its completion card once a profile is approved rather than freezing it at 100%. A screen that shows only what applies is easier to trust than one that shows everything and greys the rest.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="deal-solo" tabindex="0" role="button" aria-label="Enlarge: solo deal breakdown">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/sales-commission/deal-solo.jpg" alt="The same breakdown for an unshared deal, showing only net sale value and the user's own eligible commission and rate, with no total-commission row and no combined-commission card">
+                </div></div>
+                <figcaption><b>A solo deal</b>Two cards fewer, and nothing greyed out</figcaption>
+              </figure>
+              <figure class="bk-phone" data-shot="exec-overview" tabindex="0" role="button" aria-label="Enlarge: commission overview">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/sales-commission/exec-overview.png" alt="Commission overview with the navy total card split into first and second half, a total eligible units tile, and the start of a My Deals row">
+                </div></div>
+                <figcaption><b>The overview</b>Total, then the two halves, then units, then deals</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:44px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p><strong>Halves, everywhere.</strong> The overview card splits the total into <em>eligible 1st half</em> and <em>eligible 2nd half</em>; every deal card in every list carries a half indicator; every row of the status checklist is tagged with the half it releases. The domain's most confusing feature is made structural rather than explained in a footnote — once you've seen the overview card, the tag on every subsequent row needs no caption.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATUS ============ -->
+    <section class="section section--alt" id="status">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 02. The commission journey</p>
+          <h2 class="section-title">Who verified it, and when</h2>
+          <p class="section-sub">The section that does the most work against the original problem — because "limited visibility" and "back-and-forth to clarify" are the same complaint asked from two directions.</p>
+        </div>
+
+        <div class="cs-two-col--wide cs-two-col">
+          <div class="reveal-up">
+            <p class="cs-body cs-body--lead">A commission isn't paid on a date. It's released by milestones.</p>
+            <p class="cs-body">The <strong>Pending Status</strong> checklist lists them in order, and each row carries four things: what the milestone is, whether it's done, <strong>who confirmed it</strong>, and <strong>when</strong>.</p>
+            <ul class="cs-check-list cs-check-list--tick" style="margin-top:16px;">
+              <li><strong>Down Payment Received</strong> — <em>Verified by System</em>, with a date · releases the 1st half</li>
+              <li><strong>Document Verification</strong> — <em>Approved by compliance</em>, with a date · releases the 1st half</li>
+              <li class="is-pending"><strong>1st Installment</strong> — still pending · 2nd half</li>
+              <li class="is-pending"><strong>2nd Installment</strong> — still pending · 2nd half</li>
+            </ul>
+            <p class="cs-body" style="margin-top:20px;">Completed rows take a green tick and a tinted background; pending rows take a soft coral dot and stay plain. You can read the state of a payout from across a room.</p>
+            <p class="cs-body">But the attribution line is the part I'd defend hardest. <strong>"Approved by compliance · 14-Jan-2026" is an answer to a question the user hasn't had to ask yet.</strong> Under the old process, finding that out meant an email to someone who then had to look it up. Here it's already on the screen, which is the difference between a status display and an audit trail.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="mgr-deal" tabindex="0" role="button" aria-label="Enlarge: pending status checklist">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/sales-commission/mgr-deal.jpg" alt="A commission breakdown scrolled to the pending status section, showing down payment received and document verification ticked in green with the verifier and date, and two installments still pending with coral dots">
+                </div></div>
+                <figcaption><b>Pending status</b>Each milestone tagged with the half it releases</figcaption>
+              </figure>
+            </div>
+            <div class="cs-decisions" style="margin-top:30px;">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Milestones are named in the business's own words.</b> "Down Payment Received", "Document Verification", "1st Installment" — not "Stage 1" or a progress percentage. A salesperson can match these against what they know about the buyer.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>The verifier is named by function, not by person.</b> "System" and "compliance" tell you which desk to ask if something is wrong, without putting an individual's name against a payout dispute.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Pending rows get a dot, not an empty circle.</b> A hollow checkbox reads as something you could tick. A dot reads as a state you're waiting on — which is the truth, since none of these are the user's to complete.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SHARED ============ -->
+    <section class="section" id="shared">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 03. Shared deals</p>
+          <h2 class="section-title">Magenta means somebody else is on this deal</h2>
+          <p class="section-sub">Split commissions are where a manual process generates its worst disputes. The module's answer is a single colour used with total consistency.</p>
+        </div>
+
+        <div class="bk-row reveal-up">
+          <figure class="bk-phone" data-shot="deal-shared" tabindex="0" role="button" aria-label="Enlarge: combined commission card">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/deal-shared.jpg" alt="A deal breakdown whose combined commission card asks whether combined commission is applicable, answers yes, and names the other salesperson with their email address, eligible commission and rate, all rendered in magenta">
+            </div></div>
+            <figcaption><b>On the deal</b>The counterparty named, with their rate</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="combined-list" tabindex="0" role="button" aria-label="Enlarge: full combined commission list">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/combined-list.png" alt="A combined commission list headed with the total number of salespeople, listing each person with their email, eligible commission and rate in magenta">
+            </div></div>
+            <figcaption><b>The full split</b>Every participant, when a deal involves several</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="mgr-profile" tabindex="0" role="button" aria-label="Enlarge: individual versus shared chart">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/mgr-profile.jpg" alt="A commission sharing breakdown with a stacked bar dividing total commission earned into an individual portion in green and a shared portion in magenta, with matching percentage and unit-count cards below">
+            </div></div>
+            <figcaption><b>Across the year</b>The same magenta, now as a share of everything earned</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">One question, answered before it's asked</h4>
+            <p class="cs-body">The combined-commission card opens with a literal question — <strong>"Combined commission applicable?"</strong> — and answers it, <em>Yes</em>. Then it names the other salesperson, gives their email, and states their eligible commission and rate.</p>
+            <p class="cs-body">Publishing the counterparty's share is a real decision, and not an obvious one. It would have been easier to show only your own figure. But the alternative is a salesperson who suspects a split and has no way to confirm it — and that suspicion is precisely what the old email threads were made of.</p>
+            <p class="cs-body">Including the <strong>email address</strong> is the small detail that makes it useful rather than merely transparent. If there genuinely is a disagreement, the person to talk to is one tap away.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">A colour that holds its meaning across three scales</h4>
+            <p class="cs-body">Magenta appears in exactly three places, and always means the same thing:</p>
+            <ul class="cs-check-list cs-check-list--tick" style="margin-top:14px;">
+              <li>On <strong>one deal</strong> — the combined-commission card and its figures</li>
+              <li>Across <strong>one deal's participants</strong> — every row of the split list</li>
+              <li>Across <strong>a whole year</strong> — the shared segment of the profile chart</li>
+            </ul>
+            <p class="cs-body" style="margin-top:18px;">That consistency is what lets the profile chart work without a tutorial. By the time a user reaches it, they've already learned what magenta means from the deal screens — so a stacked bar labelled <em>Individual</em> and <em>Shared</em> reads instantly.</p>
+            <p class="cs-body">The chart itself is deliberately modest: one bar, two segments, the percentages repeated as text beneath with unit counts. <strong>No pie, no legend to decode, no interaction required.</strong> On a phone, a stacked bar is the only chart that survives being glanced at.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ROLES ============ -->
+    <section class="section section--alt" id="roles">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 04. Three scopes</p>
+          <h2 class="section-title">The same instrument, pointed at more people</h2>
+          <p class="section-sub">Executive, Manager and VP see a familiar screen holding a widening population — with one addition that only managers need.</p>
+        </div>
+
+        <div class="bk-row reveal-up">
+          <figure class="bk-phone" data-shot="exec-overview" tabindex="0" role="button" aria-label="Enlarge: executive overview">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/exec-overview.png" alt="Sales Executive commission overview showing the total card, eligible units and a My Deals row, with no team section">
+            </div></div>
+            <figcaption><b>Sales Executive</b>My money, my deals. No team, no tab bar.</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="mgr-overview" tabindex="0" role="button" aria-label="Enlarge: manager overview">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/mgr-overview.jpg" alt="Sales Manager commission overview with the same total card and deals row, followed by a My Team list of sales executives each showing units closed">
+            </div></div>
+            <figcaption><b>Sales Manager</b>The same, plus My Team — and a tab bar appears</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="vp-overview" tabindex="0" role="button" aria-label="Enlarge: VP overview">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/vp-overview.jpg" alt="Sales VP commission overview, structurally identical to the manager view but with sales managers listed in the team section">
+            </div></div>
+            <figcaption><b>Sales VP</b>Identical again — the team list is now managers</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Managers and VPs still earn</h4>
+            <p class="cs-body">Both management views keep <strong>My Deals</strong> above <strong>My Team</strong>. That ordering is a small piece of respect: a manager at Arada is a salesperson who also runs people, and putting the team block first would have implied their own pipeline was the secondary concern.</p>
+            <p class="cs-body">The addition for managers is a <strong>floating tab bar</strong> — home, commission, team, profile — that executives don't get. An executive has one scope and doesn't need to switch between them; a manager moves between their own numbers and their team's constantly.</p>
+
+            <h4 class="cs-h4" style="margin-top:38px;">Targets appear only where they're actionable</h4>
+            <p class="cs-body">Drilling into a manager reveals something absent everywhere else: <strong>units closed against a target</strong>, with a progress bar. It's on the person-detail screen and nowhere else.</p>
+            <p class="cs-body">A target on your own overview is pressure you can't act on in a commission module. A target on someone you manage is context for a conversation you're about to have.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="mgr-detail" tabindex="0" role="button" aria-label="Enlarge: manager detail with target">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/sales-commission/mgr-detail.jpg" alt="A manager's detail screen with a View Team action and headcount, a navy card showing units closed against a target with a green progress bar, eligible units, a deals list with half and status chips, and a team performance list">
+                </div></div>
+                <figcaption><b>Manager detail</b>Units closed against target — the only target in the module</figcaption>
+              </figure>
+              <figure class="bk-phone" data-shot="vp-teams" tabindex="0" role="button" aria-label="Enlarge: VP team roster">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/sales-commission/vp-teams.jpg" alt="A people reports roster with a headcount badge, listing sales managers and sales executives together, each with units closed and a chevron">
+                </div></div>
+                <figcaption><b>People reports</b>Managers and executives in one ranked roster</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:44px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p>A manager opening one of their executives sees that person's own commission overview — the identical navy card, filled with someone else's figures. It's the clearest possible statement of the module's model: <strong>there is one view of a commission, and your role decides whose you're allowed to look at.</strong> The zero state is handled the same way, showing a card of zeroes rather than hiding it — an executive with nothing eligible yet is a fact, not an empty screen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINDING ============ -->
+    <section class="section" id="finding">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 05. Finding one deal</p>
+          <h2 class="section-title">A portfolio only ever gets longer</h2>
+          <p class="section-sub">"Faster access to information" is a phrase that only becomes real when someone with sixty closed units wants the one from last March.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="exec-deals" tabindex="0" role="button" aria-label="Enlarge: portfolio deals list">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/exec-deals.jpg" alt="Portfolio Deals list with filter and search controls, showing deal cards with full location breadcrumbs, unit codes, half indicators, pending chips and total commission">
+            </div></div>
+            <figcaption><b>01</b>The full portfolio</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="filter-sheet" tabindex="0" role="button" aria-label="Enlarge: filter sheet">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/filter-sheet.jpg" alt="A filter sheet offering last month, this year or a custom date range with start and end dates, plus a master community selector, and reset and apply actions">
+            </div></div>
+            <figcaption><b>02</b>Period, or master community</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="filter-applied" tabindex="0" role="button" aria-label="Enlarge: filter applied">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/filter-applied.jpg" alt="The deals list filtered, with a removable Last month chip above a shortened list of two results">
+            </div></div>
+            <figcaption><b>03</b>The filter stays visible</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="search" tabindex="0" role="button" aria-label="Enlarge: search">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/sales-commission/search.jpg" alt="A floating search field overlaying the navigation bar with the keyboard raised and the deals list dimmed behind it">
+            </div></div>
+            <figcaption><b>or</b>Search by unit code</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The applied filter is a chip you can remove</h4>
+            <p class="cs-body">Once a filter is applied it appears as a <strong>chip above the list, with its own × </strong>. The list is shorter, and the reason is stated on the same screen.</p>
+            <p class="cs-body">The alternative — a filter that quietly hides results with its state locked inside a sheet — produces the single most common confusion in list interfaces: <em>where did my deals go?</em> A chip costs one row of vertical space and removes that question entirely.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Filter by period or by community, because that's how people remember</h4>
+            <p class="cs-body">The filter offers <strong>last month, this year, a custom range</strong>, and a <strong>master community</strong> selector. Those aren't arbitrary — they're the two ways a salesperson actually recalls a deal: roughly when it closed, or which community it was in.</p>
+            <p class="cs-body">Search covers the third way, when they remember the unit code itself. Three retrieval routes for three kinds of memory, and no dependency on remembering a commission reference number.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHALLENGES ============ -->
+    <section class="section section--alt" id="challenges">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Challenges</p>
+          <h2 class="section-title">Where the design had to work harder</h2>
+          <p class="section-sub">Five problems layout alone couldn't solve.</p>
+        </div>
+        <div class="cs-challenge-list">
+          <div class="cs-challenge reveal-up">
+            <div class="cs-challenge__problem"><span>Challenge</span>A number nobody can verify is a number nobody trusts.<em>Commission arriving without a derivation invites one question, and that question was the email thread.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Publish the rate beside every amount.<em>Net sale value, total commission and rate, own commission and own rate — four figures that let anyone check the arithmetic themselves.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.06s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Commission is paid in halves against milestones.<em>The domain's most confusing feature, and the one most likely to look like an error.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Make halves structural, not explanatory.<em>The overview card splits by half, every deal card carries a half indicator, and every milestone row is tagged with the half it releases.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.12s">
+            <div class="cs-challenge__problem"><span>Challenge</span>"When will I be paid?" has no single answer.<em>A payout depends on stages owned by finance and compliance, invisible to the salesperson.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>A milestone checklist with attribution and dates.<em>Verified by System, approved by compliance, each with a date — the audit trail on the screen rather than behind an enquiry.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.18s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Shared deals are where disputes are born.<em>A split you suspect but can't confirm is worse than one you can see.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Name the counterparty, their rate and their email.<em>Plus one dedicated colour for "shared", used identically on the deal, the split list and the yearly chart.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.24s">
+            <div class="cs-challenge__problem"><span>Challenge</span>A module inherits a shell it didn't design.<em>Connect App already had its navigation, its chrome and six other destinations.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Adopt the chrome, link to the siblings.<em>Same navigation bar and avatar; the deal screen leads with the EOI and unit booking numbers that live in the modules above it.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OUTCOMES ============ -->
+    <section class="section" id="outcomes">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title">What's evidenced, and what's expected</h2>
+          <p class="section-sub">Worth separating clearly: some of these are mechanisms visible in the designs, and some are benefits the team anticipates but which nothing here measures.</p>
+        </div>
+
+        <h3 class="cs-h3 reveal-up">Evidenced in the design</h3>
+        <p class="cs-body reveal-up">Each of these points at a specific screen in this case study.</p>
+        <div class="cs-outcomes reveal-up">
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">01</span>
+            <div class="cs-outcome__body">
+              <h4>The calculation is on the screen</h4>
+              <p>Net sale value, total eligible commission with its rate, and the user's own share with their own rate. The derivation is published rather than asserted, so a salesperson can satisfy themselves without contacting anyone.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">02</span>
+            <div class="cs-outcome__body">
+              <h4>Status carries an audit trail</h4>
+              <p>Each milestone shows whether it's complete, who confirmed it — System, compliance — and on what date. "Where is my commission?" and "who approved this?" are both answered before being asked.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">03</span>
+            <div class="cs-outcome__body">
+              <h4>Splits are explicit and attributable</h4>
+              <p>Shared deals name every participant with their rate and email, and one consistent colour marks shared money from the individual deal all the way up to the yearly breakdown.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">04</span>
+            <div class="cs-outcome__body">
+              <h4>It's centralised inside the tool people already use</h4>
+              <p>A drawer item in Connect App, carrying the EOI and unit booking references so the commission connects to the records it derives from instead of standing alone.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">05</span>
+            <div class="cs-outcome__body">
+              <h4>A specific deal is retrievable three ways</h4>
+              <p>By period, by master community, or by unit code — with the applied filter shown as a removable chip so a shortened list always explains itself.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:76px;">Anticipated, but not measured</h3>
+        <div class="cs-two-col reveal-up">
+          <div>
+            <p class="cs-body">The team expects the module to reduce reliance on paperwork and email, cut the back-and-forth needed to clarify a figure, lower the incidence of manual calculation errors, and make checking a commission faster than it was.</p>
+            <p class="cs-body">Those are reasonable expectations, and they follow logically from the mechanisms above — but <strong>they are expectations, not findings</strong>. I have no before-and-after data on query volumes, error rates or time-to-answer, and I'm not going to present the design's intent as if it were a measured result.</p>
+          </div>
+          <div>
+            <div class="cs-panel">
+              <p class="cs-panel__title">What would actually prove it</p>
+              <ul class="cs-bullet-list">
+                <li>Commission-related queries reaching finance, before and after.</li>
+                <li>Corrections and disputes raised per hundred deals.</li>
+                <li>Time from a salesperson's question to an answer they accept.</li>
+                <li>Module usage around payout dates versus the rest of the month.</li>
+              </ul>
+              <p class="cs-body" style="margin-top:14px;">All four are obtainable. None sit with me, and until they do this section stays honest about the difference.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:80px;">Where this goes next</h3>
+        <div class="cs-two-col reveal-up">
+          <div>
+            <h4 class="cs-h4">A payout date, or an estimate of one</h4>
+            <p class="cs-body">The module answers what you're owed and which milestones remain. The question it stops just short of is <em>when</em>. Even a projected date against the next outstanding milestone would close the last gap between transparency and reassurance — and the milestone data needed to derive it is already on the screen.</p>
+          </div>
+          <div>
+            <h4 class="cs-h4">Notify, don't wait to be visited</h4>
+            <p class="cs-body">Everything here is pull: the user has to open the module to learn that compliance approved their documents. A push when a milestone clears would turn the most valuable moment in the whole flow — <em>your first half has been released</em> — from something discovered into something delivered.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS ============ -->
+    <section class="section section--alt" id="screens">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Screens</p>
+          <h2 class="section-title">The full set</h2>
+          <p class="section-sub">Every screen referenced above, plus the variants that didn't get their own section. Tap any to open it full size.</p>
+        </div>
+        <div class="cs-gallery" id="screensGallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ NEXT ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-next__inner reveal-up" style="text-align:center;">
+          <p class="eyebrow">Next case study</p>
+          <h2 class="section-title">Lead Management App</h2>
+          <p class="cs-body" style="margin-inline:auto;">Upstream of the commission: the app that decides who owns a lead, with a countdown on every one of them.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+            <a class="btn btn--primary" href="case-study-lead-management.html">Read that case study</a>
+            <a class="btn btn--outline" href="index.html#work">All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo" aria-label="Leo Stalin — home">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">© <span id="year"></span> Leo Stalin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <button class="lightbox__close" data-lightbox-close aria-label="Close image viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+  </div>
+
+  <script>
+    window.CS_GALLERY = [
+      { name:'connect-drawer',   src:'assets/images/sales-commission/connect-drawer.jpg',   caption:'Connect App drawer — Sales Commission as one destination among seven' },
+      { name:'exec-overview',    src:'assets/images/sales-commission/exec-overview.png',    caption:'Executive overview — total commission split into first and second half' },
+      { name:'exec-deals',       src:'assets/images/sales-commission/exec-deals.jpg',       caption:'Portfolio Deals — breadcrumb, unit code, half indicator and status on every card' },
+      { name:'deal-shared',      src:'assets/images/sales-commission/deal-shared.jpg',      caption:'A shared deal — the full derivation, plus the combined-commission card' },
+      { name:'deal-solo',        src:'assets/images/sales-commission/deal-solo.jpg',        caption:'A solo deal — the comparison row and combined card removed rather than greyed' },
+      { name:'mgr-deal',         src:'assets/images/sales-commission/mgr-deal.jpg',         caption:'Pending status — each milestone with its verifier, date and half' },
+      { name:'combined-list',    src:'assets/images/sales-commission/combined-list.png',    caption:'Combined commission list — every participant, rate by rate' },
+      { name:'mgr-profile',      src:'assets/images/sales-commission/mgr-profile.jpg',      caption:'Commission sharing breakdown — individual against shared, one stacked bar' },
+      { name:'vp-profile',       src:'assets/images/sales-commission/vp-profile.jpg',       caption:'The same breakdown at VP scope' },
+      { name:'mgr-overview',     src:'assets/images/sales-commission/mgr-overview.jpg',     caption:'Manager overview — My Deals above My Team, and a floating tab bar' },
+      { name:'mgr-overview-top', src:'assets/images/sales-commission/mgr-overview-top.jpg', caption:'Manager overview, above the fold' },
+      { name:'mgr-deals',        src:'assets/images/sales-commission/mgr-deals.jpg',        caption:'A manager’s own deals — managers sell too' },
+      { name:'mgr-exec-view',    src:'assets/images/sales-commission/mgr-exec-view.jpg',    caption:'A manager viewing an executive — the same card, someone else’s figures, zero state intact' },
+      { name:'mgr-teams',        src:'assets/images/sales-commission/mgr-teams.jpg',        caption:'A manager’s roster of sales executives, ranked by units closed' },
+      { name:'vp-overview',      src:'assets/images/sales-commission/vp-overview.jpg',      caption:'VP overview — identical structure, managers in the team block' },
+      { name:'vp-overview-top',  src:'assets/images/sales-commission/vp-overview-top.jpg',  caption:'VP overview, above the fold' },
+      { name:'vp-deals',         src:'assets/images/sales-commission/vp-deals.jpg',         caption:'VP deals list, with the module’s tab bar' },
+      { name:'vp-my-deals',      src:'assets/images/sales-commission/vp-my-deals.png',      caption:'A VP’s own deal breakdown' },
+      { name:'vp-teams',         src:'assets/images/sales-commission/vp-teams.jpg',         caption:'People reports — managers and executives in one ranked roster' },
+      { name:'mgr-detail',       src:'assets/images/sales-commission/mgr-detail.jpg',       caption:'Manager detail — units closed against target, the module’s only target' },
+      { name:'filter-sheet',     src:'assets/images/sales-commission/filter-sheet.jpg',     caption:'Filter — period, custom range, or master community' },
+      { name:'filter-alt',       src:'assets/images/sales-commission/filter-alt.jpg',       caption:'The filter sheet in its alternate state' },
+      { name:'filter-applied',   src:'assets/images/sales-commission/filter-applied.jpg',   caption:'Filter applied — a removable chip explains the shorter list' },
+      { name:'filter-applied-2', src:'assets/images/sales-commission/filter-applied-2.png', caption:'A second filtered result set' },
+      { name:'search',           src:'assets/images/sales-commission/search.jpg',           caption:'Search — a floating field over a dimmed list' }
+    ];
+  </script>
+
+  <!-- animations.js owns the IntersectionObserver that reveals content. -->
+  <script src="js/animations.js"></script>
+  <script src="js/case-study.js"></script>
+</body>
+</html>

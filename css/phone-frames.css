@@ -1,0 +1,222 @@
+/* ==========================================================================
+   phone-frames.css — shared components for the mobile case studies
+   (Broker App, Lead Management).
+
+   The Customer Portal is a dense responsive web product, so case-study.css
+   frames its screens in browser chrome. The mobile products are portrait-only:
+   every screen is a 430×932 capture, which would render ~800px tall in a
+   three-column grid. So this file adds a phone frame that constrains width
+   and keeps the whole screen visible, plus rows and strips built on it.
+
+   Token-driven throughout — light/dark and the portfolio accent flow through.
+   ========================================================================== */
+
+:root{
+  --bk-frame:#20262F;          /* phone body */
+  --bk-frame-edge:#0E1218;     /* outer hairline */
+  --bk-screen-r: 30px;
+}
+[data-theme="dark"]{
+  --bk-frame:#39414F;
+  --bk-frame-edge:#161B24;
+}
+
+/* ---------- Phone frame ----------
+   The screenshots already include the iOS status bar, so the frame adds only
+   the body, the notch and the home indicator. aspect-ratio on the screen
+   guarantees a stable box before the image loads, which stops the whole page
+   reflowing as phones stream in. */
+.bk-phone{
+  position:relative; margin:0;
+  width: var(--bk-w, 230px);
+  flex:0 0 auto;
+}
+.bk-phone__body{
+  position:relative;
+  background: var(--bk-frame);
+  border-radius: var(--bk-screen-r);
+  padding: 7px;
+  box-shadow:
+    0 0 0 1px var(--bk-frame-edge),
+    0 2px 4px rgba(10,14,22,.20),
+    0 14px 32px rgba(10,14,22,.24),
+    0 34px 64px rgba(10,14,22,.20);
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.bk-phone__screen{
+  position:relative;
+  border-radius: calc(var(--bk-screen-r) - 7px);
+  overflow:hidden;
+  background: var(--bg-alt);
+  aspect-ratio: 430 / 932;
+}
+.bk-phone__screen img{
+  display:block; width:100%; height:auto;
+  /* Screens taller than the 430:932 frame (the long scrolling dashboard) are
+     anchored to the top rather than squeezed — the lightbox shows the rest. */
+  object-fit:cover; object-position: top center;
+  height:100%;
+}
+/* Notch — sits above the screenshot's own status bar, matching the frame so it
+   reads as hardware rather than as a black band in the UI. */
+.bk-phone__body::before{
+  content:''; position:absolute; z-index:3;
+  top:7px; left:50%; transform:translateX(-50%);
+  width:34%; height:15px;
+  background: var(--bk-frame); border-radius: 0 0 11px 11px;
+}
+/* Home indicator */
+.bk-phone__body::after{
+  content:''; position:absolute; z-index:3;
+  bottom:13px; left:50%; transform:translateX(-50%);
+  width:28%; height:3px; border-radius:99px;
+  background: rgba(255,255,255,.34);
+}
+
+.bk-phone figcaption{
+  margin-top:16px; font-size:.76rem; line-height:1.5;
+  color: var(--text-secondary); text-align:center;
+}
+.bk-phone figcaption b{
+  display:block; margin-bottom:3px;
+  color: var(--text-primary); font-weight:600; font-size:.82rem;
+}
+
+/* Interactive affordance, only where the figure actually opens the lightbox */
+.bk-phone[data-shot]{ cursor:zoom-in; }
+.bk-phone[data-shot]:hover .bk-phone__body,
+.bk-phone[data-shot]:focus-visible .bk-phone__body{
+  transform: translateY(-7px);
+  box-shadow:
+    0 0 0 1px var(--bk-frame-edge),
+    0 3px 6px rgba(10,14,22,.22),
+    0 20px 42px rgba(10,14,22,.28),
+    0 44px 80px rgba(10,14,22,.24);
+}
+.bk-phone[data-shot]:focus-visible{ outline:none; }
+.bk-phone[data-shot]:focus-visible .bk-phone__body{
+  box-shadow: 0 0 0 3px var(--brand), 0 20px 42px rgba(10,14,22,.28);
+}
+
+/* ---------- Hero stage: three phones, centre one lifted ---------- */
+.bk-stage{
+  position:relative; margin-top: clamp(40px, 5vw, 64px);
+  display:flex; align-items:center; justify-content:center;
+  gap: clamp(14px, 2.4vw, 34px);
+  /* The caption is a sibling of the phones, so it has to be pushed onto its
+     own flex line — otherwise it lands beside them as a fourth column. */
+  flex-wrap:wrap;
+}
+.bk-stage__glow{
+  position:absolute; inset:-14% -6% -22%; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse at 50% 45%, var(--brand-glow), transparent 66%);
+  opacity:.42; filter: blur(56px);
+}
+.bk-stage .bk-phone{ position:relative; z-index:1; }
+.bk-stage .bk-phone--side{ --bk-w: clamp(150px, 20vw, 240px); }
+.bk-stage .bk-phone--lead{ --bk-w: clamp(180px, 25vw, 296px); z-index:2; }
+.bk-stage__caption{
+  position:relative; z-index:1;
+  flex: 1 0 100%;
+  margin-top: clamp(26px, 3vw, 38px); text-align:center;
+  font-size:.84rem; color: var(--text-secondary);
+}
+
+/* ---------- Rows and grids of phones ---------- */
+.bk-row{
+  display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:center;
+  gap: clamp(22px, 3.4vw, 46px);
+}
+.bk-row--tight{ gap: clamp(16px, 2.4vw, 30px); }
+.bk-row .bk-phone{ --bk-w: clamp(178px, 21vw, 234px); }
+.bk-row--tight .bk-phone{ --bk-w: clamp(150px, 17vw, 198px); }
+
+/* ---------- Flow strip: phones in sequence with arrows ----------
+   One non-wrapping scroller. A wrapped flow leaves a dangling arrow at the
+   end of a line, which reads as a missing step. */
+.bk-strip{
+  display:flex; align-items:flex-start; gap:10px;
+  overflow-x:auto; padding: 6px 2px 16px;
+  scrollbar-width:thin; scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling:touch;
+}
+.bk-strip > *{ flex:0 0 auto; }
+.bk-strip .bk-phone{ --bk-w: clamp(132px, 15vw, 176px); scroll-snap-align:center; }
+.bk-strip .bk-phone figcaption{ font-size:.7rem; margin-top:11px; }
+.bk-strip .bk-phone figcaption b{ font-size:.74rem; }
+.bk-strip__arrow{
+  align-self:center; padding: 0 4px;
+  color: var(--brand); font-size:1.1rem; line-height:1; opacity:.75;
+  /* Nudged up so the arrow aligns with the phone body, not the caption */
+  margin-top:-34px;
+}
+.bk-strip::-webkit-scrollbar{ height:6px; }
+.bk-strip::-webkit-scrollbar-thumb{ background: var(--border); border-radius:99px; }
+
+/* ---------- Completion-state legend ----------
+   Used beside the profile-percentage filmstrip to name what each ring means. */
+.bk-states{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap:14px; margin-top: clamp(26px, 3vw, 38px);
+}
+.bk-state{
+  border:1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--surface); padding:16px 16px 14px;
+}
+.bk-state__dot{
+  width:11px; height:11px; border-radius:50%; display:block; margin-bottom:10px;
+}
+.bk-state__dot--todo{ background: var(--ap-coral, #F18664); }
+.bk-state__dot--near{ background: var(--ap-mint, #6CCABA); }
+.bk-state__dot--done{ background: var(--ap-teal, #00875F); }
+.bk-state__dot--wait{ background: var(--ap-coral, #F18664); box-shadow: 0 0 0 4px var(--ap-rose, #FEF3F1); }
+.bk-state__dot--live{ background: var(--ap-navy, #1D4289); }
+.bk-state strong{
+  display:block; font-family: var(--font-display); font-weight:700;
+  font-size:.95rem; margin-bottom:5px;
+}
+.bk-state span{ display:block; font-size:.8rem; color: var(--text-secondary); line-height:1.55; }
+
+/* ---------- Field table (the sign-up form, as data) ---------- */
+.bk-fields{
+  width:100%; border-collapse:collapse; font-size:.88rem;
+  border:1px solid var(--border); border-radius: var(--radius-md); overflow:hidden;
+}
+.bk-fields th, .bk-fields td{
+  text-align:left; padding:11px 14px; border-bottom:1px solid var(--border);
+}
+.bk-fields thead th{
+  background: var(--bg-alt); font-family: var(--font-display);
+  font-size:.76rem; text-transform:uppercase; letter-spacing:.06em;
+  color: var(--text-secondary);
+}
+.bk-fields tbody tr:last-child td{ border-bottom:0; }
+.bk-fields td:first-child{ font-weight:600; color: var(--text-primary); }
+.bk-fields td:last-child{ color: var(--text-secondary); }
+.bk-req{ color: var(--accent); font-weight:700; }
+.bk-opt{
+  display:inline-block; padding:2px 8px; border-radius: var(--radius-full);
+  background: var(--bg-alt); border:1px solid var(--border);
+  font-size:.7rem; font-weight:600; color: var(--text-secondary);
+}
+.bk-table-wrap{ overflow-x:auto; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px){
+  /* Three phones side by side stop being legible well before the tablet
+     breakpoint — drop the trailing one rather than shrink all three. */
+  .bk-stage{ gap:14px; }
+  .bk-stage .bk-phone--side:last-of-type{ display:none; }
+}
+@media (max-width: 640px){
+  .bk-stage{ flex-direction:column; gap:34px; }
+  .bk-stage .bk-phone--side{ display:none; }
+  .bk-stage .bk-phone--lead{ --bk-w: min(232px, 66vw); }
+  .bk-row .bk-phone,
+  .bk-row--tight .bk-phone{ --bk-w: min(216px, 62vw); }
+  .bk-row{ gap:34px; }
+  .bk-states{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 380px){
+  .bk-states{ grid-template-columns: 1fr; }
+}

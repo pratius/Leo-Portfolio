@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arada Super App — Case Study | Leo Stalin</title>
+  <meta name="description" content="A UI/UX case study: one app covering property search, reservation, payments, home services and fifteen resident request types for Arada. Designed end to end; not released.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Leo Stalin">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Arada Super App — UI/UX Case Study">
+  <meta property="og:description" content="Buy a home, lease one, pay for it, and run it — in one app. Eighty-three screens designed end to end. Not released.">
+  <meta property="og:image" content="assets/images/superapp/thumb-device.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
+
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/phone-frames.css">
+  <link rel="stylesheet" href="css/superapp.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header cs-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="index.html#work">All Projects</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero-banner" id="overview">
+      <div class="cs-hero-banner__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+      </div>
+      <div class="container">
+        <a href="index.html#work" class="cs-back reveal-up">← Back to all projects</a>
+        <p class="eyebrow reveal-up" style="--delay:.05s">Case Study · Super app · Concept, not released</p>
+        <h1 class="cs-hero-banner__title reveal-up" style="--delay:.1s">Arada<br><span class="cs-title-accent">Super App</span></h1>
+        <p class="cs-hero-banner__subtitle reveal-up" style="--delay:.15s">Find a home, reserve it, pay for it, move in, and run it — without leaving one app. Eighty-three screens covering the whole relationship between a developer and the person living in the building.</p>
+
+        <div class="cs-overview-grid reveal-up" style="--delay:.2s">
+          <div><strong>Client</strong><span>Arada — Sharjah &amp; Dubai master developer</span></div>
+          <div><strong>Product</strong><span>Super App — property, payments and services</span></div>
+          <div><strong>My role</strong><span>UI/UX Designer — designed the screens end to end</span></div>
+          <div><strong>Status</strong><span>Designed, not released</span></div>
+          <div><strong>Platform</strong><span>Native mobile, 428×926 base</span></div>
+          <div><strong>Users</strong><span>Buyers, tenants, owners and residents</span></div>
+          <div><strong>Tools</strong><span>Figma, FigJam</span></div>
+          <div><strong>Scope</strong><span>83 screens — flows, UI, states</span></div>
+        </div>
+
+        <div class="sa-unreleased reveal-up" style="--delay:.22s">
+          <span class="sa-unreleased__tag">Not launched</span>
+          <p><strong>This app was never released.</strong> I designed the screens; the product didn't go to build. So there are no adoption figures, no usage data and no outcomes on this page — only the design decisions, and the reasoning behind them. Everything shown is from the actual Figma screens.</p>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.25s">
+          <div class="bk-stage__glow" aria-hidden="true"></div>
+          <figure class="bk-phone bk-phone--side" data-shot="buy-details" tabindex="0" role="button" aria-label="Enlarge: property details">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/buy-details.jpg" alt="A property detail screen: a photograph of the building, the unit name and type, a price of AED 2,101,000, bed, area and bath counts, four utilities for floor plan, brochure, 360 degree view and map, collapsed sections for payment plan, key features and facilities, a coral notice about the ten thousand dirham reservation fee, and Reserve Now and Book a Visit buttons">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="landing" tabindex="0" role="button" aria-label="Enlarge: the home screen">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/landing.jpg" alt="The home screen: a rendered skyline banner, four quick actions for Arada Care, Quick Pay, E-Services and Others, a search field, category chips for apartments, villas and townhouses, a buy-or-lease promotion, the three Arada destinations, partner promotions and latest launches">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="care-status-pay" tabindex="0" role="button" aria-label="Enlarge: service request status">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/care-status-pay.jpg" alt="A service request status screen: tabs for all, in progress and completed, a read-back of the request details, and a four-step tracker running received, assigned, quotation received with a View and Pay button, and completed, above Cancel and Reschedule">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Browse, transact, and then live there. Click any screen on this page to open it full size.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT A SUPER APP HAS TO HOLD ============ -->
+    <section class="section" id="scope">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">The brief</p>
+          <h2 class="section-title">Four products that normally live in four apps</h2>
+          <p class="section-sub">A developer's relationship with a customer doesn't end at the sale — it starts there. The person searching for an apartment becomes the person reserving it, then paying instalments on it, then reporting a broken air conditioner in it. This design puts all four in one place.</p>
+        </div>
+
+        <div class="sa-modules reveal-up" style="--delay:.06s">
+          <div class="sa-module sa-module--property">
+            <span class="sa-module__count">Before you own</span>
+            <h4>Explore Property</h4>
+            <p>Buy or lease, across three communities, with an eight-level filter, floor plans, 360° views, site visits and an online reservation.</p>
+          </div>
+          <div class="sa-module sa-module--pay">
+            <span class="sa-module__count">Money</span>
+            <h4>Payments</h4>
+            <p>Reservation fees, security deposits, service quotations, amenity bookings and annual maintenance contracts — saved cards, wallet, Apple Pay.</p>
+          </div>
+          <div class="sa-module sa-module--care">
+            <span class="sa-module__count">Once you're in</span>
+            <h4>Arada Care</h4>
+            <p>Home services, issue reporting, maintenance packages and amenity booking, each scoped to one of your properties.</p>
+          </div>
+          <div class="sa-module sa-module--request">
+            <span class="sa-module__count">Paperwork</span>
+            <h4>E-Services</h4>
+            <p>Ten request types — NOC, access cards, work permits, pet registration, move-in, move-out and more — each with its own form and its own status trail.</p>
+          </div>
+        </div>
+
+        <div class="bk-stage reveal-up" style="margin-top:64px;">
+          <figure class="bk-phone bk-phone--side" data-shot="onboard-1" tabindex="0" role="button" aria-label="Enlarge: onboarding, first slide">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/onboard-1.jpg" alt="The first onboarding slide: an illustration of a person inspecting a house through a magnifier, headed Find Your Perfect Dream Home, with a skip link and a next arrow" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="onboard-2" tabindex="0" role="button" aria-label="Enlarge: onboarding, second slide">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/onboard-2.jpg" alt="The second onboarding slide: an illustration of people with a bank card and a coin, headed All Your Payments in One App" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="onboard-3" tabindex="0" role="button" aria-label="Enlarge: onboarding, third slide">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/onboard-3.jpg" alt="The third onboarding slide: an illustration of people at a phone with chat bubbles and a cog, headed Arada Care and E-Services" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="signin" tabindex="0" role="button" aria-label="Enlarge: sign in">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/signin.jpg" alt="The sign-in screen: a photograph of the Aljada masterplan above a card with Sign In and Sign Up tabs, username and password fields, remember me, forgot password, a Sign In button and a Continue as guest button" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">The three onboarding slides name the three pillars in order — home, payments, services — and the sign-in card offers <strong>Continue as guest</strong> underneath, because you shouldn't need an account to look at apartments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROPERTY ============ -->
+    <section class="section section--alt" id="property">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">01 — Explore Property</p>
+          <h2 class="section-title">Two tenures, one shell</h2>
+          <p class="section-sub">Buying and leasing are the same journey with different money attached. The screens share a layout and swap the vocabulary — which keeps the build small and means a customer who did one already knows the other.</p>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.06s">
+          <figure class="bk-phone bk-phone--side" data-shot="buy-list" tabindex="0" role="button" aria-label="Enlarge: buy listings">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/buy-list.jpg" alt="The buy listings screen: Buy Property and Lease Property tabs, a search field with a filter control, three community cards for Aljada, Nasma and Masaar, and property cards showing price, project, bedrooms, bathrooms and area" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="buy-details" tabindex="0" role="button" aria-label="Enlarge: buy details">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/buy-details.jpg" alt="The buy detail screen showing a payment plan section and a coral notice about a ten thousand dirham reservation amount, above Reserve Now and Book a Visit" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="lease-details" tabindex="0" role="button" aria-label="Enlarge: lease details">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/lease-details.jpg" alt="The lease detail screen — the same layout with a rental and charges section and a blue notice about a one thousand dirham security deposit, above Lease Now and Book a Visit" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="buy-filter" tabindex="0" role="button" aria-label="Enlarge: the filter">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/buy-filter.jpg" alt="The filter sheet: community type, property type, cluster, project, building, architectural type, unit and bedrooms, with a Clear All control" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Same screen, different tenure. <strong>Payment Plan</strong> becomes <strong>Rental &amp; Charges</strong>, <strong>Reserve Now</strong> becomes <strong>Lease Now</strong>, and the fee notice changes from a coral AED 10,000 reservation to a blue AED 1,000 deposit.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:70px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The filter goes eight levels deep</h4>
+            <p class="cs-body">Community, property type, cluster, project, building, architectural type, unit, bedrooms. That's not over-engineering — it's how a master developer's inventory is actually structured, and a buyer who already knows they want a specific building in Aljada shouldn't have to scroll past Masaar to find it.</p>
+
+            <h4 class="cs-h4" style="margin-top:34px;">Two exits from every property</h4>
+            <p class="cs-body"><strong>Reserve Now</strong> takes a payment. <strong>Book a Visit</strong> takes a date and a time slot. Both are full-width and stacked, because a first-time off-plan buyer and a returning investor want opposite things from the same screen, and neither should have to hunt for theirs.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">The fee is stated before the button, not after it</h4>
+            <p class="cs-body">A coloured band sits directly above <strong>Reserve Now</strong> reading <em>“You will pay an amount of AED 10,000 online to reserve this property.”</em> Nobody reaches a payment screen not knowing a payment is coming.</p>
+
+            <h4 class="cs-h4" style="margin-top:34px;">Four utilities, given equal weight</h4>
+            <p class="cs-body">Floor Plan, Brochure, 360° View and Map View sit as a row of four icon tiles rather than being buried in the accordions below. They're the things a serious buyer opens, so they're the things above the fold.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESIDENCY-AWARE DOCUMENTS ============ -->
+    <section class="section" id="documents">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">02 — The paperwork moment</p>
+          <h2 class="section-title">The form knows where you live</h2>
+          <p class="section-sub">A lot of off-plan property is bought from abroad. Someone in London buying in Sharjah has no Emirates ID, so asking for one is a dead end — and asking everyone for a passport when most buyers have an Emirates ID wastes the majority's time.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:56px;">
+          <figure class="bk-phone reveal-up" data-shot="buy-docs-uae" style="margin:0 auto;" tabindex="0" role="button" aria-label="Enlarge: documents, inside UAE">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/buy-docs-uae.jpg" alt="The reservation document upload for a buyer inside the UAE: Emirates ID front and back upload slots, an Emirates ID number field and an expiry date" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone reveal-up" data-shot="buy-docs-abroad" style="--delay:.08s; margin:0 auto;" tabindex="0" role="button" aria-label="Enlarge: documents, outside UAE">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/buy-docs-abroad.jpg" alt="The reservation document upload for a buyer outside the UAE: nationality, country of residence, address and city, then national ID front and back with number and expiry, then passport with number and expiry" loading="lazy">
+            </div></div>
+          </figure>
+        </div>
+
+        <div class="sa-adapt reveal-up" style="--delay:.1s">
+          <div class="sa-adapt__col">
+            <span class="sa-adapt__head">Resident in the UAE</span>
+            <span class="sa-adapt__n">4 inputs</span>
+            <ul>
+              <li>Emirates ID — front</li>
+              <li>Emirates ID — back</li>
+              <li>Emirates ID number</li>
+              <li>Expiry date</li>
+            </ul>
+          </div>
+          <div class="sa-adapt__col">
+            <span class="sa-adapt__head">Buying from abroad</span>
+            <span class="sa-adapt__n">11 inputs</span>
+            <ul>
+              <li>Nationality, country of residence</li>
+              <li>Address, city</li>
+              <li>National ID — front and back</li>
+              <li>National ID number and expiry</li>
+              <li>Passport scan</li>
+              <li>Passport number and expiry</li>
+            </ul>
+          </div>
+          <div class="sa-adapt__col">
+            <span class="sa-adapt__head">Why it matters</span>
+            <span class="sa-adapt__n">Nobody blocked</span>
+            <ul>
+              <li>The overseas buyer isn't asked for a document they can't have</li>
+              <li>The resident isn't asked for nine fields they don't need</li>
+              <li>One question up front decides the shape of everything below it</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ARADA CARE ============ -->
+    <section class="section section--alt" id="care">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">03 — Arada Care</p>
+          <h2 class="section-title">Every service starts by asking which home</h2>
+          <p class="section-sub">A customer can hold more than one property — an apartment in Aljada, a villa in Masaar. So the property picker sits at the top of every service screen, as a chip with a pencil, and never scrolls away.</p>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.06s">
+          <figure class="bk-phone bk-phone--side" data-shot="care-home" tabindex="0" role="button" aria-label="Enlarge: Arada Care home">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/care-home.jpg" alt="The Arada Care home screen: a row of three property cards to choose from, then five service rows — home services, raise an issue, maintenance packages, submit your request and book amenities" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="care-request" tabindex="0" role="button" aria-label="Enlarge: a home service request">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/care-request.jpg" alt="A home service request: the property chip at the top, Submit Request and View Status tabs, fields for service, type, preferred date and time and contact number, then an upload photo area and an upload voice recorder showing a waveform" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="care-quote" tabindex="0" role="button" aria-label="Enlarge: the quotation">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/care-quote.jpg" alt="A quotation: the service request number, property, service type and reason, two line items with price, quantity and total, then sub total, tax and service fee, a grand total of AED 900.75, and Reject and Proceed to Pay buttons" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="care-status-pay" tabindex="0" role="button" aria-label="Enlarge: status with payment">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/care-status-pay.jpg" alt="The status view with the quotation step expanded, showing a View and Pay button inline in the tracker, and Cancel and Reschedule below" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Report it, get quoted, approve or reject, pay. The quotation itemises parts and labour and shows tax and the service fee separately, so the total isn't a number the resident has to take on trust.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:70px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">You can record the problem instead of describing it</h4>
+            <p class="cs-body">The request form takes a photo <strong>and a voice note</strong>. Some faults are far easier to say than to write — a noise, an intermittent fault, a room name the resident doesn't know the English word for. The waveform and mic sit inline, at the same weight as the photo upload.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">A quotation you can turn down</h4>
+            <p class="cs-body"><strong>Reject</strong> is given the same size as <strong>Proceed to Pay</strong>, outlined rather than filled. A resident who thinks AED 900 is too much for the job is having a legitimate reaction, and the interface shouldn't make declining feel like an error state.</p>
+          </div>
+        </div>
+
+        <div class="bk-stage reveal-up" style="margin-top:64px;">
+          <figure class="bk-phone bk-phone--side" data-shot="amc-tiers" tabindex="0" role="button" aria-label="Enlarge: maintenance packages">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/amc-tiers.jpg" alt="Annual maintenance packages: Standard at AED 960, Silver at AED 1,200 and Gold at AED 1,800 per annum, each collapsed with a Buy Now button and a chevron" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="amc-expanded" tabindex="0" role="button" aria-label="Enlarge: package detail">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/amc-expanded.jpg" alt="The Standard package expanded to show the annual services programme — one AC, electrical and plumbing service each per year — and emergency and routine callouts including a 24/7 helpline, twelve free callouts, a two-hour emergency response and a twelve-hour non-emergency response, with a link to the contract terms" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="amc-pay" tabindex="0" role="button" aria-label="Enlarge: package checkout">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/amc-pay.jpg" alt="The package checkout: a review of property, package and amount, a total of AED 960, payment method logos, two saved cards each with a CVV field, a terms checkbox and a Pay button" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="amenity" tabindex="0" role="button" aria-label="Enlarge: book an amenity">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/amenity.jpg" alt="Book Amenities: a swimming pool at AED 200 and a tennis court at AED 1,200 as selectable cards, then event name, number of attendees and a check-in date" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Three tiers, collapsed by default. <strong>Buy Now</strong> is on the collapsed card as well as the open one — someone renewing last year's package shouldn't have to read the inclusions again.</p>
+        </div>
+
+        <p class="cs-note reveal-up" style="margin-top:34px;"><strong>Saved cards still ask for the CVV.</strong> The card is stored, the three digits aren't. It costs the resident two seconds and it's the difference between a stolen phone being an inconvenience and being a spending spree.</p>
+      </div>
+    </section>
+
+    <!-- ============ THE FORM THAT CHANGES SHAPE ============ -->
+    <section class="section" id="adaptive">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">04 — Raise an Issue</p>
+          <h2 class="section-title">The form asks only what's needed to find the fault</h2>
+          <p class="section-sub">This is the piece of the design I'd defend hardest. Three complaint types, three completely different forms — because locating a broken light in a shared corridor and reporting a problem in someone else's flat are not the same question.</p>
+        </div>
+
+        <div class="bk-stage reveal-up" style="--delay:.06s">
+          <figure class="bk-phone" data-shot="issue-common" tabindex="0" role="button" aria-label="Enlarge: common area complaint">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/issue-common.jpg" alt="A common area complaint form: complaint type set to common area, then complaint category, sub category, precinct, unit, floor and common area selectors" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="issue-general" tabindex="0" role="button" aria-label="Enlarge: general area complaint">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/issue-general.jpg" alt="A general area complaint form: complaint type set to general area, a description box and a photo upload — three fields in total" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="issue-unit" tabindex="0" role="button" aria-label="Enlarge: other unit complaint">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/issue-unit.jpg" alt="An other unit complaint form: complaint type set to other unit, a complaint category, a description and a photo upload" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="issue-status" tabindex="0" role="button" aria-label="Enlarge: complaint status">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/issue-status.jpg" alt="The complaint status view reading back every field that was submitted — property, complaint type, category, sub category, precinct, unit, floor and common area — above a three-step tracker" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">One dropdown at the top rewrites everything below it.</p>
+        </div>
+
+        <div class="sa-adapt reveal-up" style="--delay:.1s">
+          <div class="sa-adapt__col">
+            <span class="sa-adapt__head">Common area</span>
+            <span class="sa-adapt__n">7 fields</span>
+            <ul>
+              <li>Complaint category, sub category</li>
+              <li>Precinct</li>
+              <li>Unit</li>
+              <li>Floor</li>
+              <li>Common area</li>
+            </ul>
+          </div>
+          <div class="sa-adapt__col">
+            <span class="sa-adapt__head">General area</span>
+            <span class="sa-adapt__n">3 fields</span>
+            <ul>
+              <li>Description</li>
+              <li>Photo upload</li>
+            </ul>
+          </div>
+          <div class="sa-adapt__col">
+            <span class="sa-adapt__head">Other unit</span>
+            <span class="sa-adapt__n">4 fields</span>
+            <ul>
+              <li>Complaint category</li>
+              <li>Description</li>
+              <li>Photo upload</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Precision is only demanded where it pays for itself</h4>
+            <p class="cs-body">A fault in a common area has to be found by a technician who wasn't there when it was reported, so the form takes precinct, unit, floor and which common area — four location fields. A general-area problem is visible the moment someone walks past it, so a photo and a sentence are enough.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">The status screen reads back what you gave</h4>
+            <p class="cs-body">Whatever the form asked for, the status view lists it as a labelled record. The resident can check whether they picked the right floor without re-opening the form, and the technician sees the same list. Nothing is captured that isn't shown back.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ E-SERVICES ============ -->
+    <section class="section section--alt" id="requests">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">05 — E-Services</p>
+          <h2 class="section-title">Ten request types, one chassis</h2>
+          <p class="section-sub">Every request in the app is the same screen: the property chip, the Submit Request and View Status tabs, a service-type dropdown, and then whatever that request actually needs. The shell never moves. Only the middle changes.</p>
+        </div>
+
+        <div class="sa-table-wrap reveal-up" style="--delay:.06s">
+          <table class="sa-table">
+            <caption class="sr-only">Request types and the fields each one asks for</caption>
+            <thead>
+              <tr><th scope="col">Request</th><th scope="col">What it asks for</th><th scope="col" class="sa-num">Inputs</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Proof of Payment</td><td>Document upload, description</td><td class="sa-num">2</td></tr>
+              <tr><td>Late Fee Waiver</td><td>Requisition details, amount</td><td class="sa-num">2</td></tr>
+              <tr><td>Amendment of Payment Terms</td><td>Description</td><td class="sa-num">1</td></tr>
+              <tr><td>Access Card</td><td>Access type, reason, number of cards, description</td><td class="sa-num">4</td></tr>
+              <tr><td>Book Amenities</td><td>Amenity, event name, attendees, check-in date</td><td class="sa-num">4</td></tr>
+              <tr><td>Move-Out Request</td><td>Date, reason, moving to, vendor and contact details</td><td class="sa-num">9</td></tr>
+              <tr><td>NOC</td><td>Buyer and joint buyer, contact, passport, plus buyer's and seller's ID uploads</td><td class="sa-num">8</td></tr>
+              <tr><td>PET Registration</td><td>Type, name, age, colour, gender, medical records, pet ID</td><td class="sa-num">8</td></tr>
+              <tr><td>Work Permit</td><td>Alteration type, duration, dates, vendor, architectural layout, contractor licence</td><td class="sa-num">8</td></tr>
+              <tr><td>Move-In Request</td><td>Four steps — resident, emergency contact, occupancy, vendor</td><td class="sa-num">20+</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bk-stage reveal-up" style="margin-top:60px;">
+          <figure class="bk-phone" data-shot="req-proof" tabindex="0" role="button" aria-label="Enlarge: proof of payment">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/req-proof.jpg" alt="The proof of payment request: a service type dropdown, a document upload area and a description box" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="req-access" tabindex="0" role="button" aria-label="Enlarge: access card request">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/req-access.jpg" alt="The access card request: access type, reason, number of cards, a description and a terms checkbox" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="req-permit" tabindex="0" role="button" aria-label="Enlarge: work permit request">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/req-permit.jpg" alt="The work permit request: type of alteration, work duration, start and end dates, a vendor selector, and uploads for the proposed architectural layout and the contractor's trade licence" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="req-pet" tabindex="0" role="button" aria-label="Enlarge: pet registration">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/req-pet.jpg" alt="The pet registration request: pet type, name, age, colour and gender, then uploads for historic medical records and a valid pet ID" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">Two fields or ten — the header, the tabs, the dropdown and the submit button are in the same place every time.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:70px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Only one request earns a wizard</h4>
+            <p class="cs-body">Move-In is the single multi-step flow, with a four-node rail across the top: resident details, emergency contact, occupancy, vendor. It's the only request that collects more than twenty inputs, and the only one where a person would reasonably stop halfway and come back.</p>
+            <p class="cs-body">Everything else is one screen with a Submit button, because breaking a four-field form into steps is ceremony, not clarity.</p>
+          </div>
+          <figure class="bk-phone reveal-up" data-shot="movein-1" style="--delay:.08s; margin:0 auto;" tabindex="0" role="button" aria-label="Enlarge: move-in, step one">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/movein-1.jpg" alt="Step one of the move-in request: a four-node progress rail above counts of adults, children, senior citizens and people of determination, then nationality, occupation, number of vehicles and whether the resident has pets" loading="lazy">
+            </div></div>
+          </figure>
+        </div>
+
+        <div class="bk-stage reveal-up" style="margin-top:64px;">
+          <figure class="bk-phone bk-phone--side" data-shot="movein-2" tabindex="0" role="button" aria-label="Enlarge: move-in, occupancy">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/movein-2.jpg" alt="A later move-in step with the progress rail partly filled, asking for the move-in date and an ID proof upload, with Previous and Next buttons" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="movein-3" tabindex="0" role="button" aria-label="Enlarge: move-in, emergency contact">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/movein-3.jpg" alt="The emergency contact step, headed by a red rule reading should not be a resident of the same unit, then name, contact number, email and emirate of residence" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone" data-shot="movein-4" tabindex="0" role="button" aria-label="Enlarge: move-in, vendor">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/movein-4.jpg" alt="The vendor step: a vendor selector and a description, with a terms checkbox and Previous and Next buttons" loading="lazy">
+            </div></div>
+          </figure>
+          <figure class="bk-phone bk-phone--side" data-shot="movein-status" tabindex="0" role="button" aria-label="Enlarge: move-in status">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/superapp/movein-status.jpg" alt="The move-in request status: a read-back of service request number, property, service type, move-in date, vendor name, contact person and number, above a three-step tracker" loading="lazy">
+            </div></div>
+          </figure>
+          <p class="bk-stage__caption">The rule <strong>“Should not be a resident of the same unit”</strong> sits above the emergency contact fields in red, before anything is typed. A validation that appears after submission would be a wasted round trip — the point of an emergency contact is that they're somewhere else.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRACKING ============ -->
+    <section class="section" id="tracking">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">06 — After you submit</p>
+          <h2 class="section-title">Two kinds of waiting, two kinds of tracker</h2>
+          <p class="section-sub">An approval and a repair job feel the same to a resident — you asked for something and now you're waiting. They aren't the same thing, and the trackers say so.</p>
+        </div>
+
+        <div class="sa-tracks reveal-up" style="--delay:.06s">
+          <div class="sa-track">
+            <h4>A request needs a verdict</h4>
+            <p>NOC, access card, work permit, move-in, pet registration.</p>
+            <ol>
+              <li>Received Request<span>We received your service request</span></li>
+              <li>Review<span>Your service request has been reviewed</span></li>
+              <li>Approved<span>Completed on a stated date</span></li>
+            </ol>
+          </div>
+          <div class="sa-track">
+            <h4>A service needs a person and a bill</h4>
+            <p>Home services and anything that sends a technician.</p>
+            <ol>
+              <li>Received Request<span>We received your service request</span></li>
+              <li>Assigned<span>Your service request has been assigned</span></li>
+              <li>Quotation Received<span>View and pay for service execution — the pay button lives inside this step</span></li>
+              <li>Completed<span>With an estimated date while it's still open</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The action lives in the step that needs it</h4>
+            <p class="cs-body">When a quotation arrives, <strong>View &amp; Pay</strong> appears inside the tracker at the quotation node — not in a footer, not in a notification the resident has to go and find. The thing you have to do sits at the point in the story where it's required.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Open and closed are separated, but both are kept</h4>
+            <p class="cs-body">Every status view has <strong>All</strong>, <strong>In Progress</strong> and <strong>Completed</strong>, with the groups as collapsible accordions. Finished requests stay available — the access card you were issued last year is the record you need when you lose it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT I'D CHANGE ============ -->
+    <section class="section section--alt" id="reflection">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Honestly</p>
+          <h2 class="section-title">What I'd fix before this shipped</h2>
+          <p class="section-sub">It never went to build, so nothing here was caught in QA or worn smooth by real use. These are the things I can see in my own file.</p>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:48px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Loose ends in the file</h4>
+            <ul class="cs-check-list">
+              <li><strong>Two names for one shell.</strong> The same request screen is headed “Submit Your Request” in some flows and “E-Services” in others. Pick one.</li>
+              <li><strong>Placeholder copy in onboarding.</strong> All three slides still carry Lorem Ipsum under the headline — the first thing a new user reads is the least finished text in the app.</li>
+              <li><strong>Profile is mostly empty dashes.</strong> Nationality, gender, date of birth and address all render as “———”. It needs a real empty state that invites completion.</li>
+            </ul>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Decisions I'd want to test</h4>
+            <ul class="cs-check-list cs-check-list--query">
+              <li><strong>Eight filter levels</strong> is right for inventory and possibly wrong for a first-time buyer. I'd want to watch someone use it before defending it.</li>
+              <li><strong>Guest browsing</strong> has no defined moment where the app asks for an account. It should be the reservation, but that transition isn't drawn.</li>
+              <li><strong>Ten request types in one dropdown</strong> works on paper. At fifteen it won't, and this is a developer that keeps adding services.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="cs-note reveal-up" style="margin-top:32px;"><strong>No metrics appear anywhere on this page.</strong> The app wasn't released, so there's nothing to measure and nothing to claim. What's here is the reasoning, which is the part that transfers to the next project anyway.</p>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS ============ -->
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Screens</p>
+          <h2 class="section-title">All 83 screens</h2>
+          <p class="section-sub">The complete set — every flow, every status view, every confirmation. Click any to open it full size.</p>
+        </div>
+        <div class="cs-gallery" id="screensGallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ NEXT ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-next__inner reveal-up" style="text-align:center;">
+          <p class="eyebrow">Next case study</p>
+          <h2 class="section-title">my Arada — Customer Portal</h2>
+          <p class="cs-body" style="margin-inline:auto;">The part of this that did ship: a self-service portal where off-plan owners track a three-year payment journey, retrieve documents and raise requests.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+            <a class="btn btn--primary" href="case-study-customer-portal.html">Read that case study</a>
+            <a class="btn btn--outline" href="index.html#work">All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo" aria-label="Leo Stalin — home">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">© <span id="year"></span> Leo Stalin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <button class="lightbox__close" data-lightbox-close aria-label="Close image viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+  </div>
+
+  <script>
+    window.CS_GALLERY = [
+      { name:'onboard-1',        src:'assets/images/superapp/onboard-1.jpg',        caption:'Onboarding 1 — Find Your Perfect Dream Home' },
+      { name:'onboard-2',        src:'assets/images/superapp/onboard-2.jpg',        caption:'Onboarding 2 — All Your Payments in One App' },
+      { name:'onboard-3',        src:'assets/images/superapp/onboard-3.jpg',        caption:'Onboarding 3 — Arada Care & E-Services' },
+      { name:'signin',           src:'assets/images/superapp/signin.jpg',           caption:'Sign in — with Continue as guest underneath' },
+      { name:'signup',           src:'assets/images/superapp/signup.jpg',           caption:'Sign up — name, mobile, email, password' },
+      { name:'landing',          src:'assets/images/superapp/landing.jpg',          caption:'Home — quick actions, search, destinations, launches and partner offers' },
+      { name:'buy-list',         src:'assets/images/superapp/buy-list.jpg',         caption:'Buy Property — communities and listings' },
+      { name:'buy-filter',       src:'assets/images/superapp/buy-filter.jpg',       caption:'The filter — eight levels, from community down to unit' },
+      { name:'buy-filter-popup', src:'assets/images/superapp/buy-filter-popup.jpg', caption:'Filter as a popup card' },
+      { name:'buy-details',      src:'assets/images/superapp/buy-details.jpg',      caption:'Property details — utilities, payment plan and the reservation fee notice' },
+      { name:'buy-visit',        src:'assets/images/superapp/buy-visit.jpg',        caption:'Book a Visit — date calendar and time slots' },
+      { name:'buy-visit-done',   src:'assets/images/superapp/buy-visit-done.jpg',   caption:'Visit scheduled' },
+      { name:'buy-docs',         src:'assets/images/superapp/buy-docs.jpg',         caption:'Reservation document upload' },
+      { name:'buy-docs-uae',     src:'assets/images/superapp/buy-docs-uae.jpg',     caption:'Documents for a buyer inside the UAE — Emirates ID only' },
+      { name:'buy-docs-abroad',  src:'assets/images/superapp/buy-docs-abroad.jpg',  caption:'Documents for a buyer abroad — national ID and passport' },
+      { name:'buy-pay',          src:'assets/images/superapp/buy-pay.jpg',          caption:'Reservation payment — AED 10,000, card or Apple Pay' },
+      { name:'buy-pay-card',     src:'assets/images/superapp/buy-pay-card.jpg',     caption:'Reservation payment with a saved card selected' },
+      { name:'buy-done',         src:'assets/images/superapp/buy-done.jpg',         caption:'Reserved successfully' },
+      { name:'lease-list',       src:'assets/images/superapp/lease-list.jpg',       caption:'Lease Property — the same shell, the other tenure' },
+      { name:'lease-filter',     src:'assets/images/superapp/lease-filter.jpg',     caption:'Lease filter' },
+      { name:'lease-filter-2',   src:'assets/images/superapp/lease-filter-2.jpg',   caption:'Lease filter, continued' },
+      { name:'lease-details',    src:'assets/images/superapp/lease-details.jpg',    caption:'Lease details — Rental & Charges, and a security deposit notice' },
+      { name:'lease-visit',      src:'assets/images/superapp/lease-visit.jpg',      caption:'Book a visit to a lease property' },
+      { name:'lease-visit-done', src:'assets/images/superapp/lease-visit-done.jpg', caption:'Lease visit scheduled' },
+      { name:'lease-docs',       src:'assets/images/superapp/lease-docs.jpg',       caption:'Lease document upload — Emirates ID front and back' },
+      { name:'lease-pay',        src:'assets/images/superapp/lease-pay.jpg',        caption:'Security deposit — AED 1,000' },
+      { name:'lease-done',       src:'assets/images/superapp/lease-done.jpg',       caption:'Lease payment successful' },
+      { name:'care-home',        src:'assets/images/superapp/care-home.jpg',        caption:'Arada Care — pick a property, then a service' },
+      { name:'care-home-2',      src:'assets/images/superapp/care-home-2.jpg',      caption:'Arada Care with a property selected' },
+      { name:'care-request',     src:'assets/images/superapp/care-request.jpg',     caption:'Home service request — with photo and voice upload' },
+      { name:'care-quote',       src:'assets/images/superapp/care-quote.jpg',       caption:'Quotation — line items, tax, service fee, and Reject beside Proceed to Pay' },
+      { name:'care-status',      src:'assets/images/superapp/care-status.jpg',      caption:'Service status — In Progress and Completed' },
+      { name:'care-status-pay',  src:'assets/images/superapp/care-status-pay.jpg',  caption:'View & Pay, inline in the tracker' },
+      { name:'care-done',        src:'assets/images/superapp/care-done.jpg',        caption:'Service request received' },
+      { name:'care-pay-done',    src:'assets/images/superapp/care-pay-done.jpg',    caption:'Service payment received' },
+      { name:'amc-tiers',        src:'assets/images/superapp/amc-tiers.jpg',        caption:'Maintenance packages — Standard, Silver, Gold' },
+      { name:'amc-expanded',     src:'assets/images/superapp/amc-expanded.jpg',     caption:'What a package includes, expanded' },
+      { name:'amc-pay',          src:'assets/images/superapp/amc-pay.jpg',          caption:'Package checkout — saved cards, CVV still required' },
+      { name:'amc-done',         src:'assets/images/superapp/amc-done.jpg',         caption:'Package purchased' },
+      { name:'issue-common',     src:'assets/images/superapp/issue-common.jpg',     caption:'Raise an Issue — common area, seven fields' },
+      { name:'issue-general',    src:'assets/images/superapp/issue-general.jpg',    caption:'Raise an Issue — general area, three fields' },
+      { name:'issue-unit',       src:'assets/images/superapp/issue-unit.jpg',       caption:'Raise an Issue — another unit, four fields' },
+      { name:'issue-status',     src:'assets/images/superapp/issue-status.jpg',     caption:'Complaint status, reading back every field submitted' },
+      { name:'issue-done',       src:'assets/images/superapp/issue-done.jpg',       caption:'Complaint received' },
+      { name:'req-noc',          src:'assets/images/superapp/req-noc.jpg',          caption:'NOC — buyer and seller documents both required' },
+      { name:'req-noc-status',   src:'assets/images/superapp/req-noc-status.jpg',   caption:'NOC status — Received, Review, Approved' },
+      { name:'req-noc-done',     src:'assets/images/superapp/req-noc-done.jpg',     caption:'NOC submitted' },
+      { name:'req-access',       src:'assets/images/superapp/req-access.jpg',       caption:'Access Card — type, reason, how many' },
+      { name:'req-access-status',src:'assets/images/superapp/req-access-status.jpg',caption:'Access Card status' },
+      { name:'req-access-done',  src:'assets/images/superapp/req-access-done.jpg',  caption:'Access Card submitted' },
+      { name:'req-permit',       src:'assets/images/superapp/req-permit.jpg',       caption:'Work Permit — dates, vendor, layout and contractor licence' },
+      { name:'req-permit-vendor',src:'assets/images/superapp/req-permit-vendor.jpg',caption:'Work Permit with an external vendor' },
+      { name:'req-permit-status',src:'assets/images/superapp/req-permit-status.jpg',caption:'Work Permit status' },
+      { name:'req-pet',          src:'assets/images/superapp/req-pet.jpg',          caption:'Pet Registration — with medical records and a pet ID' },
+      { name:'req-pet-status',   src:'assets/images/superapp/req-pet-status.jpg',   caption:'Pet Registration status' },
+      { name:'req-pet-done',     src:'assets/images/superapp/req-pet-done.jpg',     caption:'Pet Registration submitted' },
+      { name:'req-waiver',       src:'assets/images/superapp/req-waiver.jpg',       caption:'Late Fee Waiver — two fields' },
+      { name:'req-waiver-status',src:'assets/images/superapp/req-waiver-status.jpg',caption:'Late Fee Waiver status' },
+      { name:'req-waiver-done',  src:'assets/images/superapp/req-waiver-done.jpg',  caption:'Late Fee Waiver submitted' },
+      { name:'req-proof',        src:'assets/images/superapp/req-proof.jpg',        caption:'Proof of Payment — upload and describe' },
+      { name:'req-proof-2',      src:'assets/images/superapp/req-proof-2.jpg',      caption:'Proof of Payment with a document attached' },
+      { name:'req-proof-status', src:'assets/images/superapp/req-proof-status.jpg', caption:'Proof of Payment status' },
+      { name:'req-aopt',         src:'assets/images/superapp/req-aopt.jpg',         caption:'Amendment of Payment Terms' },
+      { name:'req-aopt-status',  src:'assets/images/superapp/req-aopt-status.jpg',  caption:'Amendment of Payment Terms status' },
+      { name:'req-aopt-done',    src:'assets/images/superapp/req-aopt-done.jpg',    caption:'Amendment submitted' },
+      { name:'movein-1',         src:'assets/images/superapp/movein-1.jpg',         caption:'Move-In step 1 — who is moving in' },
+      { name:'movein-2',         src:'assets/images/superapp/movein-2.jpg',         caption:'Move-In — date and ID proof' },
+      { name:'movein-3',         src:'assets/images/superapp/movein-3.jpg',         caption:'Move-In — emergency contact, with the same-unit rule stated up front' },
+      { name:'movein-4',         src:'assets/images/superapp/movein-4.jpg',         caption:'Move-In — vendor details' },
+      { name:'movein-4b',        src:'assets/images/superapp/movein-4b.jpg',        caption:'Move-In — external vendor details' },
+      { name:'movein-status',    src:'assets/images/superapp/movein-status.jpg',    caption:'Move-In status' },
+      { name:'movein-done',      src:'assets/images/superapp/movein-done.jpg',      caption:'Move-In submitted' },
+      { name:'moveout',          src:'assets/images/superapp/moveout.jpg',          caption:'Move-Out — date, reason, destination and vendor' },
+      { name:'moveout-status',   src:'assets/images/superapp/moveout-status.jpg',   caption:'Move-Out status' },
+      { name:'moveout-done',     src:'assets/images/superapp/moveout-done.jpg',     caption:'Move-Out submitted' },
+      { name:'amenity',          src:'assets/images/superapp/amenity.jpg',          caption:'Book Amenities — pool or tennis court, with attendees' },
+      { name:'amenity-pay',      src:'assets/images/superapp/amenity-pay.jpg',      caption:'Amenity payment — review, then pay' },
+      { name:'amenity-status',   src:'assets/images/superapp/amenity-status.jpg',   caption:'Amenity booking status' },
+      { name:'amenity-done',     src:'assets/images/superapp/amenity-done.jpg',     caption:'Amenity booked' },
+      { name:'profile',          src:'assets/images/superapp/profile.jpg',          caption:'Profile — user details, passport and Emirates ID sections' },
+      { name:'profile-edit',     src:'assets/images/superapp/profile-edit.jpg',     caption:'Editing personal details' },
+      { name:'profile-passport', src:'assets/images/superapp/profile-passport.jpg', caption:'Passport upload' },
+      { name:'profile-done',     src:'assets/images/superapp/profile-done.jpg',     caption:'Profile updated' }
+    ];
+  </script>
+
+  <!-- animations.js owns the IntersectionObserver that reveals content. -->
+  <script src="js/animations.js"></script>
+  <script src="js/case-study.js"></script>
+</body>
+</html>

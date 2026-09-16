@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arada Broker App — Case Study | Leo Stalin</title>
+  <meta name="description" content="A senior UI/UX case study: designing the Arada Broker App — turning a mailed, ten-page bilingual agency agreement and a paper compliance pack into a mobile onboarding, verification and partner-services product.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Leo Stalin">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Arada Broker App — UI/UX Case Study">
+  <meta property="og:description" content="Brokers were stuck in paperwork, email threads and waiting. This app turns becoming an Arada partner into something you can finish on a phone — and then see the status of.">
+  <meta property="og:image" content="assets/images/broker-app/dashboard.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
+
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/phone-frames.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header cs-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="index.html#work">All Projects</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO / OVERVIEW ============ -->
+    <section class="cs-hero-banner" id="overview">
+      <div class="cs-hero-banner__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+      </div>
+      <div class="container">
+        <a href="index.html#work" class="cs-back reveal-up">← Back to all projects</a>
+        <p class="eyebrow reveal-up" style="--delay:.05s">Case Study · PropTech · Native mobile</p>
+        <h1 class="cs-hero-banner__title reveal-up" style="--delay:.1s">Arada<br><span class="cs-title-accent">Broker App</span></h1>
+        <p class="cs-hero-banner__subtitle reveal-up" style="--delay:.15s">Becoming an Arada partner used to mean a ten-page bilingual agreement, a folder of licences, and an email thread that went quiet. This app turns that into something a broker can finish on a phone — and then watch the status of.</p>
+
+        <div class="cs-overview-grid reveal-up" style="--delay:.2s">
+          <div><strong>Client</strong><span>Arada — Sharjah &amp; Dubai master developer</span></div>
+          <div><strong>Product</strong><span>Broker App — partner onboarding &amp; services</span></div>
+          <div><strong>My role</strong><span>UI/UX Designer — led the design end-to-end</span></div>
+          <div><strong>Platform</strong><span>Native mobile, portrait only (430 × 932)</span></div>
+          <div><strong>Users</strong><span>External real-estate brokerages selling Arada stock</span></div>
+          <div><strong>Worked with</strong><span>Product, sales, legal &amp; compliance, engineering</span></div>
+          <div><strong>Tools</strong><span>Figma, FigJam, Photoshop, Illustrator</span></div>
+          <div><strong>Scope</strong><span>IA, flows, UI system, every state, dev handoff</span></div>
+        </div>
+
+        <!-- Three-phone stage. The dashboard leads because it's the product's
+             face; the access card and the approved profile flank it because
+             together they show the two ends of the journey this app is about. -->
+        <div class="bk-stage reveal-up" style="--delay:.25s">
+          <div class="bk-stage__glow" aria-hidden="true"></div>
+
+          <figure class="bk-phone bk-phone--side" data-shot="profile-approved" tabindex="0" role="button" aria-label="Enlarge: approved broker profile">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-approved.jpg" alt="Approved broker profile: name and Owner role on a navy card, verified email and mobile with green shields, and legal detail rows for company details, point of contact, legal documents and bank details">
+            </div></div>
+          </figure>
+
+          <figure class="bk-phone bk-phone--lead" data-shot="dashboard" tabindex="0" role="button" aria-label="Enlarge: broker dashboard">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/dashboard.jpg" alt="Broker dashboard: a Hello Brokers hero offering exclusive Arada creative assets, Lead Protection and Unit Status tiles, three request types for shoot, event and approvals, a team invitation panel, latest sales and a digital access card">
+            </div></div>
+          </figure>
+
+          <figure class="bk-phone bk-phone--side" data-shot="access-card" tabindex="0" role="button" aria-label="Enlarge: digital access card">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/access-card.jpg" alt="Arada Partners digital access card with an access approved badge, a dynamic QR code that regenerates every sixty seconds, visiting hours and validity, and a list of approved show apartments">
+            </div></div>
+          </figure>
+
+          <p class="bk-stage__caption">Approved profile, dashboard and digital access card — tap any screen to open it full size.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STICKY SECTION NAV ============ -->
+    <nav class="cs-subnav" id="csSubnav" aria-label="Case study sections">
+      <div class="container">
+        <div class="cs-subnav__inner">
+          <a href="#context" class="cs-subnav__link" data-subnav>Context</a>
+          <a href="#problem" class="cs-subnav__link" data-subnav>Problem</a>
+          <a href="#goals" class="cs-subnav__link" data-subnav>Goals</a>
+          <a href="#architecture" class="cs-subnav__link" data-subnav>Architecture</a>
+          <a href="#identity" class="cs-subnav__link" data-subnav>Identity</a>
+          <a href="#verification" class="cs-subnav__link" data-subnav>Verification</a>
+          <a href="#documents" class="cs-subnav__link" data-subnav>Documents</a>
+          <a href="#changes" class="cs-subnav__link" data-subnav>Changes</a>
+          <a href="#services" class="cs-subnav__link" data-subnav>Services</a>
+          <a href="#team" class="cs-subnav__link" data-subnav>Team</a>
+          <a href="#system" class="cs-subnav__link" data-subnav>System</a>
+          <a href="#challenges" class="cs-subnav__link" data-subnav>Challenges</a>
+          <a href="#outcomes" class="cs-subnav__link" data-subnav>Outcomes</a>
+          <a href="#screens" class="cs-subnav__link" data-subnav>Screens</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ SCOPE ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-scope reveal-up">
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">92</span>
+            <span class="cs-scope__label">Screens in the final file</span>
+            <span class="cs-scope__note">Including every empty, filled, pending, rejected and offline state — not just the happy path</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">12</span>
+            <span class="cs-scope__label">Flows designed</span>
+            <span class="cs-scope__note">Onboarding, identity, legal documents, bank details, agreement, team, services and system states</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">5</span>
+            <span class="cs-scope__label">Verification states</span>
+            <span class="cs-scope__note">A profile moves through five distinct conditions before a broker can trade</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">10 pp</span>
+            <span class="cs-scope__label">Agreement being replaced</span>
+            <span class="cs-scope__note">A bilingual English/Arabic agency contract that previously moved by post and email</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTEXT ============ -->
+    <section class="section section--alt" id="context">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Context</p>
+          <h2 class="section-title">Arada doesn't sell most of its homes itself</h2>
+          <p class="section-sub">Like every major UAE developer, Arada sells through a network of external brokerages. Those brokers are not employees — they are independent, regulated businesses. Before one can sell a single unit, it has to be onboarded, verified and put under contract.</p>
+        </div>
+
+        <div class="cs-two-col--wide cs-two-col">
+          <div class="reveal-up">
+            <p class="cs-body cs-body--lead">This app is the front door to that relationship.</p>
+            <p class="cs-body">It is not a lead tracker or a commission dashboard. Its job is narrower and, commercially, further upstream: take a brokerage from "we'd like to sell Arada" to "we are an approved partner with a signed agency agreement, a verified licence and a digital access card" — and then keep serving that partner day to day.</p>
+            <p class="cs-body">The regulatory weight is real. A UAE brokerage carries a <strong>trade licence</strong>, an <strong>ORN</strong> — the RERA office registration number that makes it legal to broker property — and residency <strong>visas</strong> for its people. All of it expires. All of it has to be on file, current, and matched to a named legal entity before a commission can be paid.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="cs-panel">
+              <p class="cs-panel__title">What makes this hard</p>
+              <ul class="cs-bullet-list">
+                <li>The user is a <strong>company</strong>, not a person — but a person has to do the typing.</li>
+                <li>Every field feeds a legal contract, so "roughly right" isn't acceptable.</li>
+                <li>The broker can't be trusted to self-certify, so nothing is live until Arada approves it.</li>
+                <li>Approval is asynchronous and out of the user's control — the design has to make waiting tolerable.</li>
+                <li>Brokers are mobile-first by trade. They are between site visits, not at a desk.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bk-row reveal-up" style="margin-top:56px;">
+          <figure class="bk-phone" data-shot="onboarding" tabindex="0" role="button" aria-label="Enlarge: onboarding screen">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/onboarding.jpg" alt="Onboarding screen with a full-bleed render of an Arada waterfront tower development above the Arada wordmark, a three-dot progress indicator, and brand messaging with skip and next actions">
+            </div></div>
+            <figcaption><b>Onboarding</b>Arada's own projects carry the pitch — the product Arada is asking brokers to sell</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="signin" tabindex="0" role="button" aria-label="Enlarge: sign in screen">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/signin.jpg" alt="Entry screen over a dusk render of Arada towers, offering Sign In for existing partners and Be Our Partner for new applicants, with the app version below">
+            </div></div>
+            <figcaption><b>Two doors, named for intent</b>“Sign In” and “Be Our Partner” — an existing partner and a prospect want different things</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:36px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p>The entry screen labels the second action <strong>“Be Our Partner”</strong> rather than “Sign Up”. It's a small piece of copy doing positioning work: applying to sell for a developer is a business proposal, not account creation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROBLEM ============ -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">The problem</p>
+          <h2 class="section-title">Paperwork, an email thread, and silence</h2>
+          <p class="section-sub">The process this app replaces had three failure modes, and they compounded.</p>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="reveal-up">
+            <p class="cs-body"><strong>The paperwork was physical.</strong> Trade licence, ORN certificate, visas, bank letter, and the agency agreement itself — assembled by hand, scanned or couriered, and re-sent whenever one page was wrong or one document had expired.</p>
+            <p class="cs-body"><strong>The channel was email.</strong> Which means the state of an application lived in someone's inbox, in a thread nobody owned, with no shared idea of what had been received and what was still missing.</p>
+            <p class="cs-body"><strong>And so it was slow.</strong> Not because anyone was idle, but because every handoff was a round trip through a medium with no status. A broker who had sent everything and a broker who had missed a document looked identical from the outside — both were just waiting.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="cs-pullquote">
+              <p>Brokers were frustrated with the paperwork and the mail communication, and the process was delayed.</p>
+              <cite>The brief, in one sentence</cite>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:76px;">The artefact at the centre of it</h3>
+        <p class="cs-body reveal-up">Everything the app collects exists to produce one document: a <strong>ten-page Real Estate Agency Agreement</strong> between Arada and the brokerage, set in parallel English and Arabic columns, signed by both parties.</p>
+
+        <div class="cs-deepdive" style="margin-top:40px;">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="bk-row" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="agreement-preview" tabindex="0" role="button" aria-label="Enlarge: in-app agreement preview">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/broker-app/agreement-preview.jpg" alt="A Preview Document sheet showing a multi-page bilingual contract in parallel English and Arabic columns with signature lines, and a Share action pinned to the bottom. The document body is deliberately blurred.">
+                </div></div>
+                <figcaption><b>Agreement preview, in-app</b>Body text blurred here — the real document carries live corporate identifiers and signatures</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">Why the IA looks the way it does</span>
+            <h3>Read the contract and the information architecture explains itself</h3>
+            <p>The agreement names the brokerage as the <em>Second Party</em> and carries, on its face, the company's licence number, its RERA registration, and its full bank details — beneficiary name, IBAN, SWIFT.</p>
+            <p>That is the entire onboarding form. <strong>The app isn't asking for documents because software likes forms; it's assembling a contract.</strong> Trade licence, ORN, visa and bank details are collected because the agreement cannot be executed without them.</p>
+            <p>It also explains a feature name. The dashboard's <strong>Lead Protection</strong> tile isn't marketing language — “Lead Protection Period” is a defined clause in this contract, governing who owns a prospective buyer and for how long. Surfacing it as a tile puts a contractual right where a broker can actually check it.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>The document is previewable inside the app, not attached to an email.</b> A ten-page contract read on a phone needs a real viewer with paging and pinch-zoom, not a download that opens somewhere else and loses the thread.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Bilingual, side by side.</b> Not a language toggle. Both columns are simultaneously visible because that is the legally operative form of the document — and it's how the counterparty's lawyer will read it.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Share is a primary action on the viewer.</b> The person holding the phone is rarely the only person who needs to see the contract before it's signed.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GOALS ============ -->
+    <section class="section section--alt" id="goals">
+      <div class="container">
+        <div class="cs-goals reveal-up">
+          <p class="eyebrow">Goals</p>
+          <h2 class="section-title">What the app had to achieve</h2>
+          <div class="cs-goals-grid">
+            <div class="cs-goal"><span>01</span>Onboard a brokerage without paper<em>Capture identity, licences and bank details from a phone, in one sitting or several.</em></div>
+            <div class="cs-goal"><span>02</span>Make progress visible at all times<em>A broker should never have to ask what stage their application is at.</em></div>
+            <div class="cs-goal"><span>03</span>Replace the email thread with state<em>Every submission returns a status the broker can see, not a message someone has to answer.</em></div>
+            <div class="cs-goal"><span>04</span>Keep verified data trustworthy<em>Once Arada has approved an identity, it can't be quietly edited by the broker.</em></div>
+            <div class="cs-goal"><span>05</span>Serve the partner after approval<em>Onboarding is the start of the relationship, not the product.</em></div>
+            <div class="cs-goal"><span>06</span>Survive bad conditions<em>Brokers use this between site visits, on patchy signal, on old devices.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ARCHITECTURE ============ -->
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Information architecture</p>
+          <h2 class="section-title">A profile that is really a compliance file</h2>
+          <p class="section-sub">The structural decision that shapes the whole product: Profile isn't account settings. It's the brokerage's legal standing with Arada, and it behaves accordingly.</p>
+        </div>
+
+        <div class="cs-two-col--wide cs-two-col">
+          <div class="reveal-up">
+            <p class="cs-body">In most apps, Profile is a low-traffic corner holding a photo and a password. Here it carries the four things that determine whether the business can trade at all — <strong>Company details, Point of contact, Legal documents, Bank details</strong> — plus the history of what's been booked and who's been invited.</p>
+            <p class="cs-body">So Profile gets a permanent completion meter, its rows change affordance as they fill, and the whole section changes character once Arada approves it. It's the only screen in the app whose job changes over the account's lifetime.</p>
+            <p class="cs-body">Around it sits a deliberately small shell: a dashboard, property search, unit status, and notifications. <strong>Three or four destinations, not a menu.</strong> A broker checking something between meetings should not have to navigate.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="cs-panel">
+              <p class="cs-panel__title">Who can do what</p>
+              <p class="cs-body" style="margin-top:6px;">A brokerage is a team, so the account is too. The invited roster carries three roles:</p>
+              <ul class="cs-bullet-list">
+                <li><strong>Owner</strong> — holds the legal relationship; the one who signs.</li>
+                <li><strong>Admin</strong> — administers the account and the team.</li>
+                <li><strong>Broker</strong> — sells; the majority of the roster.</li>
+              </ul>
+              <p class="cs-body" style="margin-top:14px;">The distinction matters legally: the person who executes a ten-page agency agreement is not the same person who requests a photoshoot on a Tuesday.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bk-row reveal-up" style="margin-top:60px;">
+          <figure class="bk-phone" data-shot="profile-50" tabindex="0" role="button" aria-label="Enlarge: incomplete profile">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-50.jpg" alt="Profile at fifty per cent completion with a coral progress ring prompting the broker to upload legal documents to become verified, above contact details and four legal detail rows with upload icons">
+            </div></div>
+            <figcaption><b>Profile, incomplete</b>The meter and its call to action sit above the identity card, not below it</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="profile-approved" tabindex="0" role="button" aria-label="Enlarge: approved profile">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-approved.jpg" alt="Approved profile with the completion card gone, all legal detail rows now navigable chevrons, a settings row, log out and the app version">
+            </div></div>
+            <figcaption><b>Profile, approved</b>The meter disappears entirely — a finished job shouldn't leave furniture behind</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="notifications" tabindex="0" role="button" aria-label="Enlarge: notifications">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/notifications.png" alt="Notifications list showing a video shoot marked approved in green and event requests marked approved and rejected, the rejected one in coral, with the unread item outlined">
+            </div></div>
+            <figcaption><b>Notifications</b>Where the old email thread ended up — outcomes, dated, with status on the row</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ IDENTITY ============ -->
+    <section class="section section--alt" id="identity">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 01. Identity</p>
+          <h2 class="section-title">Getting a regulated identity in through a phone camera</h2>
+          <p class="section-sub">The first thing the app has to do is the thing paper was worst at: prove who is applying.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="verify-email-otp" tabindex="0" role="button" aria-label="Enlarge: verify email">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/verify-email-otp.jpg" alt="Verify Email step asking for a six-digit one-time code sent to an editable email address, with a countdown and a resend option">
+            </div></div>
+            <figcaption><b>01</b>Verify email</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="verify-mobile-channel" tabindex="0" role="button" aria-label="Enlarge: choose OTP channel">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/verify-mobile-channel.png" alt="A green banner confirming the email was verified, then Verify Mobile Number offering the code by WhatsApp or, alternatively, by SMS">
+            </div></div>
+            <figcaption><b>02</b>Choose a channel</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="scan-sheet" tabindex="0" role="button" aria-label="Enlarge: identity capture options">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/scan-sheet.png" alt="A sheet titled Scan Emirates ID or Passport with a document-in-frame illustration, a privacy reassurance, and three options: scan, upload Emirates ID, or upload passport">
+            </div></div>
+            <figcaption><b>03</b>Scan or upload</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="scan-id-confirm" tabindex="0" role="button" aria-label="Enlarge: confirm scanned ID">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/scan-id-confirm.jpg" alt="Emirates ID details sheet with ID number, issue date and expiry date fields above captured front and back card thumbnails, then Continue and Rescan">
+            </div></div>
+            <figcaption><b>04</b>Confirm, or rescan</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="signup-form" tabindex="0" role="button" aria-label="Enlarge: completed application form">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/signup-form.png" alt="A completed application form with agent type set to Company, personal and company names, trade licence number, company email, UAE mobile, country, city, address, an optional Arada salesperson field and an attached Emirates ID file">
+            </div></div>
+            <figcaption><b>05</b>Complete the application</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">WhatsApp before SMS</h4>
+            <p class="cs-body">The mobile verification step offers the code by <strong>WhatsApp first</strong>, with SMS as the alternative below an “OR”. In the Gulf that ordering is correct, not novel: WhatsApp is the default business channel, and a broker whose SIM is roaming or whose second phone holds the work number will get a WhatsApp message when an SMS quietly fails.</p>
+            <p class="cs-body">Offering the choice at all is the point. A one-time code that doesn't arrive is the single most common way an onboarding funnel dies, and it's the one failure the user can do nothing about.</p>
+
+            <h4 class="cs-h4" style="margin-top:38px;">Scan, then confirm — never scan and assume</h4>
+            <p class="cs-body">Capture returns a review sheet with the extracted <strong>ID number, issue date and expiry date</strong> in editable fields, the captured images shown beneath them, and <strong>Rescan</strong> given equal billing to Continue.</p>
+            <p class="cs-body">Optical capture of a worn card under bad light is unreliable, and this data lands in a legal contract. So the design treats extraction as a <em>draft</em> the human ratifies. The passport path is identical in shape, which means one mental model covers both residents and non-residents.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">The form, read as a contract schedule</h4>
+            <p class="cs-body">Eleven required fields and one optional. The asymmetry is the interesting part.</p>
+            <div class="bk-table-wrap" style="margin-top:18px;">
+              <table class="bk-fields">
+                <caption class="sr-only">Fields in the broker application form and why each is required</caption>
+                <thead><tr><th scope="col">Field</th><th scope="col">Why it's there</th></tr></thead>
+                <tbody>
+                  <tr><td>Agent type <span class="bk-req">*</span></td><td>Company or individual — changes what else is asked</td></tr>
+                  <tr><td>First / last name <span class="bk-req">*</span></td><td>The natural person signing</td></tr>
+                  <tr><td>Company name <span class="bk-req">*</span></td><td>The legal entity named in the agreement</td></tr>
+                  <tr><td>Trade licence no. <span class="bk-req">*</span></td><td>Proof the entity may trade</td></tr>
+                  <tr><td>Company email <span class="bk-req">*</span></td><td>Contractual notice address</td></tr>
+                  <tr><td>Mobile <span class="bk-req">*</span></td><td>Verified channel, +971 pre-selected</td></tr>
+                  <tr><td>Country, city, address <span class="bk-req">*</span></td><td>Registered address for the contract</td></tr>
+                  <tr><td>Emirates ID / passport <span class="bk-req">*</span></td><td>Identity of the signatory</td></tr>
+                  <tr><td>Arada salesperson <span class="bk-opt">optional</span></td><td>Attribution if someone referred them in</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="cs-body" style="margin-top:20px;">The one optional field is the internal one. Everything the <em>contract</em> needs is mandatory; the only thing that can be left blank is the thing <em>Arada</em> would like for its own attribution. That ordering is a small act of respect for the applicant's time.</p>
+            <div class="cs-note" style="margin-top:26px;">
+              <span class="cs-note__icon" aria-hidden="true">◆</span>
+              <p>Both identity sheets carry the same line: <strong>“Your privacy is important for us and your data is stored securely.”</strong> Placed at the moment of the ask, not buried in a policy — which is the only place it does any work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VERIFICATION ============ -->
+    <section class="section" id="verification">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 02. Verification</p>
+          <h2 class="section-title">Five states, because "pending" is a place people live</h2>
+          <p class="section-sub">The heart of the product. A brokerage doesn't become a partner in one action — it moves through a sequence, most of which is spent waiting on someone else.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="profile-50" tabindex="0" role="button" aria-label="Enlarge: fifty per cent complete">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-50.jpg" alt="Profile completion at fifty per cent with a coral ring and a prompt to upload legal documents">
+            </div></div>
+            <figcaption><b>50%</b>Documents outstanding</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="profile-80" tabindex="0" role="button" aria-label="Enlarge: eighty per cent complete">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-80.png" alt="Profile completion at eighty per cent with a teal ring, offering either to add bank details or to submit for verification anyway">
+            </div></div>
+            <figcaption><b>80%</b>Bank details optional</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="profile-100" tabindex="0" role="button" aria-label="Enlarge: one hundred per cent complete">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-100.png" alt="Profile completion at one hundred per cent with a full teal ring and a submit for verification action">
+            </div></div>
+            <figcaption><b>100%</b>Ready to submit</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="profile-verifying" tabindex="0" role="button" aria-label="Enlarge: under verification">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-verifying.jpg" alt="Profile showing an Under Verification card with a coral alert mark and a status line explaining the request has been submitted and Arada will respond shortly">
+            </div></div>
+            <figcaption><b>Waiting</b>Under verification</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="profile-approved" tabindex="0" role="button" aria-label="Enlarge: approved">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/profile-approved.jpg" alt="Approved profile with no completion card, navigable legal detail rows and a settings entry">
+            </div></div>
+            <figcaption><b>Approved</b>Cleared to trade</figcaption>
+          </figure>
+        </div>
+
+        <div class="bk-states reveal-up">
+          <div class="bk-state">
+            <span class="bk-state__dot bk-state__dot--todo" aria-hidden="true"></span>
+            <strong>50% · Coral</strong>
+            <span>You owe us something. The ring is warm and the action is specific: upload legal documents.</span>
+          </div>
+          <div class="bk-state">
+            <span class="bk-state__dot bk-state__dot--near" aria-hidden="true"></span>
+            <strong>80% · Teal</strong>
+            <span>Good enough to proceed. Colour flips reassuring and the copy offers a way out early.</span>
+          </div>
+          <div class="bk-state">
+            <span class="bk-state__dot bk-state__dot--done" aria-hidden="true"></span>
+            <strong>100% · Teal, full</strong>
+            <span>Complete, but not submitted. The last step stays a deliberate human act.</span>
+          </div>
+          <div class="bk-state">
+            <span class="bk-state__dot bk-state__dot--wait" aria-hidden="true"></span>
+            <strong>Under verification</strong>
+            <span>Out of your hands. The submit card is replaced by a status card, so there's nothing to poke.</span>
+          </div>
+          <div class="bk-state">
+            <span class="bk-state__dot bk-state__dot--live" aria-hidden="true"></span>
+            <strong>Approved</strong>
+            <span>The scaffolding is removed. Rows become navigation; Settings appears.</span>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:72px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The 80% escape hatch is the real decision</h4>
+            <p class="cs-body">At 80% the copy reads: <em>“Add bank details to complete your profile, or submit for verification.”</em> That “or” is doing a lot of work.</p>
+            <p class="cs-body">Bank details are the field brokers stall on — they need a bank letter, a finance colleague, an IBAN nobody has to hand. Blocking submission on them would park applications at 80% indefinitely while Arada waits on something that isn't needed until the first commission is paid.</p>
+            <p class="cs-body">So the flow lets verification start in parallel with the slowest document. <strong>Sequence the review around what the business actually needs first, and the funnel stops leaking at its narrowest point.</strong></p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Two ways to encode the same state</h4>
+            <p class="cs-body">The percentage ring is the obvious signal. The quieter one is the <strong>icon at the end of each legal-details row</strong>: an upload cloud while something is missing, a chevron once it's filled.</p>
+            <p class="cs-body">That means the broker can read what's outstanding without reading the meter — the list itself shows which rows still want something. Two independent encodings of the same truth, so the screen survives being glanced at.</p>
+            <p class="cs-body">And the completion card is <em>removed</em> on approval rather than shown at 100% forever. A permanent “100% complete” badge would be a trophy; the absence of the card is the actual reward.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DOCUMENTS ============ -->
+    <section class="section section--alt" id="documents">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 03. Documents</p>
+          <h2 class="section-title">Three documents, each with a life of its own</h2>
+          <p class="section-sub">Trade licence, ORN and visa. Every one has a number, an issuing authority, a place of issuance and — crucially — an expiry date.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="docs-checklist" tabindex="0" role="button" aria-label="Enlarge: document checklist">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/docs-checklist.png" alt="Upload Legal Documents checklist listing Trade License, ORN and Visa as three rows, each with an upload icon">
+            </div></div>
+            <figcaption><b>01</b>The three required documents</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="docs-form" tabindex="0" role="button" aria-label="Enlarge: document detail form">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/docs-form.png" alt="A per-document form capturing document type, number, issuing authority, place of issuance, issued date, valid-till date and an attachment">
+            </div></div>
+            <figcaption><b>02</b>Metadata, not just a file</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="licence-preview" tabindex="0" role="button" aria-label="Enlarge: uploaded licence preview">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/licence-preview.jpg" alt="A sheet previewing an uploaded commercial licence document, its content deliberately blurred, over the upload legal documents screen">
+            </div></div>
+            <figcaption><b>03</b>Preview what you attached</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="docs-readback" tabindex="0" role="button" aria-label="Enlarge: documents on file">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/docs-readback.png" alt="Legal Documents read view with a card per document showing number, issuing authority, place of issuance, issued and valid-till dates, an attached PDF chip and an edit action">
+            </div></div>
+            <figcaption><b>04</b>What's on file, and until when</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="agreement-sign" tabindex="0" role="button" aria-label="Enlarge: review and sign agreement">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/agreement-sign.png" alt="Profile showing a Review and Sign Agreement card with step one to review or share the agreement marked optional, and step two to sign it">
+            </div></div>
+            <figcaption><b>05</b>Review, share, then sign</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Capturing the expiry is the whole game</h4>
+            <p class="cs-body">The obvious design is a file picker. That would have been wrong. A scanned PDF is opaque to the system — nobody can query it, nobody gets warned by it, and an expired trade licence sitting in a folder looks exactly like a valid one.</p>
+            <p class="cs-body">So each document is captured as <strong>structured metadata with the PDF attached to it</strong>: number, authority, place, issued date, valid-till date. The read view then shows those dates on the face of the card.</p>
+            <p class="cs-body">That single decision converts compliance from a filing problem into a data problem — and it's what makes it possible to ever chase a broker <em>before</em> their licence lapses instead of discovering it at the worst moment.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Splitting review from signature</h4>
+            <p class="cs-body">Signing the agreement is presented as two numbered steps, and the first one is marked <strong>Optional</strong>:</p>
+            <ul class="cs-check-list cs-check-list--tick" style="margin-top:14px;">
+              <li><strong>Step 1 — Review / Share Agreement.</strong> Open it, or send it to whoever needs to see it first.</li>
+              <li><strong>Step 2 — Sign Agreement.</strong> The commitment, alone, on its own row.</li>
+            </ul>
+            <p class="cs-body" style="margin-top:18px;">Marking review optional is honest — plenty of brokers will sign without a second read, and pretending otherwise adds a step people learn to click through. But making <em>share</em> a first-class action acknowledges something true about business contracts: the person with the phone often isn't the person who decides.</p>
+            <p class="cs-body">Separating the two also means the signature row is never the thing you tapped by accident while trying to read.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHANGES ============ -->
+    <section class="section" id="changes">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 04. Change requests</p>
+          <h2 class="section-title">After approval, editing stops being editing</h2>
+          <p class="section-sub">Once Arada has verified a legal identity, the broker can no longer simply change it. This is where the app most directly replaces the email thread.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="bank-view" tabindex="0" role="button" aria-label="Enlarge: bank details on file">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/bank-view.png" alt="Bank details read view listing bank name, account holder, a masked IBAN ending in 1234, branch and SWIFT code, with two attachments that can be previewed">
+            </div></div>
+            <figcaption><b>01</b>On file, IBAN masked</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="bank-edit-disabled" tabindex="0" role="button" aria-label="Enlarge: edit form, nothing changed">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/bank-edit-disabled.png" alt="Bank details edit form with every field populated and clearable, and the Update button rendered in a pale disabled state">
+            </div></div>
+            <figcaption><b>02</b>Update disabled — nothing changed yet</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="bank-edit-enabled" tabindex="0" role="button" aria-label="Enlarge: edit form, one field changed">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/bank-edit-enabled.png" alt="The same bank details edit form after the SWIFT code has been altered, with the Update button now solid and active">
+            </div></div>
+            <figcaption><b>03</b>One edit, and Update wakes up</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="bank-request-receipt" tabindex="0" role="button" aria-label="Enlarge: change request receipt">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/bank-request-receipt.png" alt="A Submitted confirmation explaining the request has gone to the admin for approval, with a request details card showing status Pending and the new SWIFT code">
+            </div></div>
+            <figcaption><b>04</b>A receipt naming the pending field</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="company-request-receipt" tabindex="0" role="button" aria-label="Enlarge: company change receipt">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/company-request-receipt.png" alt="The same submitted pattern for a company details change, with status Pending and the new trade licence number listed">
+            </div></div>
+            <figcaption><b>05</b>Same pattern, different field</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The confirmation is a receipt, not a checkmark</h4>
+            <p class="cs-body">Most apps answer a save with “Saved”. This one answers with <strong>“Your request has been successfully submitted to the admin for approval”</strong> and then a Request Details card carrying two things: <strong>Status: Pending</strong>, and the specific field that's in flight, with its new value.</p>
+            <p class="cs-body">Echoing back only the changed field is the detail I'd defend hardest. A full summary of the record would bury the one fact the broker needs to remember — <em>the SWIFT code I just changed is pending, and that's why the old one is still showing.</em></p>
+            <p class="cs-body">This is the email thread, replaced. There is nothing to chase, because the state is on the screen.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Three guards on verified data</h4>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Update stays disabled until something actually differs.</b> Not disabled-until-valid — disabled-until-<em>dirty</em>. It's a small thing that stops a broker submitting an approval request that changes nothing and then waiting on it.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Company Name is greyed and non-editable.</b> The other fields around it can be requested; the legal entity's name cannot be self-served, because it's the name on the signed agreement. Locking it in place is more honest than accepting the edit and rejecting it later.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>The IBAN is masked in the read view.</b> Shown as <code>xxxx xxxx xxxx 1234</code> — enough to confirm it's the right account, not enough to be harvested from a screen in a café.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section section--alt" id="services">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 05. Partner services</p>
+          <h2 class="section-title">What the app does once you're in</h2>
+          <p class="section-sub">Onboarding is the entry fee. The reason a broker opens the app in month six is everything below.</p>
+        </div>
+
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="access-card" tabindex="0" role="button" aria-label="Enlarge: digital access card">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/broker-app/access-card.jpg" alt="Arada Partners access card with an access approved badge, a QR code refreshing on a sixty-second timer, visiting hours of ten to eighteen hundred, Monday to Saturday, valid till the end of 2026, and three approved show apartments across Aljada, Masaar and Palm Jumeirah">
+                </div></div>
+                <figcaption><b>Digital access card</b>The physical pass, dematerialised</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">01 — Access Card</span>
+            <h3>A credential that can't be photographed and reused</h3>
+            <p>Brokers take clients to show apartments. Site security needs to know this person is an approved Arada partner, allowed into <em>this</em> unit, within <em>these</em> hours.</p>
+            <p>The card is issued in-app with a <strong>QR code that regenerates every 60 seconds</strong>, and a visible countdown telling the holder so. That turns a screenshot into a useless artefact — the single most obvious way a static pass gets abused.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>The countdown is shown, not hidden.</b> “Refreshes in 00:47” explains why the code changed while the broker was walking from the car. Silent rotation reads as a bug.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>The constraints sit on the card face.</b> Visiting hours, days and validity are printed alongside the code, so the broker knows the answer before security does. Arriving at 19:00 is a conversation nobody wants.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Approved units are listed, individually ticked.</b> Named down to the unit — Nest 1204 at Aljada, Villa K3 at Masaar, PH 02 at Armani Beach — because access is granted per property, not per broker.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">D</span><span class="cs-decision__text"><b>Plain instructions for the human interaction.</b> “Present this card at the show apartment. The security team will scan the QR code on arrival.” A credential is only as good as the broker's confidence in using it.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-deepdive cs-deepdive--flip" style="margin-top:88px;">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="shoot-history" tabindex="0" role="button" aria-label="Enlarge: shoot request history">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/broker-app/shoot-history.png" alt="Video and photo shoot request history with Approved, Pending and Rejected tabs, listing approved shoots at Aljada Discovery centre, Masaar 2, Nasma Residences and Akala Residences, each with a share action">
+                </div></div>
+                <figcaption><b>Shoot history</b>Tabbed by outcome, shareable per row</figcaption>
+              </figure>
+              <figure class="bk-phone" data-shot="shoot-receipt" tabindex="0" role="button" aria-label="Enlarge: shoot request confirmation">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/broker-app/shoot-receipt.png" alt="A submitted confirmation stating the request will be reviewed within twenty-four hours, with request details listing the property, date and a one-hour time slot">
+                </div></div>
+                <figcaption><b>Confirmation</b>A stated 24-hour turnaround</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">02 — Shoot &amp; Event requests</span>
+            <h3>Requests that answer "when will I hear back?" before it's asked</h3>
+            <p>Brokers need content to sell with, and permission to run open-house events. Both were previously requests by email — and both are where “the process was delayed” was felt most often.</p>
+            <p>The shoot confirmation commits to a number: <strong>“We will review your request and get back to you within 24 hours.”</strong> Putting an SLA in the UI is a design decision with organisational consequences, and it's the most direct available answer to the original complaint.</p>
+            <p>Approved shoots then become <strong>shareable assets</strong> — a broker can pass footage to selected colleagues from a searchable, multi-select sheet, with a “Shared” chip marking what's already gone out. The request produces something reusable, not a one-off favour.</p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Booking is a date strip and fixed hourly slots, not a free-text field.</b> Availability is finite and crews are scheduled; a picker that can only express bookable time removes an entire class of back-and-forth.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Attachment limits are stated up front.</b> “Upload PDF, JPG, PNG — max 5 MB”, beside the control, before the failure.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>The event form carries an explicit liability acknowledgement.</b> A checkbox stating brokers are responsible for issues during the event — legal copy that belongs in the flow, not in a terms page nobody opens.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bk-row reveal-up" style="margin-top:76px;">
+          <figure class="bk-phone" data-shot="shoot-form" tabindex="0" role="button" aria-label="Enlarge: shoot booking form">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/shoot-form.png" alt="Video and photo shoot request form with a property selector, a month and day date strip, and eight selectable hourly time slots from ten in the morning to five in the afternoon">
+            </div></div>
+            <figcaption><b>Booking</b>Only bookable time is expressible</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="event-form" tabindex="0" role="button" aria-label="Enlarge: event request form">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/event-form.png" alt="Event request form capturing event type, location, date, attendee count, special requests and an attachment, above a liability acknowledgement checkbox and a submit action">
+            </div></div>
+            <figcaption><b>Event request</b>Liability acknowledged in the flow</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="event-rejected" tabindex="0" role="button" aria-label="Enlarge: rejected event request">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/event-rejected.png" alt="A rejected event request detail screen with a coral status banner carrying a reason, the full request echoed back including event type, location, date, fifty attendees and food arrangements, plus attachments">
+            </div></div>
+            <figcaption><b>Rejection, with a reason</b>“No” arrives explained, and the request is echoed back</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="shoot-share" tabindex="0" role="button" aria-label="Enlarge: share with brokers">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/shoot-share.png" alt="A Select brokers sheet with a search field and a multi-select list of colleagues, two of them ticked, above a Share action">
+            </div></div>
+            <figcaption><b>Sharing</b>Approved content routed to named colleagues</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:40px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p>The rejection screen is the one I'd point a hiring manager at. It carries a <strong>reason</strong>, and it repeats the original request underneath — so a broker reading “rejected” three days later doesn't have to reconstruct what they asked for. Under the old process, a rejection was a reply that said no; here it's a record that says no, why, and to what.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEAM ============ -->
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 06. The team</p>
+          <h2 class="section-title">One brokerage, many brokers</h2>
+          <p class="section-sub">The account belongs to a company, so the app has to let a company populate it — and let Arada approve each person who joins.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="invite-empty" tabindex="0" role="button" aria-label="Enlarge: empty team state">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/invite-empty.png" alt="Invite Team Member screen in its empty state, showing an invite action and a count of zero total invited members with no tabs">
+            </div></div>
+            <figcaption><b>01</b>Empty state — no tabs yet</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="invite-emails" tabindex="0" role="button" aria-label="Enlarge: entering invite emails">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/invite-emails.png" alt="An invite sheet with two email addresses entered as removable chips, a hint that multiple emails can be separated by comma or enter, and a send button counting two invites">
+            </div></div>
+            <figcaption><b>02</b>Chips, and a counting button</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="invite-roster" tabindex="0" role="button" aria-label="Enlarge: team roster">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/invite-roster.jpg" alt="Team roster showing five total invited members across Approved and Pending tabs, listing an Owner, an Admin and three Brokers with initial avatars">
+            </div></div>
+            <figcaption><b>03</b>Roster, split by approval</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="poc-form" tabindex="0" role="button" aria-label="Enlarge: add point of contact">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/poc-form.png" alt="Add Point of Contact form with name, a designation dropdown, email and a UAE mobile field, and a submit button held disabled until the form is valid">
+            </div></div>
+            <figcaption><b>04</b>The named contact for the account</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The button counts</h4>
+            <p class="cs-body">Emails are entered as removable chips, and the primary action reads <strong>“Send 2 Invites”</strong> — the label carries the count. Bulk actions are where people misfire, and a button that states how many things it's about to do is cheaper than a confirmation dialog.</p>
+            <p class="cs-body">The empty state earns its keep too: with nothing invited, the Approved/Pending tabs simply aren't rendered. Tabs over an empty list are furniture pretending to be structure.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Every new person is also an approval</h4>
+            <p class="cs-body">The roster splits into <strong>Approved</strong> and <strong>Pending</strong>, which mirrors the profile's own verification model one level down. An invited broker isn't automatically trading — Arada vets people, not just companies.</p>
+            <p class="cs-body">Same mental model, applied twice. Once a user has learned that submitting produces a pending state that resolves visibly, that lesson transfers to every other queue in the product.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SYSTEM ============ -->
+    <section class="section section--alt" id="system">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">System states</p>
+          <h2 class="section-title">Designed for the car park, not the studio</h2>
+          <p class="section-sub">A broker uses this between viewings, on a basement signal, on whatever phone they have. Four states cover the ways the app can fail the user, and each one names a way out.</p>
+        </div>
+
+        <div class="bk-row bk-row--tight reveal-up">
+          <figure class="bk-phone" data-shot="state-offline" tabindex="0" role="button" aria-label="Enlarge: offline state">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/state-offline.png" alt="An offline screen with a struck-through wifi mark asking the user to check their internet connection, and a Try Again action">
+            </div></div>
+            <figcaption><b>Offline</b>Try Again — the only useful verb</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="state-maintenance" tabindex="0" role="button" aria-label="Enlarge: maintenance state">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/state-maintenance.png" alt="An under maintenance screen with an illustration of a person beside a large phone, the message that things are getting better, and a Close action">
+            </div></div>
+            <figcaption><b>Maintenance</b>Scheduled, not broken</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="state-update" tabindex="0" role="button" aria-label="Enlarge: update required state">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/broker-app/state-update.jpg" alt="An update screen with a rocket illustration, the line that updating unlocks new features, and an Update action">
+            </div></div>
+            <figcaption><b>Update</b>Framed as gain, not compliance</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="state-server-error" tabindex="0" role="button" aria-label="Enlarge: server error banner">
+            <div class="bk-phone__body"><div class="bk-phone__screen" style="aspect-ratio:430/230;">
+              <img src="assets/images/broker-app/state-server-error.jpg" alt="A coral internal server error banner overlaying the top of the app with Dismiss and Report actions and a close control">
+            </div></div>
+            <figcaption><b>Server error</b>Non-blocking, with Dismiss and Report</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:60px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The server error is the interesting one</h4>
+            <p class="cs-body">Offline, maintenance and update all take the full screen, because in each case there is genuinely nothing else the user can do. A <strong>server error</strong> is different: usually only one call failed, and the rest of the app still works.</p>
+            <p class="cs-body">So it's an <em>inline banner</em> rather than a takeover — dismissible, with the content still live underneath. And it offers <strong>Report</strong> next to Dismiss, which converts a dead end into a signal the team can act on.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Biometrics, after approval</h4>
+            <p class="cs-body">Settings appears only once the profile is approved, and it holds two things: a <strong>biometric login</strong> toggle and <strong>Delete Account</strong>, styled destructively and placed well away from everything else.</p>
+            <p class="cs-body">Biometrics matter more here than in a consumer app. This account can execute a legal agreement and view banking details, and it's used in the field on an unlocked phone that gets handed around.</p>
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start; margin-top:24px;">
+              <figure class="bk-phone" data-shot="settings" tabindex="0" role="button" aria-label="Enlarge: settings">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/broker-app/settings.png" alt="A settings screen with a single Enable Biometrics toggle switched on, and a destructive Delete Account action at the foot of the screen">
+                </div></div>
+                <figcaption><b>Settings</b>Two controls, deliberately</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHALLENGES ============ -->
+    <section class="section" id="challenges">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Challenges</p>
+          <h2 class="section-title">Where the design had to work harder</h2>
+          <p class="section-sub">Six problems that layout alone couldn't solve.</p>
+        </div>
+        <div class="cs-challenge-list">
+          <div class="cs-challenge reveal-up">
+            <div class="cs-challenge__problem"><span>Challenge</span>A legal contract's worth of data, entered on a phone.<em>Eleven required fields, three documents with five metadata fields each, and bank details — all feeding a ten-page agreement.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Break it into resumable stages with a visible meter.<em>Identity, then documents, then bank details, each independently completable, with a percentage that survives leaving the app.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.06s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Optical scanning of ID documents is unreliable.<em>Worn cards, bad light, glare — and the extracted values land in a binding contract.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Treat extraction as a draft the human ratifies.<em>Editable fields, the captured images shown beneath them, and Rescan weighted equally with Continue.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.12s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Approval is asynchronous and outside the user's control.<em>The broker has done everything and now waits on a person they can't see, for a duration nobody has promised.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Make waiting a designed state, not an absence.<em>The submit card is replaced by a status card, so there's nothing to re-press; outcomes arrive in notifications with a reason attached.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.18s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Verified data must stay trustworthy but still be correctable.<em>Bank accounts and licences genuinely change; Arada can't let a broker rewrite an approved identity.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Turn edits into approval requests, and lock the entity name.<em>Update stays disabled until a value actually differs, and the receipt names the single pending field.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.24s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Bank details stalled applications at the last step.<em>They need a bank letter and a finance colleague — but they aren't needed until the first commission.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Let verification start at 80%.<em>“Add bank details… or submit for verification.” Review runs in parallel with the slowest document instead of behind it.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.3s">
+            <div class="cs-challenge__problem"><span>Challenge</span>A static site pass is trivially shared.<em>A screenshot of a QR code grants a stranger access to a show apartment.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Rotate the code, and say so.<em>A 60-second dynamic QR with a visible countdown, plus hours and validity printed on the card face.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OUTCOMES ============ -->
+    <section class="section section--alt" id="outcomes">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title">How the design answers the original problem</h2>
+          <p class="section-sub">Each goal maps to a specific mechanism in the shipped product rather than to a general improvement in usability.</p>
+        </div>
+
+        <div class="cs-outcomes reveal-up">
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 01</span>
+            <div class="cs-outcome__body">
+              <h4>The paper pack becomes structured data</h4>
+              <p>Identity captured by camera and ratified by the applicant; three licences captured as metadata with the file attached rather than as opaque scans; bank details captured once and masked thereafter. Nothing in the onboarding path requires a printer, a courier or a scanner.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 02</span>
+            <div class="cs-outcome__body">
+              <h4>Progress is always on screen</h4>
+              <p>A percentage ring with five distinct states, backed by a second encoding in the row icons, so the broker can tell what's outstanding at a glance and what's out of their hands. “Where is my application?” has a visual answer that doesn't require asking anyone.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 03</span>
+            <div class="cs-outcome__body">
+              <h4>Submissions return state, not silence</h4>
+              <p>Every request — profile, legal change, shoot, event, team invite — resolves into a visible status: Pending, Approved, In Progress or Rejected. Rejections carry a reason and echo the original request. The shoot flow commits to a 24-hour turnaround in the UI itself.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 04</span>
+            <div class="cs-outcome__body">
+              <h4>Approved identity can't drift</h4>
+              <p>Post-approval edits become approval requests; the legal entity name is locked outright; the Update action refuses to fire on an unchanged form. The record Arada verified stays the record Arada verified until Arada says otherwise.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 05</span>
+            <div class="cs-outcome__body">
+              <h4>There's a reason to open it in month six</h4>
+              <p>Creative assets, unit status, lead protection, photo and video shoots, open-house events, a rotating access credential, and a team roster the brokerage manages itself. The onboarding flow is the door; these are the rooms.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Goal 06</span>
+            <div class="cs-outcome__body">
+              <h4>Failure has designed exits</h4>
+              <p>Offline, maintenance and forced-update take the screen and name one action each. A server error stays inline and dismissible with a Report path, because one failed call shouldn't cost the user the session. Biometric login protects an account that can sign a contract.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:52px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p><strong>On metrics:</strong> I'm not going to attach numbers to this. Post-launch analytics on onboarding completion and approval turnaround sit with Arada's product and sales teams, and I'd rather describe what the design does than quote a figure I can't stand behind. The verifiable scope — 92 screens, 12 flows, five verification states, a ten-page bilingual agreement replaced — is above.</p>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:80px;">Where this goes next</h3>
+        <div class="cs-two-col reveal-up">
+          <div>
+            <h4 class="cs-h4">Arabic, properly</h4>
+            <p class="cs-body">The contract at the centre of this product is bilingual. The interface around it is English-only. That gap is defensible for a first release — UAE brokerage business runs largely in English — but it's the most obvious next investment, and right-to-left is materially cheaper to design for than to retrofit into forms, date strips and masked numeric fields.</p>
+          </div>
+          <div>
+            <h4 class="cs-h4">Expiry as a service, not a field</h4>
+            <p class="cs-body">Capturing valid-till dates as structured data was the enabling decision; acting on them is the payoff still on the table. A licence expiring in thirty days should surface as a notification and a profile prompt, not wait to be discovered when a commission is blocked. The data model already supports it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS ============ -->
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Screens</p>
+          <h2 class="section-title">The full set</h2>
+          <p class="section-sub">Every screen referenced above, plus the states that didn't get their own section. Tap any to open it full size.</p>
+        </div>
+        <div class="cs-gallery" id="screensGallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ NEXT PROJECT ============ -->
+    <section class="section section--alt section--tight">
+      <div class="container">
+        <div class="cs-next__inner reveal-up" style="text-align:center;">
+          <p class="eyebrow">Next case study</p>
+          <h2 class="section-title">my Arada — Customer Portal</h2>
+          <p class="cs-body" style="margin-inline:auto;">The other side of the same business: a self-service portal where off-plan owners track a three-year payment journey, retrieve documents and raise requests.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+            <a class="btn btn--primary" href="case-study-customer-portal.html">Read that case study</a>
+            <a class="btn btn--outline" href="index.html#work">All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo" aria-label="Leo Stalin — home">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">© <span id="year"></span> Leo Stalin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <button class="lightbox__close" data-lightbox-close aria-label="Close image viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+  </div>
+
+  <!-- Gallery data. Figures above reference entries by `name`, so reordering
+       this list can never point a figure at the wrong screen. -->
+  <script>
+    window.CS_GALLERY = [
+      { name:'dashboard',               src:'assets/images/broker-app/dashboard.jpg',               caption:'Dashboard — creative assets, lead protection, service requests, team and access card' },
+      { name:'access-card',             src:'assets/images/broker-app/access-card.jpg',             caption:'Digital access card — a QR that regenerates every 60 seconds, with hours and approved units on the face' },
+      { name:'signin',                  src:'assets/images/broker-app/signin.jpg',                  caption:'Entry — “Sign In” for partners, “Be Our Partner” for applicants' },
+      { name:'onboarding',              src:'assets/images/broker-app/onboarding.jpg',              caption:'Onboarding — Arada’s own projects carry the pitch' },
+      { name:'verify-email-otp',        src:'assets/images/broker-app/verify-email-otp.jpg',        caption:'Verify email — six-digit code, editable address, countdown and resend' },
+      { name:'verify-mobile-channel',   src:'assets/images/broker-app/verify-mobile-channel.png',   caption:'Verify mobile — the code by WhatsApp or SMS, with the email step confirmed above' },
+      { name:'signup-form',             src:'assets/images/broker-app/signup-form.png',             caption:'Application form — eleven required fields, one optional, and the ID attached' },
+      { name:'scan-sheet',              src:'assets/images/broker-app/scan-sheet.png',              caption:'Identity capture — scan or upload, with the privacy note at the point of the ask' },
+      { name:'scan-id-confirm',         src:'assets/images/broker-app/scan-id-confirm.jpg',         caption:'Emirates ID review — extracted values as editable fields, Rescan weighted equally' },
+      { name:'scan-passport-confirm',   src:'assets/images/broker-app/scan-passport-confirm.jpg',   caption:'Passport review — same shape, so one model covers residents and non-residents' },
+      { name:'profile-50',              src:'assets/images/broker-app/profile-50.jpg',              caption:'Profile at 50% — coral ring, and a specific next action' },
+      { name:'profile-80',              src:'assets/images/broker-app/profile-80.png',              caption:'Profile at 80% — bank details, or submit for verification anyway' },
+      { name:'profile-100',             src:'assets/images/broker-app/profile-100.png',             caption:'Profile at 100% — complete, but submission stays a deliberate act' },
+      { name:'profile-verifying',       src:'assets/images/broker-app/profile-verifying.jpg',       caption:'Under verification — the submit card replaced by a status card' },
+      { name:'profile-approved',        src:'assets/images/broker-app/profile-approved.jpg',        caption:'Approved — the completion card is removed and rows become navigation' },
+      { name:'docs-checklist',          src:'assets/images/broker-app/docs-checklist.png',          caption:'Legal documents — trade licence, ORN and visa' },
+      { name:'docs-form',               src:'assets/images/broker-app/docs-form.png',               caption:'Per-document capture — number, authority, place, issued and valid-till dates, then the file' },
+      { name:'licence-preview',         src:'assets/images/broker-app/licence-preview.jpg',         caption:'Uploaded licence preview (content blurred for publication)' },
+      { name:'docs-readback',           src:'assets/images/broker-app/docs-readback.png',           caption:'Documents on file — expiry dates on the face of each card' },
+      { name:'agreement-sign',          src:'assets/images/broker-app/agreement-sign.png',          caption:'Review and sign — optional review or share, then signature as its own step' },
+      { name:'agreement-preview',       src:'assets/images/broker-app/agreement-preview.jpg',       caption:'The agency agreement in-app — bilingual, ten pages, shareable (content blurred for publication)' },
+      { name:'bank-view',               src:'assets/images/broker-app/bank-view.png',              caption:'Bank details — IBAN masked to the last four digits' },
+      { name:'bank-edit-disabled',      src:'assets/images/broker-app/bank-edit-disabled.png',      caption:'Edit form — Update held disabled until a value actually differs' },
+      { name:'bank-edit-enabled',       src:'assets/images/broker-app/bank-edit-enabled.png',       caption:'One field changed — Update becomes available' },
+      { name:'bank-request-receipt',    src:'assets/images/broker-app/bank-request-receipt.png',    caption:'Change request receipt — status Pending, and only the field in flight' },
+      { name:'company-view',            src:'assets/images/broker-app/company-view.png',            caption:'Company details on file, including the attributed Arada salesperson' },
+      { name:'company-request-receipt', src:'assets/images/broker-app/company-request-receipt.png', caption:'The same receipt pattern for a company details change' },
+      { name:'shoot-form',              src:'assets/images/broker-app/shoot-form.png',              caption:'Shoot booking — property, date strip and fixed hourly slots' },
+      { name:'shoot-history',           src:'assets/images/broker-app/shoot-history.png',           caption:'Shoot history — Approved, Pending and Rejected, with per-row sharing' },
+      { name:'shoot-share',             src:'assets/images/broker-app/shoot-share.png',             caption:'Share approved content with named colleagues' },
+      { name:'shoot-receipt',           src:'assets/images/broker-app/shoot-receipt.png',           caption:'Shoot confirmation — a stated 24-hour review turnaround' },
+      { name:'event-form',              src:'assets/images/broker-app/event-form.png',              caption:'Event request — attendees, special requests, upload limits and a liability acknowledgement' },
+      { name:'event-rejected',          src:'assets/images/broker-app/event-rejected.png',          caption:'Rejected event request — a reason, and the original request echoed back' },
+      { name:'invite-empty',            src:'assets/images/broker-app/invite-empty.png',            caption:'Team, empty — no tabs over an empty list' },
+      { name:'invite-emails',           src:'assets/images/broker-app/invite-emails.png',           caption:'Invites as chips, with the count carried on the button' },
+      { name:'invite-roster',           src:'assets/images/broker-app/invite-roster.jpg',           caption:'Roster — Owner, Admin and Broker, split by approval state' },
+      { name:'poc-form',                src:'assets/images/broker-app/poc-form.png',                caption:'Point of contact — the named human for the account' },
+      { name:'notifications',           src:'assets/images/broker-app/notifications.png',           caption:'Notifications — outcomes with status on the row, unread outlined' },
+      { name:'settings',                src:'assets/images/broker-app/settings.png',                caption:'Settings — biometric login, and a destructive action kept far away' },
+      { name:'state-offline',           src:'assets/images/broker-app/state-offline.png',           caption:'Offline — one action, and it’s the useful one' },
+      { name:'state-maintenance',       src:'assets/images/broker-app/state-maintenance.png',       caption:'Under maintenance — scheduled, not broken' },
+      { name:'state-update',            src:'assets/images/broker-app/state-update.jpg',            caption:'Forced update — framed as gain rather than compliance' },
+      { name:'state-server-error',      src:'assets/images/broker-app/state-server-error.jpg',      caption:'Server error — inline and dismissible, with a Report path' }
+    ];
+  </script>
+
+  <!-- animations.js must load first: it owns the IntersectionObserver that adds
+       .is-visible to every .reveal-up element. Without it the whole page stays
+       at opacity 0. -->
+  <script src="js/animations.js"></script>
+  <script src="js/case-study.js"></script>
+</body>
+</html>

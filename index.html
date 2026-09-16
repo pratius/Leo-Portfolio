@@ -1,597 +1,470 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
-<!--<![endif]-->
-
+<html lang="en">
 <head>
-    <!-- Basic Page Needs -->
-    <meta charset="utf-8">
-    <!--[if IE ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-    <title>Leo Stalin</title>
-    <meta name="description" content="Jayden">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leo Stalin — UI/UX Designer, Dubai</title>
+  <meta name="description" content="Leo Stalin is a UI/UX Designer in Dubai with 10+ years of experience, currently designing web and mobile products end to end at Arada Developments.">
+  <meta name="keywords" content="UI Designer, UX Designer, Product Designer, Design Systems, Dubai, UAE, Portfolio, Leo Stalin, Arada">
+  <meta name="author" content="Leo Stalin">
 
-    <meta name="keywords" content="">
-    <meta name="author" content="themesflat.com">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Leo Stalin — UI/UX Designer, Dubai">
+  <meta property="og:description" content="10+ years designing web and mobile products. UI/UX Designer at Arada Developments.">
+  <meta property="og:image" content="assets/images/customer-portal/dashboard.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Mobile Specific Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
 
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/bootstrap-select.min.css">
+  <meta name="color-scheme" content="dark light">
+  <script>
+    /* Applied before the stylesheet so the correct theme paints on the first
+       frame. Dark is the default; light is opt-in and remembered. */
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
 
-    <!-- Theme Style -->
-    <link rel="stylesheet" type="text/css" href="asset/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/swiper-bundle.min.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/odometer.min.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/lightbox.min.css">
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Animation Style -->
-    <link rel="stylesheet" type="text/css" href="asset/css/animate.min.css">
-
-    <!-- Font -->
-    <link rel="stylesheet" href="asset/font/fonts.css">
-    
-    <!-- Icon -->
-    <link rel="stylesheet" type="text/css" href="asset/icons/icomoon/style.css">
-    
-
-    <!-- Favicon and Touch Icons  -->
-    <link rel="shortcut icon" href="asset/images/logo/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="asset/images/logo/favicon.png">
-
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
+<body>
 
-<body class="counter-scroll bg-color1">
+  <!-- ============ LOADING SCREEN ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__mark"><img src="assets/images/icon-logo.png" alt="" width="88" height="88"></div>
+    <div class="loader__bar"><span></span></div>
+  </div>
 
-    <!-- Start Wrapper -->
-    <div id="wrapper">
-        <video class="body-overlay" muted autoplay loop playsinline>
-            <source src="asset/images/bg-3d/video3.mp4" type="video/mp4">
-        </video>
+  <!-- ============ SCROLL PROGRESS BAR ============ -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-        <!-- tf-btn-menu -->
-        <div class="tf-btn-menu">
-           <img src="asset/icons/dashboard.svg" alt="">
-        </div>
-        <!-- /tf-btn-menu -->
+  <!-- ============ CUSTOM CURSOR (desktop only) ============ -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-        <!-- tf-sidebar-menu -->
-        <div class="tf-sidebar-menu tf-canvas">
-            <div class="overlay"></div>
-            <div class="sidebar-menu-inner">
-                <div class="sidebar-wrap">
-                    <div class="sidebar-heading">
-                        <div class="heading text-body-1 dot-before">Menu</div>
-                        <span class="close-canvas">
-                            <i class="icon icon-times-solid"></i>
-                        </span>
-                    </div>
-                    <ul class="sidebar-nav nav-scroll">
-                        <li>
-                            <a class="scroll-to active" href="index.html">
-                                <i class="icon icon-home-solid"></i><span class="text-body-2">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="scroll-to" href="work.html">
-                                <i class="icon icon-tasks-solid"></i><span class="text-body-2">Works</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="scroll-to" href="about.html">
-                                <i class="icon icon-user-solid"></i><span class="text-body-2">About</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-            </div>
-        </div>
-        <!-- /tf-sidebar-menu -->
+  <!-- ============ SKIP LINK ============ -->
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-        
+  <!-- ============ HEADER / NAV ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="#hero" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
 
-        <!-- right-nav -->
-        <ul class="right-nav nav-scroll">
-            <li>
-                <a class="scroll-to active" href="index.html">
-                    <i class="icon icon-home-solid"></i>
-                    <span class="tooltip text-body-3">Home</span>
-                </a>
-            </li>
-            <li>
-                <a class="scroll-to" href="work.html">
-                    <i class="icon icon-tasks-solid"></i>
-                    <span class="tooltip text-body-3">Works</span>
-                </a>
-            </li>
-            <li>
-                <a class="scroll-to" href="about.html">
-                    <i class="icon icon-user-solid"></i>
-                    <span class="tooltip text-body-3">About</span>
-                </a>
-            </li>
-            <li>
-                <a class="scroll-to" href="leo-resume.pdf">
-                    <i class="icon icon-download-solid"></i>
-                    <span class="tooltip text-body-3">Download Resume</span>
-                </a>
-            </li>
+      <nav class="nav" id="primaryNav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="#about" class="nav__link" data-nav>About</a></li>
+          <li><a href="#experience" class="nav__link" data-nav>Experience</a></li>
+          <li><a href="#skills" class="nav__link" data-nav>Skills</a></li>
+          <li><a href="#work" class="nav__link" data-nav>Work</a></li>
+          <li><a href="#services" class="nav__link" data-nav>Services</a></li>
+          <li><a href="#contact" class="nav__link" data-nav>Contact</a></li>
         </ul>
-        <!-- /right-nav -->
+      </nav>
 
-        <!-- left-sidebar -->
-        <div class="left-sidebar">
-            <div class="heading">
-                <img src="asset/images/logo/leo-logo.png" alt="">
-                
-            </div>
-            <div class="image">
-               <div class="avatar avatar-wrap">
-                    <img class="lazyload avatar-bg" src="asset/images/avatar/avatar-full.jpg" data-src="asset/images/avatar/avatar-full.jpg" alt="">
-                    <img class="lazyload avatar-no-bg" style="display: none;" src="asset/images/avatar/avatar-1.png" data-src="asset/images/avatar/avatar-1.png" alt="">
-                </div>
-                <img class="lazyload signature" src="asset/images/section/signature-1.png" data-src="asset/images/section/signature-1.png" alt="">
-                <!-- <div class="text-signature">Jayden</div> -->
-            </div>
-            <div class="infor">
-                <h6 class="mail letter-spacing-0">leostalin11@gmail.com</h6>
-                <h6 class="mail letter-spacing-0">+971 52 398 4264</h6>
-                <div class="text-body-2 address">Dubai, UAE</div>
-            </div>
-           <!-- 
-            <ul class="social-links justify-content-center">
-                
-                <li>
-                    <a href="#"><i class="icon icon-dribbble"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="icon icon-instagram"></i></a>
-                </li>
-                
-            </ul> -->
-            <!-- <a href="#contact" class="bot-button">
-                <div class="text-body-1 text">Get Started</div>
-                <i class="icon icon-arrow-top-right"></i>
-            </a> -->
-        </div>
-        <!-- /left-sidebar -->
-
-        <!-- main-content -->
-        <div class="main-content relative">
-            <!-- section-hero -->
-            <section class="section-hero" id="home">
-                <div class="tf-container">
-                    <div class="row">
-                        <div class="offset-xxl-3 col-xxl-9 offset-xl-3 col-xl-9 offset-lg-3 col-lg-9">
-                            <!-- <div class="text-body-1 infor split-text split-lines-transform">Welcome!</div> -->
-                            <div class="main-title">
-                                <div class="text-body-1 subtitle">Leo Stalin</div> 
-                                <h1 class="title split-text effect-right">UI UX Designer</h1>
-                                <div class="text-body-2 text">Creative and detail-oriented UI UX Designer with over 9 years of experience crafting user-centric web and mobile applications. Proven expertise in wireframing, prototyping, and creating design systems. <br><br>Currently leading UI/UX initiatives at ARADA Developments, focusing on enhancing user experiences across real estate and customer platforms. Adept at balancing aesthetics with usability to deliver intuitive and high-performing interfaces.</div>
-                            </div>
-
-                            <!-- <div><img src="asset/images/logo/leo-logo.png" alt=""></div> -->
-                            
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- /section-hero -->
-            <!-- wrapper-content -->
-            <div class="wrapper-content relative overflow-hidden">
-
-
-
-                <!-- section-about -->
-                <section class="section-about" id="about">
-                    <div class="tf-container">
-                        <div class="row">
-                            <div class="offset-xxl-3 col-xxl-9 offset-xl-3 col-xl-9 offset-lg-3 col-lg-9">
-                                <div class="heading">
-
-                                    <div>
-                                        <h2 class="fw-medium title text-color-change">What I’m Working On Now</h2>
-                                        <div class="text-body-2 text">
-
- <ul class="experience-list">
-  <li>Lead design initiatives for mobile apps, web applications, and customer platforms, ensuring user-first, responsive, and accessible design solutions.</li>
-  <li>Conducted user research, journey mapping, and usability analysis to refine product flows and improve adoption.</li>
-  <li>Created wireframes, prototypes, and interactive mockups in Figma, improving design handover and developer collaboration.</li>
-  <li>Designed website banners, EDMs, landing pages, and digital campaign creatives, ensuring brand consistency across all touchpoints.</li>
-  <li>Produced user guide videos, small motion graphics, and GIFs to support marketing and product education.</li>
-  <li>Supported front-end development by converting designs into responsive HTML/CSS layouts, bridging design and implementation.</li>
-  <li>Collaborated with marketing executives and developers to maintain a unified visual identity across platforms.</li>
-  <li>Improved efficiency in design delivery by integrating AI tools for design-to-code automation and repetitive task handling.</li>
-</ul>
-
-<h3 class="achievements-heading">Key Achievements:</h3>
-<ul class="achievements-list">
-  <li>Designed and launched a Lead Management Mobile App that reduced lead response time by 40% and improved sales adoption.</li>
-  <li>Delivered a Shop Handover Web App that streamlined leasing and RDD team operations, cutting manual processes significantly.</li>
-  <li>Created engaging marketing visuals and campaigns, boosting digital engagement and brand visibility.</li>
-</ul>
-                                    </div>
-                                </div>
-
-                                                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- /section-about -->
-                
-
-                <!-- section-selected-works -->
-                <section class="section-selected-works pd-t-50" id="works">
-                    <div class="tf-container">
-                        <div class="row">
-                            <div class="offset-xxl-3 col-xxl-9 offset-xl-3 col-xl-9 offset-lg-3 col-lg-9">
-                                <h2 class="text-color-change head-title">My Works</h2>
-                                <div class="works-wrap">
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="broker.html" >
-                                            <img class="lazyload" src="asset/images/broker/thumbnail.jpg"  alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="broker.html">Arada Broker Mobile App</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="hungry.html" >
-                                            <img class="lazyload" src="asset/images/hungry/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="hungry.html">Hungry Wolves Mobile App</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="rdd.html" >
-                                            <img class="lazyload" src="asset/images/rdd/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="rdd.html">RDD Web Portal</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="field.html">
-                                            <img class="lazyload" src="asset/images/field/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="field.html">Field Service Mobile App</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="yalla.html"  >
-                                            <img class="lazyload" src="asset/images/yalla/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="yalla.html">Yalla Mobile App</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="artal.html"  >
-                                            <img class="lazyload" src="asset/images/artal/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="artal.html">Artal Fashion Mobile App</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="optica.html"  >
-                                            <img class="lazyload" src="asset/images/optica/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="optica.html">Optica Mobile App</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="stargaze.html"  >
-                                            <img class="lazyload" src="asset/images/stargaze/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="stargaze.html">Stargaze Mobile App</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="lechaya.html"  >
-                                            <img class="lazyload" src="asset/images/lechaya/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="lechaya.html">Le Chaya Brand Guidelines</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="triankl.html"  >
-                                            <img class="lazyload" src="asset/images/triankl/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="triankl.html">triankl.ai Brand Guidelines</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="works-item scrolling-effect effectLeft">
-                                        <a class="image" href="ulex.html"  >
-                                            <img class="lazyload" src="asset/images/ulex/thumbnail.jpg" alt="">
-                                        </a>
-                                        <div class="content">
-                                            <div class="infor">
-                                                <h3 class="title">
-                                                    <a href="ulex.html">Ulex Perfume Brand Guidelines</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <div class="box-gradient1 img_bg-1"></div>
-                <!-- /section-selected-works -->
-
-
-              
-               
-
-
-
-                <!-- section-process -->
-                <section class="section-process pd-t-50">
-                    <div class="tf-container">
-                        <div class="row">
-                            <div class="offset-xxl-3 col-xxl-9 offset-xl-3 col-xl-9 offset-lg-3 col-lg-9">
-                                <h2 class="text-color-change head-title">Work Process</h2>
-                                <div class="swiper slider-process swiper-auto">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium type-tags">Step 1</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">Research</h2>
-                                                        <!-- <div class="text-body-2 fw-medium text">I created digital products with ideas use Figma</div> -->
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/research.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium  type-tags">Step 2</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">UX Design</h2>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/ux-design.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium type-tags">Step 3</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">User Flow</h2>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/user-flow.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium type-tags">Step 4</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">Wireframe</h2>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/wireframe.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium type-tags">Step 5</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">UI Design</h2>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/ui-design.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                         <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium type-tags">Step 6</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">Prototype</h2>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/prototype.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                         <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium type-tags">Step 7</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">Submit</h2>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/submit.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="process-item">
-                                                <div class="content">
-                                                    <div class="step text-body-2 fw-medium type-tags">Step 8</div>
-                                                    <div class="wrap">
-                                                        <h2 class="fw-medium title">Feedback</h2>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="image">
-                                                    <img class="icon" src="asset/icons/work/feedback.svg">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- /section-process -->
-
-
-                 <!-- section-experiences -->
-                <section class="section-experiences pd-t-50" id="experience">
-                    <div class="tf-container">
-                        <div class="row">
-                            <div class="offset-xxl-3 col-xxl-9 offset-xl-3 col-xl-9 offset-lg-3 col-lg-9">
-                                <h2 class="text-color-change head-title">Experience</h2>
-                                <div class="experiences-wrap">
-                                    <div class="item scrolling-effect effectLeft">
-                                        <div class="sub-heading text">Arada Developments LLC</div>
-                                        <div class="job-title">
-                                            <h6 class="title">UI UX & Graphics Designer</h6>
-                                            <div class="text-body-2 time-line type-tags">2022 - Present</div>
-                                        </div>
-                                    </div>
-                                    <div class="item scrolling-effect effectLeft">
-                                        <div class="sub-heading text">Univations Design Est</div>
-                                        <div class="job-title">
-                                            <h6 class="title">Creative Designer</h6>
-                                            <div class="text-body-2 time-line type-tags">2016 - 2022</div>
-                                        </div>
-                                    </div>
-                                    <div class="item scrolling-effect effectLeft">
-                                        <div class="sub-heading text">PTL Solar FZ LLC</div>
-                                        <div class="job-title">
-                                            <h6 class="title">Web & Graphics designer</h6>
-                                            <div class="text-body-2 time-line type-tags">2015 - 2016</div>
-                                        </div>
-                                    </div>
-                                    <div class="item scrolling-effect effectLeft">
-                                        <div class="sub-heading text">Ratna Softnet Technology</div>
-                                        <div class="job-title">
-                                            <h6 class="title">Junior Designer</h6>
-                                            <div class="text-body-2 time-line type-tags">2014 - 2015</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- /section-experiences -->
-                
-                
-
-            </div>
-            <!-- /wrapper-content -->
-        </div>
-        <!-- /main-content -->
-
-        <!-- footer -->
-        <footer class="tf-footer style-1">
-            
-            <img src="asset/images/section/img-bg-2.png" alt="" class="map">
-            <div class="box-gradient2"></div>
-        </footer>
-        <!-- /footer -->
-
-        
-      
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
-    <!-- End Wrapper -->
+  </header>
 
-    <!-- Javascript -->
-    <script src="asset/js/bootstrap.min.js"></script>
-    <script src="asset/js/jquery.min.js"></script>
-    <script src="asset/js/jquery.validate.min.js"></script>
-    <script src="asset/js/lazysize.min.js"></script>
-    <script src="asset/js/wow.min.js"></script>
-    <script src="asset/js/swiper-bundle.min.js"></script>
-    <script src="asset/js/swiper.js"></script>
-    <script src="asset/js/gsap.min.js"></script>
-    <script src="asset/js/Splitetext.js"></script>
-    <script src="asset/js/ScrollTrigger.min.js"></script>
-    <script src="asset/js/ScrollSmooth.js"></script>
-    <script src="asset/js/handleeffectgsap.js"></script>
-    <script src="asset/js/odometer.min.js"></script>
-    <script src="asset/js/counter.js"></script>
-    
-    <script src="asset/js/infinityslide.js"></script>
-    <script src="asset/js/plugin.js"></script>
-    <script src="asset/js/lightbox.min.js"></script>
-    <script src="asset/js/main.js"></script>
-    <!-- /Javascript -->
+  <main id="main">
 
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+        <span class="hero__shape hero__shape--3"></span>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__content reveal-up">
+          <p class="eyebrow">Hello, I'm</p>
+          <h1 class="hero__title">Leo Stalin</h1>
+          <p class="hero__role"><span class="type-target" id="typeTarget">UI/UX Designer</span></p>
+          <!-- "10 years" rather than the 9 in the source CV summary, so this
+               agrees with the 10+ stat directly beneath it. -->
+          <p class="hero__desc">Creative and detail-oriented UI/UX Designer with over 10 years of experience crafting user-centric web and mobile applications. Proven expertise in wireframing, prototyping, and creating design systems. Currently leading UI/UX initiatives at <strong>ARADA Developments</strong>, focusing on enhancing user experiences across real estate and customer platforms. Adept at balancing aesthetics with usability to deliver intuitive and high-performing interfaces.</p>
+
+          <div class="hero__actions">
+            <a href="#work" class="btn btn--primary magnetic">
+              <span>View My Work</span>
+            </a>
+            <a href="assets/resume.pdf" download class="btn btn--outline magnetic">
+              <span>Download Resume</span>
+            </a>
+            <a href="#contact" class="btn btn--ghost magnetic">
+              <span>Contact Me</span>
+            </a>
+          </div>
+
+          <div class="hero__stats">
+            <div class="stat">
+              <span class="stat__num" data-count="10">0</span><span class="stat__suffix">+</span>
+              <span class="stat__label">Years designing</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="7">0</span><span class="stat__suffix">+</span>
+              <span class="stat__label">Products designed</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="40">0</span><span class="stat__suffix">%</span>
+              <span class="stat__label">Training time cut</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal-up" style="--delay:0.15s">
+          <div class="portrait-card" id="portraitCard">
+            <div class="portrait-card__glow"></div>
+            <img class="portrait-card__photo"
+                 src="assets/images/leo.jpg"
+                 alt="Leo Stalin, UI/UX Designer, seated in an Arada workspace in Dubai beside a laptop showing the Aljada project site"
+                 width="1000" height="1000" fetchpriority="high">
+
+            <!-- Floating UI cards: signature design-system cluster -->
+            <div class="float-card float-card--palette" data-depth="18">
+              <span class="dot dot--a"></span><span class="dot dot--b"></span><span class="dot dot--c"></span><span class="dot dot--d"></span>
+            </div>
+            <div class="float-card float-card--component" data-depth="30">
+              <span class="chip">Component</span>
+              <div class="mini-toggle" aria-hidden="true"><span></span></div>
+            </div>
+            <div class="float-card float-card--metric" data-depth="24">
+              <span class="metric__label">Products designed</span>
+              <span class="metric__value">7+</span>
+              <div class="metric__bar"><span style="width:76%"></span></div>
+            </div>
+            <div class="float-card float-card--spec" data-depth="12">
+              <span class="spec__ruler"></span>
+              <span class="spec__num">24px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-cue" aria-label="Scroll to content">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ============ 2. ABOUT ============ -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Designing with intent, not decoration.</h2>
+        </div>
+
+        <div class="about__grid">
+          <div class="about__story reveal-up">
+            <p>I'm a UI/UX designer based in Dubai with over ten years of experience building web and mobile products. I started in brand and print, moved into web, and have spent the last several years on complex product work — the kind where a single screen carries someone's payment plan or a sales team's entire pipeline.</p>
+            <p>Since 2022 I've led end-to-end design at <strong>Arada Developments</strong>, on both customer-facing platforms and the internal tools the business runs on: a customer portal for property owners, a broker app, a retail fit-out portal, a lead management app for sales teams, a commission module and an iPad app for unit handover.</p>
+            <p>I run the full process — research, user flows, wireframes, prototypes and testing — and I care most about the parts that usually get left until last: empty states, error recovery, and the copy inside a validation message.</p>
+
+          </div>
+
+          <div class="about__aside reveal-up" style="--delay:.1s">
+              <div class="about__facts">
+                <div class="fact">
+                  <h3>Design Philosophy</h3>
+                  <p>Reduce friction, respect attention, and design systems that scale — not one-off screens.</p>
+                </div>
+                <div class="fact">
+                  <h3>Also</h3>
+                  <p>Motion graphics and AI-assisted explainer video — used to cut onboarding and training time on the products I design.</p>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <!-- ---- EXPERIENCE (same section, own anchor so #experience still works) ---- -->
+        <div class="about__experience" id="experience">
+          <div class="section-head reveal-up">
+            <p class="eyebrow">Experience</p>
+            <h2 class="section-title">Where I've worked</h2>
+          </div>
+
+        <ol class="exp-timeline">
+          <li class="exp-item reveal-up">
+            <div class="exp-item__logo" aria-hidden="true">AR</div>
+            <div class="exp-item__body">
+              <div class="exp-item__head">
+                <h3>UI/UX Designer</h3>
+                <span class="exp-item__date">Apr 2022 — Present</span>
+              </div>
+              <p class="exp-item__company">Arada Developments LLC · Dubai, UAE</p>
+              <ul>
+                <li>Lead end-to-end UI/UX across Arada's customer-facing platforms and internal tools — research, user flows, wireframes, prototypes and final UI. Projects include:</li>
+                <li><strong>my Arada — Customer Portal</strong>, a self-service portal for off-plan property owners.</li>
+                <li><strong>Arada Broker App</strong>, partner onboarding and services for the brokerages that sell Arada.</li>
+                <li><strong>RDD Portal</strong>, retail fit-out delivery shared by the Lease, RDD, Tenant and MEP teams.</li>
+                <li><strong>Lead Management App</strong>, one app for VPs, Sales Managers and Sales Executives.</li>
+                <li><strong>Sales Commission</strong>, a commission module inside the Connect App.</li>
+                <li><strong>Handover iPad App</strong>, bilingual unit handover signed on site.</li>
+                <li>Produced AI-based explainer videos and step-by-step guides using Synthesia and Pictory, cutting training time by 40%.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="exp-item reveal-up" style="--delay:.08s">
+            <div class="exp-item__logo" aria-hidden="true">UD</div>
+            <div class="exp-item__body">
+              <div class="exp-item__head">
+                <h3>Creative Designer</h3>
+                <span class="exp-item__date">Sep 2016 — Mar 2022</span>
+              </div>
+              <p class="exp-item__company">Univations Design Est · Dubai, UAE</p>
+              <ul>
+                <li>Delivered end-to-end creative work across branding, digital design and print for startups and established businesses.</li>
+                <li>Developed brand identities including logo design, brand guidelines and visual systems.</li>
+                <li>Designed website layouts and UI concepts, balancing aesthetics with usability.</li>
+                <li>Produced brochures, company profiles, campaigns, packaging and exhibition graphics.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="exp-item reveal-up" style="--delay:.16s">
+            <div class="exp-item__logo" aria-hidden="true">PT</div>
+            <div class="exp-item__body">
+              <div class="exp-item__head">
+                <h3>Web &amp; Graphics Designer</h3>
+                <span class="exp-item__date">Dec 2015 — Aug 2016</span>
+              </div>
+              <p class="exp-item__company">PTL Solar FZ LLC · Dubai, UAE</p>
+              <ul>
+                <li>Designed WordPress-based websites and landing pages for solar product lines.</li>
+                <li>Developed marketing collateral including banners, product flyers and digital graphics.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="exp-item reveal-up" style="--delay:.24s">
+            <div class="exp-item__logo" aria-hidden="true">RS</div>
+            <div class="exp-item__body">
+              <div class="exp-item__head">
+                <h3>Junior Designer</h3>
+                <!-- NOTE Leo: your résumé gives this role the same dates as PTL Solar
+                     (Dec 2015 – Aug 2016). One of them needs correcting — tell me the
+                     right dates and I'll update the site and the résumé together. -->
+                <span class="exp-item__date">2015 — 2016</span>
+              </div>
+              <p class="exp-item__company">Ratna Softnet</p>
+              <ul>
+                <li>Supported design of print and web materials for small businesses and startups.</li>
+                <li>Assisted in developing early wireframes and basic UI components for client websites.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+        </div>
+
+        <!-- ---- BRAND MARK ---- -->
+        <div class="brand-mark reveal-up">
+          <div class="brand-mark__plinth">
+            <img src="assets/images/logo.png" alt="Leo Stalin UI UX Designer logo — a lion holding a pencil in its teeth" width="320" height="320" loading="lazy">
+          </div>
+          <div class="brand-mark__copy">
+            <p class="eyebrow">The mark</p>
+            <h3>A lion for the name, a pencil for the work.</h3>
+            <p><strong>One idea, reduced until there's nothing left to take away.</strong> It comes in two cuts — the full badge here, and an <strong>icon-only version</strong> that drops the lettering so it still reads in a browser tab.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. SKILLS ============ -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Skills</p>
+          <h2 class="section-title">A toolkit built for the whole journey.</h2>
+        </div>
+
+        <div class="skills__grid">
+          <div class="skill-card reveal-up">
+            <h3>UX &amp; Product</h3>
+            <div class="skill-group">
+              <span>UX Research</span>
+              <span>User Flows</span>
+              <span>Information Architecture</span>
+              <span>Wireframing</span>
+              <span>Prototyping</span>
+              <span>Usability Testing</span>
+              <span>Design Systems</span>
+              <span>Component Libraries</span>
+            </div>
+            <p class="skill-note">End-to-end ownership from discovery through to specs the engineers build against.</p>
+          </div>
+
+          <div class="skill-card reveal-up" style="--delay:.08s">
+            <h3>UI &amp; Tools</h3>
+            <div class="skill-group">
+              <span>UI Design — Mobile</span>
+              <span>UI Design — Web</span>
+              <span>Figma</span>
+              <span>Adobe XD</span>
+              <span>Adobe Creative Suite</span>
+              <span>Photoshop</span>
+              <span>Illustrator</span>
+              <span>HTML / CSS</span>
+              <span>WordPress CMS</span>
+            </div>
+            <p class="skill-note">Figma is home. Enough front-end to hand over work that survives contact with the build.</p>
+          </div>
+
+          <div class="skill-card reveal-up" style="--delay:.16s">
+            <h3>Motion &amp; Communication</h3>
+            <div class="skill-group">
+              <span>Motion Graphics</span>
+              <span>Video Editing</span>
+              <span>Explainer Video</span>
+              <span>Synthesia</span>
+              <span>Pictory</span>
+              <span>Onboarding Guides</span>
+            </div>
+            <p class="skill-note">Used at Arada to explain internal policy and onboard staff onto newly launched apps — cutting training time by 40%.</p>
+            <p class="skill-note"><strong>Languages:</strong> English, Tamil, Malayalam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. FEATURED PROJECTS ============ -->
+    <section class="section work" id="work">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Selected Work</p>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-sub">Products I've designed end-to-end — from research to shipped UI.</p>
+        </div>
+
+        <div class="filter-bar reveal-up" aria-label="Filter projects by category">
+          <button class="filter-chip is-active" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-chip" data-filter="mobile" aria-pressed="false">Mobile Apps</button>
+          <button class="filter-chip" data-filter="web" aria-pressed="false">Web Platforms</button>
+        </div>
+
+        <div class="project-grid" id="projectGrid">
+          <!-- Project cards are injected by main.js from PROJECTS data -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. CASE STUDY MODAL ============ -->
+    <div class="case-study" id="caseStudy" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="csTitle">
+      <div class="case-study__backdrop" data-close></div>
+      <div class="case-study__panel">
+        <button class="case-study__close" data-close aria-label="Close case study">&times;</button>
+        <div class="case-study__body" id="caseStudyBody">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 7. SERVICES ============ -->
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Services</p>
+          <h2 class="section-title">How I can help</h2>
+        </div>
+
+        <div class="services__grid">
+          <div class="service-card reveal-up"><div class="service-card__icon" aria-hidden="true">🎨</div><h3>UI Design</h3><p>Pixel-perfect interfaces for web and mobile, built on a clear visual system.</p></div>
+          <div class="service-card reveal-up" style="--delay:.05s"><div class="service-card__icon" aria-hidden="true">🔍</div><h3>UX Research</h3><p>User flows, journey mapping and testing that ground decisions in behaviour.</p></div>
+          <div class="service-card reveal-up" style="--delay:.1s"><div class="service-card__icon" aria-hidden="true">✏️</div><h3>Wireframing &amp; Prototyping</h3><p>Structure settled in Figma before a single pixel is styled.</p></div>
+          <div class="service-card reveal-up" style="--delay:.15s"><div class="service-card__icon" aria-hidden="true">🧩</div><h3>Design Systems</h3><p>Component libraries and tokens that keep a product consistent as it grows.</p></div>
+          <div class="service-card reveal-up" style="--delay:.2s"><div class="service-card__icon" aria-hidden="true">📲</div><h3>Mobile App Design</h3><p>Native-feeling experiences for iOS &amp; Android, designed for one-handed use.</p></div>
+          <div class="service-card reveal-up" style="--delay:.25s"><div class="service-card__icon" aria-hidden="true">🌐</div><h3>Web &amp; WordPress</h3><p>Marketing sites and landing pages, designed and built on WordPress.</p></div>
+          <div class="service-card reveal-up" style="--delay:.3s"><div class="service-card__icon" aria-hidden="true">🎬</div><h3>Motion &amp; Explainer Video</h3><p>Onboarding guides and product walkthroughs that reduce support load.</p></div>
+          <div class="service-card reveal-up" style="--delay:.35s"><div class="service-card__icon" aria-hidden="true">🏷️</div><h3>Brand &amp; Print</h3><p>Identity systems, guidelines and collateral — six years of agency practice.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         REMOVED SECTIONS — see the note below before restoring
+         ------------------------------------------------------------
+         · Awards & Certifications — removed at your request.
+         · Testimonials — removed because the three quotes were
+           attributed to invented people at companies that aren't in
+           your history (Nexora, Brixel, Halo Health). Send me real
+           quotes with names and titles and I'll rebuild the carousel.
+         · Blog — removed because the three articles didn't exist and
+           linked nowhere. Happy to restore it when you have posts.
+         The markup for all three is preserved in git history / the
+         previous version of this file if you want any of them back.
+         ============================================================ -->
+
+    <!-- ============ 8. CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact__cta reveal-up">
+          <img class="contact__mark" src="assets/images/icon-logo.png" alt="" width="220" height="220" loading="lazy">
+          <h2>Tell me what<br>you're building.</h2>
+          <p>A product, a problem, or a role — I'd like to hear about it.</p>
+        </div>
+
+        <div class="contact__grid">
+          <div class="contact-info reveal-up">
+            <ul class="contact-info__list">
+              <li><span aria-hidden="true">✉️</span><a href="mailto:leostalin11@gmail.com">leostalin11@gmail.com</a></li>
+              <li><span aria-hidden="true">📞</span><a href="tel:+971523984264">+971 52 398 4264</a></li>
+              <li><span aria-hidden="true">📍</span><span>Dubai, United Arab Emirates</span></li>
+            </ul>
+
+            <a class="btn btn--primary magnetic contact-info__cta" href="mailto:leostalin11@gmail.com">Send me an email</a>
+
+            <!-- TODO Leo: send me your LinkedIn / Behance / Dribbble URLs and I'll
+                 restore this block. Dead "#" links were doing more harm than good.
+            <div class="social-links">
+              <a href="https://linkedin.com/in/YOUR-HANDLE" aria-label="LinkedIn" class="social-links__item">in</a>
+              <a href="https://behance.net/YOUR-HANDLE" aria-label="Behance" class="social-links__item">Be</a>
+            </div>
+            -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ 9. FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="#hero" class="footer__logo" aria-label="Leo Stalin — back to top">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">© <span id="year"></span> Leo Stalin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
 </body>
-
 </html>

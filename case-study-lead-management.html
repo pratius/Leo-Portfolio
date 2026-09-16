@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Management App — Case Study | Leo Stalin</title>
+  <meta name="description" content="A senior UI/UX case study: replacing Salesforce with a purpose-built mobile lead management app for Arada's sales floor — one product serving Vice Presidents, Sales Managers and Sales Executives, with an SLA clock on every lead.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Leo Stalin">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lead Management App — UI/UX Case Study">
+  <meta property="og:description" content="Leads used to arrive as paperwork and email, and sat with whoever happened to receive them. This app puts a clock on every one and a queue behind the whole sales floor.">
+  <meta property="og:image" content="assets/images/lead-management/thumb-device.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/icon-logo.png">
+
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      if (t !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/case-study.css">
+  <link rel="stylesheet" href="css/phone-frames.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header cs-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Leo Stalin — home">
+        <img class="logo__mark" src="assets/images/icon-logo-96.png" alt="" width="40" height="40">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.1A8.4 8.4 0 1 1 9.9 4a6.6 6.6 0 0 0 10.1 10.1Z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--outline" href="index.html#work">All Projects</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="cs-hero-banner" id="overview">
+      <div class="cs-hero-banner__bg" aria-hidden="true">
+        <span class="hero__shape hero__shape--1"></span>
+        <span class="hero__shape hero__shape--2"></span>
+      </div>
+      <div class="container">
+        <a href="index.html#work" class="cs-back reveal-up">← Back to all projects</a>
+        <p class="eyebrow reveal-up" style="--delay:.05s">Case Study · Sales Enablement · Native mobile</p>
+        <h1 class="cs-hero-banner__title reveal-up" style="--delay:.1s">Lead<br><span class="cs-title-accent">Management App</span></h1>
+        <p class="cs-hero-banner__subtitle reveal-up" style="--delay:.15s">Arada's sales floor was running its pipeline through Salesforce, paperwork and email. This app replaced all three with one product that puts a countdown on every lead — and a named owner behind it.</p>
+
+        <div class="cs-overview-grid reveal-up" style="--delay:.2s">
+          <div><strong>Client</strong><span>Arada — Sharjah &amp; Dubai master developer</span></div>
+          <div><strong>Product</strong><span>Lead Management App — internal sales tool</span></div>
+          <div><strong>My role</strong><span>UI/UX Designer — led the design end-to-end</span></div>
+          <div><strong>Platform</strong><span>Native mobile, portrait only (430 × 932)</span></div>
+          <div><strong>Users</strong><span>Sales VPs, Sales Managers, Sales Executives</span></div>
+          <div><strong>Replaced</strong><span>Salesforce, plus paper and email handoffs</span></div>
+          <div><strong>Tools</strong><span>Figma, FigJam</span></div>
+          <div><strong>Scope</strong><span>IA, role model, flows, UI system, all states</span></div>
+        </div>
+
+        <!-- Three phones, one per role. The whole design argument is that these
+             three people need different screens, so the hero shows all three. -->
+        <div class="bk-stage reveal-up" style="--delay:.25s">
+          <div class="bk-stage__glow" aria-hidden="true"></div>
+
+          <figure class="bk-phone bk-phone--side" data-shot="vp-dashboard" tabindex="0" role="button" aria-label="Enlarge: Vice President dashboard">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/vp-dashboard.png" alt="Vice President dashboard: a six-tile leads overview from total leads through to SLA breached, a horizontal row of breached-lead cards with expired countdowns, and a reassign-leads row for leads whose owner is unavailable">
+            </div></div>
+          </figure>
+
+          <figure class="bk-phone bk-phone--lead" data-shot="exec-dashboard" tabindex="0" role="button" aria-label="Enlarge: Sales Executive dashboard">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/exec-dashboard.jpg" alt="Sales Executive dashboard: a new-launch project carousel, a new-leads row showing a lead marked safe with three days left on its countdown, and a four-tile overview of contact made, quotation generated, pre-close and SLA breached">
+            </div></div>
+          </figure>
+
+          <figure class="bk-phone bk-phone--side" data-shot="sla-breached" tabindex="0" role="button" aria-label="Enlarge: SLA breached list">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/sla-breached.jpg" alt="SLA Breached list with a filter control, showing three leads each carrying a red breached pill and a countdown reading zero hours left">
+            </div></div>
+          </figure>
+
+          <p class="bk-stage__caption">Vice President, Sales Executive and the SLA list — tap any screen to open it full size.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUBNAV ============ -->
+    <nav class="cs-subnav" id="csSubnav" aria-label="Case study sections">
+      <div class="container">
+        <div class="cs-subnav__inner">
+          <a href="#context" class="cs-subnav__link" data-subnav>Context</a>
+          <a href="#before" class="cs-subnav__link" data-subnav>Before</a>
+          <a href="#goals" class="cs-subnav__link" data-subnav>Goals</a>
+          <a href="#roles" class="cs-subnav__link" data-subnav>Roles</a>
+          <a href="#clock" class="cs-subnav__link" data-subnav>The clock</a>
+          <a href="#distribution" class="cs-subnav__link" data-subnav>Distribution</a>
+          <a href="#queue" class="cs-subnav__link" data-subnav>The queue</a>
+          <a href="#lifecycle" class="cs-subnav__link" data-subnav>Lifecycle</a>
+          <a href="#states" class="cs-subnav__link" data-subnav>States</a>
+          <a href="#challenges" class="cs-subnav__link" data-subnav>Challenges</a>
+          <a href="#outcomes" class="cs-subnav__link" data-subnav>Outcomes</a>
+          <a href="#screens" class="cs-subnav__link" data-subnav>Screens</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ SCOPE ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cs-scope reveal-up">
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">3</span>
+            <span class="cs-scope__label">Roles, one app</span>
+            <span class="cs-scope__note">Sales Vice President, Sales Manager and Sales Executive each get a different product from the same build</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">4</span>
+            <span class="cs-scope__label">SLA severity tiers</span>
+            <span class="cs-scope__note">Safe, Warning, Critical and Breached — a live countdown on every single lead</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">5</span>
+            <span class="cs-scope__label">Pipeline stages</span>
+            <span class="cs-scope__note">New, Contact Made, Quotation Generated, Pre-Close, Closed — mirrored in list tabs and lead tabs</span>
+          </div>
+          <div class="cs-scope__item">
+            <span class="cs-scope__num">1 → 6 → 24</span>
+            <span class="cs-scope__label">Hierarchy in the design</span>
+            <span class="cs-scope__note">One VP over six Sales Managers over their executives, navigable from the profile screen</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTEXT ============ -->
+    <section class="section section--alt" id="context">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Context</p>
+          <h2 class="section-title">The other half of how Arada sells</h2>
+          <p class="section-sub">Brokers bring buyers in from outside. This is the tool for the sales floor inside — the people working the stand at a launch, the phones on a Tuesday, and the quotations that turn interest into a booking.</p>
+        </div>
+
+        <div class="cs-two-col--wide cs-two-col">
+          <div class="reveal-up">
+            <p class="cs-body cs-body--lead">A lead is perishable, and this is a business where one lead is a very large amount of money.</p>
+            <p class="cs-body">A property enquiry has a short window in which it is worth anything. Somebody visits the sales stand at Aljada on a Saturday, leaves a number, and is enthusiastic for about as long as it takes a competitor to call them back. If nobody rings on Monday, the lead is not a slightly worse lead — frequently it is no longer a lead at all.</p>
+            <p class="cs-body">So the design problem isn't recording enquiries. It's <strong>making sure every enquiry has a named owner and a deadline, and making both visible to the person who can intervene</strong> while intervening is still useful.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <div class="cs-panel">
+              <p class="cs-panel__title">Three people, three jobs</p>
+              <ul class="cs-bullet-list">
+                <li><strong>Sales Executive</strong> — works a personal list of leads through to a booking. Cares about what's next and what's about to expire.</li>
+                <li><strong>Sales Manager</strong> — owns a team of executives. Cares about who is overloaded, who is missing deadlines, and where a lead is stuck.</li>
+                <li><strong>Sales Vice President</strong> — owns the managers. Cares about the shape of the whole funnel and about breaches as a systemic signal.</li>
+              </ul>
+              <p class="cs-body" style="margin-top:14px;">One codebase serves all three. The interesting design work is in what each of them <em>doesn't</em> see.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BEFORE ============ -->
+    <section class="section" id="before">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Before the app</p>
+          <h2 class="section-title">Salesforce, plus paperwork, plus an email thread</h2>
+          <p class="section-sub">The account of what came before is the team's own, not something I reconstructed from the designs.</p>
+        </div>
+
+        <div class="cs-two-col">
+          <div class="reveal-up">
+            <div class="cs-panel">
+              <p class="cs-panel__title">What the team was living with</p>
+              <ul class="cs-bullet-list">
+                <li><strong>Salesforce was expensive</strong>, and not shaped around what this team actually did day to day.</li>
+                <li><strong>Lead management ran on paperwork and email</strong> — the same failure mode the brokerage side had.</li>
+                <li><strong>Leads captured at the sales stand were hard to distribute.</strong> A busy launch weekend produces a stack of enquiries and no mechanism for splitting them fairly or quickly.</li>
+                <li><strong>VPs and Managers struggled to assign leads</strong> to the right executive.</li>
+                <li><strong>The whole process was manual</strong>, and therefore slow.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <p class="cs-body">Read those five together and they're one problem wearing five hats: <strong>there was no system that knew who owned a lead and when they had to act.</strong></p>
+            <p class="cs-body">A generic CRM will happily store that information. What it won't do is put it in front of a manager on a phone, in a form that makes an overdue lead impossible to miss. Salesforce is a database with a licence fee; the sales floor needed a tool with an opinion.</p>
+            <p class="cs-body">That reframe is what made the product buildable. Not "replace Salesforce feature for feature" — which would have been enormous and mostly wasted — but <strong>build the small number of things this team does, and make ownership and time the spine of all of them</strong>.</p>
+            <div class="cs-note" style="margin-top:26px;">
+              <span class="cs-note__icon" aria-hidden="true">◆</span>
+              <p>There are no screenshots of the old process in this case study, because there is nothing honest to show. The before state was a licensed CRM, printed sheets and inboxes — so it's described here in words and the designs speak for the after.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GOALS ============ -->
+    <section class="section section--alt" id="goals">
+      <div class="container">
+        <div class="cs-goals reveal-up">
+          <p class="eyebrow">Goals</p>
+          <h2 class="section-title">What the app had to achieve</h2>
+          <div class="cs-goals-grid">
+            <div class="cs-goal"><span>01</span>Give every lead an owner and a deadline<em>Not a field in a record — a countdown on the card, visible to everyone above it.</em></div>
+            <div class="cs-goal"><span>02</span>Make distribution a mechanism, not a decision<em>Sales-stand leads should flow to executives without a manager triaging a stack by hand.</em></div>
+            <div class="cs-goal"><span>03</span>Make intervention fast<em>A manager should be able to see a stuck lead and move it in the same screen.</em></div>
+            <div class="cs-goal"><span>04</span>Serve three roles without three apps<em>Same build, same components, materially different products.</em></div>
+            <div class="cs-goal"><span>05</span>Keep the sales conversation inside the tool<em>Calls, tasks, meetings and emails logged against the lead they belong to.</em></div>
+            <div class="cs-goal"><span>06</span>Be usable on a sales floor<em>Standing up, one hand, between conversations — not sitting at a CRM.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ROLES ============ -->
+    <section class="section" id="roles">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 01. The role model</p>
+          <h2 class="section-title">Same components, three different products</h2>
+          <p class="section-sub">The three dashboards look like a family. What separates them is what got left out of each one.</p>
+        </div>
+
+        <div class="bk-row reveal-up">
+          <figure class="bk-phone" data-shot="exec-dashboard" tabindex="0" role="button" aria-label="Enlarge: Sales Executive dashboard">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/exec-dashboard.jpg" alt="Sales Executive dashboard with a project launch carousel, a new leads row with a safe countdown, and four overview tiles">
+            </div></div>
+            <figcaption><b>Sales Executive</b>New leads first, four tiles, three tabs. No SLA tab, no reassignment.</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="sm-dashboard" tabindex="0" role="button" aria-label="Enlarge: Sales Manager dashboard">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/sm-dashboard.png" alt="Sales Manager dashboard with a six-tile leads overview, an SLA row of breached leads, and a reassign leads row">
+            </div></div>
+            <figcaption><b>Sales Manager</b>Six tiles, SLA row, reassignment. Overview leads; no launch carousel.</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="vp-dashboard" tabindex="0" role="button" aria-label="Enlarge: Vice President dashboard">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/vp-dashboard.png" alt="Vice President dashboard, structurally the same as the Sales Manager view with a six-tile overview, SLA row and reassign row">
+            </div></div>
+            <figcaption><b>Vice President</b>The management view again — the same instrument, a wider population.</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The executive's screen opens with work; the manager's opens with risk</h4>
+            <p class="cs-body">The executive lands on a <strong>New Leads</strong> row — actual leads, with their countdowns, ready to be picked up. The funnel tiles sit <em>below</em> that, because an executive doesn't need to be told the shape of the funnel before being told what to do next.</p>
+            <p class="cs-body">The manager and VP land on the <strong>six-tile overview</strong> — Total, New, Contact Made, Quotation Generated, Pre-Close and SLA Breached — then an SLA row of breached leads, then leads needing reassignment. Their job starts with the aggregate and drills into exceptions.</p>
+            <p class="cs-body">Same card component, same tile component, inverted priority. <strong>Hierarchy of information is the feature</strong>; the components are just the vocabulary.</p>
+
+            <h4 class="cs-h4" style="margin-top:38px;">A tab bar that encodes authority</h4>
+            <p class="cs-body">Executives get three tabs: Dashboard, Leads, Profile. Managers and VPs get four — the extra one is <strong>SLA</strong>, a dedicated destination for breached leads with its own filter.</p>
+            <p class="cs-body">An executive already sees the clock on every one of their own leads; a standing list of breaches would be a list of their own failures. For a manager it's the primary instrument. Same data, different level, and only one of them gets a tab for it.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">The two lists are organised on different axes</h4>
+            <p class="cs-body">This is the decision I'd defend hardest in the whole product, and it's easy to miss.</p>
+            <div class="bk-table-wrap" style="margin-top:18px;">
+              <table class="bk-fields">
+                <caption class="sr-only">How the leads list is organised for each role</caption>
+                <thead><tr><th scope="col">Role</th><th scope="col">Leads list tabs</th></tr></thead>
+                <tbody>
+                  <tr><td>Sales Executive</td><td>New · Contact Made · Quoted · Closed<br><span style="font-size:.8rem;">— the <strong>pipeline stage</strong></span></td></tr>
+                  <tr><td>Manager / VP</td><td>All · Critical · Warning · Safe<br><span style="font-size:.8rem;">— the <strong>SLA severity</strong></span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="cs-body" style="margin-top:20px;">An executive asks <em>what stage is this deal at, and what do I do next?</em> A manager asks <em>what is about to go wrong, and who do I call?</em> Those are different questions, and answering both with one tab set would have served neither.</p>
+            <p class="cs-body">It costs a second list configuration to build. It buys a product where nobody has to filter their way to their own job.</p>
+
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start; margin-top:28px;">
+              <figure class="bk-phone" data-shot="exec-leads" tabindex="0" role="button" aria-label="Enlarge: executive leads list by stage">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/lead-management/exec-leads.jpg" alt="Executive leads list with tabs for New, Contact Made, Quoted and Closed, showing a safe lead and a warning lead with countdowns">
+                </div></div>
+                <figcaption><b>Executive</b>By pipeline stage</figcaption>
+              </figure>
+              <figure class="bk-phone" data-shot="leads-all" tabindex="0" role="button" aria-label="Enlarge: manager leads list by severity">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/lead-management/leads-all.jpg" alt="Manager leads list with tabs for All, Critical, Warning and Safe, showing one lead of each severity with matching countdown colours">
+                </div></div>
+                <figcaption><b>Manager</b>By SLA severity</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="bk-row reveal-up" style="margin-top:76px;">
+          <figure class="bk-phone" data-shot="vp-profile" tabindex="0" role="button" aria-label="Enlarge: Vice President profile and teams">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/vp-profile.jpg" alt="Vice President profile showing the VP's name and title with a headcount badge, above a My Teams list of six Sales Managers each with their own headcount and a chevron">
+            </div></div>
+            <figcaption><b>The org chart is a screen</b>Six managers, each with a headcount badge, each drillable</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="team-roster" tabindex="0" role="button" aria-label="Enlarge: a manager's team roster">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/team-roster.jpg" alt="A team roster titled with the manager's name, listing five Sales Executives with initial avatars">
+            </div></div>
+            <figcaption><b>One level down</b>The executives who can actually receive a lead</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="exec-profile" tabindex="0" role="button" aria-label="Enlarge: Sales Executive profile">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/exec-profile.jpg" alt="Sales Executive profile showing name and role above a six-tile personal leads overview">
+            </div></div>
+            <figcaption><b>Executive profile</b>No team list — the same tiles, scoped to one person</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:40px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p>Putting the hierarchy in <strong>Profile</strong> rather than in a separate "Team" section was deliberate. A manager's org chart <em>is</em> their account — who reports to them is the single fact that determines what the rest of the app shows them. The headcount badge on each row does quiet work too: it's the closest thing to a workload signal available before you tap in.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE CLOCK ============ -->
+    <section class="section section--alt" id="clock">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 02. The SLA clock</p>
+          <h2 class="section-title">A countdown on every lead, in four colours</h2>
+          <p class="section-sub">The mechanism that carries the whole product. Every lead card, in every list, for every role, shows how long is left before the response deadline is missed.</p>
+        </div>
+
+        <div class="bk-row reveal-up">
+          <figure class="bk-phone" data-shot="leads-all" tabindex="0" role="button" aria-label="Enlarge: all severities in one list">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/leads-all.jpg" alt="A leads list showing three cards in sequence: one marked safe with a green countdown, one marked warning in tan, and one marked critical in coral">
+            </div></div>
+            <figcaption><b>All four tiers coexist</b>Safe, Warning and Critical in one scan</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="leads-critical" tabindex="0" role="button" aria-label="Enlarge: critical leads only">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/leads-critical.jpg" alt="The Critical tab of the leads list showing two leads with coral critical pills and countdowns measured in hours">
+            </div></div>
+            <figcaption><b>Critical, isolated</b>Hours left, not days — a call list</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="sla-breached" tabindex="0" role="button" aria-label="Enlarge: breached leads">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/sla-breached.jpg" alt="The SLA Breached screen listing three leads with red breached pills and countdowns at zero hours left">
+            </div></div>
+            <figcaption><b>Breached</b>Its own tab for managers, with a filter</figcaption>
+          </figure>
+        </div>
+
+        <div class="bk-states reveal-up">
+          <div class="bk-state">
+            <span class="bk-state__dot bk-state__dot--done" aria-hidden="true"></span>
+            <strong>Safe · Green</strong>
+            <span>Days left. Present but quiet — it needs no decision today.</span>
+          </div>
+          <div class="bk-state">
+            <span class="bk-state__dot" style="background:#C79A6B;" aria-hidden="true"></span>
+            <strong>Warning · Tan</strong>
+            <span>About a day left. Warm rather than alarming, because it isn't late yet.</span>
+          </div>
+          <div class="bk-state">
+            <span class="bk-state__dot bk-state__dot--todo" aria-hidden="true"></span>
+            <strong>Critical · Coral</strong>
+            <span>Hours left. This is the tier that should generate phone calls.</span>
+          </div>
+          <div class="bk-state">
+            <span class="bk-state__dot" style="background:#E8365D;" aria-hidden="true"></span>
+            <strong>Breached · Red</strong>
+            <span>Zero. Not a warning any more — a fact, and a manager's problem.</span>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:72px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The countdown is written twice, on purpose</h4>
+            <p class="cs-body">Each card carries a precise timer <em>and</em> a plain-language remainder — the ticking figure beside something like "3 days left" or "10 hrs left".</p>
+            <p class="cs-body">The timer is for the person who needs to know exactly. The plain-language version is for everyone scanning a list, because <strong>nobody converts a hours-minutes-seconds string into urgency at a glance</strong>. Written twice, the card answers both the scan and the stare.</p>
+            <p class="cs-body">The hourglass icon takes the tier colour as well, so the row reads as urgent even for someone who can't reliably separate the tan pill from the coral one.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Why four tiers and not a simple late/not-late</h4>
+            <p class="cs-body">Two states would have been cheaper to build and nearly useless. "Not late" covers a lead with six days left and one with ninety minutes left, and those demand completely different behaviour.</p>
+            <p class="cs-body">Four tiers give the manager a <strong>graduated instrument</strong>: Safe is inventory, Warning is a nudge, Critical is a call, Breached is a conversation with a person rather than a lead. The tab set exposes exactly that — you can pull up only the tier you have time to act on.</p>
+            <p class="cs-body">And because the tier is derived from the clock rather than set by hand, <strong>nobody can mark their own lead as fine.</strong> That's the part a spreadsheet or a CRM field could never enforce.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DISTRIBUTION ============ -->
+    <section class="section" id="distribution">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 03. Distribution</p>
+          <h2 class="section-title">Moving a lead off someone who can't work it</h2>
+          <p class="section-sub">The brief named this twice: stand leads were hard to distribute, and managers struggled to assign them. Reassignment is the answer to the second half.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="vp-dashboard" tabindex="0" role="button" aria-label="Enlarge: reassign row on the dashboard">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/vp-dashboard.png" alt="Management dashboard whose lower section is a Reassign Leads row, each card flagged not available with a reassign lead button">
+            </div></div>
+            <figcaption><b>01</b>Surfaced on the dashboard</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="reassign-list" tabindex="0" role="button" aria-label="Enlarge: reassign leads list">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/reassign-list.jpg" alt="Reassign Leads list with a filter control, showing three leads each flagged not available in coral">
+            </div></div>
+            <figcaption><b>02</b>The full list, filterable</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="reassign-sheet" tabindex="0" role="button" aria-label="Enlarge: reassign sheet">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/reassign-sheet.png" alt="A Reassign Leads sheet with a select manager dropdown, a comments field and a submit button, over a dimmed leads overview">
+            </div></div>
+            <figcaption><b>03</b>Pick a manager, say why</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="reassign-success" tabindex="0" role="button" aria-label="Enlarge: reassignment receipt">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/reassign-success.png" alt="A Reassigned Successfully confirmation with a table listing lead number, the receiving sales manager, the assigned date and the comment">
+            </div></div>
+            <figcaption><b>04</b>A receipt naming the new owner</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">"Not available" is the trigger, and it's on the card</h4>
+            <p class="cs-body">Leads needing reassignment aren't found by searching. They're flagged <strong>Not available</strong> in coral, with a person-crossed-out icon, and pushed onto the manager's dashboard with a <strong>Reassign Lead</strong> button already on the card.</p>
+            <p class="cs-body">That's the difference between a tool that reports a problem and one that fixes it. The dashboard row is not a notification that something needs doing elsewhere — <strong>the action is in the same rectangle as the information</strong>.</p>
+            <p class="cs-body">A "See all" link opens the complete list with its own filter, for a manager doing a deliberate sweep rather than reacting.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Reassignment is two fields, and one of them is prose</h4>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>Select a manager, not an executive.</b> A VP hands the lead to a manager, who distributes within their own team. The design respects the reporting line instead of letting a VP reach past two levels into someone's personal list.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>Comments sit beside the dropdown, not behind an "add note" link.</b> A lead arriving with no explanation is a lead the recipient has to reconstruct. One free-text field is the cheapest possible handover.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>The confirmation is a receipt.</b> Lead number, receiving manager, date and the comment — echoed back on one card. The same pattern the Broker App uses for change requests, which is not a coincidence: both answer "where did that go?" before anyone has to ask.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE QUEUE ============ -->
+    <section class="section section--alt" id="queue">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 04. The assignment queue</p>
+          <h2 class="section-title">The mechanism that distributes stand leads</h2>
+          <p class="section-sub">And the most consequential screen in the app: what happens to an executive who stops keeping up.</p>
+        </div>
+
+        <div class="cs-deepdive">
+          <div class="cs-deepdive__media reveal-up">
+            <div class="bk-row bk-row--tight" style="justify-content:flex-start;">
+              <figure class="bk-phone" data-shot="queue-pending" tabindex="0" role="button" aria-label="Enlarge: removed from the assignment queue">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/lead-management/queue-pending.jpg" alt="Sales Executive dashboard carrying a Pending Request card with a red cross badge, explaining the user has been removed from the assignment queue and offering a request for approval button">
+                </div></div>
+                <figcaption><b>Removed from the queue</b>No new leads until a manager says otherwise</figcaption>
+              </figure>
+              <figure class="bk-phone" data-shot="queue-submitted" tabindex="0" role="button" aria-label="Enlarge: approval request submitted">
+                <div class="bk-phone__body"><div class="bk-phone__screen">
+                  <img src="assets/images/lead-management/queue-submitted.jpg" alt="The same dashboard after submitting, now with a green Request Submitted card and a retrospective overview of total, in-progress, successful and breached leads plus a lead history of units booked and leads rejected">
+                </div></div>
+                <figcaption><b>Request submitted</b>The live feed is replaced by a performance history</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="cs-deepdive__copy reveal-up" style="--delay:.08s">
+            <span class="cs-deepdive__index">How stand leads get distributed</span>
+            <h3>An executive isn't given leads. They're <em>in the queue</em> for them.</h3>
+            <p>This is the answer to "leads collected from the sales stand were difficult to distribute efficiently". Nobody divides the stack. Executives sit in an <strong>assignment queue</strong>, and new leads flow to them from it.</p>
+            <p>Which means the queue is also the enforcement mechanism. An executive who isn't keeping up can be <strong>removed from it</strong> — and the app tells them so, in the first card on their dashboard: <em>"You are removed from the assignment queue, please request for approval."</em></p>
+            <p>The consequence is exact and it lands where it hurts: no new leads. Not a warning email, not a figure in a monthly review. <strong>The pipeline stops arriving.</strong></p>
+            <div class="cs-decisions">
+              <div class="cs-decision"><span class="cs-decision__mark">A</span><span class="cs-decision__text"><b>The way back is one button, not a conversation.</b> "Request for Approval" opens a comments field and submits. Making reinstatement easy to ask for is what keeps the sanction proportionate rather than punitive.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">B</span><span class="cs-decision__text"><b>The dashboard changes shape while suspended.</b> With no leads incoming, a New Leads row would be a permanently empty promise. It's replaced by Overview and Lead History — total, in-progress, successful, breached, units booked, leads rejected. The screen becomes a mirror instead of a feed.</span></div>
+              <div class="cs-decision"><span class="cs-decision__mark">C</span><span class="cs-decision__text"><b>Pending is red; submitted is green.</b> Two cards in the same slot, and the colour flip is the whole status report. The wording carries it too — "Stay tuned" is unusually warm for an enterprise tool, and right for a moment when someone is waiting on their own manager.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bk-row bk-row--tight reveal-up" style="margin-top:64px;">
+          <figure class="bk-phone" data-shot="queue-request" tabindex="0" role="button" aria-label="Enlarge: request for approval sheet">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/queue-request.png" alt="A Request for approval sheet with a single comments field and a submit button">
+            </div></div>
+            <figcaption><b>The ask</b>One field, no ceremony</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="queue-receipt" tabindex="0" role="button" aria-label="Enlarge: submission confirmation">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/queue-receipt.png" alt="A Submitted confirmation stating the request has been submitted and a response will follow shortly, with a back to home action">
+            </div></div>
+            <figcaption><b>The acknowledgement</b>Submitted, and a promise to respond</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LIFECYCLE ============ -->
+    <section class="section" id="lifecycle">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Deep dive — 05. Working a lead</p>
+          <h2 class="section-title">Four tabs from enquiry to booking</h2>
+          <p class="section-sub">The lead's own screen carries its lifecycle: Details, Contact Made, Quotation, Close. The same four words the list uses, so the mental model transfers.</p>
+        </div>
+
+        <div class="bk-strip reveal-up">
+          <figure class="bk-phone" data-shot="lead-details" tabindex="0" role="button" aria-label="Enlarge: lead details">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/lead-details.jpg" alt="Lead Details tab showing the lead number with a tap-to-call button and a masked mobile number, a customer profile listing remarks, language, nationality, unit of interest, broker name and profession, and an Accept action">
+            </div></div>
+            <figcaption><b>01</b>Details, then Accept</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="activities-call" tabindex="0" role="button" aria-label="Enlarge: call activity log">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/activities-call.jpg" alt="Contact Made tab with an activities segmented control for call, task, events and email, showing recent calls with dates, times and durations and a new call button">
+            </div></div>
+            <figcaption><b>02</b>Log the contact</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="quotation-units" tabindex="0" role="button" aria-label="Enlarge: build a quotation">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/quotation-units.jpg" alt="Quotation tab with Add Unit and History segments, three selectable Aljada units each with an amount and a delete control, an add unit button and a send quote action">
+            </div></div>
+            <figcaption><b>03</b>Add units, send the quote</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="quotation-history" tabindex="0" role="button" aria-label="Enlarge: quotation history">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/quotation-history.jpg" alt="The History segment of the Quotation tab listing previously quoted units, with a close action at the foot of the screen">
+            </div></div>
+            <figcaption><b>04</b>History, then close</figcaption>
+          </figure>
+          <span class="bk-strip__arrow" aria-hidden="true">→</span>
+          <figure class="bk-phone" data-shot="reject-receipt" tabindex="0" role="button" aria-label="Enlarge: rejection receipt">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/reject-receipt.png" alt="A Rejected confirmation with a table listing the lead number, assigned date and the comment given">
+            </div></div>
+            <figcaption><b>or</b>Reject, with a reason</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:64px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">Accept and Reject both exist, and both are recorded</h4>
+            <p class="cs-body">An assigned lead isn't automatically the executive's problem. Details ends in <strong>Accept</strong>; a separate <strong>Reject</strong> flow takes a comment and returns a receipt naming the lead and the reason.</p>
+            <p class="cs-body">Allowing rejection is what makes the SLA fair. If an executive can be measured on a clock they didn't start, they need a legitimate way to say "this isn't mine" — otherwise the honest response to a bad lead is to sit on it until it breaches, which is the worst outcome for everyone.</p>
+            <p class="cs-body">And a rejection with a stated reason is <strong>data about lead quality</strong>, not just an escape hatch. It flows back to whoever is capturing enquiries at the stand.</p>
+
+            <h4 class="cs-h4" style="margin-top:38px;">Four activity types, one log</h4>
+            <p class="cs-body">Contact Made holds a segmented control — <strong>Call, Task, Events, Email</strong> — each with its own list and its own green "New" button. Calls carry a date, a time and a duration, logged against the lead.</p>
+            <p class="cs-body">This is the part that replaces the email thread. The record of the conversation lives on the lead rather than in one person's mailbox, which is exactly what has to be true before a lead can be reassigned without losing its history.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">What the profile chooses to show</h4>
+            <p class="cs-body">The customer profile isn't a contact record. It's the handful of facts that change how you'd open the conversation: <strong>Remarks</strong>, <strong>Language</strong>, <strong>Nationality</strong>, <strong>Unit</strong> of interest, <strong>Broker Name</strong>, <strong>Profession</strong>, and whether they've <strong>already purchased</strong>.</p>
+            <p class="cs-body">Language on a lead card is a small thing that matters enormously in the UAE — it decides which executive should really be calling. And "Already Purchased" flags a repeat buyer, who is a fundamentally different conversation from a first-timer.</p>
+            <p class="cs-body">The mobile number is <strong>masked to its last four digits</strong>, with a tap-to-call button beside it. The executive can ring the customer without the number being readable over their shoulder on a sales floor — the same restraint the Broker App applies to bank details.</p>
+
+            <h4 class="cs-h4" style="margin-top:38px;">Quotation is a basket, not a form</h4>
+            <p class="cs-body">A buyer rarely wants exactly one unit. The Quotation tab is a <strong>selectable list of units with amounts</strong>, each removable, with an Add Unit action and a History segment holding what's already been quoted.</p>
+            <p class="cs-body">Send Quote stays disabled until a unit is actually selected — the same dirty-state discipline as the reassignment and change-request flows. Nothing in this product lets you submit an empty action and then wait on it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATES ============ -->
+    <section class="section section--alt" id="states">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">States &amp; details</p>
+          <h2 class="section-title">The screens that decide whether people trust it</h2>
+          <p class="section-sub">A sales tool gets used in short bursts on bad signal. Three states carry more weight than their size suggests.</p>
+        </div>
+
+        <div class="bk-row bk-row--tight reveal-up">
+          <figure class="bk-phone" data-shot="empty-leads" tabindex="0" role="button" aria-label="Enlarge: empty leads state">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/empty-leads.jpg" alt="Sales Executive dashboard where the new leads row shows a sleeping-bell illustration and the message no leads to show, with the funnel tiles still populated below">
+            </div></div>
+            <figcaption><b>No new leads</b>A sleeping bell, not an error — and the tiles below stay useful</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="loading" tabindex="0" role="button" aria-label="Enlarge: updating state">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/loading.jpg" alt="Lead details dimmed behind a centred Arada mark and the word Updating, with the underlying content still legible">
+            </div></div>
+            <figcaption><b>Updating</b>The old data stays visible underneath, dimmed rather than blanked</figcaption>
+          </figure>
+          <figure class="bk-phone" data-shot="search" tabindex="0" role="button" aria-label="Enlarge: search within a stage">
+            <div class="bk-phone__body"><div class="bk-phone__screen">
+              <img src="assets/images/lead-management/search.jpg" alt="A search field replacing the navigation title while the New, Contact Made, Quoted and Closed tabs remain visible below it">
+            </div></div>
+            <figcaption><b>Search</b>Replaces the title bar but keeps the stage tabs, so scope is never lost</figcaption>
+          </figure>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:60px;">
+          <div class="reveal-up">
+            <h4 class="cs-h4">The empty state is the one I'd defend</h4>
+            <p class="cs-body">An executive with no new leads is not in an error condition — they might simply be caught up, or suspended from the queue. So the New Leads row shows a <strong>sleeping bell</strong> and "No leads to show", while the funnel tiles beneath it stay fully populated.</p>
+            <p class="cs-body">A wholesale empty screen would have implied something was broken. Emptying only the row that's actually empty keeps the rest of the dashboard doing its job.</p>
+          </div>
+          <div class="reveal-up" style="--delay:.08s">
+            <h4 class="cs-h4">Dimming beats blanking</h4>
+            <p class="cs-body">The updating state keeps the previous content on screen, dimmed, behind the brand mark. On a slow connection the executive can still read the customer's name while the refresh lands.</p>
+            <p class="cs-body">Skeletons and spinners over an empty canvas throw away information the app already had. On a sales floor, where the refresh might take a while, that information is the difference between a usable pause and a dead screen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHALLENGES ============ -->
+    <section class="section" id="challenges">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Challenges</p>
+          <h2 class="section-title">Where the design had to work harder</h2>
+          <p class="section-sub">Six problems that layout alone couldn't solve.</p>
+        </div>
+        <div class="cs-challenge-list">
+          <div class="cs-challenge reveal-up">
+            <div class="cs-challenge__problem"><span>Challenge</span>Three roles, one build, no budget for three apps.<em>An executive, a manager and a VP need materially different products out of the same components.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Vary hierarchy and omission, not components.<em>Same cards and tiles throughout; what changes is the order, the tab count, and which sections exist at all.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.06s">
+            <div class="cs-challenge__problem"><span>Challenge</span>"Late" is not one condition.<em>A lead with six days left and one with ninety minutes left both count as not-yet-late, and need opposite responses.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Four derived severity tiers with their own tabs.<em>Safe, Warning, Critical, Breached — computed from the clock, so nobody can self-certify, and filterable to the tier you can act on now.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.12s">
+            <div class="cs-challenge__problem"><span>Challenge</span>A stack of stand leads and no fair way to split it.<em>Manual distribution on a launch weekend is both slow and arbitrary.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>An assignment queue instead of a decision.<em>Executives sit in a queue and leads flow to them, which removes the triage step entirely.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.18s">
+            <div class="cs-challenge__problem"><span>Challenge</span>A deadline with no consequence is a suggestion.<em>Nothing in a CRM stops a lead going cold on someone who has stopped answering.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Removal from the queue, stated on the dashboard.<em>The pipeline stops arriving, the reason is the first card they see, and one button asks for reinstatement.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.24s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Measuring people on leads they never wanted.<em>An SLA on an unsuitable lead invites gaming — sit on it until it breaches.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>A first-class Reject flow with a required reason.<em>A legitimate way to decline, and the reason becomes lead-quality data rather than an argument.</em></div>
+          </div>
+          <div class="cs-challenge reveal-up" style="--delay:.3s">
+            <div class="cs-challenge__problem"><span>Challenge</span>Moving a lead without losing its history.<em>Reassignment is worthless if the conversation so far lived in one person's inbox.</em></div>
+            <div class="cs-challenge__arrow" aria-hidden="true">→</div>
+            <div class="cs-challenge__solution"><span>Solution</span>Calls, tasks, meetings and emails logged on the lead.<em>The activity log travels with the record, so the next owner inherits context instead of starting over.</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OUTCOMES ============ -->
+    <section class="section section--alt" id="outcomes">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Outcomes</p>
+          <h2 class="section-title">How the design answers the original problem</h2>
+          <p class="section-sub">Each of the five things the team named maps to a specific mechanism in the shipped product.</p>
+        </div>
+
+        <div class="cs-outcomes reveal-up">
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Before 01</span>
+            <div class="cs-outcome__body">
+              <h4>Salesforce was costly and not built for this team</h4>
+              <p>Replaced with a product that does five things — receive, assign, work, quote, close — and nothing else. The scope is the saving: no per-seat licence for a platform whose surface area the sales floor never used.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Before 02</span>
+            <div class="cs-outcome__body">
+              <h4>Paperwork and email</h4>
+              <p>The lead record carries its own activity log across calls, tasks, meetings and emails, and every action returns an on-screen receipt. There is no handoff that depends on someone forwarding a thread.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Before 03</span>
+            <div class="cs-outcome__body">
+              <h4>Stand leads were hard to distribute</h4>
+              <p>An assignment queue replaces manual triage. Nobody splits the stack; executives are in the queue and leads flow to them, with removal from the queue as the lever when someone isn't keeping up.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Before 04</span>
+            <div class="cs-outcome__body">
+              <h4>VPs and Managers struggled to assign leads</h4>
+              <p>Leads whose owner is unavailable are flagged on the card, surfaced on the dashboard, and reassigned in two fields with a receipt. The org chart lives in Profile, so the reporting line is always one tap away.</p>
+            </div>
+          </div>
+          <div class="cs-outcome">
+            <span class="cs-outcome__num">Before 05</span>
+            <div class="cs-outcome__body">
+              <h4>The process was manual and time-consuming</h4>
+              <p>The clock does the chasing. Severity is derived, not entered; breaches get their own tab for managers; and the countdown is on every card in every list, so nothing has to be worked out by hand.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-note reveal-up" style="margin-top:52px;">
+          <span class="cs-note__icon" aria-hidden="true">◆</span>
+          <p><strong>On metrics:</strong> no figures are quoted here. Conversion and response-time data for the sales floor sit with Arada's sales leadership, and I'd rather describe what the design does than attach a number I can't source. The verifiable scope — three roles, four severity tiers, five pipeline stages, a hierarchy of one VP over six managers — is above.</p>
+        </div>
+
+        <h3 class="cs-h3 reveal-up" style="margin-top:80px;">Where this goes next</h3>
+        <div class="cs-two-col reveal-up">
+          <div>
+            <h4 class="cs-h4">Workload, not just headcount</h4>
+            <p class="cs-body">The manager's team list shows how many people report to them. What it doesn't show is how loaded each of those people is, or how their SLA record looks. A live lead count and breach rate per executive would turn reassignment from a reaction into a decision — the screen is already the right place for it.</p>
+          </div>
+          <div>
+            <h4 class="cs-h4">Arabic, and the same reason as before</h4>
+            <p class="cs-body">The lead profile captures the customer's language because it changes who should call. The interface itself is English-only. For a tool used by a UAE sales floor talking to Arabic-speaking buyers, right-to-left support is the obvious next investment — and far cheaper designed in than retrofitted through date strips and countdown timers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCREENS ============ -->
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <p class="eyebrow">Screens</p>
+          <h2 class="section-title">The full set</h2>
+          <p class="section-sub">Every screen referenced above, plus the variants that didn't get their own section. Tap any to open it full size.</p>
+        </div>
+        <div class="cs-gallery" id="screensGallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ NEXT ============ -->
+    <section class="section section--alt section--tight">
+      <div class="container">
+        <div class="cs-next__inner reveal-up" style="text-align:center;">
+          <p class="eyebrow">Next case study</p>
+          <h2 class="section-title">Arada Broker App</h2>
+          <p class="cs-body" style="margin-inline:auto;">The outside half of the same sales operation: onboarding, verifying and servicing the external brokerages that bring buyers to Arada.</p>
+          <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:28px;">
+            <a class="btn btn--primary" href="case-study-broker-app.html">Read that case study</a>
+            <a class="btn btn--outline" href="index.html#work">All projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <a href="index.html" class="footer__logo" aria-label="Leo Stalin — home">
+        <img src="assets/images/icon-logo-96.png" alt="" width="48" height="48" loading="lazy">
+        <span class="logo__text">Leo Stalin</span>
+      </a>
+      <p class="footer__tag">© <span id="year"></span> Leo Stalin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <button class="lightbox__close" data-lightbox-close aria-label="Close image viewer">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next image">›</button>
+  </div>
+
+  <!-- Gallery data. Figures reference entries by `name`, so reordering this
+       list can never point a figure at the wrong screen. -->
+  <script>
+    window.CS_GALLERY = [
+      { name:'exec-dashboard',    src:'assets/images/lead-management/exec-dashboard.jpg',    caption:'Sales Executive dashboard — new leads first, then the funnel' },
+      { name:'sm-dashboard',      src:'assets/images/lead-management/sm-dashboard.png',      caption:'Sales Manager dashboard — the funnel first, then breaches and reassignment' },
+      { name:'vp-dashboard',      src:'assets/images/lead-management/vp-dashboard.png',      caption:'Vice President dashboard — the same management instrument, wider population' },
+      { name:'leads-all',         src:'assets/images/lead-management/leads-all.jpg',         caption:'Manager leads list — All, Critical, Warning, Safe in one view' },
+      { name:'leads-critical',    src:'assets/images/lead-management/leads-critical.jpg',    caption:'Critical only — hours left rather than days' },
+      { name:'sla-breached',      src:'assets/images/lead-management/sla-breached.jpg',      caption:'SLA Breached — a dedicated destination with its own filter' },
+      { name:'exec-leads',        src:'assets/images/lead-management/exec-leads.jpg',        caption:'Executive leads list — organised by pipeline stage, not severity' },
+      { name:'exec-leads-quoted', src:'assets/images/lead-management/exec-leads-quoted.jpg', caption:'The Quoted stage — same cards, same clock' },
+      { name:'search',            src:'assets/images/lead-management/search.jpg',            caption:'Search replaces the title bar but keeps the stage tabs' },
+      { name:'vp-profile',        src:'assets/images/lead-management/vp-profile.jpg',        caption:'VP profile — six Sales Managers with headcount badges' },
+      { name:'team-roster',       src:'assets/images/lead-management/team-roster.jpg',       caption:'One level down — a manager’s Sales Executives' },
+      { name:'exec-profile',      src:'assets/images/lead-management/exec-profile.jpg',      caption:'Executive profile — the same tiles, scoped to one person' },
+      { name:'reassign-list',     src:'assets/images/lead-management/reassign-list.jpg',     caption:'Reassign Leads — everything flagged “Not available”' },
+      { name:'reassign-sheet',    src:'assets/images/lead-management/reassign-sheet.png',    caption:'Reassignment — select a manager, say why' },
+      { name:'reassign-success',  src:'assets/images/lead-management/reassign-success.png',  caption:'Reassigned — a receipt naming the new owner and the comment' },
+      { name:'queue-pending',     src:'assets/images/lead-management/queue-pending.jpg',     caption:'Removed from the assignment queue — no new leads until reinstated' },
+      { name:'queue-request',     src:'assets/images/lead-management/queue-request.png',     caption:'Request for approval — one field, no ceremony' },
+      { name:'queue-receipt',     src:'assets/images/lead-management/queue-receipt.png',     caption:'Submitted, with a promise to respond' },
+      { name:'queue-submitted',   src:'assets/images/lead-management/queue-submitted.jpg',   caption:'While suspended, the dashboard becomes a performance history' },
+      { name:'lead-details',      src:'assets/images/lead-management/lead-details.jpg',      caption:'Lead details — the facts that change how you open the call, and a masked number' },
+      { name:'activities-call',   src:'assets/images/lead-management/activities-call.jpg',   caption:'Call log — date, time and duration against the lead' },
+      { name:'activities-task',   src:'assets/images/lead-management/activities-task.jpg',   caption:'Tasks logged on the lead rather than in someone’s inbox' },
+      { name:'activities-events', src:'assets/images/lead-management/activities-events.jpg', caption:'Meetings, in the same segmented log' },
+      { name:'activities-email',  src:'assets/images/lead-management/activities-email.jpg',  caption:'Email, the fourth activity type' },
+      { name:'quotation-empty',   src:'assets/images/lead-management/quotation-empty.jpg',   caption:'Quotation, empty — one action available' },
+      { name:'quotation-units',   src:'assets/images/lead-management/quotation-units.jpg',   caption:'Quotation as a basket — selectable units, each removable' },
+      { name:'quotation-history', src:'assets/images/lead-management/quotation-history.jpg', caption:'Quotation history — what has already been sent' },
+      { name:'reject-sheet',      src:'assets/images/lead-management/reject-sheet.png',      caption:'Rejecting a lead — a reason is the point of the screen' },
+      { name:'reject-receipt',    src:'assets/images/lead-management/reject-receipt.png',    caption:'Rejected — lead, date and reason echoed back' },
+      { name:'empty-leads',       src:'assets/images/lead-management/empty-leads.jpg',       caption:'No new leads — only the empty row goes quiet' },
+      { name:'loading',           src:'assets/images/lead-management/loading.jpg',           caption:'Updating — the previous data stays legible underneath' }
+    ];
+  </script>
+
+  <!-- animations.js owns the IntersectionObserver that reveals content. -->
+  <script src="js/animations.js"></script>
+  <script src="js/case-study.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+/* ==========================================================================
+   animations.css — keyframes & scroll-reveal utility classes
+   ========================================================================== */
+
+/* ---------- Reveal on scroll ---------- */
+.reveal-up{
+  opacity:0; transform: translateY(28px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  transition-delay: var(--delay, 0s);
+}
+.reveal-up.is-visible{ opacity:1; transform: translateY(0); }
+
+/* Stagger helper applied via JS (adds --delay inline already in HTML for hand-picked stagger) */
+
+/* ---------- Keyframes ---------- */
+@keyframes pulseScale{
+  0%, 100%{ transform: scale(1); opacity:1; }
+  50%{ transform: scale(1.08); opacity:.75; }
+}
+
+@keyframes loaderSlide{
+  0%{ transform: translateX(-100%); }
+  50%{ transform: translateX(120%); }
+  100%{ transform: translateX(320%); }
+}
+
+@keyframes floatSlow{
+  0%, 100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(24px,-20px) scale(1.06); }
+}
+
+@keyframes scrollCue{
+  0%{ transform: translateY(0); opacity:1; }
+  70%{ opacity:.4; }
+  100%{ transform: translateY(14px); opacity:0; }
+}
+
+@keyframes floatCard{
+  0%, 100%{ transform: translateY(0); }
+  50%{ transform: translateY(-10px); }
+}
+.float-card{ animation: floatCard 6s ease-in-out infinite; }
+.float-card--component{ animation-delay: .4s; }
+.float-card--metric{ animation-delay: 1s; }
+.float-card--spec{ animation-delay: .7s; }
+
+@keyframes typingBlink{
+  0%, 100%{ border-color: transparent; }
+  50%{ border-color: var(--accent); }
+}
+.type-target{ animation: typingBlink .8s step-end infinite; }
+
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+
+/* Slow dashed ring around the brand mark */
+@keyframes brandSpin{
+  to{ transform: rotate(360deg); }
+}
+
+/* ---------- Magnetic buttons (translate handled via inline transform by JS) ---------- */
+.magnetic{ will-change: transform; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-up{ opacity:1; transform:none; }
+}

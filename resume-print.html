@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leo Stalin — Résumé</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#111827; --sub:#6B7280; --accent:#C93E17; --line:#E5E7EB; --bg:#F8FAFC;
+      --font-d:'Inter',sans-serif; --font-b:'Inter',sans-serif;
+    }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-b); line-height:1.55; }
+    .resume{ max-width:800px; margin:40px auto; background:#fff; padding:56px; border-radius:16px; box-shadow:0 20px 48px rgba(17,24,39,.1); }
+    .resume__toolbar{ max-width:800px; margin:20px auto 0; display:flex; justify-content:flex-end; padding:0 4px; }
+    .resume__toolbar button, .resume__toolbar a{
+      font-family:var(--font-d); font-weight:600; font-size:.85rem; color:#fff; background:var(--accent);
+      border:none; border-radius:999px; padding:10px 20px; cursor:pointer; text-decoration:none; margin-left:10px;
+    }
+    header.r-head{ display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:28px; }
+    header.r-head h1{ font-family:var(--font-d); font-weight:800; font-size:2.1rem; margin:0; }
+    header.r-head p{ margin:4px 0 0; color:var(--sub); font-family:var(--font-d); font-weight:600; }
+    .r-brand{ display:flex; align-items:center; gap:14px; }
+    .r-brand img{ display:block; border-radius:50%; }
+    .r-item ul li strong{ color:var(--ink); }
+    .r-contact a{ color:inherit; text-decoration:none; }
+    .r-contact{ text-align:right; font-size:.85rem; color:var(--sub); }
+    .r-contact div{ margin-bottom:2px; }
+    section.r-section{ margin-bottom:26px; }
+    section.r-section h2{
+      font-family:var(--font-d); font-size:.78rem; text-transform:uppercase; letter-spacing:.1em;
+      color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:14px;
+    }
+    .r-item{ margin-bottom:16px; }
+    .r-item:last-child{ margin-bottom:0; }
+    .r-item__head{ display:flex; justify-content:space-between; gap:12px; }
+    .r-item__head h3{ font-family:var(--font-d); font-size:1rem; margin:0; }
+    .r-item__head span{ font-size:.82rem; color:var(--sub); white-space:nowrap; }
+    .r-item__sub{ font-size:.88rem; color:var(--accent); font-weight:600; margin:2px 0 6px; }
+    .r-item ul{ margin:0; padding-left:18px; font-size:.9rem; color:#374151; }
+    .r-item ul li{ margin-bottom:3px; }
+    .r-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+    .r-tags span{ font-size:.8rem; background:#F1F5F9; border:1px solid var(--line); padding:5px 12px; border-radius:999px; }
+    .r-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+
+    @media print{
+      body{ background:#fff; }
+      .resume__toolbar{ display:none; }
+      .resume{ box-shadow:none; margin:0; padding:0; max-width:none; }
+      @page{ margin: 18mm; }
+    }
+    @media (max-width: 640px){
+      .resume{ padding:28px; margin:20px 12px; }
+      header.r-head{ flex-direction:column; align-items:flex-start; gap:10px; }
+      .r-brand{ gap:12px; }
+      .r-contact{ text-align:left; }
+      .r-cols{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="resume__toolbar">
+    <a href="index.html">← Back to portfolio</a>
+    <button onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <main class="resume">
+    <header class="r-head">
+      <div class="r-brand">
+        <img src="assets/images/icon-logo-96.png" alt="" width="58" height="58">
+        <div>
+          <h1>Leo Stalin</h1>
+          <p>UI/UX Designer</p>
+        </div>
+      </div>
+      <div class="r-contact">
+        <div><a href="mailto:leostalin11@gmail.com">leostalin11@gmail.com</a></div>
+        <div>+971 52 398 4264</div>
+        <div>Dubai, United Arab Emirates</div>
+      </div>
+    </header>
+
+    <section class="r-section">
+      <h2>Summary</h2>
+      <p style="margin:0; font-size:.92rem; color:#374151;">Creative and detail-oriented UI/UX Designer with over 10 years of experience crafting user-centric web and mobile applications. Proven expertise in wireframing, prototyping, and creating design systems. Currently leading UI/UX initiatives at Arada Developments, focusing on enhancing user experiences across real estate and customer platforms. Adept at balancing aesthetics with usability to deliver intuitive and high-performing interfaces.</p>
+    </section>
+
+    <section class="r-section">
+      <h2>Experience</h2>
+      <div class="r-item">
+        <div class="r-item__head"><h3>UI/UX Designer</h3><span>Apr 2022 — Present</span></div>
+        <p class="r-item__sub">Arada Developments LLC · Dubai, UAE</p>
+        <ul>
+          <li>Led end-to-end UI/UX design for multiple mobile and web applications across Arada's internal tools and customer-facing platforms.</li>
+          <li><strong>Lead Management App</strong> — a purpose-built replacement for Salesforce on the sales floor, with an SLA countdown on every lead.</li>
+          <li><strong>Broker App</strong> — partner onboarding for brokerages: identity capture, licence verification, a bilingual agency agreement and a site access card.</li>
+          <li><strong>RDD Portal</strong> — retail fit-out delivery shared by the Lease, RDD, Tenant and MEP teams, from lease handover to Permission to Trade.</li>
+          <li><strong>Sales Commission</strong> — a commission breakdown module inside the Connect App.</li>
+          <li><strong>Handover iPad App</strong> — bilingual unit handover, signed on site.</li>
+          <li><strong>ARADA Care App</strong> — resident app for raising service requests, tracking maintenance and accessing community services.</li>
+          <li>Conducted end-to-end UX processes: research, user flows, wireframes, prototyping and testing.</li>
+          <li>Produced AI-based explainer videos (Synthesia, Pictory) and step-by-step user guides, reducing training time by 40%.</li>
+          <li>Managed multiple projects under tight deadlines while maintaining design consistency, accessibility standards and performance benchmarks.</li>
+        </ul>
+      </div>
+      <div class="r-item">
+        <div class="r-item__head"><h3>Creative Designer</h3><span>Sep 2016 — Mar 2022</span></div>
+        <p class="r-item__sub">Univations Design Est · Dubai, UAE</p>
+        <ul>
+          <li>Delivered end-to-end creative solutions across branding, digital design and print for startups and established businesses.</li>
+          <li>Developed brand identities including logo design, brand guidelines and visual systems.</li>
+          <li>Designed brochures, company profiles, poster campaigns and advertising materials for print and digital.</li>
+          <li>Designed and collaborated on website layouts and UI concepts, balancing aesthetics with usability.</li>
+          <li>Produced print materials including flyers, business cards, packaging, banners and exhibition stand graphics.</li>
+        </ul>
+      </div>
+      <div class="r-item">
+        <div class="r-item__head"><h3>Web &amp; Graphics Designer</h3><span>Dec 2015 — Aug 2016</span></div>
+        <p class="r-item__sub">PTL Solar FZ LLC · Dubai, UAE</p>
+        <ul>
+          <li>Designed WordPress-based websites and landing pages for solar product lines.</li>
+          <li>Developed marketing collateral including banners, product flyers and digital graphics.</li>
+        </ul>
+      </div>
+      <div class="r-item">
+        <!-- NOTE Leo: your résumé lists this role with the same dates as PTL Solar
+             (Dec 2015 – Aug 2016). Confirm the correct dates and I'll fix both here
+             and on the site. -->
+        <div class="r-item__head"><h3>Junior Designer</h3><span>2015 — 2016</span></div>
+        <p class="r-item__sub">Ratna Softnet</p>
+        <ul>
+          <li>Supported design of print and web materials for small businesses and startups.</li>
+          <li>Assisted in developing early wireframes and basic UI components for client websites.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="r-cols">
+      <section class="r-section">
+        <h2>Education</h2>
+        <div class="r-item">
+          <div class="r-item__head"><h3>B.E. Computer Science</h3><span>2010 — 2014</span></div>
+          <p class="r-item__sub">St. Xavier Catholic College of Engineering, India</p>
+        </div>
+      </section>
+      <section class="r-section">
+        <h2>Languages &amp; Details</h2>
+        <div class="r-item">
+          <ul>
+            <li>English, Tamil &amp; Malayalam</li>
+            <li>Indian national · Married</li>
+            <li>UAE driving license</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <section class="r-section">
+      <h2>Skills</h2>
+      <div class="r-tags">
+        <span>UX Research &amp; User Flows</span><span>Wireframing</span><span>Prototyping</span>
+        <span>UI Design (Mobile/Web)</span><span>Design Systems</span><span>Component Libraries</span>
+        <span>Figma</span><span>Adobe XD</span><span>Adobe Creative Suite</span>
+        <span>HTML/CSS</span><span>WordPress CMS</span><span>Motion Graphics</span><span>Video Editing</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
