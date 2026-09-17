@@ -479,6 +479,7 @@ h1,h2,h3,h4{ font-family: var(--font-display); color: var(--text-primary); lette
 .project-card__body{ padding:26px; }
 .project-card__body h3{ font-size:1.2rem; margin-bottom:8px; }
 .project-card__body p{ font-size:.9rem; color: var(--text-secondary); margin-bottom:16px; }
+/* Three cells: Role, Platform, Tools. */
 .project-card__meta{ display:grid; grid-template-columns: repeat(3,1fr); gap:10px; margin-bottom:20px; }
 .project-card__meta div{ font-size:.75rem; color: var(--text-secondary); }
 .project-card__meta strong{ display:block; color: var(--text-primary); font-size:.82rem; margin-bottom:2px; }
@@ -552,7 +553,8 @@ h1,h2,h3,h4{ font-family: var(--font-display); color: var(--text-primary); lette
 .lightbox__nav--next{ right:24px; }
 .cs-title{ font-size:2rem; margin-bottom:6px; }
 .cs-sub{ color: var(--text-secondary); margin-bottom:30px; }
-.cs-meta-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:16px; margin-bottom:40px; padding:22px; background: var(--bg-alt); border-radius: var(--radius-md); }
+/* Three cells since Duration was dropped: Role, Tools, Category. */
+.cs-meta-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; margin-bottom:40px; padding:22px; background: var(--bg-alt); border-radius: var(--radius-md); }
 .cs-meta-grid div strong{ display:block; font-size:.75rem; color: var(--text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px; }
 .cs-section{ margin-bottom:36px; }
 .cs-section h3{ font-size:1.15rem; margin-bottom:10px; }

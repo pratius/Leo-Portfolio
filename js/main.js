@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'customer-portal',
       title: 'my Arada — Customer Portal',
       category: 'web',
+      platform: 'Web',
       featured: true,
       tags: ['Web', 'PropTech'],
       description: 'A self-service ownership portal for off-plan property buyers — milestone payments, documents, and service requests in one place.',
       role: 'UI/UX Designer — led end-to-end',
-      tools: 'Figma, FigJam, Azure DevOps',
-      duration: '8–12 Weeks',
+      tools: 'Figma, Photoshop, Illustrator, Azure DevOps',
       caseStudyUrl: 'case-study-customer-portal.html',
       thumbnail: 'assets/images/customer-portal/thumb-device.png',
       gallery: [
@@ -51,12 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'broker-app',
       title: 'Arada Broker App',
       category: 'mobile',
+      platform: 'Mobile',
       featured: true,
       tags: ['Mobile', 'PropTech'],
       description: 'Partner onboarding and services for the brokerages that sell Arada — identity capture, licence verification, a bilingual agency agreement and a rotating site access card.',
       role: 'UI/UX Designer — led end-to-end',
-      tools: 'Figma, FigJam',
-      duration: 'Arada, 2022–present',
+      tools: 'Figma, Photoshop, Illustrator',
       caseStudyUrl: 'case-study-broker-app.html',
       thumbnail: 'assets/images/broker-app/thumb-device.png',
       gallery: [
@@ -78,12 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'rdd-portal',
       title: 'RDD Portal',
       category: 'web',
+      platform: 'Web',
       featured: true,
       tags: ['Web', 'Enterprise'],
       description: 'One fit-out record shared by Lease, Retail Design & Delivery, Tenant and MEP teams — thirteen stages from lease handover to Permission to Trade.',
       role: 'UI/UX Designer — led end-to-end',
-      tools: 'Figma, FigJam',
-      duration: 'Arada, 2022–present',
+      tools: 'Figma, Photoshop, Illustrator',
       caseStudyUrl: 'case-study-rdd-portal.html',
       thumbnail: 'assets/images/rdd-portal/thumb-device.png',
       gallery: [
@@ -103,12 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'lead-management',
       title: 'Lead Management App',
       category: 'mobile',
+      platform: 'Mobile',
       featured: true,
       tags: ['Mobile', 'CRM'],
       description: 'A purpose-built replacement for Salesforce on Arada\u2019s sales floor \u2014 one app for VPs, Sales Managers and Sales Executives, with an SLA countdown on every lead.',
       role: 'UI/UX Designer \u2014 led end-to-end',
-      tools: 'Figma, FigJam',
-      duration: 'Arada, 2022\u2013present',
+      tools: 'Figma, Photoshop, Illustrator',
       caseStudyUrl: 'case-study-lead-management.html',
       thumbnail: 'assets/images/lead-management/thumb-device.png',
       gallery: [
@@ -130,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'sales-commission',
       title: 'Sales Commission',
       category: 'mobile',
+      platform: 'Mobile',
       featured: true,
       tags: ['Mobile', 'Fintech'],
       description: 'A commission module inside Arada\u2019s Connect App \u2014 the full derivation from sale price to your own share, the milestones that release each half, and who signed off on them.',
       role: 'UI/UX Designer \u2014 led end-to-end',
-      tools: 'Figma, FigJam',
-      duration: 'Arada, 2022\u2013present',
+      tools: 'Figma, Photoshop, Illustrator',
       caseStudyUrl: 'case-study-sales-commission.html',
       thumbnail: 'assets/images/sales-commission/thumb-device.png',
       gallery: [
@@ -155,12 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'super-app',
       title: 'Arada Super App',
       category: 'mobile',
+      platform: 'Mobile',
       featured: true,
       tags: ['Mobile', 'Concept'],
       description: 'One app for the whole relationship \u2014 find a home, reserve it, pay for it, move in and run it. 83 screens across property, payments, services and ten request types. Designed, not released.',
       role: 'UI/UX Designer \u2014 designed the screens end to end',
-      tools: 'Figma, FigJam',
-      duration: 'Arada \u00b7 not released',
+      tools: 'Figma, Photoshop, Illustrator',
       caseStudyUrl: 'case-study-super-app.html',
       thumbnail: 'assets/images/superapp/thumb-device.png',
       gallery: [
@@ -180,12 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'yalla-scooter',
       title: 'Yalla Scooter App',
       category: 'mobile',
+      platform: 'Mobile',
       featured: true,
       tags: ['Mobile', 'Mobility'],
       description: 'Self-service scooter and e-bike rental \u2014 register by SMS, scan the QR printed on the handlebar, swipe to unlock and ride, with no staff and no paperwork in the middle.',
       role: 'UI/UX Designer \u2014 led end-to-end',
-      tools: 'Figma, FigJam',
-      duration: 'Yalla',
+      tools: 'Figma, Photoshop, Illustrator',
       caseStudyUrl: 'case-study-yalla-scooter.html',
       thumbnail: 'assets/images/yalla/thumb-device.png',
       gallery: [
@@ -208,12 +208,12 @@ document.addEventListener('DOMContentLoaded', () => {
          has two buckets, but the case study is explicit that there is no phone
          or desktop layout. */
       category: 'mobile',
+      platform: 'iPad',
       featured: true,
       tags: ['iPad', 'Bilingual'],
       description: 'Unit handover, done standing in the apartment \u2014 a bilingual checklist, a key-collection authorisation and two declarations, signed on the iPad and filed before anyone leaves.',
       role: 'UI/UX Designer \u2014 led end-to-end',
-      tools: 'Figma, FigJam',
-      duration: 'Arada, 2022\u2013present',
+      tools: 'Figma, Photoshop, Illustrator',
       caseStudyUrl: 'case-study-handover.html',
       thumbnail: 'assets/images/handover/thumb-device.png',
       gallery: [
@@ -255,8 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <p>${project.description}</p>
           <div class="project-card__meta">
             <div><strong>Role</strong>${project.role}</div>
+            <div><strong>Platform</strong>${project.platform}</div>
             <div><strong>Tools</strong>${project.tools}</div>
-            <div><strong>Duration</strong>${project.duration}</div>
           </div>
           <div class="project-card__actions">
             ${project.caseStudyUrl
@@ -376,7 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cs-meta-grid">
         <div><strong>Role</strong>${project.role}</div>
         <div><strong>Tools</strong>${project.tools}</div>
-        <div><strong>Duration</strong>${project.duration}</div>
         <div><strong>Category</strong>${project.tags.join(', ')}</div>
       </div>
 
